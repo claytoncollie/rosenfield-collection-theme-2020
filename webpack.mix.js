@@ -207,14 +207,10 @@ if (process.env.sync) {
      */
     mix.browserSync({
         notify: false,
-        proxy: 'https://rosenfieldcollection.local',
-        host: 'rosenfieldcollection.local',
+        proxy: 'http://rosenfieldcollection.local',
+        host: 'localhost',
         open: 'external',
-        port: '8000',
-        https: {
-            'key': '/Users/seothemes/.config/valet/Certificates/genesis-starter.test.key',
-            'cert': '/Users/seothemes/.config/valet/Certificates/genesis-starter.test.crt'
-        },
+        port: '3000',
         files: [
             'assets/css/*',
             'config/*.php',
