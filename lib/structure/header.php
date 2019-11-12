@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Structure;
 /**
  * Add custom hook after the title area.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $close_html Closing html markup.
  *
@@ -35,7 +35,7 @@ function title_area_hook( $close_html ) {
 /**
  * Displays the before header widget area.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -53,7 +53,7 @@ function before_header_widget() {
 /**
  * Add max-width style to custom logo.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $html Custom logo HTML output.
  *

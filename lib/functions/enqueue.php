@@ -20,7 +20,7 @@ add_action( 'wp_enqueue_scripts', 'genesis_enqueue_main_stylesheet', 99 );
 /**
  * Register and enqueue all scripts and styles.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -59,7 +59,7 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\deregister_scripts' );
 /**
  * Deregister scripts.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */

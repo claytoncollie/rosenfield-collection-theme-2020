@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Functions;
 /**
  * Enable shortcodes in widgets.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -27,7 +27,7 @@ function enable_shortcodes_in_widgets() {
 /**
  * Change Front Page 1 title to H1.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $defaults Default settings.
  * @param array $args     Other args.
@@ -48,7 +48,7 @@ function front_page_1_heading( $defaults, $args ) {
 /**
  * Set default values for widget area output.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array  $defaults Widget area defaults.
  * @param string $id       Widget area ID.
@@ -85,7 +85,7 @@ function widget_area_defaults( $defaults, $id ) {
 /**
  * Add additional column class to plugin.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $column_classes Array of column classes.
  *

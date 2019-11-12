@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Functions;
 /**
  * Add additional classes to the body element.
  *
- * @since  3.5.0
+ * @since 1.0.0
  *
  * @param  array $classes Body classes.
  *
@@ -72,7 +72,7 @@ function body_classes( $classes ) {
 /**
  * Remove sidebars on narrow content layout.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */

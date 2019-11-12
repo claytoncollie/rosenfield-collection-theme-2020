@@ -1,12 +1,12 @@
 {
-  "name": "genesis-starter-theme",
-  "version": "3.5.3",
+  "name": "rosenfieldcollection2020",
+  "version": "1.0.0",
   "description": "Genesis starter theme with a modern development workflow.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/seothemes/genesis-starter-theme.git"
+    "url": "https://github.com/claytoncollie/rosenfield-collection-2020-theme.git"
   },
-  "author": "SEO Themes",
+  "author": "Clayton Collie",
   "license": "GPL-2.0-or-later",
   "main": "Gulpfile.js",
   "dependencies": {},
@@ -40,12 +40,12 @@
     "vue-template-compiler": "^2.6.10"
   },
   "theme": {
-    "name": "Genesis Starter Theme",
-    "uri": "https://genesisstartertheme.com/",
-    "authoruri": "https://seothemes.com/",
+    "name": "Rosenfield Collection 2020",
+    "uri": "https://www.rosenfieldcollection.com/",
+    "authoruri": "https://www.ckaytoncollie.com/",
     "licenseuri": "http://www.gnu.org/licenses/gpl-2.0.html",
     "domainpath": "/assets/lang",
-    "textdomain": "genesis-starter-theme",
+    "textdomain": "rosenfield-collection",
     "template": "genesis"
   },
   "scripts": {

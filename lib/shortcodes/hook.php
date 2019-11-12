@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Shortcodes;
 /**
  * Creates a hook shortcode.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $atts Shortcode arguments.
  *

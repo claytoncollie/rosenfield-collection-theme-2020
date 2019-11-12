@@ -15,7 +15,7 @@
 /**
  * Gets the correct page layout for the template.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return string
  */

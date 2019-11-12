@@ -17,7 +17,7 @@ namespace SeoThemes\GenesisStarterTheme;
 /**
  * Dequeues Skip Links Script.
  *
- * @since 3.5.0
+ * @since 1.0.0
  */
 function dequeue_skip_links() {
 	\wp_dequeue_script( 'skip-links' );

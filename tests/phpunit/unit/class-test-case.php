@@ -25,7 +25,7 @@ abstract class Test_Case extends TestCase {
 	/**
 	 * Prepares the test environment before each test.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -37,7 +37,7 @@ abstract class Test_Case extends TestCase {
 	/**
 	 * Cleans up the test environment after each test.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -49,7 +49,7 @@ abstract class Test_Case extends TestCase {
 	/**
 	 * Setup the stubs for the common WordPress escaping and internationalization functions.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */

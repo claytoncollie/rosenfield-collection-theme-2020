@@ -36,7 +36,7 @@ if ( ! \class_exists( 'WooCommerce' ) ) {
 /**
  * Get correct layout for shop page.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $layout Current page layout.
  *
@@ -55,7 +55,7 @@ function shop_page_layout( $layout ) {
 /**
  * Outputs opening WooCommerce wrapper markup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -85,7 +85,7 @@ function woo_wrapper_start() {
 /**
  * Outputs closing WooCommerce wrapper markup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -121,7 +121,7 @@ function woo_wrapper_end() {
 /**
  * Reposition shop page header elements.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return bool
  */
@@ -146,7 +146,7 @@ function shop_page_header() {
 /**
  * Add opening product inner wrapper markup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -158,7 +158,7 @@ function product_inner_wrap_open() {
 /**
  * Add closing product inner wrapper markup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -170,7 +170,7 @@ function product_inner_wrap_close() {
 /**
  * Change thumbnail size on cart page.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $product   Current product item.
  * @param array $cart_item Cart item object.
@@ -185,7 +185,7 @@ function cart_page_thumbnail( $product, $cart_item ) {
 /**
  * Change WooCommerce review gravatar size
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return int
  */
@@ -197,7 +197,7 @@ function woocommerce_gravatar_size() {
 /**
  * Change the default PayPal icon.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return string
  */
@@ -209,7 +209,7 @@ function woo_paypal_icon() {
 /**
  * Remove default Stripe add-on CSS.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -221,7 +221,7 @@ function remove_stripe_styles() {
 /**
  * Reduce related products to 3 columns.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $args Related product args.
  *

@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Structure;
 /**
  * Modify size of the Gravatar in the entry comments.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $args Genesis comment list arguments.
  *

@@ -25,7 +25,7 @@ class Helpers extends Test_Case {
 	/**
 	 * Setup test case.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -38,7 +38,7 @@ class Helpers extends Test_Case {
 	/**
 	 * Test get_theme_dir function.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -52,7 +52,7 @@ class Helpers extends Test_Case {
 	/**
 	 * Test get_theme_url function.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */

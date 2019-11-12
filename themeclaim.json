@@ -6,5 +6,13 @@
     "Uri": "https://genesisstartertheme.com/",
     "Author": "SEO Themes",
     "AuthorUri": "https://seothemes.com/"
+  },
+  "to": {
+    "Name": "Rosenfield Collection 2020",
+    "Description": "Genesis child theme with modern workflow.",
+    "Namespace": "RosenfieldCollection\\2020",
+    "Uri": "https://www.rosenfieldcollection.com/",
+    "Author": "Clayton Collie",
+    "AuthorUri": "https://www.claytoncollie.com/"
   }
 }

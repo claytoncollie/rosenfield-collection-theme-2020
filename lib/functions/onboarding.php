@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Functions;
 /**
  * Workaround to backup deleted onboarding featured images.
  *
- * @since 3.5.3
+ * @since 1.0.0
  *
  * @todo  Remove when issue #2505 is fixed.
  *
@@ -53,7 +53,7 @@ function backup_featured_images() {
 /**
  * Workaround to delete the backup onboarding featured images.
  *
- * @since 3.5.3
+ * @since 1.0.0
  *
  * @todo  Remove when issue #2505 is fixed.
  *
@@ -93,7 +93,7 @@ function delete_image_backup() {
 /**
  * Workaround to fix Genesis multiple featured images issue.
  *
- * @since 3.5.3
+ * @since 1.0.0
  *
  * @todo  Remove when #2506 is fixed.
  *
@@ -141,7 +141,7 @@ add_action( 'genesis_onboarding_after_import_content', __NAMESPACE__ . '\set_per
 /**
  * Set permalink structure and flush rules after importing content.
  *
- * @since 3.5.3
+ * @since 1.0.0
  *
  * @return void
  */

@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Structure;
 /**
  * Add hooks before and after structural wraps.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -45,7 +45,7 @@ function structural_wrap_hooks() {
 /**
  * Change content-sidebar-wrap class to wrap.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $atts Default element attributes.
  *

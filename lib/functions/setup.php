@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Functions;
 /**
  * Theme setup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */

@@ -23,7 +23,7 @@ namespace SeoThemes\GenesisStarterTheme\Structure;
 /**
  * Replace # links with JavaScript void.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $menu_item item HTML.
  *

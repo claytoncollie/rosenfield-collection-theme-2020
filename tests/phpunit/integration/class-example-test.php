@@ -21,7 +21,7 @@ class Example_Test extends \WP_UnitTestCase {
 	/**
 	 * Description of expected behavior.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -32,7 +32,7 @@ class Example_Test extends \WP_UnitTestCase {
 	/**
 	 * Description of expected behavior.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -46,7 +46,7 @@ class Example_Test extends \WP_UnitTestCase {
 	/**
 	 * Description of expected behavior.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -58,7 +58,7 @@ class Example_Test extends \WP_UnitTestCase {
 	/**
 	 * Description of expected behavior.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */

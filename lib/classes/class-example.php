@@ -41,7 +41,7 @@ class Example {
 	/**
 	 * Example constructor.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -52,7 +52,7 @@ class Example {
 	/**
 	 * Example method.
 	 *
-	 * @since 3.5.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */

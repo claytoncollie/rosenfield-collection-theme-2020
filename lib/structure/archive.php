@@ -21,7 +21,7 @@ use function SeoThemes\GenesisStarterTheme\Functions\is_type_archive;
 /**
  * Add column class to archive posts.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $classes Array of post classes.
  *
@@ -63,7 +63,7 @@ function archive_post_class( $classes ) {
 /**
  * Modify the content limit read more link
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $more_link_text Default more link text.
  *
@@ -77,7 +77,7 @@ function read_more_link( $more_link_text ) {
 /**
  * Modifies size of the Gravatar in the author box.
  *
- * @since 2.2.3
+ * @since 1.0.0
  *
  * @param int $size Original icon size.
  *
@@ -91,7 +91,7 @@ function author_box_gravatar( $size ) {
 /**
  * Outputs the opening entry wrap markup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -110,7 +110,7 @@ function entry_wrap_open() {
 /**
  * Outputs the closing entry wrap markup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -129,7 +129,7 @@ function entry_wrap_close() {
 /**
  * Outputs the opening entry wrap markup in widgets.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $open Opening markup.
  * @param array  $args Markup args.

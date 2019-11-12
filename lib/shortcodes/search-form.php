@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Shortcodes;
 /**
  * Displays a search form.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return string
  */

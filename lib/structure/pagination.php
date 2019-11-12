@@ -21,7 +21,7 @@
 /**
  * Outputs the opening pagination wrap markup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $open Opening markup.
  * @param array  $args Markup args.
@@ -40,7 +40,7 @@ function entry_pagination_wrap_open( $open, $args ) {
 /**
  * Outputs the closing pagination wrap markup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $close Closing markup.
  * @param array  $args  Markup args.
@@ -59,7 +59,7 @@ function entry_pagination_wrap_close( $close, $args ) {
 /**
  * Changes the previous page link text.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return string
  */
@@ -71,7 +71,7 @@ function previous_page_link() {
 /**
  * Changes the next page link text.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return string
  */
@@ -83,7 +83,7 @@ function next_page_link() {
 /**
  * Changes the previous link arrow icon.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $content Previous link text.
  *
@@ -97,7 +97,7 @@ function previous_pagination_text( $content ) {
 /**
  * Changes the next link arrow icon.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $content Next link text.
  *

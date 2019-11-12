@@ -14,7 +14,7 @@ namespace SeoThemes\GenesisStarterTheme\Functions;
 /**
  * Returns the child theme directory.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return string
  */
@@ -31,7 +31,7 @@ function get_theme_dir() {
 /**
  * Returns the child theme URL.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return string
  */
@@ -48,7 +48,7 @@ function get_theme_url() {
 /**
  * Check if were on any type of singular page.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return bool
  */
@@ -59,7 +59,7 @@ function is_type_single() {
 /**
  * Check if were on any type of archive page.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return bool
  */
@@ -70,7 +70,7 @@ function is_type_archive() {
 /**
  * Checks if current page has the hero section enabled.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return bool
  */

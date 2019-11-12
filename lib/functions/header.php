@@ -14,7 +14,7 @@ namespace SeoThemes\GenesisStarterTheme\Functions;
 /**
  * Custom header image callback.
  *
- * @since  3.5.0
+ * @since 1.0.0
  *
  * @return string
  */
@@ -93,7 +93,7 @@ function header() {
 /**
  * Register default custom header image.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */

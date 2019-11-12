@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Functions;
 /**
  * Set default theme settings on theme activation.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -30,7 +30,7 @@ function default_theme_settings() {
 /**
  * Set Simple Social Icon defaults.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $defaults Social style defaults.
  *
@@ -46,7 +46,7 @@ function default_social_styles( $defaults ) {
 /**
  * Change Icon Widget plugin default settings.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $defaults Icon widget defaults.
  *
@@ -65,7 +65,7 @@ function icon_widget_defaults( $defaults ) {
 /**
  * Set syntax color for code block.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return string
  */

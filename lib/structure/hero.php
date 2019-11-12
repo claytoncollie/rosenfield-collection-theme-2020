@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Structure;
 /**
  * Sets up hero section.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -73,7 +73,7 @@ function hero_setup() {
 /**
  * Adds hero utility class to body element.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $classes List of body classes.
  *
@@ -89,7 +89,7 @@ function hero_body_class( $classes ) {
 /**
  * Remove default title of 404 pages.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -104,7 +104,7 @@ function hero_remove_404_title() {
 /**
  * Display title in hero section.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -140,7 +140,7 @@ function hero_title() {
 /**
  * Display page excerpt.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -192,7 +192,7 @@ function hero_excerpt() {
 /**
  * Add intro text for archive headings to archive pages.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param string $heading    Optional. Archive heading, default is empty string.
  * @param string $intro_text Optional. Archive intro text, default is empty string.
@@ -217,7 +217,7 @@ function do_archive_headings_intro_text( $heading = '', $intro_text = '', $conte
 /**
  * Adds attributes to hero archive title markup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $atts Hero title attributes.
  *
@@ -233,7 +233,7 @@ function hero_archive_title_attr( $atts ) {
 /**
  * Adds attributes to hero section markup.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $atts Hero entry attributes.
  *
@@ -250,7 +250,7 @@ function hero_entry_attr( $atts ) {
 /**
  * Display the hero section.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */

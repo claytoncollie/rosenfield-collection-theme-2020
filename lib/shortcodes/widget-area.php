@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Shortcodes;
 /**
  * Displays a widget area.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @param array $atts Shortcode arguments.
  *

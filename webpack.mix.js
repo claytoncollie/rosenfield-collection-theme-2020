@@ -207,8 +207,8 @@ if (process.env.sync) {
      */
     mix.browserSync({
         notify: false,
-        proxy: 'https://genesis-starter.test',
-        host: 'genesis-starter.test',
+        proxy: 'https://rosenfieldcollection.local',
+        host: 'rosenfieldcollection.local',
         open: 'external',
         port: '8000',
         https: {

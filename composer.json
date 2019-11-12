@@ -1,7 +1,7 @@
 {
-  "name": "seothemes/genesis-starter-theme",
+  "name": "rosenfieldcollection2020",
   "type": "wordpress-theme",
-  "description": "Genesis starter theme with a modern development workflow.",
+  "description": "Genesis child theme with a modern workflow.",
   "keywords": [
     "WordPress",
     "wordpress-theme-development",
@@ -10,15 +10,11 @@
   "license": "GPL-2.0-or-later",
   "authors": [
     {
-      "name": "Lee Anthony",
-      "homepage": "https://seothemes.com",
+      "name": "Clayton Collie",
+      "homepage": "https://www.claytoncollie.com",
       "role": "Developer"
     }
   ],
-  "support": {
-    "issues": "https://github.com/seothemes/genesis-starter-theme/issues",
-    "source": "https://github.com/seothemes/genesis-starter-theme"
-  },
   "require": {
     "php": ">=5.6"
   },
@@ -28,7 +24,6 @@
     "dealerdirect/phpcodesniffer-composer-installer": "v0.5.0",
     "phpcompatibility/phpcompatibility-wp": "2.0.0",
     "phpunit/phpunit": "~5.7.9",
-    "seothemes/genesis-config-exporter": "@dev",
     "squizlabs/php_codesniffer": "^3.4.2",
     "wp-coding-standards/wpcs": "2.1.0",
     "wp-phpunit/wp-phpunit": "^5.1"

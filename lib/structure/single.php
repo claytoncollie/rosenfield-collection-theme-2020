@@ -19,7 +19,7 @@ namespace SeoThemes\GenesisStarterTheme\Structure;
 /**
  * Disables the post edit link.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */

@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Structure;
 /**
  * Displays before footer widget area.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */

@@ -176,9 +176,9 @@ window.addEventListener('scroll', function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/seothemes/Sites/genesis-starter/wp-content/themes/genesis-starter-theme/assets/js/hide-show.js */"./assets/js/hide-show.js");
-__webpack_require__(/*! /Users/seothemes/Sites/genesis-starter/wp-content/themes/genesis-starter-theme/assets/js/sticky-header.js */"./assets/js/sticky-header.js");
-module.exports = __webpack_require__(/*! /Users/seothemes/Sites/genesis-starter/wp-content/themes/genesis-starter-theme/assets/js/smooth-scroll.js */"./assets/js/smooth-scroll.js");
+__webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/js/hide-show.js */"./assets/js/hide-show.js");
+__webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/js/sticky-header.js */"./assets/js/sticky-header.js");
+module.exports = __webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/js/smooth-scroll.js */"./assets/js/smooth-scroll.js");
 
 
 /***/ })

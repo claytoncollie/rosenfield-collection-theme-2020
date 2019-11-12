@@ -15,7 +15,7 @@ namespace SeoThemes\GenesisStarterTheme\Structure;
 /**
  * Only add hooks if were on the front page.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -35,7 +35,7 @@ function front_page_loop() {
 /**
  * Add additional classes to the body element.
  *
- * @since  3.5.0
+ * @since 1.0.0
  *
  * @param  array $classes Body classes.
  *
@@ -51,7 +51,7 @@ function front_page_body_class( $classes ) {
 /**
  * Display the front page widget areas.
  *
- * @since 3.5.0
+ * @since 1.0.0
  *
  * @return void
  */
