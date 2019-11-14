@@ -11,18 +11,6 @@
 
 namespace SeoThemes\GenesisStarterTheme\Functions;
 
-\add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_shortcodes_in_widgets' );
-/**
- * Enable shortcodes in widgets.
- *
- * @since 1.0.0
- *
- * @return void
- */
-function enable_shortcodes_in_widgets() {
-	\add_filter( 'widget_text', 'do_shortcode' );
-}
-
 \add_filter( 'genesis_register_widget_area_defaults', __NAMESPACE__ . '\front_page_1_heading', 10, 2 );
 /**
  * Change Front Page 1 title to H1.
@@ -79,24 +67,4 @@ function widget_area_defaults( $defaults, $id ) {
 	}
 
 	return $defaults;
-}
-
-\add_filter( 'genesis_widget_column_classes', __NAMESPACE__ . '\extra_widget_columns' );
-/**
- * Add additional column class to plugin.
- *
- * @since 1.0.0
- *
- * @param array $column_classes Array of column classes.
- *
- * @return array Modified column classes.
- */
-function extra_widget_columns( $column_classes ) {
-	$column_classes[] = 'one-fifth';
-	$column_classes[] = 'two-fifths';
-	$column_classes[] = 'three-fifths';
-	$column_classes[] = 'four-fifths';
-	$column_classes[] = 'full-width';
-
-	return $column_classes;
 }

@@ -125,28 +125,16 @@ wp.domReady(function () {
 
 /***/ }),
 
-/***/ "./assets/scss/plugins/woocommerce/__index.scss":
-/*!******************************************************!*\
-  !*** ./assets/scss/plugins/woocommerce/__index.scss ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 0:
-/*!************************************************************************************************************************************!*\
-  !*** multi ./assets/js/editor.js ./assets/scss/main.scss ./assets/scss/editor.scss ./assets/scss/plugins/woocommerce/__index.scss ***!
-  \************************************************************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** multi ./assets/js/editor.js ./assets/scss/main.scss ./assets/scss/editor.scss ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/js/editor.js */"./assets/js/editor.js");
 __webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/scss/main.scss */"./assets/scss/main.scss");
-__webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/scss/editor.scss */"./assets/scss/editor.scss");
-module.exports = __webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/scss/plugins/woocommerce/__index.scss */"./assets/scss/plugins/woocommerce/__index.scss");
+module.exports = __webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/scss/editor.scss */"./assets/scss/editor.scss");
 
 
 /***/ })

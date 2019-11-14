@@ -17,20 +17,8 @@ return [
 	'add'    => [
 		'align-wide',
 		'automatic-feed-links',
-		'custom-header'            => [
-			'header-selector'  => '.hero-section',
-			'default_image'    => get_theme_url() . 'assets/img/hero.jpg',
-			'header-text'      => false,
-			'width'            => 1280,
-			'height'           => 720,
-			'flex-height'      => true,
-			'flex-width'       => true,
-			'uploads'          => true,
-			'video'            => true,
-			'wp-head-callback' => __NAMESPACE__ . '\Functions\header',
-		],
 		'editor-styles',
-		'front-page-widgets'       => 5,
+		'front-page-widgets'       => 1,
 		'genesis-accessibility'    => [
 			'404-page',
 			'drop-down-menu',
@@ -39,21 +27,9 @@ return [
 			'search-form',
 			'skip-links',
 		],
-		'genesis-after-entry-widget-area',
-		'genesis-custom-logo'      => [
-			'height'      => 60,
-			'width'       => 120,
-			'flex-height' => true,
-			'flex-width'  => true,
-			'header-text' => [
-				'.site-title',
-				'.site-description',
-			],
-		],
-		'genesis-footer-widgets'   => 3,
 		'genesis-menus'            => [
 			'primary'   => __( 'Header Menu', 'genesis-starter-theme' ),
-			'secondary' => __( 'After Header Menu', 'genesis-starter-theme' ),
+			'secondary' => __( 'Footer Menu', 'genesis-starter-theme' ),
 		],
 		'genesis-structural-wraps' => [
 			'header',
@@ -75,14 +51,6 @@ return [
 		],
 		'post-thumbnails',
 		'responsive-embeds',
-		// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
-		// 'sticky-header',
-		// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
-		// 'transparent-header',
-		'woocommerce',
-		'wc-product-gallery-zoom',
-		'wc-product-gallery-lightbox',
-		'wc-product-gallery-slider',
 		'wp-block-styles',
 	],
 	'remove' => [],

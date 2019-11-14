@@ -10,18 +10,13 @@
 	line-height: $line-height--heading;
 
 	@include padding($spacing--m null);
-
-	@include mq(m) {
-
-		@include padding($gap null);
-	}
 }
 
 // Site title.
 .site-title {
 	margin: 0;
-	font-size: 1em;
-	font-weight: $font-weight--semibold;
+	font-size: $font-size--h2;
+	font-weight: $font-weight--regular;
 
 	.wp-custom-logo & {
 
@@ -29,10 +24,12 @@
 	}
 
 	a {
-		color: $color--text;
+		color: $color--white;
+		text-decoration: none;
 
 		@include hover-focus {
 			color: $color--primary;
+			text-decoration: none;
 		}
 	}
 }
@@ -40,7 +37,11 @@
 // Site description.
 .site-description {
 	margin: 0;
+	color: $color--secondary;
+	letter-spacing: 1px;
 	font-size: small;
+	font-style: italic;
+	font-family: $font-family--alt;
 
 	.wp-custom-logo & {
 

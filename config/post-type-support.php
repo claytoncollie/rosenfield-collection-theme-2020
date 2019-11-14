@@ -13,13 +13,7 @@ namespace SeoThemes\GenesisStarterTheme;
 
 return [
 	'add'    => [
-		'excerpt'                    => [ 'page' ],
-		'genesis-layouts'            => [ 'product' ],
-		'genesis-seo'                => [ 'product' ],
-		'genesis-singular-images'    => [ 'page', 'post' ],
-		'genesis-title-toggle'       => [ 'post', 'product' ],
-		'genesis-adjacent-entry-nav' => [ 'post', 'product' ],
-		'hero-section'               => [ 'page', 'post' ],
+		'hero-section' => [ 'page', 'post' ],
 	],
 	'remove' => [],
 ];

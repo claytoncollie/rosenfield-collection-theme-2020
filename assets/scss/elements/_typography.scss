@@ -22,8 +22,8 @@ body {
 }
 
 a {
-	color: $color--primary;
-	text-decoration: none;
+	color: $color--text;
+	text-decoration: underline;
 
 	@include transition();
 

@@ -53,12 +53,10 @@ namespace SeoThemes\GenesisStarterTheme;
 		'functions/markup',
 		'functions/header',
 		'functions/widgets',
-		'functions/defaults',
-		'functions/onboarding',
+		'functions/search',
 
 		// Structure.
 		'structure/archive',
-		'structure/comments',
 		'structure/footer',
 		'structure/header',
 		'structure/hero',
@@ -68,13 +66,7 @@ namespace SeoThemes\GenesisStarterTheme;
 		'structure/single',
 		'structure/wrap',
 
-		// Shortcodes.
-		'shortcodes/hook',
-		'shortcodes/search-form',
-		'shortcodes/widget-area',
-
 		// Plugins.
 		'plugins/gravity-forms',
-		'plugins/woocommerce',
 	]
 );

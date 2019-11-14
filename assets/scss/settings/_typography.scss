@@ -26,9 +26,10 @@ $font-sizes: (
 );
 
 // Font families
-$base--font-family: $font-stack-system;
+$base--font-family: 'Lato', sans-serif;
 
 $font-family--heading: $base--font-family;
+$font-family--alt: 'PT Serif', serif;
 $font-family--code: $font-stack-consolas;
 
 // Font weights
@@ -40,7 +41,7 @@ $font-weight--semibold: 600;
 $font-weight--bold: 700;
 
 $base--font-weight: $font-weight--regular;
-$font-weight--heading: $font-weight--semibold;
+$font-weight--heading: $font-weight--regular;
 
 // Line height
 $base--line-height: modular-scale(0, $golden);

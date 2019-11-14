@@ -9,8 +9,12 @@
 .footer-credits {
 	font-size: $base--font-size / $major-second;
 
+	> .wrap {
+		align-items: center;
+		padding: $spacing--m 0;
+	}
 
 	p {
-		margin-bottom: $gutter;
+		margin-bottom: 0;
 	}
 }

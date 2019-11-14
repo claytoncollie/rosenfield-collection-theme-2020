@@ -15,6 +15,8 @@ return [
 	'add'    => [
 		'featured' => [ 620, 380, true ],
 		'hero'     => [ 1920, 1080, true ],
+		'avatar'   => [ 200, 200, true ],
+		'archive'  => [ 440, 440, true ],
 	],
 	'remove' => [],
 ];

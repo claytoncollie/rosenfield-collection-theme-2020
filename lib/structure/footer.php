@@ -11,28 +11,6 @@
 
 namespace SeoThemes\GenesisStarterTheme\Structure;
 
-\add_action( 'genesis_footer', __NAMESPACE__ . '\before_footer_widget', 5 );
-/**
- * Displays before footer widget area.
- *
- * @since 1.0.0
- *
- * @return void
- */
-function before_footer_widget() {
-	\genesis_widget_area(
-		'before-footer',
-		[
-			'before' => '<div class="before-footer"><div class="wrap">',
-			'after'  => '</div></div>',
-		]
-	);
-}
-
-// Repositions the footer widgets.
-\remove_action( 'genesis_before_footer', 'genesis_footer_widget_areas' );
-\add_action( 'genesis_footer', 'genesis_footer_widget_areas', 6 );
-
 // Remove default footer.
 \remove_action( 'genesis_footer', 'genesis_do_footer' );
 
@@ -47,17 +25,26 @@ function before_footer_widget() {
 function do_footer_credits() {
 	\genesis_markup(
 		[
-			'open'    => '<div class="footer-credits"><div class="wrap"><p>',
+			'open'    => '<section class="footer-credits"><div class="wrap">',
 			'context' => 'footer-credits',
 		]
 	);
 
-	// phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped -- sanitized already.
-	echo \do_shortcode( \genesis_strip_p_tags( \wp_kses_post( \genesis_get_option( 'footer_text' ) ) ) );
+	// Display the copyright info.
+	printf(
+		'<div><span class="copyright">%s %s</span> &middot; <span class="credits-title">%s</span> &middot; <span class="login-link">%s</span></div>',
+		do_shortcode( '[footer_copyright]' ),
+		esc_html__( 'All Rights Reserved', 'rc' ),
+		esc_html( get_bloginfo( 'name' ) ),
+		do_shortcode( '[footer_loginout]' )
+	);
+
+	// Display the secondary menu.
+	\genesis_do_subnav();
 
 	\genesis_markup(
 		[
-			'close'   => '</p></div></div>',
+			'close'   => '</div></section>',
 			'context' => 'footer-credits',
 		]
 	);

@@ -85,8 +85,8 @@ mix
     ], `${devPath}/js/min`)
     .js([
         `${devPath}/js/hide-show.js`,
+        `${devPath}/js/header-search.js`,
         `${devPath}/js/sticky-header.js`,
-        `${devPath}/js/smooth-scroll.js`
     ], `${devPath}/js/min/main.js`);
 
 /*
@@ -119,8 +119,7 @@ mix
     ]
 })
     .sass(`${devPath}/scss/editor.scss`, `${devPath}/css`, sassConfig)
-    .sass(`${devPath}/scss/plugins/woocommerce/__index.scss`, `${devPath}/css/woocommerce.css`, sassConfig);
-
+    
 // Generate blank stylesheet.
 const banner = [
     '/*',

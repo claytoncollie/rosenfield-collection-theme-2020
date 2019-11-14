@@ -12,5 +12,5 @@
 namespace SeoThemes\GenesisStarterTheme;
 
 return [
-	'Source+Sans+Pro:400,600,700',
+	'Lato:400,700,900|PT+Serif:400,400i',
 ];

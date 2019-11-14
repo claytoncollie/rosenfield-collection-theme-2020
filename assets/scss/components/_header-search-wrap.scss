@@ -1,0 +1,103 @@
+////
+/// Header search component.
+///
+/// @group  Components
+/// @author Lee Anthony <seothemeswp@gmail.com>
+/// @link   https://github.com/seothemes/genesis-starter-theme
+////
+
+
+.header-search-wrap {
+	display: none;
+
+	&:target {
+		clear: both;
+		display: block;
+		position: relative;
+	}
+
+	input[type="search"] {
+		background-color: $color--black;
+		border: 0;
+		border-bottom: 1px solid $color--white;
+		color: $color--white;
+		padding-left: 0;
+		padding-right: 100px;
+	}
+
+	input[type="submit"] {
+		border: 0;
+		clip: rect(0, 0, 0, 0);
+		height: 1px;
+		margin: -1px;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+
+	input[type="submit"]:focus {
+		border-radius: 3px;
+		margin-top: 1px;
+		padding: 20px;
+		right: 50px;
+	}
+
+	& .js {
+		height: 100%;
+		left: 0;
+		padding: 10px 40px;
+		position: absolute;
+		transform: translate3d(0, -100%, 0);
+		transition: none;
+		top: 0;
+		width: 100%;
+		z-index: 1001; /* Show above the menu toggle button */
+
+		.search-form,
+		input[type="search"] {
+			height: 100%;
+		}
+	}
+
+	& .search-visible {
+		transform: translate3d(0, 0, 0);
+	}
+	
+}
+
+.toggle-header-search {
+	background: transparent;
+}
+
+.js .toggle-header-search.close:focus {
+	outline: 0;
+}
+
+.toggle-header-search.close {
+	color: #000;
+	height: 100%;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transform: translate3d(-35px, 0, 0);
+	transition: transform 0.2s ease-in-out;
+	width: 30px;
+	z-index: 100;
+}
+
+.header-search-wrap:target .toggle-header-search.close {
+	transform: none;
+}
+
+.toggle-header-search .ionicons {
+	font-size: 12px;
+	transform: scale(2);
+}
+
+.toggle-header-search.close .ionicons {
+	position: absolute;
+	right: 50%;
+	top: calc(50% - 5px);
+	transform: scale(3);
+}

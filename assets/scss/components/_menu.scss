@@ -25,22 +25,12 @@
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
-		padding: $spacing--xs 0;
 
 		@include margin(null auto);
 
 		@include mq(m) {
 			display: block;
-			margin: 0;
-			padding: $spacing--m $spacing--s * $golden;
-
-			&:last-of-type {
-				padding-right: 0;
-			}
-
-			&:first-of-type {
-				padding-left: 0;
-			}
+			margin: 0 $spacing--s 0 0;
 		}
 
 		&.button {
@@ -54,13 +44,20 @@
 
 	// Link
 	a {
-		color: $color--text;
+		color: $color--white;
 		text-decoration: none;
+		border: 1px solid transparent;
+
+		@include mq(m) {
+			display: block;
+			padding: $spacing--s $spacing--s * $golden;
+		}
 	}
 
 	a:hover,
 	a:focus,
 	.current-menu-item > a {
-		color: $color--primary;
+		color: $color--white;
+		border-color: $color--white;
 	}
 }

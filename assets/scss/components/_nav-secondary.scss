@@ -8,14 +8,22 @@
 
 .nav-secondary {
 
-	@include mq(m) {
-		border-top: $base--border;
-	}
-
 	.menu {
 
 		@include mq(m) {
 			justify-content: flex-start;
+		}
+
+		// Link
+		a {
+			color: $color--text;
+			text-decoration: underline;
+		}
+
+		a:hover,
+		a:focus,
+		.current-menu-item > a {
+			color: $color--primary;
 		}
 	}
 }

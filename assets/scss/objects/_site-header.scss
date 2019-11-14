@@ -9,8 +9,8 @@
 .site-header {
 	position: relative;
 	z-index: 10;
-	border-bottom: $base--border;
-	background-color: $color--white;
+	color: $color--white;
+	background-color: $color--black;
 
 	.wrap {
 		display: flex;
@@ -21,5 +21,9 @@
 		@include mq(m) {
 			flex-wrap: nowrap;
 		}
+	}
+
+	&.search-visible > .wrap > :not(.header-search-wrap) {
+		opacity: 0;
 	}
 }

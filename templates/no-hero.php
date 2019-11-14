@@ -2,8 +2,6 @@
 /**
  * Template Name: No Hero
  *
- * Template Post Type: post, page, product, portfolio
- *
  * @package   SeoThemes\GenesisStarterTheme
  * @link      https://genesisstartertheme.com
  * @author    SEO Themes

@@ -1,0 +1,18 @@
+/* ## Algolia
+--------------------------------------------- */
+
+.aa-dropdown-menu {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    
+    .autocomplete-header {
+        border-bottom: 0 !important;
+        border-top: 1px solid $color--gray-300;  
+    }
+
+    .aa-dataset-1 {
+        .autocomplete-header {
+            border-top: 0;
+        }
+    }
+}

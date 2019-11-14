@@ -19,7 +19,6 @@ return [
 		'menuClasses'      => [
 			'combine' => [
 				'.nav-primary',
-				'.nav-secondary',
 			],
 		],
 		'menuAnimation'    => [
