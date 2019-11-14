@@ -19,7 +19,7 @@
 	<arg name="extensions" value="php"/>
 	<!-- Use the WordPress ruleset, with exclusions. -->
 	<rule ref="WordPress">
-		<exclude name="WordPress.VIP"/>
+		<exclude name="WordPress"/>
 		<exclude name="Squiz.PHP.CommentedOutCode.Found"/>
 	</rule>
 	<!-- PSR 4 file names -->

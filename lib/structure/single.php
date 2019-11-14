@@ -1,15 +1,15 @@
 <?php
 /**
- * Genesis Starter Theme.
+ * Rosenfield Collection Theme.
  *
- * @package   SeoThemes\GenesisStarterTheme
- * @link      https://genesisstartertheme.com
- * @author    SEO Themes
- * @copyright Copyright © 2019 SEO Themes
+ * @package   RosenfieldCollection\Theme2020
+ * @link      https://www.rosenfieldcollection.com
+ * @author    Clayton Collie
+ * @copyright Copyright © 2019 Clayton Collie
  * @license   GPL-2.0-or-later
  */
 
-namespace SeoThemes\GenesisStarterTheme\Structure;
+namespace RosenfieldCollection\Theme2020\Structure;
 
 // Reposition featured image.
 \remove_action( 'genesis_entry_content', 'genesis_do_singular_image', 8 );

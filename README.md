@@ -1,6 +1,6 @@
-# Genesis Starter Theme
+# Rosenfield Collection Theme
 
-[![WordPress](https://img.shields.io/badge/wordpress-4.9.8%20tested-brightgreen.svg)]() [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](https://github.com/seothemes/genesis-starter-theme/blob/master/LICENSE.md)
+[![WordPress](https://img.shields.io/badge/wordpress-4.9.8%20tested-brightgreen.svg)]() [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](https://github.com/claytoncollie/rosenfield-collection-theme-2020/blob/master/LICENSE.md)
 
 A developer-friendly starter theme used for creating commercial child themes for the Genesis Framework.
 
@@ -8,7 +8,7 @@ It uses [Laravel Mix](https://laravel.com/docs/5.8/mix) as a build tool to autom
 
 Check out the [live demo](https://demo.seothemes.com/genesis-starter)
 
-<img src="https://seothemes.com/wp-content/uploads/edd/2019/09/genesis-starter-theme-desktop.png" alt="Genesis Starter Theme screenshot" width="500">
+<img src="https://seothemes.com/wp-content/uploads/edd/2019/09/genesis-starter-theme-desktop.png" alt="Rosenfield Collection Theme screenshot" width="500">
 
 ## Table of Contents
 
@@ -27,9 +27,9 @@ Check out the [live demo](https://demo.seothemes.com/genesis-starter)
 
 ## Features
 
-The Genesis Starter Theme aims to modernize, organize and enhance some aspects of Genesis child theme development. Take a look at what is waiting for you:
+The Rosenfield Collection Theme aims to modernize, organize and enhance some aspects of Genesis child theme development. Take a look at what is waiting for you:
 
-- [Bourbon](https://github.com/seothemes/genesis-starter-theme/tree/master/assets/scss) as a lightweight Sass toolkit
+- [Bourbon](https://github.com/claytoncollie/rosenfield-collection-theme-2020/tree/master/assets/scss) as a lightweight Sass toolkit
 - [Laravel Mix](https://laravel.com/docs/5.8/mix) for automating development build tasks
 - [Browsersync](https://browsersync.io/) for synchronized browser testing
 - [Config-based](https://www.alainschlesser.com/config-files-for-reusable-code/), OOP modular architecture
@@ -56,7 +56,7 @@ The Genesis Starter Theme aims to modernize, organize and enhance some aspects o
 
 ### One line command:
 
-Install the latest development version of the Genesis Starter Theme using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of your theme):
+Install the latest development version of the Rosenfield Collection Theme using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of your theme):
 
 ```shell
 composer create-project seothemes/genesis-starter-theme your-theme-name dev-master && cd "$(\ls -1dt ./*/ | head -n 1)" && npm install && npm run build
@@ -64,7 +64,7 @@ composer create-project seothemes/genesis-starter-theme your-theme-name dev-mast
 
 ### Individual commands:
 
-Install the latest development version of the Genesis Starter Theme using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of your theme):
+Install the latest development version of the Rosenfield Collection Theme using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of your theme):
 
 ```shell
 composer create-project seothemes/genesis-starter-theme your-theme-name dev-master
@@ -116,7 +116,7 @@ Static assets are organized in the `assets` directory. This folder contains them
 
 #### Classes
 
-The Genesis Starter Theme automatically loads classes placed in the `lib/classes/` directory via the Composer autoloader. Once you have added your additional files, run the following command to regenerate the autoloader:
+The Rosenfield Collection Theme automatically loads classes placed in the `lib/classes/` directory via the Composer autoloader. Once you have added your additional files, run the following command to regenerate the autoloader:
 
 ```shell
 composer dump-autoload --no-dev
@@ -134,9 +134,9 @@ All build tasks are located in the theme's `package.json` file, under the *scrip
 
 ## Contributing
 
-Contributions are welcome from everyone. We have [contributing guidelines](https://github.com/seothemes/genesis-starter-theme/blob/master/.github/CONTRIBUTING.md) to help you get started.
+Contributions are welcome from everyone. We have [contributing guidelines](https://github.com/claytoncollie/rosenfield-collection-theme-2020/blob/master/.github/CONTRIBUTING.md) to help you get started.
 
-See also the list of [contributors](https://github.com/seothemes/genesis-starter-theme/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/claytoncollie/rosenfield-collection-theme-2020/graphs/contributors) who participated in this project.
 
 ## Special Thanks
 

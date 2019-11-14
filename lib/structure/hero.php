@@ -1,15 +1,15 @@
 <?php
 /**
- * Genesis Starter Theme.
+ * Rosenfield Collection Theme.
  *
- * @package   SeoThemes\GenesisStarterTheme
- * @link      https://genesisstartertheme.com
- * @author    SEO Themes
- * @copyright Copyright © 2019 SEO Themes
+ * @package   RosenfieldCollection\Theme2020
+ * @link      https://www.rosenfieldcollection.com
+ * @author    Clayton Collie
+ * @copyright Copyright © 2019 Clayton Collie
  * @license   GPL-2.0-or-later
  */
 
-namespace SeoThemes\GenesisStarterTheme\Structure;
+namespace RosenfieldCollection\Theme2020\Structure;
 
 \add_action( 'genesis_meta', __NAMESPACE__ . '\hero_setup' );
 /**
@@ -113,13 +113,13 @@ function hero_title() {
 		$title = \get_the_title( \wc_get_page_id( 'shop' ) );
 
 	} elseif ( \is_home() && 'posts' === \get_option( 'show_on_front' ) ) {
-		$title = \apply_filters( 'genesis_latest_posts_title', esc_html__( 'Latest Posts', 'genesis-starter-theme' ) );
+		$title = \apply_filters( 'genesis_latest_posts_title', esc_html__( 'Latest Posts', 'rosenfield-collection-2020' ) );
 
 	} elseif ( \is_404() ) {
-		$title = \apply_filters( 'genesis_404_entry_title', esc_html__( 'Not found, error 404', 'genesis-starter-theme' ) );
+		$title = \apply_filters( 'genesis_404_entry_title', esc_html__( 'Not found, error 404', 'rosenfield-collection-2020' ) );
 
 	} elseif ( \is_search() ) {
-		$title = \apply_filters( 'genesis_search_title_text', esc_html__( 'Search results for: ', 'genesis-starter-theme' ) . \get_search_query() );
+		$title = \apply_filters( 'genesis_search_title_text', esc_html__( 'Search results for: ', 'rosenfield-collection-2020' ) . \get_search_query() );
 
 	} elseif ( \is_singular() ) {
 		$title = \get_the_title();
@@ -154,7 +154,7 @@ function hero_excerpt() {
 		$excerpt = \ob_get_clean();
 
 	} elseif ( \is_home() && 'posts' === \get_option( 'show_on_front' ) ) {
-		$excerpt = \apply_filters( 'genesis_latest_posts_subtitle', esc_html__( 'Showing the latest posts', 'genesis-starter-theme' ) );
+		$excerpt = \apply_filters( 'genesis_latest_posts_subtitle', esc_html__( 'Showing the latest posts', 'rosenfield-collection-2020' ) );
 
 	} elseif ( \is_home() ) {
 		$id = \get_option( 'page_for_posts' );

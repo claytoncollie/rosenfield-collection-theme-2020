@@ -1,15 +1,15 @@
 <?php
 /**
- * Genesis Starter Theme.
+ * Rosenfield Collection Theme.
  *
- * @package   SeoThemes\GenesisStarterTheme
- * @link      https://genesisstartertheme.com
- * @author    SEO Themes
- * @copyright Copyright © 2019 SEO Themes
+ * @package   RosenfieldCollection\Theme2020
+ * @link      https://www.rosenfieldcollection.com
+ * @author    Clayton Collie
+ * @copyright Copyright © 2019 Clayton Collie
  * @license   GPL-2.0-or-later
  */
 
-namespace SeoThemes\GenesisStarterTheme\Functions;
+namespace RosenfieldCollection\Theme2020\Functions;
 
 /**
  * Custom header image callback.
@@ -102,7 +102,7 @@ register_default_headers(
 		'child' => [
 			'url'           => '%2$s/assets/img/hero.jpg',
 			'thumbnail_url' => '%2$s/assets/img/hero.jpg',
-			'description'   => __( 'Hero Image', 'genesis-starter-theme' ),
+			'description'   => __( 'Hero Image', 'rosenfield-collection-2020' ),
 		],
 	]
 );

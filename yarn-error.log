@@ -33,9 +33,9 @@ npm manifest:
     "description": "Genesis starter theme with a modern development workflow.",
     "repository": {
       "type": "git",
-      "url": "https://github.com/seothemes/genesis-starter-theme.git"
+      "url": "https://github.com/claytoncollie/rosenfield-collection-theme-2020.git"
     },
-    "author": "SEO Themes",
+    "author": "Clayton Collie",
     "license": "GPL-2.0-or-later",
     "main": "Gulpfile.js",
     "scripts": {},
@@ -54,8 +54,8 @@ npm manifest:
       "stylelint-order": "^0.8.1"
     },
     "theme": {
-      "name": "Genesis Starter Theme",
-      "uri": "https://genesisstartertheme.com/",
+      "name": "Rosenfield Collection Theme",
+      "uri": "https://www.rosenfieldcollection.com/",
       "authoruri": "https://seothemes.com",
       "licenseuri": "http://www.gnu.org/licenses/gpl-2.0.html",
       "domainpath": "/languages",

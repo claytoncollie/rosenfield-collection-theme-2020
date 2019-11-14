@@ -1,23 +1,23 @@
 <?php
 /**
- * Genesis Starter Theme.
+ * Rosenfield Collection Theme.
  *
- * @package   SeoThemes\GenesisStarterTheme
- * @link      https://genesisstartertheme.com
- * @author    SEO Themes
- * @copyright Copyright © 2019 SEO Themes
+ * @package   RosenfieldCollection\Theme2020
+ * @link      https://www.rosenfieldcollection.com
+ * @author    Clayton Collie
+ * @copyright Copyright © 2019 Clayton Collie
  * @license   GPL-2.0-or-later
  */
 
-namespace SeoThemes\GenesisStarterTheme;
+namespace RosenfieldCollection\Theme2020;
 
-use function SeoThemes\GenesisStarterTheme\Functions\get_theme_url;
+use function RosenfieldCollection\Theme2020\Functions\get_theme_url;
 
 return [
 	'add'    => [
 		[
 			'id'    => 'narrow-content',
-			'label' => __( 'Narrow Content', 'genesis-starter-theme' ),
+			'label' => __( 'Narrow Content', 'rosenfield-collection-2020' ),
 			'img'   => get_theme_url() . 'assets/img/narrow-content.gif',
 		],
 	],

@@ -1,15 +1,15 @@
 <?php
 /**
- * Genesis Starter Theme.
+ * Rosenfield Collection Theme.
  *
- * @package   SeoThemes\GenesisStarterTheme
- * @link      https://genesisstartertheme.com
- * @author    SEO Themes
- * @copyright Copyright © 2019 SEO Themes
+ * @package   RosenfieldCollection\Theme2020
+ * @link      https://www.rosenfieldcollection.com
+ * @author    Clayton Collie
+ * @copyright Copyright © 2019 Clayton Collie
  * @license   GPL-2.0-or-later
  */
 
-namespace SeoThemes\GenesisStarterTheme\Tests\Unit;
+namespace RosenfieldCollection\Theme2020\Tests\Unit;
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Abstract Class Test_Case
  *
- * @package SeoThemes\GenesisStarterTheme\Tests\Unit
+ * @package RosenfieldCollection\Theme2020\Tests\Unit
  */
 abstract class Test_Case extends TestCase {
 

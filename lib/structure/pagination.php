@@ -1,11 +1,11 @@
 <?php
 /**
- * Genesis Starter Theme.
+ * Rosenfield Collection Theme.
  *
- * @package   SeoThemes\GenesisStarterTheme
- * @link      https://genesisstartertheme.com
- * @author    SEO Themes
- * @copyright Copyright © 2019 SEO Themes
+ * @package   RosenfieldCollection\Theme2020
+ * @link      https://www.rosenfieldcollection.com
+ * @author    Clayton Collie
+ * @copyright Copyright © 2019 Clayton Collie
  * @license   GPL-2.0-or-later
  */
 
@@ -64,7 +64,7 @@ function entry_pagination_wrap_close( $close, $args ) {
  * @return string
  */
 function previous_page_link() {
-	return \sprintf( '← Previous', 'genesis-starter-theme' );
+	return \sprintf( '← Previous', 'rosenfield-collection-2020' );
 }
 
 \add_filter( 'genesis_next_link_text', __NAMESPACE__ . '\next_page_link' );
@@ -76,7 +76,7 @@ function previous_page_link() {
  * @return string
  */
 function next_page_link() {
-	return \sprintf( 'Next →', 'genesis-starter-theme' );
+	return \sprintf( 'Next →', 'rosenfield-collection-2020' );
 }
 
 \add_filter( 'genesis_markup_pagination-previous_content', __NAMESPACE__ . '\previous_pagination_text' );

@@ -1,17 +1,17 @@
 <?php
 /**
- * Genesis Starter Theme.
+ * Rosenfield Collection Theme.
  *
- * @package   SeoThemes\GenesisStarterTheme
- * @link      https://genesisstartertheme.com
- * @author    SEO Themes
- * @copyright Copyright © 2019 SEO Themes
+ * @package   RosenfieldCollection\Theme2020
+ * @link      https://www.rosenfieldcollection.com
+ * @author    Clayton Collie
+ * @copyright Copyright © 2019 Clayton Collie
  * @license   GPL-2.0-or-later
  */
 
-namespace SeoThemes\GenesisStarterTheme;
+namespace RosenfieldCollection\Theme2020;
 
-use function SeoThemes\GenesisStarterTheme\Functions\get_theme_url;
+use function RosenfieldCollection\Theme2020\Functions\get_theme_url;
 
 $asset_url    = \trailingslashit( get_theme_url() . 'assets' );
 $google_fonts = \implode( '|', \genesis_get_config( 'google-fonts' ) );
