@@ -19,8 +19,11 @@
 	input[type="search"] {
 		background-color: $color--black;
 		border: 0;
-		border-bottom: 1px solid $color--white;
+		margin-bottom: 0;
+		font-size: $font-size--h3;
 		color: $color--white;
+		padding-top: 0;
+		padding-bottom: 0;
 		padding-left: 0;
 		padding-right: 100px;
 	}
@@ -36,16 +39,14 @@
 	}
 
 	input[type="submit"]:focus {
-		border-radius: 3px;
 		margin-top: 1px;
 		padding: 20px;
 		right: 50px;
 	}
 
-	& .js {
+	.js & {
 		height: 100%;
 		left: 0;
-		padding: 10px 40px;
 		position: absolute;
 		transform: translate3d(0, -100%, 0);
 		transition: none;
@@ -59,7 +60,7 @@
 		}
 	}
 
-	& .search-visible {
+	.search-visible & {
 		transform: translate3d(0, 0, 0);
 	}
 	
