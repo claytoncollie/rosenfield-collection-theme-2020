@@ -8,6 +8,7 @@
 
 
 .header-search-wrap {
+	position: relative;
 	display: none;
 
 	&:target {
@@ -75,7 +76,7 @@
 }
 
 .toggle-header-search.close {
-	color: #000;
+	color: $color--white;
 	height: 100%;
 	padding: 0;
 	position: absolute;
@@ -92,13 +93,18 @@
 }
 
 .toggle-header-search .ionicons {
-	font-size: 12px;
+	font-size: $base--font-size;
 	transform: scale(2);
+}
+
+.toggle-header-search .screen-reader-text:focus {
+	outline: 0;
+	background-color: transparent;
 }
 
 .toggle-header-search.close .ionicons {
 	position: absolute;
-	right: 50%;
-	top: calc(50% - 5px);
+	right: 0;
+	top: calc(50% - 10px);
 	transform: scale(3);
 }
