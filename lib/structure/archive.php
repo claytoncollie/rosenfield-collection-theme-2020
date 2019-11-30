@@ -17,6 +17,12 @@ use function RosenfieldCollection\Theme2020\Functions\is_type_archive;
 \remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
 \add_action( 'genesis_entry_header', 'genesis_do_post_image', 1 );
 
+// Remove entry-info.
+\remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
+
+// Remove entry-meta.
+\remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
+
 \add_filter( 'post_class', __NAMESPACE__ . '\archive_post_class' );
 /**
  * Add column class to archive posts.
@@ -27,7 +33,7 @@ use function RosenfieldCollection\Theme2020\Functions\is_type_archive;
  *
  * @return array
  */
-function archive_post_class( $classes ) {
+function archive_post_class( array $classes ) : array {
 	if ( ! is_type_archive() ) {
 		return $classes;
 	}
@@ -41,12 +47,11 @@ function archive_post_class( $classes ) {
 	}
 
 	if ( 'full-width-content' === \genesis_site_layout() ) {
+		$classes[] = 'one-fourth';
+		$count     = 4;
+	} else {
 		$classes[] = 'one-third';
 		$count     = 3;
-
-	} else {
-		$classes[] = 'one-half';
-		$count     = 2;
 	}
 
 	global $wp_query;
@@ -69,8 +74,12 @@ function archive_post_class( $classes ) {
  *
  * @return string
  */
-function read_more_link( $more_link_text ) {
-	return \str_replace( [ '[', ']', '...' ], '', $more_link_text );
+function read_more_link( string $more_link_text ) : string {
+	return sprintf(
+		'<a class="more-link" href="%s" rel="url">%s</a>',
+		esc_url( get_permalink( get_the_ID() ) ),
+		esc_html__( 'View Object', 'rosenfield-collection-2020' )
+	);
 }
 
 \add_filter( 'genesis_author_box_gravatar_size', __NAMESPACE__ . '\author_box_gravatar' );
@@ -136,7 +145,7 @@ function entry_wrap_close() {
  *
  * @return string
  */
-function widget_entry_wrap_open( $open, $args ) {
+function widget_entry_wrap_open( string $open, array $args ) : string {
 	if ( isset( $args['params']['is_widget'] ) && $args['params']['is_widget'] ) {
 		$markup = \genesis_markup(
 			[

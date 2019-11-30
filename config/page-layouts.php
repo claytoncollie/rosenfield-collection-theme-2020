@@ -22,7 +22,6 @@ return [
 		],
 	],
 	'remove' => [
-		'sidebar-content',
 		'content-sidebar',
 		'content-sidebar-sidebar',
 		'sidebar-sidebar-content',

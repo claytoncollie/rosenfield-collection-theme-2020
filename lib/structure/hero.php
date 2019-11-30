@@ -111,16 +111,12 @@ function hero_remove_404_title() {
 function hero_title() {
 	if ( \class_exists( 'WooCommerce' ) && \is_shop() ) {
 		$title = \get_the_title( \wc_get_page_id( 'shop' ) );
-
 	} elseif ( \is_home() && 'posts' === \get_option( 'show_on_front' ) ) {
 		$title = \apply_filters( 'genesis_latest_posts_title', esc_html__( 'Latest Posts', 'rosenfield-collection-2020' ) );
-
 	} elseif ( \is_404() ) {
 		$title = \apply_filters( 'genesis_404_entry_title', esc_html__( 'Not found, error 404', 'rosenfield-collection-2020' ) );
-
 	} elseif ( \is_search() ) {
 		$title = \apply_filters( 'genesis_search_title_text', esc_html__( 'Search results for: ', 'rosenfield-collection-2020' ) . \get_search_query() );
-
 	} elseif ( \is_singular() ) {
 		$title = \get_the_title();
 	}
@@ -152,23 +148,16 @@ function hero_excerpt() {
 		\ob_start();
 		\woocommerce_result_count();
 		$excerpt = \ob_get_clean();
-
 	} elseif ( \is_home() && 'posts' === \get_option( 'show_on_front' ) ) {
 		$excerpt = \apply_filters( 'genesis_latest_posts_subtitle', esc_html__( 'Showing the latest posts', 'rosenfield-collection-2020' ) );
-
 	} elseif ( \is_home() ) {
 		$id = \get_option( 'page_for_posts' );
-
 	} elseif ( \is_search() ) {
-
 		// phpcs:ignore WordPress.VIP.RestrictedFunctions.get_page_by_path_get_page_by_path
 		$id = \get_page_by_path( 'search' );
-
 	} elseif ( \is_404() ) {
-
 		// phpcs:ignore WordPress.VIP.RestrictedFunctions.get_page_by_path_get_page_by_path
 		$id = \get_page_by_path( 'error-404' );
-
 	} elseif ( ( \is_singular() ) && ! \is_singular( 'product' ) ) {
 		$id = \get_the_ID();
 	}
@@ -201,7 +190,6 @@ function hero_excerpt() {
  * @return void
  */
 function do_archive_headings_intro_text( $heading = '', $intro_text = '', $context = '' ) {
-
 	if ( $context && $intro_text ) {
 		\genesis_markup(
 			[

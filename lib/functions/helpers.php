@@ -52,7 +52,7 @@ function get_theme_url() {
  *
  * @return bool
  */
-function is_type_single() {
+function is_type_single() : bool {
 	return \is_front_page() || \is_single() || \is_page() || \is_404() || \is_attachment() || \is_singular();
 }
 
@@ -63,8 +63,19 @@ function is_type_single() {
  *
  * @return bool
  */
-function is_type_archive() {
-	return \is_home() || \is_post_type_archive() || \is_category() || \is_tag() || \is_tax() || \is_author() || \is_date() || \is_year() || \is_month() || \is_day() || \is_time() || \is_archive() || \is_search();
+function is_type_archive() : bool {
+	return is_type_archive_page() || \is_home() || \is_post_type_archive() || \is_category() || \is_tag() || \is_tax() || \is_author() || \is_date() || \is_year() || \is_month() || \is_day() || \is_time() || \is_archive();
+}
+
+/**
+ * Check if we are nay of these pages.
+ *
+ * @since 1.4.0
+ *
+ * @return bool
+ */
+function is_type_archive_page() : bool {
+	return \is_page( array( 'forms', 'firings', 'techniques', 'artists', 'report' ) );
 }
 
 /**
@@ -74,6 +85,6 @@ function is_type_archive() {
  *
  * @return bool
  */
-function has_hero_section() {
+function has_hero_section() : bool {
 	return \in_array( 'has-hero-section', \get_body_class(), true );
 }

@@ -37,6 +37,13 @@
 	p {
 		margin-top: $spacing--m;
 		margin-bottom: 0;
+		font-style: italic;
+		color: $color--secondary;
+		font-family: $font-family--alt;
+
+		@include mq(m) {
+			max-width: $mq-xxs;
+		}
 	}
 }
 

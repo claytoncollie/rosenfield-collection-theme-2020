@@ -22,7 +22,7 @@ namespace RosenfieldCollection\Theme2020\Functions;
  *
  * @return array
  */
-function front_page_1_heading( $defaults, $args ) {
+function front_page_1_heading( array $defaults, array $args ) : array {
 	if ( 'front-page-1' === $args['id'] ) {
 		$defaults['before_title'] = '<h1 class="hero-title" itemprop="headline">';
 		$defaults['after_title']  = "</h1>\n";
@@ -43,7 +43,7 @@ function front_page_1_heading( $defaults, $args ) {
  *
  * @return array
  */
-function widget_area_defaults( $defaults, $id ) {
+function widget_area_defaults( array $defaults, string $id ) : string {
 	$hero = 'front-page-1' === $id ? ' hero-section" role="banner' : '';
 
 	if ( false !== strpos( $id, 'front-page-' ) ) {

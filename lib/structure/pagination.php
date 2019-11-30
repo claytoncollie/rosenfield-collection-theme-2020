@@ -9,6 +9,8 @@
  * @license   GPL-2.0-or-later
  */
 
+namespace RosenfieldCollection\Theme2020\Structure;
+
 // Reposition archive pagination.
 \remove_action( 'genesis_after_endwhile', 'genesis_posts_nav' );
 \add_action( 'genesis_after_content_sidebar_wrap', 'genesis_posts_nav' );

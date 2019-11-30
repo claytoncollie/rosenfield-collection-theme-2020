@@ -9,8 +9,6 @@
 .pagination {
 	width: 100%;
 	padding: $gutter 0;
-	border-top: $base--border;
-	background-color: $color--background;
 
 	@include mq(m) {
 		margin-top: auto;
@@ -29,10 +27,42 @@
 
 	li {
 		margin-right: $spacing--s;
+		
+		a {
+			padding: $spacing--s $spacing--m;
+			color: $color--secondary;
+			border: 1px solid $color--secondary;
+			text-decoration: none;
+	
+			@include hover-focus{
+				text-decoration: none;
+				color: $color--white;
+				background-color: $color--black;
+				border-color: $color--black;
+			}
+		}
 	}
+
+	
 
 	// Active item.
 	.active {
+
+		a {
+			color: $color--white;
+			background-color: $color--black;
+			border-color: $color--black;
+			text-decoration-line: none;
+		}
+	}
+
+	// Active item for Artists Archive.
+	.current {
+		padding: $spacing--s $spacing--m;
+		border: 1px solid $color--black;
+		color: $color--white;
+		background-color: $color--black;
+		text-decoration-line: none;
 	}
 
 	// Previous item.

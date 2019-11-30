@@ -24,9 +24,8 @@ for ( $i = 1; $i <= $theme_supports['front-page-widgets']; $i++ ) {
 }
 
 return [
-	'add'    => 
-		$front_page_widgets
-	,
+	'add'    =>
+		$front_page_widgets,
 	'remove' => [
 		'header-right',
 		'sidebar',

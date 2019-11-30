@@ -62,6 +62,11 @@ function body_classes( $classes ) {
 		$classes[] = 'is-archive';
 	}
 
+	if ( is_search() ) {
+		unset( $classes['narrow-content'] );
+		$classes[] = 'sidebar-content';
+	}
+
 	// Add no hero section class.
 	$classes[] = 'no-hero-section';
 

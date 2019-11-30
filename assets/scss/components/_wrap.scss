@@ -11,7 +11,7 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 90%;
-	max-width: $mq-xl;
+	max-width: $layout--width;
 
 	@include margin(null auto);
 

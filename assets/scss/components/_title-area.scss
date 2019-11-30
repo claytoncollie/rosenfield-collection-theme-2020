@@ -28,8 +28,8 @@
 		text-decoration: none;
 
 		@include hover-focus {
-			color: $color--primary;
-			text-decoration: none;
+			color: $color--white;
+			text-decoration: underline;
 		}
 	}
 }

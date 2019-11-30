@@ -11,9 +11,9 @@
 	.featuredpost &,
 	.is-archive & {
 		margin-bottom: $gutter;
-		border: $base--border;
 		border-radius: $base--border--radius;
 		background-color: $color--white;
+		text-align: center;
 
 		&:last-of-type {
 
@@ -31,14 +31,17 @@
 	&-title {
 
 		.is-archive & {
-			font-size: $font-size--h4;
+			font-size: $font-size--h3;
 		}
 
 		a {
 			color: $color--text;
+			text-decoration: none;
 
 			@include hover-focus {
 				color: $color--primary;
+				text-decoration: none;
+				border-bottom: 1px dotted $color--black;
 			}
 		}
 	}
@@ -78,7 +81,8 @@
 
 		img {
 			min-width: 100%;
-			border-radius: $base--border--radius $base--border--radius 0 0;
+			border: 1px solid $color--border;
+			box-shadow: $base--box-shadow;
 		}
 	}
 
@@ -88,7 +92,7 @@
 		p {
 
 			&:last-of-type {
-
+				margin-bottom: 0;
 			}
 		}
 	}
@@ -114,10 +118,18 @@
 
 	// Entry wrap.
 	&-wrap {
-		padding: $gap;
+		padding: $spacing--s;
 	}
 }
 
 // More link.
 .more-link {
+	font-family: $font-family--alt;
+	font-style: italic;
+	text-decoration: none;
+
+	@include hover-focus {
+		text-decoration: none;
+		border-bottom: 1px dotted $color--black;
+	}
 }

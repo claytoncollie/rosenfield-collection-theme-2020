@@ -218,7 +218,7 @@
 @mixin button {
 	display: inline-block;
 	width: auto;
-	padding: $spacing--m * $minor-third $gutter;
+	padding: $spacing--s * $minor-third $gutter;
 	border: 0;
 	border-radius: $base--border--radius;
 	color: $color--white;
@@ -229,6 +229,8 @@
 	text-align: center;
 	white-space: normal;
 	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
 	cursor: pointer;
 
 	@include transition();

@@ -40,11 +40,6 @@ return [
 			'src'    => "//fonts.googleapis.com/css?family=$google_fonts&display=swap",
 			'editor' => 'both',
 		],
-		[
-			'handle' => \genesis_get_theme_handle() . '-ion-icons',
-			'src'    => "//unpkg.com/ionicons@4.1.2/dist/css/ionicons.min.css",
-			'editor' => false,
-		],
 	],
 	'remove' => [],
 ];

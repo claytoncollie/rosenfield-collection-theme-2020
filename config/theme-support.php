@@ -11,8 +11,6 @@
 
 namespace RosenfieldCollection\Theme2020;
 
-use function RosenfieldCollection\Theme2020\Functions\get_theme_url;
-
 return [
 	'add'    => [
 		'align-wide',

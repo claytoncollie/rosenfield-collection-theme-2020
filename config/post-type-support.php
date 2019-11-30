@@ -14,6 +14,7 @@ namespace RosenfieldCollection\Theme2020;
 return [
 	'add'    => [
 		'hero-section' => [ 'page', 'post' ],
+		'excerpt'      => [ 'page', 'post' ],
 	],
 	'remove' => [],
 ];

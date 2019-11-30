@@ -34,7 +34,7 @@ function do_footer_credits() {
 	printf(
 		'<div><span class="copyright">%s %s</span> &middot; <span class="credits-title">%s</span> &middot; <span class="login-link">%s</span></div>',
 		do_shortcode( '[footer_copyright]' ),
-		esc_html__( 'All Rights Reserved', 'rc' ),
+		esc_html__( 'All Rights Reserved', 'rosenfield-collection-2020' ),
 		esc_html( get_bloginfo( 'name' ) ),
 		do_shortcode( '[footer_loginout]' )
 	);

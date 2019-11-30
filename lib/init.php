@@ -54,6 +54,9 @@ namespace RosenfieldCollection\Theme2020;
 		'functions/header',
 		'functions/widgets',
 		'functions/search',
+		'functions/taxonomies',
+		'functions/artists',
+		'functions/statistics',
 
 		// Structure.
 		'structure/archive',
