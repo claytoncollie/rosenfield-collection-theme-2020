@@ -1,5 +1,5 @@
 {
-  "name": "rosenfieldcollection2020",
+  "name": "rosenfield-collection-2020",
   "version": "1.0.0",
   "description": "Genesis starter theme with a modern development workflow.",
   "repository": {
@@ -42,10 +42,10 @@
   "theme": {
     "name": "Rosenfield Collection 2020",
     "uri": "https://www.rosenfieldcollection.com/",
-    "authoruri": "https://www.ckaytoncollie.com/",
+    "authoruri": "https://www.claytoncollie.com/",
     "licenseuri": "http://www.gnu.org/licenses/gpl-2.0.html",
     "domainpath": "/assets/lang",
-    "textdomain": "rosenfield-collection",
+    "textdomain": "rosenfield-collection-2020",
     "template": "genesis"
   },
   "scripts": {
