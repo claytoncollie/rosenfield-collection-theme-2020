@@ -57,9 +57,12 @@ namespace RosenfieldCollection\Theme2020;
 		'functions/taxonomies',
 		'functions/artists',
 		'functions/statistics',
+		'functions/post-title',
+		'functions/report',
 
 		// Structure.
 		'structure/archive',
+		'structure/author',
 		'structure/footer',
 		'structure/header',
 		'structure/hero',
@@ -69,7 +72,5 @@ namespace RosenfieldCollection\Theme2020;
 		'structure/single',
 		'structure/wrap',
 
-		// Plugins.
-		'plugins/gravity-forms',
 	]
 );
