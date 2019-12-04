@@ -25,6 +25,7 @@
 	}
 
 	.wrap {
+		display: inline-block;
 		justify-content: center;
 		position: relative;
 	}
@@ -32,17 +33,20 @@
 	h1 {
 		width: 100%;
 		margin-bottom: 0;
+
+		.author & {
+			margin-bottom: $spacing--s;
+		}
 	}
 
 	p {
-		margin-top: $spacing--m;
-		margin-bottom: 0;
-		font-style: italic;
+		margin: $spacing--m auto 0;
 		color: $color--secondary;
 		font-family: $font-family--alt;
+		font-style: italic;
 
 		@include mq(m) {
-			max-width: $mq-xxs;
+			max-width: $mq-xs;
 		}
 	}
 }

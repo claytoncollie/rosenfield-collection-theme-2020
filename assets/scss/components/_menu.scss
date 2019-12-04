@@ -44,9 +44,9 @@
 
 	// Link
 	a {
+		border: 1px solid transparent;
 		color: $color--white;
 		text-decoration: none;
-		border: 1px solid transparent;
 
 		@include mq(m) {
 			display: block;
@@ -57,7 +57,7 @@
 	a:hover,
 	a:focus,
 	.current-menu-item > a {
-		color: $color--white;
 		border-color: $color--white;
+		color: $color--white;
 	}
 }

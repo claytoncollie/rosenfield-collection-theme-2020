@@ -39,11 +39,43 @@
 			text-decoration: none;
 
 			@include hover-focus {
+				border-bottom: 1px dotted $color--black;
 				color: $color--primary;
 				text-decoration: none;
-				border-bottom: 1px dotted $color--black;
 			}
 		}
+	}
+
+	// Entry artist.
+	&-artist {
+		color: $color--text;
+		font-family: $font-family--alt;
+		font-style: italic;
+		text-decoration: none;
+
+		@include hover-focus {
+			border-bottom: 1px dotted $color--black;
+			color: $color--primary;
+			text-decoration: none;
+		}
+	}
+
+	// Entry separator.
+	&-sep {
+		margin: 0 $spacing--s;
+	}
+
+	// Entry user report.
+	&-user {
+		display: inline-block;
+		width: 100%;
+	}
+
+	// Entry user report heading.
+	&-user-heading {
+		font-weight: $font-weight--bold;
+		text-transform: uppercase;
+		margin-right: $spacing--xs;
 	}
 
 	// Entry title link.
@@ -89,6 +121,11 @@
 	// Entry content.
 	&-content {
 
+		.is-archive & {
+			display: flex;
+			justify-content: center;
+		}
+
 		p {
 
 			&:last-of-type {
@@ -129,7 +166,7 @@
 	text-decoration: none;
 
 	@include hover-focus {
-		text-decoration: none;
 		border-bottom: 1px dotted $color--black;
+		text-decoration: none;
 	}
 }

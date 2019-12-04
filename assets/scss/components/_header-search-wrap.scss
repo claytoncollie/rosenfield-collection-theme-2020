@@ -8,21 +8,21 @@
 
 
 .header-search-wrap {
-	position: relative;
 	display: none;
+	position: relative;
 
 	&:target {
-		clear: both;
 		display: block;
+		clear: both;
 		position: relative;
 	}
 
 	input[type="search"] {
+		margin-bottom: 0;
 		background-color: $color--black;
 		border: 0;
-		margin-bottom: 0;
-		font-size: $font-size--h3;
 		color: $color--white;
+		font-size: $font-size--h3;
 		padding-top: 0;
 		padding-bottom: 0;
 		padding-left: 0;
@@ -30,8 +30,8 @@
 	}
 
 	input[type="submit"] {
-		border: 0;
 		clip: rect(0, 0, 0, 0);
+		border: 0;
 		height: 1px;
 		margin: -1px;
 		padding: 0;

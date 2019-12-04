@@ -1,0 +1,28 @@
+////
+/// Author archive section.
+///
+/// @group  Components
+/// @author Clayton Collie <info@rosenfieldcollection.com>
+/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
+////
+
+.author {
+
+	&-avatar {
+		border-radius: 50%;
+		border: 5px solid rgba(0,0,0,.25);
+		margin-bottom: $spacing--s;
+	}
+
+	&-social {
+		display: inline-block;
+		margin-right: $spacing--xs;
+		margin-bottom: $spacing--s;
+	}
+
+	&-website {
+		font-size: $font-size--h5;
+		margin-bottom: $spacing--s;
+	}
+
+}

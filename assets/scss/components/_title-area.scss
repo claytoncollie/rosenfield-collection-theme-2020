@@ -38,10 +38,10 @@
 .site-description {
 	margin: 0;
 	color: $color--secondary;
-	letter-spacing: 1px;
+	font-family: $font-family--alt;
 	font-size: small;
 	font-style: italic;
-	font-family: $font-family--alt;
+	letter-spacing: 1px;
 
 	.wp-custom-logo & {
 

@@ -20,4 +20,9 @@
 		width: 100%;
 		max-width: 100%;
 	}
+
+	// Stacking wraps.
+	+ .wrap {
+		margin-top: $spacing--l;
+	}
 }

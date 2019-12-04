@@ -27,18 +27,18 @@
 
 	li {
 		margin-right: $spacing--s;
-		
+
 		a {
 			padding: $spacing--s $spacing--m;
-			color: $color--secondary;
 			border: 1px solid $color--secondary;
+			color: $color--secondary;
 			text-decoration: none;
-	
-			@include hover-focus{
-				text-decoration: none;
+
+			@include hover-focus {
+				border-color: $color--black;
 				color: $color--white;
 				background-color: $color--black;
-				border-color: $color--black;
+				text-decoration: none;
 			}
 		}
 	}
@@ -49,9 +49,9 @@
 	.active {
 
 		a {
+			border-color: $color--black;
 			color: $color--white;
 			background-color: $color--black;
-			border-color: $color--black;
 			text-decoration-line: none;
 		}
 	}
