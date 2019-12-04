@@ -31,7 +31,6 @@ function front_page_1_heading( array $defaults, array $args ) : array {
 	return $defaults;
 }
 
-
 \add_filter( 'genesis_widget_area_defaults', __NAMESPACE__ . '\widget_area_defaults', 10, 3 );
 /**
  * Set default values for widget area output.
@@ -43,7 +42,7 @@ function front_page_1_heading( array $defaults, array $args ) : array {
  *
  * @return array
  */
-function widget_area_defaults( array $defaults, string $id ) : string {
+function widget_area_defaults( array $defaults, string $id ) : array {
 	$hero = 'front-page-1' === $id ? ' hero-section" role="banner' : '';
 
 	if ( false !== strpos( $id, 'front-page-' ) ) {

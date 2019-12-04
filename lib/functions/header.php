@@ -18,7 +18,7 @@ namespace RosenfieldCollection\Theme2020\Functions;
  *
  * @return string
  */
-function header() {
+function header() : string {
 	$id  = '';
 	$url = '';
 
@@ -72,20 +72,3 @@ function header() {
 		return '';
 	}
 }
-
-/**
- * Register default custom header image.
- *
- * @since 1.0.0
- *
- * @return void
- */
-register_default_headers(
-	[
-		'child' => [
-			'url'           => '%2$s/assets/img/hero.jpg',
-			'thumbnail_url' => '%2$s/assets/img/hero.jpg',
-			'description'   => __( 'Hero Image', 'rosenfield-collection-2020' ),
-		],
-	]
-);

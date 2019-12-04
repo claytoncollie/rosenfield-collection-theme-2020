@@ -21,7 +21,7 @@ namespace RosenfieldCollection\Theme2020\Structure;
  *
  * @return string
  */
-function title_area_hook( $close_html ) {
+function title_area_hook( string $close_html ) : string {
 	if ( $close_html ) {
 		\ob_start();
 		\do_action( 'genesis_after_title_area' );

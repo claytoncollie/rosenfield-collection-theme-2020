@@ -30,7 +30,7 @@ namespace RosenfieldCollection\Theme2020\Structure;
  *
  * @return string
  */
-function entry_pagination_wrap_open( $open, $args ) {
+function entry_pagination_wrap_open( string $open, array $args ) : string {
 	if ( 'archive-pagination' === $args['context'] || 'adjacent-entry-pagination' === $args['context'] ) {
 		$open .= '<div class="wrap">';
 	}
@@ -49,7 +49,7 @@ function entry_pagination_wrap_open( $open, $args ) {
  *
  * @return string
  */
-function entry_pagination_wrap_close( $close, $args ) {
+function entry_pagination_wrap_close( string $close, array $args ) : string {
 	if ( 'archive-pagination' === $args['context'] || 'adjacent-entry-pagination' === $args['context'] ) {
 		$close .= '</div>';
 	}
@@ -65,7 +65,7 @@ function entry_pagination_wrap_close( $close, $args ) {
  *
  * @return string
  */
-function previous_page_link() {
+function previous_page_link() : string {
 	return \sprintf( '← Previous', 'rosenfield-collection-2020' );
 }
 
@@ -77,7 +77,7 @@ function previous_page_link() {
  *
  * @return string
  */
-function next_page_link() {
+function next_page_link() : string {
 	return \sprintf( 'Next →', 'rosenfield-collection-2020' );
 }
 
@@ -91,7 +91,7 @@ function next_page_link() {
  *
  * @return string
  */
-function previous_pagination_text( $content ) {
+function previous_pagination_text( string $content ) : string {
 	return \str_replace( '&#xAB;', '←', $content );
 }
 
@@ -105,7 +105,7 @@ function previous_pagination_text( $content ) {
  *
  * @return string
  */
-function next_pagination_text( $content ) {
+function next_pagination_text( string $content ) : string {
 	return \str_replace( '&#xBB;', '→', $content );
 }
 

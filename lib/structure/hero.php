@@ -79,7 +79,7 @@ function hero_setup() {
  *
  * @return array
  */
-function hero_body_class( $classes ) {
+function hero_body_class( array $classes ) : array {
 	$classes   = \array_diff( $classes, [ 'no-hero-section' ] );
 	$classes[] = 'has-hero-section';
 
@@ -189,7 +189,7 @@ function hero_excerpt() {
  *
  * @return void
  */
-function do_archive_headings_intro_text( $heading = '', $intro_text = '', $context = '' ) {
+function do_archive_headings_intro_text( string $heading = '', string $intro_text = '', string $context = '' ) {
 	if ( $context && $intro_text ) {
 		\genesis_markup(
 			[
@@ -211,7 +211,7 @@ function do_archive_headings_intro_text( $heading = '', $intro_text = '', $conte
  *
  * @return array
  */
-function hero_archive_title_attr( $atts ) {
+function hero_archive_title_attr( array $atts ) : array {
 	$atts['class']    = 'hero-title';
 	$atts['itemprop'] = 'headline';
 
@@ -227,7 +227,7 @@ function hero_archive_title_attr( $atts ) {
  *
  * @return array
  */
-function hero_entry_attr( $atts ) {
+function hero_entry_attr( array $atts ) : array {
 	if ( \is_singular() ) {
 		$atts['itemref'] = 'hero-section';
 	}
@@ -250,6 +250,8 @@ function hero_display() {
 		]
 	);
 
+	\do_action( 'genesis_before_hero_section' );
+
 	\genesis_structural_wrap( 'hero-section', 'open' );
 
 	\genesis_markup(
@@ -269,6 +271,8 @@ function hero_display() {
 	);
 
 	\genesis_structural_wrap( 'hero-section', 'close' );
+
+	\do_action( 'genesis_after_hero_section' );
 
 	\genesis_markup(
 		[

@@ -21,7 +21,7 @@ namespace RosenfieldCollection\Theme2020\Functions;
  *
  * @return array
  */
-function body_classes( $classes ) {
+function body_classes( array $classes ) : array {
 
 	// Remove unnecessary page template classes.
 	$template  = \get_page_template_slug();

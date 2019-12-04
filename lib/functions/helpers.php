@@ -18,7 +18,7 @@ namespace RosenfieldCollection\Theme2020\Functions;
  *
  * @return string
  */
-function get_theme_dir() {
+function get_theme_dir() : string {
 	static $dir = null;
 
 	if ( \is_null( $dir ) ) {
@@ -35,7 +35,7 @@ function get_theme_dir() {
  *
  * @return string
  */
-function get_theme_url() {
+function get_theme_url() : string {
 	static $url = null;
 
 	if ( \is_null( $url ) ) {
