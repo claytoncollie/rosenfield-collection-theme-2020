@@ -9,8 +9,10 @@
  * @license   GPL-2.0-or-later
  */
 
+namespace RosenfieldCollection\Theme2020\Templates;
+
 // Removes hero section.
 \remove_theme_support( 'hero-section' );
 
 // Runs the Genesis loop.
-genesis();
+\genesis();

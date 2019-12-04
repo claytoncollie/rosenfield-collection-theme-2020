@@ -15,7 +15,7 @@ namespace RosenfieldCollection\Theme2020\Structure;
 \remove_action( 'genesis_after_header', 'genesis_do_nav' );
 \add_action( 'genesis_after_title_area', 'genesis_do_nav' );
 
-// Reposition secondary nav.
+// Remove secondary nav.
 \remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 
 \add_filter( 'wp_nav_menu_args', __NAMESPACE__ . '\limit_menu_depth' );

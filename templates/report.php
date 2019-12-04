@@ -2,27 +2,23 @@
 /**
  * Template Name: Report
  *
- * @package      Rosenfield Collection
- * @since        1.0.0
- * @author       Clayton Collie <clayton.collie@gmail.com>
- * @copyright    Copyright (c) 2015, Rosenfield Collection
- * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   RosenfieldCollection\Theme2020
+ * @link      https://www.rosenfieldcollection.com
+ * @author    Clayton Collie
+ * @copyright Copyright © 2019 Clayton Collie
+ * @license   GPL-2.0-or-later
  */
 
-// Add custom body class.
-add_filter( 'body_class', 'rc_body_class_report' );
-
-// Force full-width-content layout setting.
-add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
+namespace RosenfieldCollection\Theme2020\Templates;
 
 // Dispaly totals.
-add_action( 'genesis_after_header', 'rc_totals' );
+\add_action( 'genesis_after_hero_section', 'RosenfieldCollection\Theme2020\Functions\do_the_statistics', 25 );
 
-// Remove the post content (requires HTML5 theme support).
-remove_action( 'genesis_loop', 'genesis_do_loop' );
+// Dispaly totals.
+\add_action( 'genesis_after_hero_section', 'RosenfieldCollection\Theme2020\Functions\do_the_taxonomy_totals', 30 );
 
 // Shoow all posts.
-add_action( 'genesis_loop', 'rc_list_all_posts' );
+\add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\do_the_report', 12 );
 
 // Run the Genesis loop.
-genesis();
+\genesis();
