@@ -30,14 +30,14 @@
     "prettier": "^1.13.4",
     "prettier-stylelint": "^0.4.2",
     "rimraf": "^2.6.3",
-    "sass": "^1.16.0",
+    "sass": "^1.24.0",
     "sass-loader": "^7.1.0",
     "stylelint": "^9.9.0",
     "stylelint-config-recommended-scss": "^3.2.0",
     "stylelint-config-wordpress": "^13.1.0",
     "stylelint-order": "^0.8.1",
     "theme-claim": "^0.1.2",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.11"
   },
   "theme": {
     "name": "Rosenfield Collection 2020",
