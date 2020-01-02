@@ -31,20 +31,3 @@ function title_area_hook( string $close_html ) : string {
 	return $close_html;
 }
 
-\add_filter( 'get_custom_logo', __NAMESPACE__ . '\custom_logo_size' );
-/**
- * Add max-width style to custom logo.
- *
- * @since 1.0.0
- *
- * @param string $html Custom logo HTML output.
- *
- * @return string
- */
-function custom_logo_size( $html ) {
-	$width  = \get_theme_support( 'custom-logo' )[0]['width'];
-	$height = \get_theme_support( 'custom-logo' )[0]['height'];
-
-	return \str_replace( '<img ', '<img style="max-width:' . $width . 'px;max-height:' . $height . 'px"', $html );
-}
-
