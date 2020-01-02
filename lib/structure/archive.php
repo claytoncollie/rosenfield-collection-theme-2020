@@ -12,6 +12,7 @@
 namespace RosenfieldCollection\Theme2020\Structure;
 
 use function RosenfieldCollection\Theme2020\Functions\is_type_archive;
+use function RosenfieldCollection\Theme2020\Functions\get_object_prefix_and_id;
 
 // Reposition entry image.
 \remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
@@ -75,25 +76,12 @@ function archive_post_class( array $classes ) : array {
  * @return string
  */
 function read_more_link( string $more_link_text ) : string {
-	return sprintf(
-		'<a class="more-link" href="%s" rel="url">%s</a>',
+	$more_link_text = sprintf(
+		'<a class="more-link" href="%s">%s</a>',
 		esc_url( get_permalink( get_the_ID() ) ),
-		esc_html__( 'View Object', 'rosenfield-collection-2020' )
+		esc_html( ucwords( get_object_prefix_and_id() ) )
 	);
-}
-
-\add_filter( 'genesis_author_box_gravatar_size', __NAMESPACE__ . '\author_box_gravatar' );
-/**
- * Modifies size of the Gravatar in the author box.
- *
- * @since 1.0.0
- *
- * @param int $size Original icon size.
- *
- * @return int Modified icon size.
- */
-function author_box_gravatar( $size ) {
-	return \genesis_get_config( 'genesis-settings' )['avatar_size'];
+	return $more_link_text;
 }
 
 \add_action( 'genesis_entry_header', __NAMESPACE__ . '\entry_wrap_open', 4 );

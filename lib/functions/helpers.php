@@ -12,6 +12,78 @@
 namespace RosenfieldCollection\Theme2020\Functions;
 
 /**
+ * Returns the admin-only field with proper wrapping
+ *
+ * @param string $label Field Label.
+ * @param string $content Content.
+ * 
+ * @return string
+ * 
+ * @since 1.0.0
+ */
+function admin_only( string $label, string $content ) : string {
+	return sprintf(
+		'<section class="admin-only"><h3 class="admin-only-content">%s</h3><span class="admin-only-label">%s</span></section>',
+		wp_kses_post( $content ),
+		esc_html( $label )
+	);
+}
+
+/**
+ * Return first if conditions match up for column count.
+ *
+ * @param integer $i Column count as of right now.
+ * @param integer $columns Number of columns we are starting with.
+ *
+ * @return string
+ */
+function column_class( int $i, int $columns ) : string {
+	if ( 0 === $i || 0 === $i % $columns ) {
+		return 'first';
+	} else {
+		return '';
+	}
+}
+/**
+ * Get the object prefix and ID.
+ *
+ * @return string
+ */
+function get_object_prefix_and_id() : string {
+	$output = '';
+	$prefix = get_taxonomy_term_prefix();
+	$id     = get_field( 'object_id' );
+
+	if ( ! empty( $id ) && ! empty( $prefix ) ) {
+		$output = $prefix . $id;
+	}
+
+	return $output;
+}
+
+/**
+ * Get the taxonomy term prefix
+ *
+ * @return string
+ */
+function get_taxonomy_term_prefix() : string {
+	$prefix = '';
+	$terms  = get_the_terms( get_the_ID(), 'rc_form' );
+
+	if ( ! empty( $terms ) ) {
+		foreach ( $terms as $term ) {
+			$term_id = $term->term_id;
+		}
+	}
+
+	if ( ! empty( $term_id ) ) {
+		$prefix = get_term_meta( $term_id, 'rc_form_object_prefix', true );
+	}
+
+	return $prefix;
+}
+
+/**
  * Returns the child theme directory.
  *
  * @since 1.0.0
@@ -75,7 +147,7 @@ function is_type_archive() : bool {
  * @return bool
  */
 function is_type_archive_page() : bool {
-	return \is_page( array( 'forms', 'firings', 'techniques', 'artists', 'report' ) );
+	return \is_page( array( 'forms', 'firings', 'techniques', 'artists' ) );
 }
 
 /**

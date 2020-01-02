@@ -24,8 +24,8 @@ namespace RosenfieldCollection\Theme2020\Functions;
  */
 function front_page_1_heading( array $defaults, array $args ) : array {
 	if ( 'front-page-1' === $args['id'] ) {
-		$defaults['before_title'] = '<h1 class="hero-title" itemprop="headline">';
-		$defaults['after_title']  = "</h1>\n";
+		$defaults['before_title'] = '<h2 class="hero-title" itemprop="headline">';
+		$defaults['after_title']  = "</h2>\n";
 	}
 
 	return $defaults;

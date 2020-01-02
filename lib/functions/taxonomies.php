@@ -12,6 +12,33 @@
 namespace RosenfieldCollection\Theme2020\Functions;
 
 /**
+ * Taxonomy archive for Firing
+ *
+ * @since  1.4.0
+ */
+function do_taxonomy_loop__firing() {
+	echo wp_kses_post( get_the_taxonomy_archive( 'rc_firing' ) );
+}
+
+/**
+ * Taxonomy archive for Forms
+ *
+ * @since  1.4.0
+ */
+function do_taxonomy_loop__form() {
+	echo wp_kses_post( get_the_taxonomy_archive( 'rc_form' ) );
+}
+
+/**
+ * Taxonomy archive for Technique
+ *
+ * @since  1.4.0
+ */
+function do_taxonomy_loop__technique() {
+	echo wp_kses_post( get_the_taxonomy_archive( 'rc_technique' ) );
+}
+
+/**
  * Taxonomy archive with featured images.
  *
  * @param string $taxonomy Taxonomy term.
@@ -55,16 +82,10 @@ function get_the_taxonomy_archive( string $taxonomy ) : string {
 				$posts                           = get_posts( $query_args );
 
 				if ( ! empty( $posts ) ) {
-					$img = get_the_post_thumbnail( $posts[0]->ID, 'archive-image' );
+					$img = get_the_post_thumbnail( $posts[0]->ID, 'archive' );
 				}
 
-				if ( 0 === $i || 0 === $i % 4 ) {
-					$column_class = 'first';
-				} else {
-					$column_class = '';
-				}
-
-				$output     .= sprintf( '<article class="entry one-fourth %s">', esc_attr( $column_class ) );
+				$output     .= sprintf( '<article class="entry one-fourth %s">', esc_attr( column_class( $i, 4 ) ) );
 				$output     .= sprintf(
 					'<a href="%s" rel="bookmark" itemprop="url" class="entry-image-link">%s</a>',
 					esc_url( get_term_link( $cat ) ),
@@ -77,9 +98,12 @@ function get_the_taxonomy_archive( string $taxonomy ) : string {
 					esc_html( $cat->name )
 				);
 					$output .= sprintf(
-						'<a class="more-link" href="%s">%s <i class="fa fa-long-arrow-right"></i></a>',
+						'<a class="more-link" href="%s" aria-label="%s: %s">%s</a><span class="entry-sep">&middot;</span>%s',
 						esc_url( get_term_link( $cat ) ),
-						esc_html__( 'View All', 'rosenfield-collection-2020' )
+						esc_html__( 'View Category', 'rosenfield-collection-2020' ),
+						esc_html( $cat->name ),
+						esc_html__( 'View All', 'rosenfield-collection-2020' ),
+						esc_html( $cat->count )
 					);
 				$output     .= '</header></div></article>';
 
@@ -89,31 +113,4 @@ function get_the_taxonomy_archive( string $taxonomy ) : string {
 	}
 
 	return $output;
-}
-
-/**
- * Taxonomy archive for Firing
- *
- * @since  1.4.0
- */
-function do_taxonomy_loop__firing() {
-	echo wp_kses_post( get_the_taxonomy_archive( 'rc_firing' ) );
-}
-
-/**
- * Taxonomy archive for Forms
- *
- * @since  1.4.0
- */
-function do_taxonomy_loop__form() {
-	echo wp_kses_post( get_the_taxonomy_archive( 'rc_form' ) );
-}
-
-/**
- * Taxonomy archive for Technique
- *
- * @since  1.4.0
- */
-function do_taxonomy_loop__technique() {
-	echo wp_kses_post( get_the_taxonomy_archive( 'rc_technique' ) );
 }

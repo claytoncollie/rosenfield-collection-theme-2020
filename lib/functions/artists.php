@@ -45,30 +45,27 @@ function do_artists_loop() {
 			$link       = get_author_posts_url( $id );
 
 			$attachment_id = get_field( 'artist_photo', 'user_' . $id );
-			$avatar        = wp_get_attachment_image_src( $attachment_id, 'artist-image' );
+			$avatar        = wp_get_attachment_image_src( $attachment_id, 'avatar' );
 
 			$fallback = '';
 
-			// If the artist/user does not have a photo in the custom field.
-			// then get_posts for that author an grab the featured image from the first post and use as fallback image.
+			/**
+			 * If the artist/user does not have a photo in the custom field
+			 * then get_posts for that author an grab the featured image from
+			 * the first post and use as fallback image.
+			 */
 			if ( ! $attachment_id ) {
 				$posts = get_posts( 'author=' . $id . '&posts_per_page=1' );
 				foreach ( $posts as $post ) {
-					$fallback = get_the_post_thumbnail( $post->ID, 'artist-image' );
+					$fallback = get_the_post_thumbnail( $post->ID, 'avatar' );
 				}
 			}
 
-			if ( 0 === $i || 0 === $i % 6 ) {
-				$column_class = 'first';
-			} else {
-				$column_class = '';
-			}
-
-			printf( '<article class="entry one-sixth %s">', esc_attr( $column_class ) );
+			printf( '<article class="entry one-sixth %s">', esc_attr( column_class( $i, 6 ) ) );
 
 			if ( $attachment_id ) {
 				printf(
-					'<a href="%s" class="post-image entry-image" rel="bookmark" itemprop="url"><img src="%s" alt="%s %s" itemprop="image" /></a>',
+					'<a href="%s" class="entry-image-link" rel="bookmark"><img src="%s" alt="%s %s" /></a>',
 					esc_url( $link ),
 					esc_url( $avatar[0] ),
 					esc_html( $first_name ),
@@ -76,24 +73,28 @@ function do_artists_loop() {
 				);
 			} else {
 				printf(
-					'<a href="%s" class="post-image entry-image" rel="bookmark" itemprop="url">%s</a>',
+					'<a href="%s" class="entry-image-link" rel="bookmark">%s</a>',
 					esc_url( $link ),
 					wp_kses_post( $fallback )
 				);
 			}
-				echo '<header class="entry-header">';
+				echo '<div class="entry-wrap"><header class="entry-header">';
 					printf(
-						'<h2 class="entry-title" itemprop="name"><a href="%s" rel="bookmark" itemprop="url">%s %s</a></h2>',
+						'<h2 class="entry-title" itemprop="name"><a href="%s" rel="bookmark">%s %s</a></h2>',
 						esc_url( $link ),
 						esc_html( $first_name ),
 						esc_html( $last_name )
 					);
 					printf(
-						'<a class="more-link" href="%s" rel="bookmark" itemprop="url">%s <i class="fa fa-long-arrow-right"></i></a>',
+						'<a class="more-link" href="%s" rel="bookmark" aria-label="%s: %s %s">%s</a><span class="entry-sep">&middot;</span>%s',
 						esc_url( $link ),
-						esc_html__( 'View Artist', 'rosenfield-collection-2020' )
+						esc_html__( 'View Artist', 'rosenfield-collection-2020' ),
+						esc_html( $first_name ),
+						esc_html( $last_name ),
+						esc_html__( 'View Artist', 'rosenfield-collection-2020' ),
+						esc_html( count_user_posts( $id ) ),
 					);
-				echo '</header>';
+				echo '</header></div>';
 			echo '</article>';
 
 			$i++;

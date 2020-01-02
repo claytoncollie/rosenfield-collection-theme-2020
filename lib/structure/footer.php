@@ -32,7 +32,7 @@ function do_footer_credits() {
 
 	// Display the copyright info.
 	printf(
-		'<div><span class="copyright">%s %s</span> &middot; <span class="credits-title">%s</span> &middot; <span class="login-link">%s</span></div>',
+		'<div><span class="copyright">%s %s</span> &middot; <span class="credits">%s</span> &middot; <span class="login">%s</span></div>',
 		do_shortcode( '[footer_copyright]' ),
 		esc_html__( 'All Rights Reserved', 'rosenfield-collection-2020' ),
 		esc_html( get_bloginfo( 'name' ) ),
