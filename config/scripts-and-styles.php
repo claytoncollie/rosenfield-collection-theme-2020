@@ -40,6 +40,12 @@ return [
 			'src'    => "//fonts.googleapis.com/css?family=$google_fonts&display=swap",
 			'editor' => 'both',
 		],
+		[
+			'handle'      => \genesis_get_theme_handle() . '-font-awesome',
+			'src'         => 'https://kit.fontawesome.com/32f48c7bb2.js',
+			'editor'      => 'both',
+			'crossorigin' => 'anonymous',
+		],
 	],
 	'remove' => [],
 ];
