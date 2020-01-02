@@ -11,6 +11,9 @@
 
 namespace RosenfieldCollection\Theme2020\Templates;
 
+// Force full-width-content layout setting.
+\add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
+
 // Dispaly totals.
 \add_action( 'genesis_after_hero_section', 'RosenfieldCollection\Theme2020\Functions\do_the_statistics', 25 );
 
