@@ -219,7 +219,7 @@
 	display: inline-block;
 	width: auto;
 	padding: $spacing--s * $minor-third $gutter;
-	border: 0;
+	border: 1px solid $color--black;
 	border-radius: $base--border--radius;
 	color: $color--white;
 	background-color: $color--primary;

@@ -9,6 +9,10 @@
 .widget {
 	margin-bottom: $gutter;
 
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+
 	// Widget wrapper.
 	&-wrap {}
 

@@ -8,7 +8,7 @@
 
 ::placeholder {
 	opacity: 1; // Firefox fix
-	color: $color--muted;
+	color: $color--secondary;
 }
 
 abbr[title] {
@@ -35,7 +35,7 @@ select,
 textarea {
 	width: 100%;
 	margin: 0 0 $spacing--s;
-	padding: 1em;
+	padding: $spacing--s;
 	border: $base--border;
 	border-radius: $base--border--radius;
 	background-clip: padding-box; // Remove iOS box shadow

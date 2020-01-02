@@ -8,13 +8,51 @@
 }
 
 .gform_heading {
-	padding-bottom: 1em;
+	padding-bottom: $spacing--m;
 }
 
 .gform_wrapper {
 
+	.hero-section & {
+		form {
+			display: flex;	
+		}
+
+		ul li.gfield {
+			margin-top: 0;
+		}
+
+		.gfield {
+			padding: 0;
+		}
+
+		.top_label .gfield_label {
+			@include hide-visually;
+		}
+
+		.top_label div.ginput_container {
+			margin-top: 0;
+		}
+
+		input:not([type='radio']):not([type='checkbox']):not([type='submit']):not([type='button']):not([type='image']):not([type='file']) {
+			padding: $spacing--s;
+		}
+
+		.gform_footer {
+			flex-basis: 25%;
+			padding: 0;
+			margin: 0;
+			
+			input.button,
+			input[type=submit] {
+				font-size: $base--font-size;
+				margin: 0;
+			}
+		}
+	}
+
 	.gform_fields {
-		margin: 0 -0.5em;
+		margin: 0 $spacing--s;
 		padding: 0;
 		list-style: none;
 
@@ -24,7 +62,7 @@
 			li {
 				display: flex;
 				align-items: center;
-				margin: 0.5em 0;
+				margin: $spacing--s 0;
 
 				label {
 					margin: 0;
@@ -46,7 +84,7 @@
 .ginput_container {
 
 	span {
-		margin-bottom: 0.5em;
+		margin-bottom: $spacing--s;
 	}
 
 	input,
@@ -82,7 +120,7 @@
 }
 
 .gfield_required {
-	padding-left: 0.1em;
+	padding-left: 0 $spacing--l;
 }
 
 .gfield_checkbox,
@@ -95,7 +133,7 @@
 	input {
 		float: left;
 		width: auto;
-		margin-right: 0.5em;
+		margin-right: $spacing--s;
 	}
 
 	label {
@@ -105,17 +143,17 @@
 }
 
 .gsection {
-	margin: 0.5em 0;
+	margin: $spacing--s 0;
 
 	h2 {
-		padding-bottom: 0.5em;
+		padding-bottom: $spacing--s;
 		border-bottom: $base--border;
 	}
 }
 
 .validation_error,
 .gf_progressbar_wrapper {
-	padding-bottom: 1em;
+	padding-bottom: $spacing--l;
 }
 
 .gf_progressbar {
@@ -123,7 +161,7 @@
 }
 
 .gf_progressbar_percentage {
-	padding: 0.5em 0.5em;
+	padding: $spacing--s $spacing--s;
 	background: $color--primary;
 	text-align: right;
 }
@@ -136,7 +174,7 @@
 	input,
 	select {
 		width: auto;
-		margin: 0 0.5em;
+		margin: 0 $spacing--s;
 	}
 
 	i {
@@ -165,11 +203,11 @@
 	overflow: auto;
 	width: 100%;
 	margin: 0;
-	padding: 0 0.5em 1em;
+	padding: 0 $spacing--s $spacing--l;
 	list-style-type: none;
 
 	.validation_message {
-		margin-top: 0.5em;
+		margin-top: $spacing--s;
 	}
 
 	li {
@@ -196,7 +234,7 @@
 	select,
 	textarea {
 		width: 100%;
-		margin-bottom: 0.5em;
+		margin-bottom: $spacing--s;
 	}
 
 	label {
@@ -210,7 +248,7 @@
 
 .ginput_left {
 	float: left;
-	padding-right: 0.5em;
+	padding-right: $spacing--s;
 }
 
 .ginput_right {
@@ -224,8 +262,8 @@
 .gf_second_quarter {
 	float: left;
 	clear: none;
-	padding-right: 0.5em;
-	padding-bottom: 0.5em;
+	padding-right: $spacing--s;
+	padding-bottom: $spacing--s;
 }
 
 .gf_right_half,
@@ -233,13 +271,13 @@
 .gf_fourth_quarter {
 	float: right;
 	clear: none;
-	padding-bottom: 0.5em;
+	padding-bottom: $spacing--s;
 }
 
 .gf_third_quarter {
 	float: left;
 	clear: none;
-	padding-bottom: 0.5em;
+	padding-bottom: $spacing--s;
 }
 
 li {
@@ -249,13 +287,13 @@ li {
 	.gf_list_4col &,
 	.gf_list_5col & {
 		float: left;
-		padding-bottom: 0.5em;
+		padding-bottom: $spacing--s;
 	}
 
 	.gf_list_inline & {
 		display: inline-block;
-		padding-right: 0.5em;
-		padding-bottom: 0.5em;
+		padding-right: $spacing--s;
+		padding-bottom: $spacing--s;
 	}
 }
 
@@ -265,39 +303,6 @@ li {
 
 .clear-multi {
 	display: flex;
-}
-
-.ui-datepicker {
-	padding: 0.5em;
-	border: $base--border;
-	border-radius: $base--border--radius;
-	background-color: $color--white;
-
-	&-header {
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-		font-size: smaller;
-	}
-
-	&-title {
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		margin-top: 0.5em;
-	}
-
-	select {
-		width: calc(50% - 0.5em);
-		height: 2em;
-	}
-
-	td,
-	th {
-		padding: 0.5em;
-		font-size: smaller;
-		text-align: center;
-	}
 }
 
 @include mq(xs) {
@@ -333,7 +338,7 @@ li {
 		display: flex;
 
 		span {
-			margin-right: 0.5em;
+			margin-right: $spacing--s;
 			flex: 1;
 
 			&:last-of-type {

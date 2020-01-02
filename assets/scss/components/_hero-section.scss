@@ -28,11 +28,17 @@
 		display: inline-block;
 		justify-content: center;
 		position: relative;
+
+		@include mq(m) {
+			max-width: $mq-xs;
+		}
 	}
 
-	h1 {
+	h1 ,
+	h2 {
 		width: 100%;
 		margin-bottom: 0;
+		font-size: $font-size--h1;
 
 		.author & {
 			margin-bottom: $spacing--s;
@@ -43,11 +49,7 @@
 		margin: $spacing--m auto 0;
 		color: $color--secondary;
 		font-family: $font-family--alt;
-		font-style: italic;
-
-		@include mq(m) {
-			max-width: $mq-xs;
-		}
+		font-style: italic;	
 	}
 }
 

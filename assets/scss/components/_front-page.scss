@@ -29,15 +29,11 @@
 .front-page {
 
 	&-1 {
-		padding: $spacing--xxl 0 $spacing--xxl - $gap;
+		padding: $spacing--l 0 $spacing--l - $gap;
 
 		@include mq(m) {
-			padding: $spacing--xxxl 0 $spacing--xxxl - $gap;
+			padding: $spacing--xl 0 $spacing--xl - $gap;
 		}
 	}
 
-	&-5 {
-		padding: $spacing--xl 0 $spacing--xl - $gutter;
-		background-color: $color--background;
-	}
 }
