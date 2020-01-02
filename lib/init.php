@@ -59,6 +59,7 @@ namespace RosenfieldCollection\Theme2020;
 		'functions/statistics',
 		'functions/post-title',
 		'functions/report',
+		'functions/admin-only',
 
 		// Structure.
 		'structure/archive',
