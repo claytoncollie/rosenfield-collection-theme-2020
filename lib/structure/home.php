@@ -22,7 +22,6 @@ namespace RosenfieldCollection\Theme2020\Structure;
 function front_page_loop() {
 	if ( \is_front_page() && \is_active_sidebar( 'front-page-1' ) ) {
 		\add_action( 'genesis_before_content_sidebar_wrap', __NAMESPACE__ . '\front_page_widget_areas' );
-		\add_action( 'genesis_before_content_sidebar_wrap', 'RosenfieldCollection\Theme2020\Functions\do_the_statistics' );
 		\add_filter( 'body_class', __NAMESPACE__ . '\front_page_body_class' );
 		\add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 		\remove_action( 'genesis_before_loop', 'genesis_do_breadcrumbs' );
