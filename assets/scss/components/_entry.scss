@@ -68,13 +68,14 @@
 	// Entry user report.
 	&-user {
 		display: inline-block;
+		margin-bottom: $spacing--s;
 		width: 100%;
 	}
 
 	// Entry user report heading.
 	&-user-heading {
 		font-weight: $font-weight--bold;
-		text-transform: uppercase;
+		text-transform: lowercase;
 		margin-right: $spacing--xs;
 	}
 
@@ -156,6 +157,18 @@
 	// Entry wrap.
 	&-wrap {
 		padding: $spacing--s;
+	}
+
+	// Report archive.
+	.report & {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		margin-bottom: $gutter !important;
+		border-bottom: 0 !important;
+		border-top: 0 !important;
+		border-left: 0 !important;
+		border-width: 3px;
 	}
 }
 

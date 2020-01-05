@@ -8,7 +8,7 @@
 
 table {
 	width: 100%;
-	margin: $spacing--s 0;
+	margin: 0;
 	border-radius: $base--border--radius;
 	border-spacing: 0;
 	border-collapse: collapse;
@@ -17,7 +17,7 @@ table {
 
 th,
 td {
-	padding: $spacing--s;
+	padding: $spacing--xs;
 	border: $base--border;
 	border-right: 0;
 	border-left: 0;

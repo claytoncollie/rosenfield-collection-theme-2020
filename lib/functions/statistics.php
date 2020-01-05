@@ -12,11 +12,18 @@
 namespace RosenfieldCollection\Theme2020\Functions;
 
 \add_action( 'genesis_after_front-page-1_widget_area', __NAMESPACE__ . '\front_page_1_stats' );
+/**
+ * Display the high level stats on the homepage.
+ *
+ * @return void
+ *
+ * @since 1.0.0
+ */
 function front_page_1_stats() {
 	printf(
 		'<section class="statistics">%s%s</section>',
-		wp_kses_post( get_user_count( 'one-half' ) ),
-		wp_kses_post( get_post_count_published( 'one-half' ) )
+		esc_html( get_post_count_published( 'one-half' ) ),
+		esc_html( get_user_count( 'one-half' ) )
 	);
 }
 
@@ -27,10 +34,13 @@ function front_page_1_stats() {
  */
 function do_the_statistics() {
 	printf(
-		'<div class="wrap">%s%s%s</div>',
-		wp_kses_post( get_user_count( 'one-third' ) ),
-		wp_kses_post( get_post_count_published( 'one-third' ) ),
-		wp_kses_post( get_post_count_draft( 'one-third' ) )
+		'<div class="wrap">%s%s%s%s%s%s</div>',
+		wp_kses_post( get_purchase_price( 'one-sixth' ) ),
+		wp_kses_post( get_user_count( 'one-sixth' ) ),
+		wp_kses_post( get_post_count_published( 'one-sixth' ) ),
+		wp_kses_post( get_post_count_draft( 'one-sixth' ) ),
+		wp_kses_post( get_post_count_pending( 'one-sixth' ) ),
+		wp_kses_post( get_post_count_archive( 'one-sixth' ) )
 	);
 }
 
@@ -43,6 +53,24 @@ function do_the_taxonomy_totals() {
 	printf(
 		'<div class="wrap">%s</div>',
 		wp_kses_post( get_taxonomy_totals( 'rc_form' ) )
+	);
+}
+
+/**
+ * Return total purchase price.
+ *
+ * @param string $column_width Set column width.
+ *
+ * @return string
+ *
+ * @since 1.0.0
+ */
+function get_purchase_price( string $column_width ) : string {
+	return sprintf(
+		'<section class="%s first"><h3>$ %s</h3><p>%s</p></section>',
+		esc_attr( $column_width ),
+		wp_kses_post( get_total_purchase_price() ),
+		esc_html__( 'Purchase Price', 'rosenfield-collection-2020' )
 	);
 }
 
@@ -62,7 +90,7 @@ function get_user_count( string $column_width ) : string {
 
 	if ( ! empty( $users ) ) {
 		$output .= sprintf(
-			'<section class="%s first"><h2>%s</h2>%s</section>',
+			'<section class="%s"><h3>%s</h3><p>%s</p></section>',
 			esc_attr( $column_width ),
 			intval( $users['total_users'] ),
 			esc_html__( 'Artists', 'rosenfield-collection-2020' )
@@ -83,7 +111,7 @@ function get_user_count( string $column_width ) : string {
  */
 function get_post_count_published( string $column_width ) : string {
 	return sprintf(
-		'<section class="%s"><h2>%s</h2>%s</section>',
+		'<section class="%s notice-success"><h3>%s</h3><p>%s</p></section>',
 		esc_attr( $column_width ),
 		intval( wp_count_posts()->publish ),
 		esc_html__( 'Published Objects', 'rosenfield-collection-2020' )
@@ -101,10 +129,46 @@ function get_post_count_published( string $column_width ) : string {
  */
 function get_post_count_draft( string $column_width ) : string {
 	return sprintf(
-		'<section class="%s"><h2>%s</h2>%s</section>',
+		'<section class="%s notice-info"><h3>%s</h3><p>%s</p></section>',
 		esc_attr( $column_width ),
 		intval( wp_count_posts()->draft ),
 		esc_html__( 'Draft Objects', 'rosenfield-collection-2020' )
+	);
+}
+
+/**
+ * Return totle number of pending posts.
+ *
+ * @param string $column_width Set column width.
+ *
+ * @return string
+ *
+ * @since 1.0.0
+ */
+function get_post_count_pending( string $column_width ) : string {
+	return sprintf(
+		'<section class="%s notice-warning"><h3>%s</h3><p>%s</p></section>',
+		esc_attr( $column_width ),
+		intval( wp_count_posts()->pending ),
+		esc_html__( 'Pending Objects', 'rosenfield-collection-2020' )
+	);
+}
+
+/**
+ * Return totle number of archive posts.
+ *
+ * @param string $column_width Set column width.
+ *
+ * @return string
+ *
+ * @since 1.0.0
+ */
+function get_post_count_archive( string $column_width ) : string {
+	return sprintf(
+		'<section class="%s notice-error"><h3>%s</h3><p>%s</p></section>',
+		esc_attr( $column_width ),
+		intval( wp_count_posts()->archive ),
+		esc_html__( 'Archived Objects', 'rosenfield-collection-2020' )
 	);
 }
 
@@ -125,9 +189,10 @@ function get_taxonomy_totals( string $taxonomy ) : string {
 	if ( ! empty( $forms ) && ! is_wp_error( $forms ) ) {
 		foreach ( $forms as $form ) {
 			$output .= sprintf(
-				'<section class="one-sixth %s"><h2>%s</h2><p>%s</p></section>',
+				'<section class="one-sixth %s"><h2>%s</h2><h3>$ %s</h3><p>%s</p></section>',
 				esc_attr( column_class( $i, 6 ) ),
 				esc_html( $form->count ),
+				esc_html( get_taxonomy_purchase_price( absint( $form->term_id ), $form->taxonomy ) ),
 				esc_html( $form->name )
 			);
 			$i++;

@@ -30,6 +30,10 @@
 		float: left;
 		margin-bottom: $gutter;
 		margin-left: $gutter;
+
+		.report & {
+			margin-bottom: 0;
+		}
 	}
 
 	.one-half,

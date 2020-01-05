@@ -180,14 +180,9 @@
 ////
 
 @mixin notice($color: "medium") {
-	margin-bottom: $spacing--m;
-
-	@include box;
 
 	@if $color != "medium" {
-		border-color: map_get($colors, $color);
-		color: map_get($colors, $color);
-		background-color: rgba(map_get($colors, $color), 0.1);
+		border: 2px solid map_get($colors, $color);
 	}
 }
 

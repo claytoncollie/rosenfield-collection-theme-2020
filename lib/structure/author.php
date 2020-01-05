@@ -20,16 +20,15 @@ namespace RosenfieldCollection\Theme2020\Structure;
  * @since 1.0.0
  */
 function do_the_artist_avatar() {
-
 	if ( ! is_author() ) {
 		return;
 	}
 
-    $author = get_queried_object();
-    
-    if ( empty( $author ) ) {
-        return;
-    }
+	$author = get_queried_object();
+
+	if ( empty( $author ) ) {
+		return;
+	}
 
 	$attachment_id = get_field( 'artist_photo', 'user_' . $author->ID );
 
@@ -54,16 +53,15 @@ function do_the_artist_avatar() {
  * @since 1.0.0
  */
 function do_the_artist_info() {
-
 	if ( ! is_author() ) {
 		return;
 	}
 
-    $author = get_queried_object();
-    
-    if ( empty( $author ) ) {
-        return;
-    }
+	$author = get_queried_object();
+
+	if ( empty( $author ) ) {
+		return;
+	}
 
 	$website   = $author->user_url;
 	$twitter   = $author->twitter;

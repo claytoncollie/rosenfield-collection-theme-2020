@@ -16,9 +16,9 @@ namespace RosenfieldCollection\Theme2020\Functions;
  *
  * @param string $label Field Label.
  * @param string $content Content.
- * 
+ *
  * @return string
- * 
+ *
  * @since 1.0.0
  */
 function admin_only( string $label, string $content ) : string {
