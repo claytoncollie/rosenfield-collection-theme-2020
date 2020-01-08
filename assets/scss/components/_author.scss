@@ -12,6 +12,13 @@
 		border-radius: 50%;
 		border: 5px solid rgba(0,0,0,.25);
 		margin-bottom: $spacing--s;
+
+		.single & {
+			max-width: 50px;
+			margin-right: $spacing--s;
+			margin-bottom: 0;
+			border-width: 2px;
+		}
 	}
 
 	&-social {
@@ -23,6 +30,12 @@
 	&-website {
 		font-size: $font-size--h5;
 		margin-bottom: $spacing--m;
+	}
+
+	&-view-more {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
 	}
 
 }

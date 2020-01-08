@@ -1,0 +1,30 @@
+////
+/// Admin Only component.
+///
+/// @group  Components
+/// @author Clayton Collie <info@rosenfieldcollection.com>
+/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
+////
+
+.admin-pricing {
+
+	border: 2px solid $color--text;
+	display: inline-block;
+	border-radius: 3px;
+	margin-top: $spacing--m;
+
+	&-content {
+		color: $color--text;
+		padding: $spacing--s;
+		margin: 0;
+	}
+
+	&-label {
+		display: inline-block;
+		color: $color--white;
+		background-color: $color--text;
+		padding: $spacing--xs $spacing--m;
+		width: 100%;
+
+	}
+}

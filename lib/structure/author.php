@@ -53,7 +53,7 @@ function do_the_artist_avatar() {
  * @since 1.0.0
  */
 function do_the_artist_info() {
-	if ( ! is_author() ) {
+	if ( ! is_author() || is_paged() ) {
 		return;
 	}
 

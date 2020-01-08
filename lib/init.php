@@ -60,6 +60,12 @@ namespace RosenfieldCollection\Theme2020;
 		'functions/post-title',
 		'functions/report',
 		'functions/purchase-price',
+		'functions/admin-only',
+		'functions/view-all-objects',
+		'functions/image-gallery',
+		'functions/post-meta',
+		'functions/thumbnail-gallery',
+		'functions/view-toggle',
 
 		// Structure.
 		'structure/archive',

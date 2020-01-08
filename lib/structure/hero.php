@@ -60,8 +60,8 @@ function hero_setup() {
 	\add_action( 'genesis_hero_section', 'genesis_do_cpt_archive_title_description' );
 	\add_action( 'genesis_archive_title_descriptions', __NAMESPACE__ . '\do_archive_headings_intro_text', 12, 3 );
 	\add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_title', 10 );
+	\add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_view_toggle', 15 );
 	\add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_excerpt', 20 );
-	\add_action( 'be_title_toggle_remove', __NAMESPACE__ . '\hero_title_toggle' );
 	\add_action( 'genesis_before_content', __NAMESPACE__ . '\hero_remove_404_title' );
 	\add_action( 'genesis_before_content_sidebar_wrap', __NAMESPACE__ . '\hero_display' );
 
@@ -109,6 +109,9 @@ function hero_remove_404_title() {
  * @return void
  */
 function hero_title() {
+	$open  = '<h1 %s itemprop="headline">';
+	$close = '</h1>';
+
 	if ( \class_exists( 'WooCommerce' ) && \is_shop() ) {
 		$title = \get_the_title( \wc_get_page_id( 'shop' ) );
 	} elseif ( \is_home() && 'posts' === \get_option( 'show_on_front' ) ) {
@@ -116,16 +119,24 @@ function hero_title() {
 	} elseif ( \is_404() ) {
 		$title = \apply_filters( 'genesis_404_entry_title', esc_html__( 'Not found, error 404', 'rosenfield-collection-2020' ) );
 	} elseif ( \is_search() ) {
-		$title = \apply_filters( 'genesis_search_title_text', esc_html__( 'Search results for: ', 'rosenfield-collection-2020' ) . \get_search_query() );
+		$title = \apply_filters( 'genesis_search_title_text', esc_html__( 'Search Results', 'rosenfield-collection-2020' ) );
+	} elseif ( \is_page() ) {
+		$title = \get_the_title();
 	} elseif ( \is_singular() ) {
 		$title = \get_the_title();
+		$open  = '<div class="hero-section-edit"><h1 %s itemprop="headline">';
+		$close = sprintf(
+			'</h1><span class="entry-sep">&middot;</span><a href="%s" class="more-link">%s</a></div>',
+			esc_url( get_permalink( get_page_by_path( 'contact', OBJECT, 'page' ) ) ),
+			esc_html__( 'Suggest an edit', 'rosenfield-collection-2020' )
+		);
 	}
 
 	if ( isset( $title ) && $title ) {
 		\genesis_markup(
 			[
-				'open'    => '<h1 %s itemprop="headline">',
-				'close'   => '</h1>',
+				'open'    => $open,
+				'close'   => $close,
 				'content' => $title,
 				'context' => 'hero-title',
 			]
@@ -176,6 +187,34 @@ function hero_excerpt() {
 			]
 		);
 	}
+}
+
+/**
+ * Dispaly two links for JS to bind to.
+ * 
+ * Will toggle view between grid (default) and list.
+ *
+ * @return void
+ * 
+ * @since 1.0.0
+ */
+function hero_view_toggle() {
+
+	global $wp_query;
+
+	if ( ! is_tax() && ! is_tag() ) {
+		return;
+	}
+
+	$taxonomy = $wp_query->get_queried_object();
+
+	printf( '<section class="view-toggle"><a href="%s" id="view-toggle-grid">%s</a><span class="entry-sep">&middot;</span><a href="%s" id="view-toggle-list">%s</a></section>',
+		esc_url( get_term_link( absint( $taxonomy->term_id ), $taxonomy->taxonomy ) ),	
+		esc_html__( 'Grid', 'rosenfield-collection-2020' ),
+		esc_url( add_query_arg( 'view', 'list', get_term_link( absint( $taxonomy->term_id ), $taxonomy->taxonomy ) ) ),
+		esc_html__( 'List', 'rosenfield-collection-2020' )
+	);
+
 }
 
 /**

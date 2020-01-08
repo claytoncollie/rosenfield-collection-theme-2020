@@ -22,6 +22,10 @@
 
 	@include mq(m) {
 		padding: $spacing--xl 0;
+
+		.single-post & {
+			padding: $spacing--l 0;
+		}
 	}
 
 	.wrap {
@@ -29,7 +33,16 @@
 		justify-content: center;
 		position: relative;
 
-		
+	}
+
+	.hero-inner {
+
+		.single-post & {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+		}
 	}
 
 	h1 ,
@@ -41,6 +54,12 @@
 		.author & {
 			margin-bottom: $spacing--s;
 		}
+
+		.single-post & {
+			text-align: left;
+			width: auto;
+			display: inline-block;
+		}
 	}
 
 	p {
@@ -51,7 +70,19 @@
 
 		@include mq(m) {
 			max-width: $mq-xs;
+
+			.single-post & {
+				text-align: right;
+				max-width: initial;
+				margin: initial;
+			}
 		}
+	}
+
+	&-edit {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
 	}
 }
 

@@ -1,8 +1,8 @@
 /**
- * This script adds the jquery effects to the Monochrome Pro Theme.
+ * This script adds the header search effects to the theme.
  *
- * @package Monochrome\JS
- * @author StudioPress
+ * @package RosenfieldCollection\Theme2020
+ * @author CLayton Collie
  * @license GPL-2.0-or-later
  */
 ( function( $ ) {

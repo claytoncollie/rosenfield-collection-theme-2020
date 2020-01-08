@@ -1,0 +1,60 @@
+////
+/// Avatar component.
+///
+/// @group  Components
+/// @author Clayton Collie <info@rosenfieldcollection.com>
+/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
+////
+
+.slider-gallery {
+	
+	li {
+		position: relative;
+		list-style-type: none;
+		border: 1px solid $color--border;
+		box-shadow: $base--box-shadow;
+	}
+
+	button,
+	.button {
+		position: absolute;
+		bottom: 0;
+		right: 0
+	}
+
+}
+
+.slider-thumbnails {
+
+	.slick-slide {
+		float: none;
+		opacity: .75;
+
+		&.slick-current,
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	.slick-track {
+		width: 100% !important;
+	}
+
+	li {
+		display: block;
+		position: relative;
+		list-style-type: none;
+		margin-bottom: $spacing--s;
+		text-align: left;
+		width: 100%;
+	}
+
+	img {
+		max-width: 100px;
+		border: 1px solid $color--border;
+		box-shadow: $base--box-shadow;
+		cursor: pointer;
+		
+	}
+
+}

@@ -6,23 +6,34 @@
 /// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
 ////
 
-.sticky-header {
+.sticky {
 
-	.site-header {
+	&.post-meta {
 		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
 
 		@include transition;
 
-		&.sticky {
-			border-bottom: $base--border;
-			background-color: $color--white;
+		.admin-bar & {
+			top: 32px;
 		}
+
 	}
 
-	.hero-section {
+	&.admin-only {
+		position: fixed;
+		top: 45px;
+		right: 0;
+		left: 0;
 
-		.wrap {
-			margin-top: $spacing--xxl;
+		@include transition;
+
+		.admin-bar & {
+			top: 77px;
 		}
+
 	}
+
 }

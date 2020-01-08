@@ -22,8 +22,8 @@ namespace RosenfieldCollection\Theme2020\Functions;
 function front_page_1_stats() {
 	printf(
 		'<section class="statistics">%s%s</section>',
-		esc_html( get_post_count_published( 'one-half' ) ),
-		esc_html( get_user_count( 'one-half' ) )
+		wp_kses_post( get_post_count_published( 'one-half first' ) ),
+		wp_kses_post( get_user_count( 'one-half' ) )
 	);
 }
 
@@ -35,12 +35,12 @@ function front_page_1_stats() {
 function do_the_statistics() {
 	printf(
 		'<div class="wrap">%s%s%s%s%s%s</div>',
-		wp_kses_post( get_purchase_price( 'one-sixth' ) ),
+		wp_kses_post( get_purchase_price( 'one-sixth first' ) ),
 		wp_kses_post( get_user_count( 'one-sixth' ) ),
-		wp_kses_post( get_post_count_published( 'one-sixth' ) ),
-		wp_kses_post( get_post_count_draft( 'one-sixth' ) ),
-		wp_kses_post( get_post_count_pending( 'one-sixth' ) ),
-		wp_kses_post( get_post_count_archive( 'one-sixth' ) )
+		wp_kses_post( get_post_count_published( 'one-sixth notice-success' ) ),
+		wp_kses_post( get_post_count_draft( 'one-sixth notice-info' ) ),
+		wp_kses_post( get_post_count_pending( 'one-sixth notice-warning' ) ),
+		wp_kses_post( get_post_count_archive( 'one-sixth notice-error' ) )
 	);
 }
 
@@ -59,16 +59,16 @@ function do_the_taxonomy_totals() {
 /**
  * Return total purchase price.
  *
- * @param string $column_width Set column width.
+ * @param string $classes Set column width.
  *
  * @return string
  *
  * @since 1.0.0
  */
-function get_purchase_price( string $column_width ) : string {
+function get_purchase_price( string $classes ) : string {
 	return sprintf(
-		'<section class="%s first"><h3>$ %s</h3><p>%s</p></section>',
-		esc_attr( $column_width ),
+		'<section class="%s"><h3>$ %s</h3><p>%s</p></section>',
+		esc_attr( $classes ),
 		wp_kses_post( get_total_purchase_price() ),
 		esc_html__( 'Purchase Price', 'rosenfield-collection-2020' )
 	);
@@ -77,13 +77,13 @@ function get_purchase_price( string $column_width ) : string {
 /**
  * Return the totla number of users for homepage stats.
  *
- * @param string $column_width Set column width.
+ * @param string $classes Set column width.
  *
  * @return string
  *
  * @since 1.0.0
  */
-function get_user_count( string $column_width ) : string {
+function get_user_count( string $classes ) : string {
 	$output = '';
 
 	$users = count_users();
@@ -91,7 +91,7 @@ function get_user_count( string $column_width ) : string {
 	if ( ! empty( $users ) ) {
 		$output .= sprintf(
 			'<section class="%s"><h3>%s</h3><p>%s</p></section>',
-			esc_attr( $column_width ),
+			esc_attr( $classes ),
 			intval( $users['total_users'] ),
 			esc_html__( 'Artists', 'rosenfield-collection-2020' )
 		);
@@ -103,16 +103,16 @@ function get_user_count( string $column_width ) : string {
 /**
  * Return totle number of published posts.
  *
- * @param string $column_width Set column width.
+ * @param string $classes Set column width.
  *
  * @return string
  *
  * @since 1.0.0
  */
-function get_post_count_published( string $column_width ) : string {
+function get_post_count_published( string $classes ) : string {
 	return sprintf(
-		'<section class="%s notice-success"><h3>%s</h3><p>%s</p></section>',
-		esc_attr( $column_width ),
+		'<section class="%s"><h3>%s</h3><p>%s</p></section>',
+		esc_attr( $classes ),
 		intval( wp_count_posts()->publish ),
 		esc_html__( 'Published Objects', 'rosenfield-collection-2020' )
 	);
@@ -121,16 +121,16 @@ function get_post_count_published( string $column_width ) : string {
 /**
  * Return totle number of draft posts.
  *
- * @param string $column_width Set column width.
+ * @param string $classes Set column width.
  *
  * @return string
  *
  * @since 1.0.0
  */
-function get_post_count_draft( string $column_width ) : string {
+function get_post_count_draft( string $classes ) : string {
 	return sprintf(
-		'<section class="%s notice-info"><h3>%s</h3><p>%s</p></section>',
-		esc_attr( $column_width ),
+		'<section class="%s"><h3>%s</h3><p>%s</p></section>',
+		esc_attr( $classes ),
 		intval( wp_count_posts()->draft ),
 		esc_html__( 'Draft Objects', 'rosenfield-collection-2020' )
 	);
@@ -139,16 +139,16 @@ function get_post_count_draft( string $column_width ) : string {
 /**
  * Return totle number of pending posts.
  *
- * @param string $column_width Set column width.
+ * @param string $classes Set column width.
  *
  * @return string
  *
  * @since 1.0.0
  */
-function get_post_count_pending( string $column_width ) : string {
+function get_post_count_pending( string $classes ) : string {
 	return sprintf(
-		'<section class="%s notice-warning"><h3>%s</h3><p>%s</p></section>',
-		esc_attr( $column_width ),
+		'<section class="%s"><h3>%s</h3><p>%s</p></section>',
+		esc_attr( $classes ),
 		intval( wp_count_posts()->pending ),
 		esc_html__( 'Pending Objects', 'rosenfield-collection-2020' )
 	);
@@ -157,16 +157,16 @@ function get_post_count_pending( string $column_width ) : string {
 /**
  * Return totle number of archive posts.
  *
- * @param string $column_width Set column width.
+ * @param string $classes Set column width.
  *
  * @return string
  *
  * @since 1.0.0
  */
-function get_post_count_archive( string $column_width ) : string {
+function get_post_count_archive( string $classes ) : string {
 	return sprintf(
-		'<section class="%s notice-error"><h3>%s</h3><p>%s</p></section>',
-		esc_attr( $column_width ),
+		'<section class="%s"><h3>%s</h3><p>%s</p></section>',
+		esc_attr( $classes ),
 		intval( wp_count_posts()->archive ),
 		esc_html__( 'Archived Objects', 'rosenfield-collection-2020' )
 	);

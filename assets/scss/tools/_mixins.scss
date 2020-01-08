@@ -248,6 +248,14 @@
 		}
 	}
 
+	&[hidden] {
+
+		@include hide-visually();
+
+		display: none;
+		opacity: 0;
+	}
+
 	&.small {
 		padding: 1em 1.5em;
 		font-size: small;

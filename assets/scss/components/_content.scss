@@ -25,10 +25,31 @@
 		}
 	}
 
-	.narrow-content & {
+	.single-post.content-sidebar &,
+	.single-post.sidebar-content & {
 
 		@include mq(m) {
-			width: $layout--width--content;
+			width: $layout--width--post--content;
+			max-width: $layout--max-width--post--content;
+		}
+	}
+
+	.no-gallery.single-post.content-sidebar &,
+	.no-gallery.single-post.sidebar-content & {
+		width: 100%;
+		
+		@include mq(m) {
+			width: 100%;
+			max-width: 100%;
+		}
+	}
+
+	.narrow-content & {
+		
+		@include margin(null auto);
+
+		@include mq(m) {
+			width: $mq-s;
 		}
 	}
 
@@ -37,11 +58,6 @@
 		@include mq(m) {
 			order: 1;
 		}
-	}
-
-	.narrow-content & {
-
-		@include margin(null auto);
 	}
 
 	.full-width-content & {
@@ -60,5 +76,11 @@
 
 	.template-blocks & {
 		margin: 0 auto;
+	}
+
+	.search-results &,
+	.search-no-results & {
+		margin-top: $spacing--m;
+		border-left: 1px dotted $color--secondary;
 	}
 }

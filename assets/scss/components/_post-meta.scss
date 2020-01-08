@@ -6,12 +6,15 @@
 /// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
 ////
 
-.admin-only {
-	background-color: $color--dark;
+.post-meta {
+	background-color: $color--black;
 	color: $color--white;
 	padding: $spacing--s 0;
+	border-top: 1px dotted $color--secondary;
 	position: relative;
 	z-index: 99999;
+
+	
 
 	a {
 		color: $color--white;
@@ -20,14 +23,6 @@
 			border-bottom: 1px dotted $color--white;
 			text-decoration: none;
 		}
-	}
-
-	.wrap {
-		justify-content: space-between;
-	}
-
-	&-sep {
-		margin-right: $spacing--m;
 	}
 
 }

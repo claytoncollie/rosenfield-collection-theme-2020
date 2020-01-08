@@ -9,7 +9,9 @@
 .entry {
 
 	.featuredpost &,
-	.is-archive & {
+	.is-archive &,
+	.search-results &
+	.no-search-results & {
 		margin-bottom: $gutter;
 		border-radius: $base--border--radius;
 		background-color: $color--white;
@@ -23,6 +25,23 @@
 		}
 	}
 
+	// List view for taxonomies.
+	.view-toggle-list & {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		justify-content: flex-start;
+		border-bottom: 1px dotted $color--secondary;
+		padding-bottom: $spacing--xs;
+	}
+
+	.search-results &,
+	.search-no-results & {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+
 	// Entry header.
 	&-header {
 	}
@@ -32,6 +51,7 @@
 
 		.is-archive & {
 			font-size: $font-size--h3;
+			margin-bottom: $spacing--xs;
 		}
 
 		a {
@@ -53,6 +73,11 @@
 		font-style: italic;
 		text-decoration: none;
 
+		.view-toggle-list & {
+			font-family: $base--font-family;
+			font-style: normal;
+		}
+
 		@include hover-focus {
 			border-bottom: 1px dotted $color--black;
 			color: $color--primary;
@@ -62,7 +87,21 @@
 
 	// Entry separator.
 	&-sep {
+		display: inline-block;
 		margin: 0 $spacing--s;
+
+		p & {
+			display: none;
+		}
+
+		.view-toggle-list p & {
+			display: inline-block;
+		}
+
+		.search-results p &,
+		.search-no-results p & {
+			display: inline-block;
+		}
 	}
 
 	// Entry user report.
@@ -112,10 +151,26 @@
 	&-image-link {
 		display: block;
 
+		.view-toggle-list & {
+			display: inline-block;
+			width: 100px;
+		}
+
 		img {
 			min-width: 100%;
 			border: 1px solid $color--border;
 			box-shadow: $base--box-shadow;
+
+			.search-results &,
+			.search-no-results & {
+				min-width: auto;
+			}
+
+			.view-toggle-list & {
+				min-width: auto;
+				max-width: 75px;
+				width: 75px;
+			}
 		}
 	}
 
@@ -137,11 +192,26 @@
 
 	// Entry footer.
 	&-footer {
+		display: none;
+
+		.view-toggle-list & {
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+			justify-content: space-between;
+			flex-grow: 1;
+		}
 
 		p {
 
 			&:last-of-type {
 				margin-bottom: 0;
+			}
+		}
+
+		a {
+			.view-toggle-list & {
+				text-decoration: none;
 			}
 		}
 	}
@@ -156,7 +226,17 @@
 
 	// Entry wrap.
 	&-wrap {
+		display: inline-block;
 		padding: $spacing--s;
+		width: 100%;
+
+		.view-toggle-list & {
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+			justify-content: flex-start;
+			padding: 0;
+		}
 	}
 
 	// Report archive.
@@ -181,5 +261,9 @@
 	@include hover-focus {
 		border-bottom: 1px dotted $color--black;
 		text-decoration: none;
+	}
+
+	.single-post & {
+		display: inline-block;
 	}
 }

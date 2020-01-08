@@ -13,7 +13,6 @@
 	margin: 0 -5vw;
 	padding: $spacing--m 5vw;
 	background-color: $color--white;
-	text-transform: uppercase;
 
 	@include mq(m) {
 		display: flex !important;

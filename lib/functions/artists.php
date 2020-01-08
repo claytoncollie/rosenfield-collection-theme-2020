@@ -29,7 +29,6 @@ function do_artists_loop() {
 	$args = array(
 		'order'               => 'ASC',
 		'orderby'             => 'display_name',
-		'exclude'             => get_field( 'rc_excluded_artists' ),
 		'has_published_posts' => array( 'post' ),
 		'number'              => $number,
 		'offset'              => $offset,

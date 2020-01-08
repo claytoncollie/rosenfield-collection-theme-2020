@@ -54,9 +54,9 @@ function header() : string {
 	}
 
 	if ( \is_object( $id ) ) {
-		$url = \wp_get_attachment_image_url( $id->ID, 'hero' );
+		$url = \wp_get_attachment_image_url( $id->ID, 'object' );
 	} elseif ( $id ) {
-		$url = \get_the_post_thumbnail_url( $id, 'hero' );
+		$url = \get_the_post_thumbnail_url( $id, 'object' );
 	}
 
 	if ( ! $url ) {

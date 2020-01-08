@@ -16,4 +16,66 @@
             border-top: 0;
         }
     }
+
+    a.suggestion-link {
+        line-height: 32px;
+    }
 }
+
+.refinements {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px dotted $color--secondary;
+    margin-top: $spacing--m;
+    padding-bottom: $spacing--s;
+    width: 100%;
+}
+
+.ais-CurrentRefinements-list {
+    margin-bottom: 0;
+}
+
+#current-refinements,
+#algolia-stats {
+    display: inline-block;
+}
+
+#algolia-hits {
+    display: inline-block;
+    width: 100%;
+    
+    @include mq(m) {
+        margin-left: $spacing--xl;
+    }
+}
+
+.ais-CurrentRefinements-category {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.ais-CurrentRefinements-item,
+.ais-Hits-list {
+    list-style-type: none;
+    margin: 0;
+}
+
+.ais-CurrentRefinements-item {
+    display: inline-block;
+    margin-right: $spacing--l;
+}
+
+.ais-CurrentRefinements-delete {
+    margin-left: $spacing--xxs;
+    padding: 2px;
+    font-size: 1.0rem;
+}
+
+
+.ais-CurrentRefinements-label {
+    @include hide-visually();
+}
+

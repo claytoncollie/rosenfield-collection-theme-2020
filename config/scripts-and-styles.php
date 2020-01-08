@@ -42,7 +42,7 @@ return [
 		],
 		[
 			'handle'      => \genesis_get_theme_handle() . '-font-awesome',
-			'src'         => 'https://kit.fontawesome.com/32f48c7bb2.js',
+			'src'         => '//kit.fontawesome.com/32f48c7bb2.js',
 			'editor'      => 'both',
 			'crossorigin' => 'anonymous',
 		],

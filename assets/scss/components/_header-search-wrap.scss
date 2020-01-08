@@ -67,44 +67,32 @@
 	
 }
 
-.toggle-header-search {
-	background: transparent;
-}
-
 .js .toggle-header-search.close:focus {
 	outline: 0;
 }
 
-.toggle-header-search.close {
-	color: $color--white;
-	height: 100%;
-	padding: 0;
-	position: absolute;
-	right: 0;
-	top: 0;
-	transform: translate3d(-35px, 0, 0);
-	transition: transform 0.2s ease-in-out;
-	width: 30px;
-	z-index: 100;
+.toggle-header-search {
+	background: transparent;
+
+	&.close {
+		color: $color--white;
+		padding: 10px 20px;
+		position: absolute;
+		right: -20px;
+		top: 20px;
+		transform: translate3d(-35px, 0, 0);
+		transition: transform 0.2s ease-in-out;
+		width: 30px;
+		z-index: 100;
+	}
+
+	.screen-reader-text:focus {
+		outline: 0;
+		background-color: transparent;
+	}
+
+	.header-search-wrap:target & {
+		transform: none;
+	}
 }
 
-.header-search-wrap:target .toggle-header-search.close {
-	transform: none;
-}
-
-.toggle-header-search .ionicons {
-	font-size: $base--font-size;
-	transform: scale(2);
-}
-
-.toggle-header-search .screen-reader-text:focus {
-	outline: 0;
-	background-color: transparent;
-}
-
-.toggle-header-search.close .ionicons {
-	position: absolute;
-	right: 0;
-	top: calc(50% - 10px);
-	transform: scale(3);
-}

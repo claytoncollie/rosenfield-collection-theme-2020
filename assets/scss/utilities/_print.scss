@@ -22,20 +22,6 @@
 		text-decoration: underline;
 	}
 
-	a[href]:after {
-		content: " (" attr(href) ")";
-	}
-
-	abbr[title]:after {
-		content: " (" attr(title) ")";
-	}
-
-	a[href^="javascript:"]:after,
-	a[href^="#"]:after,
-	.site-title > a:after {
-		content: "";
-	}
-
 	thead {
 		display: table-header-group;
 	}

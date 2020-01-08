@@ -42,6 +42,12 @@ mix.disableNotifications();
 const devPath = 'assets';
 
 /*
+ * Sets the development path to assets. By default, this is the `/resources`
+ * folder in the theme.
+ */
+const nodeModulesPath = 'node_modules';
+
+/*
  * Sets the path to the generated assets. By default, this is the root folder in
  * the theme. If doing something custom, make sure to change this everywhere.
  */
@@ -84,7 +90,8 @@ mix
         `${devPath}/js/editor.js`
     ], `${devPath}/js/min`)
     .js([
-        `${devPath}/js/hide-show.js`,
+        `${nodeModulesPath}/slick-carousel/slick/slick.min.js`,
+        `${devPath}/js/slick-slider.js`,
         `${devPath}/js/header-search.js`,
         `${devPath}/js/sticky-header.js`,
     ], `${devPath}/js/min/main.js`);

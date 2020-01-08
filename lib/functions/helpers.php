@@ -12,7 +12,7 @@
 namespace RosenfieldCollection\Theme2020\Functions;
 
 /**
- * Returns the admin-only field with proper wrapping
+ * Returns the admin-pricing field with proper wrapping
  *
  * @param string $label Field Label.
  * @param string $content Content.
@@ -21,9 +21,9 @@ namespace RosenfieldCollection\Theme2020\Functions;
  *
  * @since 1.0.0
  */
-function admin_only( string $label, string $content ) : string {
+function admin_pricing( string $label, string $content ) : string {
 	return sprintf(
-		'<section class="admin-only"><h3 class="admin-only-content">%s</h3><span class="admin-only-label">%s</span></section>',
+		'<section class="admin-pricing"><h3 class="admin-pricing-content">%s</h3><span class="admin-pricing-label">%s</span></section>',
 		wp_kses_post( $content ),
 		esc_html( $label )
 	);

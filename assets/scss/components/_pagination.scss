@@ -23,6 +23,11 @@
 		flex-wrap: wrap;
 		margin-bottom: 0;
 		list-style-type: none;
+
+		.search-results &,
+		.search-no-results & {
+			justify-content: center;
+		}
 	}
 
 	li {

@@ -34,7 +34,7 @@ input,
 select,
 textarea {
 	width: 100%;
-	margin: 0 0 $spacing--s;
+	margin: 0 0 $spacing--m;
 	padding: $spacing--s;
 	border: $base--border;
 	border-radius: $base--border--radius;
@@ -60,7 +60,7 @@ textarea {
 }
 
 select {
-	height: calc((#{$base--font-size} / #{$major-second}) + #{$base--font-size} * 2);
+	height: calc((#{$base--font-size} / #{$major-second}) + #{$base--font-size} * 1);
 
 	@include padding(0 null);
 }

@@ -25,7 +25,9 @@ a {
 	color: $color--text;
 	text-decoration: underline;
 
-	.report & {
+	.report &,
+	.admin-only &,
+	.post-meta & {
 		text-decoration: none;
 	}
 

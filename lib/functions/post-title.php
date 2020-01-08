@@ -27,10 +27,11 @@ function by_line() {
 
 	if ( ! empty( $first_name ) && ! empty( $last_name ) ) {
 		printf(
-			'<p><a href="%s" class="entry-artist">%s %s</a></p><span class="entry-sep">&middot;</span>',
+			'<p><span class="entry-sep">&middot;</span><a href="%s" class="entry-artist">%s %s</a></p><span class="entry-sep">&middot;</span>%s',
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 			esc_html( $first_name ),
-			esc_html( $last_name )
+			esc_html( $last_name ),
+			esc_html( get_object_prefix_and_id() )
 		);
 	}
 }

@@ -22,11 +22,15 @@ add_action( 'genesis_hero_section', __NAMESPACE__ . '\do_taxonomy_purchase_price
 function do_taxonomy_purchase_price() {
 	global $wp_query;
 
+	if ( ! is_user_logged_in() ) {
+		return;
+	}
+
 	if ( ! current_user_can( 'edit_others_pages' ) ) {
 		return;
 	}
 
-	if ( ! is_tax() ) {
+	if ( ! is_tax() && ! is_tag() ) {
 		return;
 	}
 
@@ -37,7 +41,7 @@ function do_taxonomy_purchase_price() {
 
 		if ( ! empty( $total ) ) {
 			echo wp_kses_post(
-				admin_only(
+				admin_pricing(
 					__( 'Total Cost', 'rosenfield-collection-2020' ),
 					'$ ' . $total
 				)

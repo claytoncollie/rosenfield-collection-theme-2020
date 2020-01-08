@@ -6,12 +6,6 @@
 /// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
 ////
 
-[src*="placeholder.com"] {
-	padding: $spacing--xxs;
-	border: $base--border;
-	border-radius: $base--border--radius;
-}
-
 [class*="front-page-"] {
 	width: 100%;
 	padding: $spacing--xl 0 $spacing--xl - $gutter;
@@ -33,6 +27,12 @@
 
 		@include mq(m) {
 			padding: $spacing--xl 0 $spacing--xl - $gap;
+		}
+
+		.wrap {
+			@include mq(m) {
+				max-width: $mq-xs;
+			}
 		}
 	}
 

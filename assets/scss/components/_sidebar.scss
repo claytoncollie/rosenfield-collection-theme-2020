@@ -8,11 +8,11 @@
 
 .sidebar {
 
-	@include margin($spacing--m null);
+	@include margin($spacing--l null);
 
 	@include mq(m) {
 
-		@include margin($spacing--l null);
+		@include margin($spacing--xl null);
 	}
 
 	.content-sidebar &,
@@ -23,6 +23,27 @@
 		}
 	}
 
+	.single-post.content-sidebar &,
+	.single-post.sidebar-content & {
+		@include mq(m) {
+			width: $layout--width--post--sidebar;
+		}
+	}
+
+	.no-gallery.single-post.content-sidebar &,
+	.no-gallery.single-post.sidebar-content & {
+		width: 0;
+		
+		@include mq(m) {
+			width: 0px;
+		}
+	}
+
 	.full-width-content & {
+	}
+
+	.search-results &,
+	.search-no-results & {
+		margin-top: $spacing--m;
 	}
 }
