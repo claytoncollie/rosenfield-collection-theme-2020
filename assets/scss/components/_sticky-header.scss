@@ -9,29 +9,43 @@
 .sticky {
 
 	&.post-meta {
-		position: fixed;
-		top: 0;
-		right: 0;
-		left: 0;
+		position: relative;
 
 		@include transition;
 
+		@include mq(m) {
+			position: fixed;
+			top: 0;
+			right: 0;
+			left: 0;
+		}
+
 		.admin-bar & {
-			top: 32px;
+
+			@include mq(m) {
+				top: 32px;
+			}
 		}
 
 	}
 
 	&.admin-only {
-		position: fixed;
-		top: 45px;
-		right: 0;
-		left: 0;
+		position: relative;
 
 		@include transition;
 
+		@include mq(m) {
+			position: fixed;
+			top: 45px;
+			right: 0;
+			left: 0;
+		}
+
 		.admin-bar & {
-			top: 77px;
+
+			@include mq(m) {
+				top: 77px;
+			}
 		}
 
 	}

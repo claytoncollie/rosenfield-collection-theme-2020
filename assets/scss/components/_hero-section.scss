@@ -45,7 +45,7 @@
 		}
 	}
 
-	h1 ,
+	h1,
 	h2 {
 		width: 100%;
 		margin-bottom: 0;
@@ -56,9 +56,14 @@
 		}
 
 		.single-post & {
-			text-align: left;
-			width: auto;
 			display: inline-block;
+			width: 100%;
+			text-align: center;
+
+			@include mq(m) {
+				width: auto;
+				text-align: left;
+			}
 		}
 	}
 
@@ -66,15 +71,15 @@
 		margin: $spacing--m auto 0;
 		color: $color--secondary;
 		font-family: $font-family--alt;
-		font-style: italic;	
+		font-style: italic;
 
 		@include mq(m) {
 			max-width: $mq-xs;
 
 			.single-post & {
-				text-align: right;
 				max-width: initial;
 				margin: initial;
+				text-align: right;
 			}
 		}
 	}
@@ -83,6 +88,13 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
+		justify-content: center;
+		width: 100%;
+
+		@include mq(m) {
+			justify-content: flex-start;
+			width: auto;
+		}
 	}
 }
 

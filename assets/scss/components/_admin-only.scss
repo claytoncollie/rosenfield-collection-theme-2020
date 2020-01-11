@@ -7,11 +7,11 @@
 ////
 
 .admin-only {
-	background-color: $color--dark;
-	color: $color--white;
-	padding: $spacing--s 0;
 	position: relative;
 	z-index: 99999;
+	padding: $spacing--s 0;
+	color: $color--white;
+	background-color: $color--dark;
 
 	a {
 		color: $color--white;
@@ -23,11 +23,20 @@
 	}
 
 	.wrap {
-		justify-content: space-between;
+		justify-content: flex-start;
+		
+		@include mq(m) {
+			justify-content: space-between;
+		}
 	}
 
 	&-sep {
+		display: block;
 		margin-right: $spacing--m;
+
+		@include mq(m) {
+			display: inline-block;
+		}
 	}
 
 }

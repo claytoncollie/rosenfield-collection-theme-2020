@@ -43,13 +43,17 @@
 
 	// Link
 	a {
+		width: 100%;
+		margin-bottom: $spacing--s;
+		padding: $spacing--xs $spacing--s * $golden;
 		border: 1px solid transparent;
 		color: $color--white;
 		text-decoration: none;
 
 		@include mq(m) {
 			display: block;
-			padding: $spacing--xs $spacing--s * $golden;
+			width: auto;
+			margin-bottom: 0;
 		}
 	}
 

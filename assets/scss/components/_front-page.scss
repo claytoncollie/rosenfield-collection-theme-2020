@@ -30,6 +30,7 @@
 		}
 
 		.wrap {
+
 			@include mq(m) {
 				max-width: $mq-xs;
 			}

@@ -19,7 +19,6 @@ namespace RosenfieldCollection\Theme2020\Functions;
  * @since 1.0.0
  */
 function do_the_admin_bar() {
-
 	if ( ! is_user_logged_in() ) {
 		return;
 	}
@@ -28,15 +27,15 @@ function do_the_admin_bar() {
 		return;
 	}
 
-	$tag 		= has_term( '', 'post_tag' ) ? get_the_term_list( get_the_ID(), 'post_tag', '<span class="admin-only-sep"><i class="fas fa-tag"></i> ', ', ', '</span>' ) : '';
-	$location 	= has_term( '', 'rc_location' ) ? get_the_term_list( get_the_ID(), 'rc_location', '<span class="admin-only-sep"><i class="fas fa-map-marker-alt"></i> ', ', ', '</span>' ) : '';
-	$price 		= get_field( 'rc_object_purchace_price' ) ? '<span class="admin-only-sep"><i class="fas fa-dollar-sign"></i> ' . get_field( 'rc_object_purchace_price' ) . '</span>' : '';
+	$tag      = has_term( '', 'post_tag' ) ? get_the_term_list( get_the_ID(), 'post_tag', '<span class="admin-only-sep"><i class="fas fa-tag"></i> ', ', ', '</span>' ) : '';
+	$location = has_term( '', 'rc_location' ) ? get_the_term_list( get_the_ID(), 'rc_location', '<span class="admin-only-sep"><i class="fas fa-map-marker-alt"></i> ', ', ', '</span>' ) : '';
+	$price    = get_field( 'rc_object_purchace_price' ) ? '<span class="admin-only-sep"><i class="fas fa-dollar-sign"></i> ' . get_field( 'rc_object_purchace_price' ) . '</span>' : '';
 
 	printf(
 		'<section class="admin-only"><div class="wrap"><div class="admin-only-purchase">%s%s%s</div><div class="admin-only-labels">%s<span class="entry-sep">&middot;</span>%s</div></div></section>',
 		wp_kses_post( $tag ),
 		wp_kses_post( $location ),
-		wp_kses_post( $price  ),
+		wp_kses_post( $price ),
 		wp_kses_post( get_vertical_label_url() ),
 		wp_kses_post( get_horizontal_label_url() )
 	);

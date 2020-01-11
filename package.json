@@ -53,7 +53,7 @@
     "build": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "cross-env sync=1 NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "lint": "npm run lint:styles && npm run lint:scripts && npm run lint:php",
-    "lint:styles": "cross-env stylelint './assets/scss/**/*.scss' --syntax scss",
+    "lint:styles": "cross-env stylelint './assets/scss/**/*.scss' --syntax scss --fix",
     "lint:scripts": "cross-env eslint './assets/js/**/*.js'",
     "lint:php": "cross-env ./vendor/bin/phpcs . --runtime-set testVersion 5.6- -s",
     "i18n": "npm run i18n:textdomain && npm run i18n:pot",

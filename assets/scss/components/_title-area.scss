@@ -15,8 +15,12 @@
 // Site title.
 .site-title {
 	margin: 0;
-	font-size: $font-size--h2;
+	font-size: $font-size--h3;
 	font-weight: $font-weight--regular;
+
+	@include mq(m) {
+		font-size: $font-size--h2;
+	}
 
 	.wp-custom-logo & {
 
@@ -39,9 +43,13 @@
 	margin: 0;
 	color: $color--secondary;
 	font-family: $font-family--alt;
-	font-size: small;
+	font-size: 1rem;
 	font-style: italic;
 	letter-spacing: 1px;
+
+	@include mq(m) {
+		font-size: small;
+	}
 
 	.wp-custom-logo & {
 

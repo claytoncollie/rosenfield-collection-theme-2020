@@ -27,6 +27,7 @@ get_header();
 			<div id="current-refinements"></div>
 		</section>
 		<main id="genesis-content" class="content">
+			<section id="search-box-mobile"></section>
 			<div id="algolia-hits"></div>
 			<div id="algolia-pagination"></div>
 		</main>
@@ -91,27 +92,6 @@ get_header();
 					alert('It looks like you haven\'t indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.');
 				}
 
-				// Returns a slug from the category name.
-				// Spaces are replaced by "+" to make
-				// the URL easier to read and other
-				// characters are encoded.
-				function getCategorySlug(name) {
-					return name
-						.split(' ')
-						.map(encodeURIComponent)
-						.join('+');
-				}
-
-				// Returns a name from the category slug.
-				// The "+" are replaced by spaces and other
-				// characters are decoded.
-				function getCategoryName(slug) {
-					return slug
-						.split('+')
-						.map(decodeURIComponent)
-						.join(' ');
-				}
-
 				const indexName = algolia.indices.searchable_posts.name;
 
 				// Instantiate instantsearch.js.
@@ -125,18 +105,18 @@ get_header();
 								return {
 									s: indexUiState.query,
 									paged: indexUiState.page
-                                }
-                            },
+								}
+							},
 							routeToState(routeState) {
 									return {
 										[indexName]: {
 											query: routeState.s,
-        									page: routeState.page,
+											page: routeState.page,
 										}
 									}
 							}
-                        }
-                    },
+						}
+					},
 					searchParameters: {
 						facetingAfterDistinct: true,
 						highlightPreTag: '__ais-highlight__',
@@ -145,12 +125,12 @@ get_header();
 				});
 				search.addWidget(
 					instantsearch.widgets.stats({
-  						container: '#algolia-stats',
+						  container: '#algolia-stats',
 					})
 				);
 				search.addWidget(
 					instantsearch.widgets.currentRefinements({
-  						container: '#current-refinements',
+						  container: '#current-refinements',
 					})
 				);
 				search.addWidget(
@@ -174,6 +154,15 @@ get_header();
 				search.addWidget(
 					instantsearch.widgets.searchBox({
 						container: '#search-box',
+						searchAsYouType: true,
+						showReset: false,
+						showSubmit: false,
+						placeholder: 'Search this website',
+					})
+				);
+				search.addWidget(
+					instantsearch.widgets.searchBox({
+						container: '#search-box-mobile',
 						searchAsYouType: true,
 						showReset: false,
 						showSubmit: false,

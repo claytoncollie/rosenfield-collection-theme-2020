@@ -1,0 +1,23 @@
+////
+/// Statistics component.
+///
+/// @group  Components
+/// @author Clayton Collie <info@rosenfieldcollection.com>
+/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
+////
+
+.statistics {
+	margin-bottom: $spacing--l;
+
+	@include mq(m) {
+		margin-bottom: 0;
+	}
+
+	.one-half.first {
+		margin-bottom: $spacing--m;
+
+		@include mq(m) {
+			margin-bottom: 0;
+		}
+	}
+}

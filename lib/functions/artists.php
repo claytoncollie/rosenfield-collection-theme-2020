@@ -19,14 +19,12 @@ namespace RosenfieldCollection\Theme2020\Functions;
  * @since 1.4.0
  */
 function do_artists_loop() {
-	$i           = 0;
-	$number      = 36;
-	$paged       = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-	$offset      = ( $paged - 1 ) * $number;
-	$total_users = (int) count( get_users() );
-	$total_pages = intval( $total_users / $number ) + 1;
+	$i      = 0;
+	$number = 36;
+	$paged  = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+	$offset = ( $paged - 1 ) * $number;
 
-	$args = array(
+	$arguments = array(
 		'order'               => 'ASC',
 		'orderby'             => 'display_name',
 		'has_published_posts' => array( 'post' ),
@@ -34,9 +32,31 @@ function do_artists_loop() {
 		'offset'              => $offset,
 	);
 
+	$filter = get_query_var( 'artist_filter' );
+
+	if ( ! empty( $filter ) ) {
+		$artist_filter = array(
+			'meta_key'     => 'artist_filter',
+			'meta_value'   => $filter,
+			'meta_compare' => '=',
+		);
+	} else {
+		$artist_filter = array();
+	}
+
+	$args = array_merge_recursive( $arguments, $artist_filter );
+
 	$user_query = new \WP_User_Query( $args );
 
 	if ( ! empty( $user_query->results ) ) {
+		if ( ! empty( $filter ) ) {
+			$total_users = (int) count( $user_query->results );
+		} else {
+			$total_users = (int) count( get_users() );
+		}
+
+		$total_pages = intval( $total_users / $number ) + 1;
+
 		foreach ( $user_query->results as $user ) {
 			$id         = $user->ID;
 			$first_name = $user->first_name;

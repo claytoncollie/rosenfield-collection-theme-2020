@@ -37,7 +37,7 @@
 	.no-gallery.single-post.content-sidebar &,
 	.no-gallery.single-post.sidebar-content & {
 		width: 100%;
-		
+
 		@include mq(m) {
 			width: 100%;
 			max-width: 100%;
@@ -45,7 +45,7 @@
 	}
 
 	.narrow-content & {
-		
+
 		@include margin(null auto);
 
 		@include mq(m) {
@@ -79,8 +79,11 @@
 	}
 
 	.search-results &,
-	.search-no-results & {
+	.no-search-results & {
 		margin-top: $spacing--m;
-		border-left: 1px dotted $color--secondary;
+
+		@include mq(m) {
+			border-left: 1px dotted $color--secondary;
+		}
 	}
 }

@@ -10,8 +10,7 @@
 
 	.featuredpost &,
 	.is-archive &,
-	.search-results &
-	.no-search-results & {
+	.search-results & .no-search-results & {
 		margin-bottom: $gutter;
 		border-radius: $base--border--radius;
 		background-color: $color--white;
@@ -25,21 +24,49 @@
 		}
 	}
 
+	&.one-sixth {
+		width: $one-half;
+
+		@include mq(m) {
+			width: $one-sixth;
+		}
+
+		&:nth-of-type(even) {
+			margin-left: $spacing--l;
+
+			@include mq(m) {
+				margin-left: auto;
+			}
+		}
+	}
+
 	// List view for taxonomies.
 	.view-toggle-list & {
 		display: flex;
-		flex-wrap: nowrap;
+		padding-bottom: $spacing--xs;
+		border-bottom: 1px dotted $color--secondary;
+		flex-wrap: wrap;
 		align-items: center;
 		justify-content: flex-start;
-		border-bottom: 1px dotted $color--secondary;
-		padding-bottom: $spacing--xs;
+
+		@include mq(m) {
+			flex-wrap: nowrap;
+		}
 	}
 
 	.search-results &,
-	.search-no-results & {
+	.no-search-results & {
 		display: flex;
+		margin-bottom: $spacing--m;
+		border-bottom: 1px dotted $color--secondary;
 		flex-wrap: nowrap;
-		align-items: center;
+		align-items: flex-start;
+
+		@include mq(m) {
+			margin-bottom: $gutter;
+			border: 0;
+			align-items: center;
+		}
 	}
 
 	// Entry header.
@@ -50,8 +77,17 @@
 	&-title {
 
 		.is-archive & {
-			font-size: $font-size--h3;
 			margin-bottom: $spacing--xs;
+			font-size: $font-size--h3;
+		}
+
+		.search-results &,
+		.no-search-results & {
+			margin-bottom: 0;
+
+			@include mq(m) {
+				margin-bottom: $spacing--xs;
+			}
 		}
 
 		a {
@@ -95,27 +131,55 @@
 		}
 
 		.view-toggle-list p & {
-			display: inline-block;
+			display: none;
+
+			@include mq(m) {
+				display: inline-block;
+			}
+		}
+
+		.taxonomies > &:first-of-type {
+			display: none;
+
+			@include mq(m) {
+				display: inline-block;
+			}
 		}
 
 		.search-results p &,
-		.search-no-results p & {
+		.no-search-results p & {
 			display: inline-block;
+		}
+
+		.footer-credits & {
+			display: none;
+
+			@include mq(m) {
+				display: inline-block;
+			}
+		}
+
+		.hero-section-edit & {
+			display: none;
+
+			@include mq(m) {
+				display: inline-block;
+			}
 		}
 	}
 
 	// Entry user report.
 	&-user {
 		display: inline-block;
-		margin-bottom: $spacing--s;
 		width: 100%;
+		margin-bottom: $spacing--s;
 	}
 
 	// Entry user report heading.
 	&-user-heading {
+		margin-right: $spacing--xs;
 		font-weight: $font-weight--bold;
 		text-transform: lowercase;
-		margin-right: $spacing--xs;
 	}
 
 	// Entry title link.
@@ -152,8 +216,11 @@
 		display: block;
 
 		.view-toggle-list & {
-			display: inline-block;
-			width: 100px;
+
+			@include mq(m) {
+				display: inline-block;
+				width: 100px;
+			}
 		}
 
 		img {
@@ -162,14 +229,17 @@
 			box-shadow: $base--box-shadow;
 
 			.search-results &,
-			.search-no-results & {
+			.no-search-results & {
 				min-width: auto;
 			}
 
 			.view-toggle-list & {
-				min-width: auto;
-				max-width: 75px;
-				width: 75px;
+
+				@include mq(m) {
+					width: 75px;
+					min-width: auto;
+					max-width: 75px;
+				}
 			}
 		}
 	}
@@ -196,10 +266,15 @@
 
 		.view-toggle-list & {
 			display: flex;
-			flex-wrap: nowrap;
+			flex-wrap: wrap;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: center;
 			flex-grow: 1;
+
+			@include mq(m) {
+				flex-wrap: nowrap;
+				justify-content: space-between;
+			}
 		}
 
 		p {
@@ -210,6 +285,7 @@
 		}
 
 		a {
+
 			.view-toggle-list & {
 				text-decoration: none;
 			}
@@ -227,28 +303,44 @@
 	// Entry wrap.
 	&-wrap {
 		display: inline-block;
-		padding: $spacing--s;
 		width: 100%;
+		padding: $spacing--s;
+
+		.search-results &,
+		.no-search-results & {
+			padding-top: 0;
+
+			@include mq(m) {
+				padding-top: $spacing--s;
+			}
+		}
 
 		.view-toggle-list & {
-			display: flex;
-			flex-wrap: nowrap;
+			display: inline-block;
+			width: 100%;
+			padding: $spacing--s;
+			flex-wrap: wrap;
 			align-items: center;
 			justify-content: flex-start;
-			padding: 0;
+
+			@include mq(m) {
+				display: flex;
+				padding: 0;
+				flex-wrap: nowrap;
+			}
 		}
 	}
 
 	// Report archive.
 	.report & {
 		display: flex;
+		margin-bottom: $gutter !important;
+		border-width: 3px;
+		border-top: 0 !important;
+		border-bottom: 0 !important;
+		border-left: 0 !important;
 		flex-wrap: wrap;
 		align-items: flex-start;
-		margin-bottom: $gutter !important;
-		border-bottom: 0 !important;
-		border-top: 0 !important;
-		border-left: 0 !important;
-		border-width: 3px;
 	}
 }
 

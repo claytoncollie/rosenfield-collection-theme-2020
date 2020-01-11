@@ -17,7 +17,7 @@ namespace RosenfieldCollection\Theme2020\Functions;
  * @param array $classes Body classes.
  *
  * @return array
- * 
+ *
  * @since 1.0.0
  */
 function is_gallery( $classes ) : array {
@@ -37,7 +37,7 @@ function do_the_object_gallery() {
 		echo '<section class="slider-gallery"><ul class="slider-gallery-images">';
 		foreach ( $images as $image ) {
 			printf(
-				'<li><img src="%s" alt="%s %s %s"><a href="%s" class="button"><i class="fa fa-cloud-download"></i> %s</a></li>',
+				'<li><img src="%s" alt="%s %s %s"><a href="%s" class="button"><i class="fa fa-cloud-download"></i> <span class="label-download">%s</span></a></li>',
 				esc_url( $image['sizes']['object'] ),
 				esc_html__( 'Made by', 'rosenfield-collection-2020' ),
 				esc_html( get_the_author_meta( 'first_name' ) ),
@@ -50,7 +50,7 @@ function do_the_object_gallery() {
 	} elseif ( has_post_thumbnail() ) {
 		echo '<section class="slider-gallery"><ul class="slider-gallery-images">';
 			printf(
-				'<li>%s<a href="%s" class="button"><i class="fa fa-cloud-download"></i> %s</a></li>',
+				'<li>%s<a href="%s" class="button"><i class="fa fa-cloud-download"></i> <span class="label-download">%s</span></a></li>',
 				get_the_post_thumbnail(
 					get_the_ID(),
 					'object',

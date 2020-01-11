@@ -17,6 +17,9 @@ namespace RosenfieldCollection\Theme2020\Templates;
 // Remove default loop.
 \remove_action( 'genesis_loop', 'genesis_do_loop' );
 
+// Add artist filter.
+\add_action( 'genesis_hero_section', 'RosenfieldCollection\Theme2020\Functions\do_artist_filter', 25 );
+
 // Add new custom loop.
 \add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\do_artists_loop' );
 

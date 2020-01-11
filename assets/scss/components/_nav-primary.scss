@@ -7,12 +7,13 @@
 ////
 
 .nav-primary {
-	order: 2;
 	display: none;
 	width: 100vw;
 	margin: 0 -5vw;
 	padding: $spacing--m 5vw;
-	background-color: $color--white;
+	background-color: $color--black;
+	font-size: $font-size--h3;
+	order: 2;
 
 	@include mq(m) {
 		display: flex !important;
@@ -22,5 +23,22 @@
 		margin: 0 0 0 auto;
 		padding: 0;
 		background: 0;
+		font-size: $base--font-size;
+	}
+
+	.search-lg {
+		display: none;
+
+		@include mq(m) {
+			display: inline-block;
+		}
+	}
+
+	.search-m {
+		display: block;
+
+		@include mq(m) {
+			display: none;
+		}
 	}
 }

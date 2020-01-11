@@ -191,15 +191,14 @@ function hero_excerpt() {
 
 /**
  * Dispaly two links for JS to bind to.
- * 
+ *
  * Will toggle view between grid (default) and list.
  *
  * @return void
- * 
+ *
  * @since 1.0.0
  */
 function hero_view_toggle() {
-
 	global $wp_query;
 
 	if ( ! is_tax() && ! is_tag() ) {
@@ -208,13 +207,13 @@ function hero_view_toggle() {
 
 	$taxonomy = $wp_query->get_queried_object();
 
-	printf( '<section class="view-toggle"><a href="%s" id="view-toggle-grid">%s</a><span class="entry-sep">&middot;</span><a href="%s" id="view-toggle-list">%s</a></section>',
-		esc_url( get_term_link( absint( $taxonomy->term_id ), $taxonomy->taxonomy ) ),	
+	printf(
+		'<section class="view-toggle"><a href="%s" id="view-toggle-grid">%s</a><span class="entry-sep">&middot;</span><a href="%s" id="view-toggle-list">%s</a></section>',
+		esc_url( get_term_link( absint( $taxonomy->term_id ), $taxonomy->taxonomy ) ),
 		esc_html__( 'Grid', 'rosenfield-collection-2020' ),
 		esc_url( add_query_arg( 'view', 'list', get_term_link( absint( $taxonomy->term_id ), $taxonomy->taxonomy ) ) ),
 		esc_html__( 'List', 'rosenfield-collection-2020' )
 	);
-
 }
 
 /**

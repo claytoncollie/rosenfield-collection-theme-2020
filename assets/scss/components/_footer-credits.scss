@@ -10,11 +10,26 @@
 	font-size: $base--font-size / $major-second;
 
 	> .wrap {
+		display: block;
 		align-items: center;
 		padding: $spacing--m 0;
+
+		@include mq(m) {
+			display: flex;
+		}
 	}
 
 	p {
 		margin-bottom: 0;
+	}
+
+	.copyright,
+	.credits,
+	.login {
+		display: block;
+
+		@include mq(m) {
+			display: inline-block;
+		}
 	}
 }

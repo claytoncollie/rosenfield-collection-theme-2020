@@ -7,24 +7,24 @@
 ////
 
 .admin-pricing {
-
-	border: 2px solid $color--text;
 	display: inline-block;
-	border-radius: 3px;
 	margin-top: $spacing--m;
 
+	border: 2px solid $color--text;
+	border-radius: 3px;
+
 	&-content {
-		color: $color--text;
-		padding: $spacing--s;
 		margin: 0;
+		padding: $spacing--s;
+		color: $color--text;
 	}
 
 	&-label {
 		display: inline-block;
+		width: 100%;
+		padding: $spacing--xs $spacing--m;
 		color: $color--white;
 		background-color: $color--text;
-		padding: $spacing--xs $spacing--m;
-		width: 100%;
 
 	}
 }

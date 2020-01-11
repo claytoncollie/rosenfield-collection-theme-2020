@@ -9,9 +9,9 @@
 .author {
 
 	&-avatar {
-		border-radius: 50%;
-		border: 5px solid rgba(0,0,0,.25);
 		margin-bottom: $spacing--s;
+		border: 5px solid rgba(0, 0, 0, 0.25);
+		border-radius: 50%;
 
 		.single & {
 			max-width: 50px;
@@ -28,14 +28,42 @@
 	}
 
 	&-website {
-		font-size: $font-size--h5;
 		margin-bottom: $spacing--m;
+		font-size: $font-size--h5;
 	}
 
 	&-view-more {
 		display: flex;
 		flex-wrap: nowrap;
 		align-items: center;
+	}
+
+	&-filter {
+		margin-top: $gutter;
+
+		li {
+			display: inline-block;
+			margin-right: $spacing--s;
+			margin-bottom: $spacing--s;
+			list-style-type: none;
+
+			a {
+				padding: $spacing--xxs $spacing--s;
+				border: 1px solid $color--secondary;
+				font-size: $font-size--h4;
+				text-decoration: none;
+
+				@include mq(m) {
+					font-size: $base--font-size;
+				}
+
+				@include hover-focus {
+					border-color: $color--black;
+					color: $color--white;
+					background-color: $color--black;
+				}
+			}
+		}
 	}
 
 }

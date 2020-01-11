@@ -7,14 +7,12 @@
 ////
 
 .post-meta {
-	background-color: $color--black;
-	color: $color--white;
-	padding: $spacing--s 0;
-	border-top: 1px dotted $color--secondary;
 	position: relative;
 	z-index: 99999;
-
-	
+	padding: $spacing--s 0;
+	border-top: 1px dotted $color--secondary;
+	color: $color--white;
+	background-color: $color--black;
 
 	a {
 		color: $color--white;

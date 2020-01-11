@@ -7,19 +7,34 @@
 ////
 
 .slider-gallery {
-	
+
 	li {
 		position: relative;
-		list-style-type: none;
 		border: 1px solid $color--border;
 		box-shadow: $base--box-shadow;
+		list-style-type: none;
 	}
 
 	button,
 	.button {
 		position: absolute;
+		right: 0;
 		bottom: 0;
-		right: 0
+		padding-right: $spacing--s;
+		padding-left: $spacing--s;
+
+		@include mq(m) {
+			padding-right: $gutter;
+			padding-left: $gutter;
+		}
+	}
+
+	.label-download {
+		display: none;
+
+		@include mq(m) {
+			display: inline-block;
+		}
 	}
 
 }
@@ -27,8 +42,10 @@
 .slider-thumbnails {
 
 	.slick-slide {
+		display: inline-block;
 		float: none;
-		opacity: .75;
+		width: auto !important;
+		opacity: 0.75;
 
 		&.slick-current,
 		&:hover {
@@ -43,10 +60,15 @@
 	li {
 		display: block;
 		position: relative;
-		list-style-type: none;
+		width: 100%;
+		margin-right: $spacing--s;
 		margin-bottom: $spacing--s;
 		text-align: left;
-		width: 100%;
+		list-style-type: none;
+
+		@include mq(m) {
+			margin-right: 0;
+		}
 	}
 
 	img {
@@ -54,7 +76,17 @@
 		border: 1px solid $color--border;
 		box-shadow: $base--box-shadow;
 		cursor: pointer;
-		
+
+		@include mq(m) {}
+
+	}
+
+	.label-download {
+		display: none;
+
+		@include mq(m) {
+			display: inline-block;
+		}
 	}
 
 }

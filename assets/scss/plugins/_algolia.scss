@@ -2,80 +2,90 @@
 --------------------------------------------- */
 
 .aa-dropdown-menu {
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-    box-shadow: 0 0 10px rgba(0,0,0,.7) !important;
-    
-    .autocomplete-header {
-        border-bottom: 0 !important;
-        border-top: 1px solid $color--gray-300;  
-    }
+	border-bottom-right-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) !important;
 
-    .aa-dataset-1 {
-        .autocomplete-header {
-            border-top: 0;
-        }
-    }
+	.autocomplete-header {
+		border-top: 1px solid $color--gray-300;
+		border-bottom: 0 !important;
+	}
 
-    a.suggestion-link {
-        line-height: 32px;
-    }
+	.aa-dataset-1 {
+
+		.autocomplete-header {
+			border-top: 0;
+		}
+	}
+
+	a.suggestion-link {
+		line-height: 32px;
+	}
+}
+
+#search-box-mobile {
+	display: inline-block;
+	width: 100%;
+
+	@include mq(m) {
+		display: none;
+	}
 }
 
 .refinements {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-start;
-    border-bottom: 1px dotted $color--secondary;
-    margin-top: $spacing--m;
-    padding-bottom: $spacing--s;
-    width: 100%;
+	display: flex;
+	width: 100%;
+	margin-top: $spacing--m;
+	padding-bottom: $spacing--s;
+	border-bottom: 1px dotted $color--secondary;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-start;
 }
 
 .ais-CurrentRefinements-list {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 #current-refinements,
 #algolia-stats {
-    display: inline-block;
+	display: inline-block;
 }
 
 #algolia-hits {
-    display: inline-block;
-    width: 100%;
-    
-    @include mq(m) {
-        margin-left: $spacing--xl;
-    }
+	display: inline-block;
+	width: 100%;
+
+	@include mq(m) {
+		margin-left: $spacing--xl;
+	}
 }
 
 .ais-CurrentRefinements-category {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
 }
 
 .ais-CurrentRefinements-item,
 .ais-Hits-list {
-    list-style-type: none;
-    margin: 0;
+	margin: 0;
+	list-style-type: none;
 }
 
 .ais-CurrentRefinements-item {
-    display: inline-block;
-    margin-right: $spacing--l;
+	display: inline-block;
+	margin-right: $spacing--l;
 }
 
 .ais-CurrentRefinements-delete {
-    margin-left: $spacing--xxs;
-    padding: 2px;
-    font-size: 1.0rem;
+	margin-left: $spacing--xxs;
+	padding: 2px;
+	font-size: 1rem;
 }
 
-
 .ais-CurrentRefinements-label {
-    @include hide-visually();
+
+	@include hide-visually();
 }
 

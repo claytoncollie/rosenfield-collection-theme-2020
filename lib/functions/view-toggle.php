@@ -11,7 +11,7 @@
 
 namespace RosenfieldCollection\Theme2020\Functions;
 
-add_filter( 'query_vars', __NAMESPACE__ . '\add_query_var' );
+\add_filter( 'query_vars', __NAMESPACE__ . '\add_query_var' );
 /**
  * Adds the query variable to the query object.
  *
@@ -19,22 +19,30 @@ add_filter( 'query_vars', __NAMESPACE__ . '\add_query_var' );
  * @return array
  * @since 1.0.0
  */
-function add_query_var( $public_query_vars ) {
-    $public_query_vars[] = 'view';
-    return $public_query_vars;
+function add_query_var( array $public_query_vars ) : array {
+	$public_query_vars[] = 'view';
+	return $public_query_vars;
 }
 
 \add_action( 'pre_get_posts', __NAMESPACE__ . '\nopaging', 99 );
-function nopaging( $query ) {
-
+/**
+ * Filter the posts per page on taxonomy archives.
+ *
+ * @param \WP_Query $query Main Query.
+ *
+ * @return \WP_Query
+ *
+ * @since 1.0.0
+ */
+function nopaging( \WP_Query $query ) {
 	if ( is_admin() ) {
 		return $query;
 	}
-	
+
 	if ( ! $query->is_main_query() ) {
 		return $query;
 	}
-	
+
 	$view = get_query_var( 'view' );
 
 	if ( ! empty( $view ) ) {
@@ -45,8 +53,14 @@ function nopaging( $query ) {
 }
 
 \add_filter( 'body_class', __NAMESPACE__ . '\body_class' );
-function body_class( $classes ) {
-	
+/**
+ * Add body class for taxonomy archive.
+ *
+ * @param array $classes Body classes.
+ * @return array
+ * @since 1.0.0
+ */
+function body_class( array $classes ) : array {
 	$view = get_query_var( 'view' );
 
 	if ( ! empty( $view ) ) {
@@ -56,7 +70,6 @@ function body_class( $classes ) {
 	}
 
 	return $classes;
-	
 }
 
 \add_action( 'genesis_entry_footer', __NAMESPACE__ . '\do_the_view_toggle_post_meta' );
@@ -66,10 +79,9 @@ function body_class( $classes ) {
  * @since  1.0.0
  */
 function do_the_view_toggle_post_meta() {
-
 	if ( ! is_tax() && ! is_tag() ) {
 		return;
-	}  
+	}
 
 	$forms      = get_the_term_list( get_the_ID(), 'rc_form', '', ', ', '' );
 	$firings    = get_the_term_list( get_the_ID(), 'rc_firing', '', ', ' );
@@ -118,6 +130,5 @@ function do_the_view_toggle_post_meta() {
 	}
 
 	echo '</div>';
-
 }
 

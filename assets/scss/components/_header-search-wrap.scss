@@ -19,41 +19,41 @@
 
 	input[type="search"] {
 		margin-bottom: 0;
-		background-color: $color--black;
-		border: 0;
-		color: $color--white;
-		font-size: $font-size--h3;
 		padding-top: 0;
+		padding-right: 100px;
 		padding-bottom: 0;
 		padding-left: 0;
-		padding-right: 100px;
+		border: 0;
+		color: $color--white;
+		background-color: $color--black;
+		font-size: $font-size--h3;
 	}
 
 	input[type="submit"] {
 		clip: rect(0, 0, 0, 0);
-		border: 0;
+		position: absolute;
+		width: 1px;
 		height: 1px;
 		margin: -1px;
 		padding: 0;
-		position: absolute;
-		width: 1px;
+		border: 0;
 	}
 
 	input[type="submit"]:focus {
+		right: 50px;
 		margin-top: 1px;
 		padding: 20px;
-		right: 50px;
 	}
 
 	.js & {
-		height: 100%;
-		left: 0;
 		position: absolute;
-		transform: translate3d(0, -100%, 0);
-		transition: none;
-		top: 0;
-		width: 100%;
 		z-index: 1001; /* Show above the menu toggle button */
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transition: none;
+		transform: translate3d(0, -100%, 0);
 
 		.search-form,
 		input[type="search"] {
@@ -64,7 +64,7 @@
 	.search-visible & {
 		transform: translate3d(0, 0, 0);
 	}
-	
+
 }
 
 .js .toggle-header-search.close:focus {
@@ -75,15 +75,15 @@
 	background: transparent;
 
 	&.close {
-		color: $color--white;
-		padding: 10px 20px;
 		position: absolute;
-		right: -20px;
-		top: 20px;
-		transform: translate3d(-35px, 0, 0);
-		transition: transform 0.2s ease-in-out;
-		width: 30px;
 		z-index: 100;
+		top: 20px;
+		right: -20px;
+		width: 30px;
+		padding: 10px 20px;
+		color: $color--white;
+		transition: transform 0.2s ease-in-out;
+		transform: translate3d(-35px, 0, 0);
 	}
 
 	.screen-reader-text:focus {

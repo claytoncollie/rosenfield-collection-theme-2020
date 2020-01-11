@@ -14,8 +14,12 @@
 .gform_wrapper {
 
 	.hero-section & {
+
 		form {
-			display: flex;	
+
+			@include mq(m) {
+				display: flex;
+			}
 		}
 
 		ul li.gfield {
@@ -27,6 +31,7 @@
 		}
 
 		.top_label .gfield_label {
+
 			@include hide-visually;
 		}
 
@@ -34,19 +39,23 @@
 			margin-top: 0;
 		}
 
-		input:not([type='radio']):not([type='checkbox']):not([type='submit']):not([type='button']):not([type='image']):not([type='file']) {
+		input:not([type="radio"]):not([type="checkbox"]):not([type="submit"]):not([type="button"]):not([type="image"]):not([type="file"]) {
 			padding: $spacing--s;
 		}
 
 		.gform_footer {
-			flex-basis: 25%;
+			margin-top: $spacing--s;
 			padding: 0;
-			margin: 0;
-			
-			input.button,
-			input[type=submit] {
-				font-size: $base--font-size;
+
+			@include mq(m) {
 				margin: 0;
+				flex-basis: 25%;
+			}
+
+			input.button,
+			input[type="submit"] {
+				margin: 0;
+				font-size: $base--font-size;
 			}
 		}
 	}

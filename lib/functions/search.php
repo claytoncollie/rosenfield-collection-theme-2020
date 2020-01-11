@@ -42,10 +42,15 @@ function do_header_search_form() {
  * @return string Updated menu HTML.
  */
 function add_search_menu_item( string $items, object $args ) : string {
-	$search_toggle = sprintf( '<li class="menu-item">%s</li>', get_header_search_toggle() );
+	$search_toggle = sprintf( '<li class="menu-item search-lg">%s</li>', get_header_search_toggle() );
+	$search_mobile = sprintf(
+		'<li class="menu-item search-m"><a href="%s">%s</a></li>',
+		esc_url( add_query_arg( 's', '', get_bloginfo( 'url' ) ) ),
+		esc_html__( 'Search', 'rosenfield-collection-2020' )
+	);
 
 	if ( 'primary' === $args->theme_location ) {
-		$items .= $search_toggle;
+		$items .= $search_toggle . $search_mobile;
 	}
 
 	return $items;

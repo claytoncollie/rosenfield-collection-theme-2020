@@ -23,17 +23,21 @@
 		flex-wrap: wrap;
 		margin-bottom: 0;
 		list-style-type: none;
+		justify-content: space-between;
 
 		.search-results &,
-		.search-no-results & {
+		.no-search-results & {
 			justify-content: center;
 		}
 	}
 
 	li {
 		margin-right: $spacing--s;
+		margin-bottom: $spacing--s;
 
-		a {
+		a,
+		.page-numbers {
+			display: inline-block;
 			padding: $spacing--s $spacing--m;
 			border: 1px solid $color--secondary;
 			color: $color--secondary;
@@ -48,8 +52,6 @@
 		}
 	}
 
-	
-
 	// Active item.
 	.active {
 
@@ -62,7 +64,7 @@
 	}
 
 	// Active item for Artists Archive.
-	.current {
+	.current.page-numbers {
 		padding: $spacing--s $spacing--m;
 		border: 1px solid $color--black;
 		color: $color--white;
@@ -71,11 +73,48 @@
 	}
 
 	// Previous item.
-	&-prev {
+	&-previous {
+		display: block;
+		width: 100%;
+		margin-bottom: $spacing--s;
+
+		@include mq(m) {
+			display: inline-block;
+			width: auto;
+			margin-bottom: 0;
+		}
+
+		a {
+			display: block;
+			width: 100%;
+
+			@include mq(m) {
+				width: auto;
+			}
+		}
 	}
 
 	// Next item.
 	&-next {
+		display: block;
+		width: 100%;
+		margin-top: $spacing--s;
+		text-align: right;
+
+		@include mq(m) {
+			display: inline-block;
+			width: auto;
+			margin-top: 0;
+		}
+
+		a {
+			display: block;
+			width: 100%;
+
+			@include mq(m) {
+				width: auto;
+			}
+		}
 	}
 }
 

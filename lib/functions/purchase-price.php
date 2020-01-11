@@ -11,7 +11,7 @@
 
 namespace RosenfieldCollection\Theme2020\Functions;
 
-add_action( 'genesis_hero_section', __NAMESPACE__ . '\do_taxonomy_purchase_price', 12 );
+\add_action( 'genesis_hero_section', __NAMESPACE__ . '\do_taxonomy_purchase_price', 30 );
 /**
  * Display the total cost of each taxonomy term.
  *

@@ -22,16 +22,11 @@ function by_line() {
 		return;
 	}
 
-	$first_name = get_the_author_meta( 'first_name' );
-	$last_name  = get_the_author_meta( 'last_name' );
-
-	if ( ! empty( $first_name ) && ! empty( $last_name ) ) {
-		printf(
-			'<p><span class="entry-sep">&middot;</span><a href="%s" class="entry-artist">%s %s</a></p><span class="entry-sep">&middot;</span>%s',
-			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-			esc_html( $first_name ),
-			esc_html( $last_name ),
-			esc_html( get_object_prefix_and_id() )
-		);
-	}
+	printf(
+		'<p><span class="entry-sep">&middot;</span><a href="%s" class="entry-artist">%s %s</a></p><span class="entry-sep">&middot;</span>%s',
+		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+		esc_html( get_the_author_meta( 'first_name' ) ),
+		esc_html( get_the_author_meta( 'last_name' ) ),
+		esc_html( get_object_prefix_and_id() )
+	);
 }

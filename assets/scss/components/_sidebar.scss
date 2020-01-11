@@ -17,6 +17,7 @@
 
 	.content-sidebar &,
 	.sidebar-content & {
+		width: 100%;
 
 		@include mq(m) {
 			width: $layout--width--sidebar;
@@ -25,17 +26,23 @@
 
 	.single-post.content-sidebar &,
 	.single-post.sidebar-content & {
+		width: 100%;
+
+		@include margin($spacing--xxs null);
+
 		@include mq(m) {
 			width: $layout--width--post--sidebar;
+
+			@include margin($spacing--xl null);
 		}
 	}
 
 	.no-gallery.single-post.content-sidebar &,
 	.no-gallery.single-post.sidebar-content & {
 		width: 0;
-		
+
 		@include mq(m) {
-			width: 0px;
+			width: 0;
 		}
 	}
 
@@ -43,7 +50,7 @@
 	}
 
 	.search-results &,
-	.search-no-results & {
+	.no-search-results & {
 		margin-top: $spacing--m;
 	}
 }
