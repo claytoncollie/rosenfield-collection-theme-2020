@@ -17,5 +17,9 @@ return [
 		'avatar'  => [ 200, 200, true ],
 		'archive' => [ 440, 440, true ],
 	],
-	'remove' => [],
+	'remove' => [
+		'medium',
+		'medium_large',
+		'large',
+	],
 ];
