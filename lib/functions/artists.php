@@ -52,7 +52,7 @@ function do_artists_loop() {
 		if ( ! empty( $filter ) ) {
 			$total_users = (int) count( $user_query->results );
 		} else {
-			$total_users = (int) count( get_users() );
+			$total_users = (int) count( get_users( array( 'has_published_posts' => array( 'post' ) ) ) );
 		}
 
 		$total_pages = intval( $total_users / $number ) + 1;
