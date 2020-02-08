@@ -67,6 +67,7 @@ namespace RosenfieldCollection\Theme2020;
 		'functions/thumbnail-gallery',
 		'functions/view-toggle',
 		'functions/artist-filter',
+		'functions/image-sizes',
 
 		// Structure.
 		'structure/archive',

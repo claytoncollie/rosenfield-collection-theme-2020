@@ -261,10 +261,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/node_modules/slick-carousel/slick/slick.min.js */"./node_modules/slick-carousel/slick/slick.min.js");
-__webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/js/slick-slider.js */"./assets/js/slick-slider.js");
-__webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/js/header-search.js */"./assets/js/header-search.js");
-module.exports = __webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfieldcollection2020/assets/js/sticky-header.js */"./assets/js/sticky-header.js");
+__webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfield-collection-theme-2020/node_modules/slick-carousel/slick/slick.min.js */"./node_modules/slick-carousel/slick/slick.min.js");
+__webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfield-collection-theme-2020/assets/js/slick-slider.js */"./assets/js/slick-slider.js");
+__webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfield-collection-theme-2020/assets/js/header-search.js */"./assets/js/header-search.js");
+module.exports = __webpack_require__(/*! /Users/claytoncollie/Documents/wordpress/rosenfieldcollection/app/public/wp-content/themes/rosenfield-collection-theme-2020/assets/js/sticky-header.js */"./assets/js/sticky-header.js");
 
 
 /***/ }),

@@ -21,5 +21,7 @@ return [
 		'medium',
 		'medium_large',
 		'large',
+		'1536x1536',
+		'2048x2048',
 	],
 ];
