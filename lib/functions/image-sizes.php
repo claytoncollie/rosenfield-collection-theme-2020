@@ -27,7 +27,7 @@ namespace RosenfieldCollection\Theme2020\Functions;
  */
 function remove_image_sizes() {
 	foreach ( get_intermediate_image_sizes() as $size ) {
-		if ( ! in_array( $size, array( 'thumbnail', 'medium', 'object', 'avatar', 'archive', 'full' ), true ) ) {
+		if ( ! in_array( $size, array( 'thumbnail', 'object', 'archive', 'full' ), true ) ) {
 			remove_image_size( $size );
 		}
 	}
@@ -47,4 +47,24 @@ function remove_default_image_sizes( array $sizes ) : array {
 	unset( $sizes['1536x1536'] );
 	unset( $sizes['2048x2048'] );
 	return $sizes;
+}
+
+\add_filter( 'admin_post_thumbnail_size', __NAMESPACE__ . '\admin_featured_image_size', 10, 3 );
+/**
+ * Change Display Size of Featured Image Thumbnail in WordPress Admin Dashboard
+ *
+ * @param string|array $size Image size.
+ * @param integer      $thumbnail_id Attachment ID.
+ * @param \WP_Post     $post Post object.
+ * @return string|array
+ * @since 1.2.0
+ */
+function admin_featured_image_size( $size, int $thumbnail_id, \WP_Post $post ) {
+	$sizes = get_intermediate_image_sizes();
+
+	$result = array_search( 'archive', $sizes, true );
+
+	$size = is_numeric( $result ) ? $sizes[ $result ] : 'thumbnail';
+
+	return $size;
 }

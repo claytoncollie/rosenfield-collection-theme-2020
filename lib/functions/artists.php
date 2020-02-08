@@ -64,7 +64,7 @@ function do_artists_loop() {
 			$link       = get_author_posts_url( $id );
 
 			$attachment_id = get_field( 'artist_photo', 'user_' . $id );
-			$avatar        = wp_get_attachment_image_src( $attachment_id, 'avatar' );
+			$avatar        = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
 
 			$fallback = '';
 
@@ -76,7 +76,7 @@ function do_artists_loop() {
 			if ( ! $attachment_id ) {
 				$posts = get_posts( 'author=' . $id . '&posts_per_page=1' );
 				foreach ( $posts as $post ) {
-					$fallback = get_the_post_thumbnail( $post->ID, 'avatar' );
+					$fallback = get_the_post_thumbnail( $post->ID, 'thumbnail' );
 				}
 			}
 

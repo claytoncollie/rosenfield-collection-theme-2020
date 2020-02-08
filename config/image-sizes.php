@@ -14,7 +14,6 @@ namespace RosenfieldCollection\Theme2020;
 return [
 	'add'    => [
 		'object'  => [ 1536, 1536, false ],
-		'avatar'  => [ 200, 200, true ],
 		'archive' => [ 440, 440, true ],
 	],
 	'remove' => [
