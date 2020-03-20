@@ -18,7 +18,7 @@
 	button,
 	.button {
 		position: absolute;
-		right: 0;
+		left: 0;
 		bottom: 0;
 		padding-right: $spacing--s;
 		padding-left: $spacing--s;
@@ -73,8 +73,8 @@
 
 	img {
 		max-width: 100px;
-		border: 1px solid $color--border;
-		box-shadow: $base--box-shadow;
+		border: 0;
+		box-shadow: 0;
 		cursor: pointer;
 
 		@include mq(m) {}
