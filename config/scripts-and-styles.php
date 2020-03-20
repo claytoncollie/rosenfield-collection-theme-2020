@@ -34,6 +34,7 @@ return [
 		[
 			'handle' => \genesis_get_theme_handle() . '-main',
 			'src'    => $asset_url . 'css/main.css',
+			'ver' => wp_get_theme()->get( 'Version' )
 		],
 		[
 			'handle' => \genesis_get_theme_handle() . '-google-fonts',
