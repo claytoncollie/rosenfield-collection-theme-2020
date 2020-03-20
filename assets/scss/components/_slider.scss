@@ -17,13 +17,12 @@
 	img {
 		box-shadow: none;
 		border: 1px solid $color--border;
-		padding-bottom: 1px;
 	}
 
 	button,
 	.button {
 		position: absolute;
-		left: 0;
+		left: 1px;
 		bottom: 0;
 		padding-right: $spacing--s;
 		padding-left: $spacing--s;
