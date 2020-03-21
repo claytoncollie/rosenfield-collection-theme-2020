@@ -127,7 +127,14 @@ function hero_title() {
 		$open  = '<div class="hero-section-edit"><h1 %s itemprop="headline">';
 		$close = sprintf(
 			'</h1><span class="entry-sep">&middot;</span><a href="%s" class="more-link">%s</a></div>',
-			esc_url( get_permalink( get_page_by_path( 'contact', OBJECT, 'page' ) ) ),
+			esc_url( 
+				add_query_arg (
+					array(
+						'referrer' => get_permalink(),
+					),
+					get_permalink( get_page_by_path( 'contact', OBJECT, 'page' ) )
+				)
+			),
 			esc_html__( 'Suggest an edit', 'rosenfield-collection-2020' )
 		);
 	}
