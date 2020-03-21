@@ -36,7 +36,8 @@
 		margin-bottom: $spacing--s;
 
 		a,
-		.page-numbers {
+		.page-numbers,
+		span {
 			display: inline-block;
 			padding: $spacing--s $spacing--m;
 			border: 1px solid $color--secondary;
