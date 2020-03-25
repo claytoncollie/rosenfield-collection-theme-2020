@@ -9,11 +9,19 @@ window.addEventListener('scroll', function () {
     scrollPosition = window.scrollY;
 
     if (scrollPosition >= siteHeaderHeight) {
-        postMeta.classList.add('sticky');
-        adminOnly.classList.add('sticky');
+        if ( typeof postMeta !== 'undefined') {
+            postMeta.classList.add('sticky');
+        }
+        if ( typeof adminOnly !== 'undefined') {
+            adminOnly.classList.add('sticky');
+        }
     } else {
-        postMeta.classList.remove('sticky');
-        adminOnly.classList.remove('sticky');
+        if ( typeof postMeta !== 'undefined') {
+            postMeta.classList.remove('sticky');
+        }
+        if ( typeof adminOnly !== 'undefined') {
+            adminOnly.classList.remove('sticky');
+        }
     }
 
 });
