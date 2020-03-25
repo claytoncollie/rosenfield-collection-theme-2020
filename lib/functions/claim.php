@@ -45,7 +45,7 @@ function acf_form_claim() {
  * @return integer
  * @since 1.3.0
  */
-function claim_set_featured_image( int $value, $post_id, array $field ) {
+function claim_set_featured_image( $value, $post_id, $field ) {
 	if ( empty( $_POST['acf']['claim'] ) ) {
 		return $post_id;
 	}
