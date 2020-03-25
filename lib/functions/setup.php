@@ -67,8 +67,10 @@ function setup() {
 	// Remove post type supports.
 	\array_walk(
 		$post_type_support['remove'],
-		function ( $feature, $post_type ) {
-			\remove_post_type_support( $post_type, $feature );
+		function ( $post_types, $feature ) {
+			foreach ( $post_types as $post_type ) {
+				\remove_post_type_support( $post_type, $feature );
+			}
 		}
 	);
 

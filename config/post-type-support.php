@@ -16,5 +16,8 @@ return [
 		'hero-section' => [ 'page', 'post' ],
 		'excerpt'      => [ 'page', 'post' ],
 	],
-	'remove' => [],
+	'remove' => [
+		'genesis-scripts' => [ 'post' ],
+		'genesis-layouts' => [ 'post' ],
+	],
 ];

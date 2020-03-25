@@ -14,14 +14,17 @@ namespace RosenfieldCollection\Theme2020\Templates;
 // Force full-width-content layout setting.
 \add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 
-// // Dispaly totals.
-// \add_action( 'genesis_after_hero_section', 'RosenfieldCollection\Theme2020\Functions\do_the_statistics', 25 );
+// Remove author name.
+\remove_action( 'genesis_entry_content', 'RosenfieldCollection\Theme2020\Functions\author_by_line', 8 );
 
-// // Dispaly totals.
-// \add_action( 'genesis_after_hero_section', 'RosenfieldCollection\Theme2020\Functions\do_the_taxonomy_totals', 30 );
+// Remove the non-existant object ID.
+\remove_action( 'genesis_entry_content', 'RosenfieldCollection\Theme2020\Functions\object_id_by_line', 9 );
 
-// // Shoow all posts.
-// \add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\do_the_report', 12 );
+// Filter the permalink to include the post_id.
+\add_filter( 'post_link', 'RosenfieldCollection\Theme2020\Functions\get_the_permalink_with_post_id', 10, 3 );
+
+// Add custom loop to obnly show pending posts.
+\add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\do_the_pending_posts', 12 );
 
 // Run the Genesis loop.
 \genesis();

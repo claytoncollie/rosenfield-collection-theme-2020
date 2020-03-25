@@ -127,8 +127,8 @@ function hero_title() {
 		$open  = '<div class="hero-section-edit"><h1 %s itemprop="headline">';
 		$close = sprintf(
 			'</h1><span class="entry-sep">&middot;</span><a href="%s" class="more-link">%s</a></div>',
-			esc_url( 
-				add_query_arg (
+			esc_url(
+				add_query_arg(
 					array(
 						'referrer' => get_permalink(),
 					),

@@ -11,19 +11,6 @@
 
 namespace RosenfieldCollection\Theme2020\Functions;
 
-\add_filter( 'query_vars', __NAMESPACE__ . '\add_query_var_artist_filter' );
-/**
- * Adds the query variable to the query object.
- *
- * @param array $public_query_vars Publicly availabe variables.
- * @return array
- * @since 1.0.0
- */
-function add_query_var_artist_filter( array $public_query_vars ) : array {
-	$public_query_vars[] = 'artist_filter';
-	return $public_query_vars;
-}
-
 /**
  * Display alphebtical filter for artist
  *
@@ -37,6 +24,12 @@ function do_artist_filter() {
 
 		if ( ! empty( $letters ) ) {
 			echo '<section class="author-filter"><ul>';
+
+			printf(
+				'<li><a href="%s">%s</a></li>',
+				esc_url( get_permalink( get_page_by_path( 'artists', OBJECT, 'page' ) ) ),
+				esc_html__( 'All Artists', 'rosenfield-collection-2020' )
+			);
 
 			foreach ( $letters as $letter ) {
 				printf(

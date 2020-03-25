@@ -11,19 +11,6 @@
 
 namespace RosenfieldCollection\Theme2020\Functions;
 
-\add_filter( 'query_vars', __NAMESPACE__ . '\add_query_var' );
-/**
- * Adds the query variable to the query object.
- *
- * @param array $public_query_vars Publicly availabe variables.
- * @return array
- * @since 1.0.0
- */
-function add_query_var( array $public_query_vars ) : array {
-	$public_query_vars[] = 'view';
-	return $public_query_vars;
-}
-
 \add_action( 'pre_get_posts', __NAMESPACE__ . '\nopaging', 99 );
 /**
  * Filter the posts per page on taxonomy archives.
