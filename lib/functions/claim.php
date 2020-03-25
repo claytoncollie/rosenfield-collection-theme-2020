@@ -26,7 +26,7 @@ function acf_form_claim() {
 				'post_id'           => absint( $post_id ),
 				'post_title'        => true,
 				'post_content'      => false,
-				'field_groups'      => array( 6277, 22858 ),
+				'field_groups'      => array( 6277, 22858, 26396 ),
 				'html_after_fields' => '<input type="hidden" name="acf[claim]" value="true"/>',
 				'return'            => get_permalink( get_page_by_path( 'pending', OBJECT, 'page' ) ),
 				'submit_value'      => esc_html__( 'Save Draft', 'rosenfield-collection-2020' ),
