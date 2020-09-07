@@ -20,7 +20,15 @@ function do_the_view_all_objects() {
 	$avatar_id = get_field( 'artist_photo', 'user_' . get_the_author_meta( 'ID' ) );
 
 	if ( ! empty( $avatar_id ) ) {
-		$avatar = wp_get_attachment_image( $avatar_id, 'thumbnail', false, array( 'class' => 'author-avatar' ) );
+		$avatar = wp_get_attachment_image( 
+			$avatar_id, 
+			'thumbnail', 
+			false, 
+			array( 
+				'class' => 'author-avatar',
+				'alt' => esc_html( get_the_author_meta( 'first_name' ) ) . ' ' . esc_html( get_the_author_meta( 'last_name' ) )
+			) 
+		);
 	} else {
 		$avatar = '';
 	}
