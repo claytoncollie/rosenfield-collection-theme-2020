@@ -99,7 +99,7 @@ function do_the_artist_info() {
 	}
 	if ( ! empty( $instagram ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="%s">%s</div>',
+			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $instagram ),
 			svg( 'instagram-square-brands' ) // phpcs:ignore
 		);
