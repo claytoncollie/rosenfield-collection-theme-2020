@@ -215,10 +215,13 @@ function hero_view_toggle() {
 	$taxonomy = $wp_query->get_queried_object();
 
 	printf(
-		'<section class="view-toggle"><a href="%s" id="view-toggle-grid">%s</a><span class="entry-sep">&middot;</span><a href="%s" id="view-toggle-list">%s</a></section>',
+		'<section class="view-toggle" role="navigation" aria-label="%s"><a href="%s" id="view-toggle-grid" aria-label="%s">%s</a><span class="entry-sep">&middot;</span><a href="%s" id="view-toggle-list" aria-label="%s">%s</a></section>',
+		esc_html__( 'Toggle to view as list or grid', 'rosenfield-collection-2020' ),
 		esc_url( get_term_link( absint( $taxonomy->term_id ), $taxonomy->taxonomy ) ),
+		esc_html__( 'View as grid', 'rosenfield-collection-2020' ),
 		esc_html__( 'Grid', 'rosenfield-collection-2020' ),
 		esc_url( add_query_arg( 'view', 'list', get_term_link( absint( $taxonomy->term_id ), $taxonomy->taxonomy ) ) ),
+		esc_html__( 'View as list', 'rosenfield-collection-2020' ),
 		esc_html__( 'List', 'rosenfield-collection-2020' )
 	);
 }
@@ -257,8 +260,10 @@ function do_archive_headings_intro_text( string $heading = '', string $intro_tex
  * @return array
  */
 function hero_archive_title_attr( array $atts ) : array {
-	$atts['class']    = 'hero-title';
-	$atts['itemprop'] = 'headline';
+	$atts['class']      = 'hero-title';
+	$atts['itemprop']   = 'headline';
+	$atts['role']       = 'banner';
+	$atts['aria-label'] = esc_html__( 'Page Header', 'rosenfield-collection-2020' );
 
 	return $atts;
 }
@@ -290,7 +295,7 @@ function hero_entry_attr( array $atts ) : array {
 function hero_display() {
 	\genesis_markup(
 		array(
-			'open'    => '<section %s role="banner">',
+			'open'    => '<section %s role="banner" aria-label="Page header">',
 			'context' => 'hero-section',
 		)
 	);

@@ -49,7 +49,8 @@ function svg( string $filename ) : string {
  */
 function admin_pricing( string $label, string $content ) : string {
 	return sprintf(
-		'<section class="admin-pricing"><h3 class="admin-pricing-content">%s</h3><span class="admin-pricing-label">%s</span></section>',
+		'<section class="admin-pricing" role="complmentary" arai-label="%s"><h3 class="admin-pricing-content">%s</h3><span class="admin-pricing-label">%s</span></section>',
+		esc_html__( 'Total cost for all objects in term', 'rosenfield-collection-2020' ),
 		wp_kses_post( $content ),
 		esc_html( $label )
 	);

@@ -72,6 +72,7 @@ namespace RosenfieldCollection\Theme2020;
 		'functions/claim',
 		'functions/query-vars',
 		'functions/skip-links',
+		'functions/a11y',
 
 		// Structure.
 		'structure/archive',

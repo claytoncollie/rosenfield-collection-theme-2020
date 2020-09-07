@@ -36,7 +36,10 @@ function do_the_object_gallery() {
 	$images = get_field( 'images' );
 
 	if ( ! empty( $images ) ) {
-		echo '<section class="slider-gallery"><ul class="slider-gallery-images">';
+		printf(
+			'<section class="slider-gallery" role="navigation" aria-label="%s"><ul class="slider-gallery-images">',
+			esc_html__( 'All images', 'rosenfield-collection-2020' )
+		);
 		foreach ( $images as $image ) {
 			printf(
 				'<li><img src="%s" alt="%s %s %s"><a href="%s" class="button">%s <span class="label-download">%s</span></a></li>',
@@ -51,7 +54,10 @@ function do_the_object_gallery() {
 		}
 		echo '</ul></section>';
 	} elseif ( has_post_thumbnail() ) {
-		echo '<section class="slider-gallery"><ul class="slider-gallery-images">';
+		printf(
+			'<section class="slider-gallery" aria-label="%s"><ul class="slider-gallery-images">',
+			esc_html__( 'Large single image', 'rosenfield-collection-2020' )
+		);
 			printf(
 				'<li>%s<a href="%s" class="button">%s <span class="label-download">%s</span></a></li>',
 				get_the_post_thumbnail(

@@ -23,7 +23,10 @@ function do_artist_filter() {
 		$letters = $field['choices'];
 
 		if ( ! empty( $letters ) ) {
-			echo '<section id="rosenfield-collection-artist-filter" class="author-filter"><ul>';
+			printf(
+				'<section id="rosenfield-collection-artist-filter" class="author-filter" role="navigation" aria-label="%s"><ul>',
+				esc_html__( 'Filter artists by last name', 'rosenfield-collection-2020' )
+			);
 
 			printf(
 				'<li class="%s"><a href="%s"><span class="screen-reader-text">%s</span> %s</a></li>',

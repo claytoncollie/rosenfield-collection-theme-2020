@@ -32,7 +32,8 @@ function do_the_admin_bar() {
 	$price    = get_field( 'rc_object_purchace_price' ) ? sprintf( '$%s', get_field( 'rc_object_purchace_price' ) ) : '';
 
 	printf(
-		'<section id="rosenfield-collection-admin-object-data" class="admin-only"><div class="wrap"><div class="admin-only-purchase">%s%s%s</div><div class="admin-only-labels">%s<span class="entry-sep">&middot;</span>%s</div></div></section>',
+		'<section id="rosenfield-collection-admin-object-data" class="admin-only" role="contentinfo" aria-label="%s"><div class="wrap"><div class="admin-only-purchase">%s%s%s</div><div class="admin-only-labels">%s<span class="entry-sep">&middot;</span>%s</div></div></section>',
+		esc_html__( 'Admin only object data', 'rosenfield-collection-2020' ),
 		wp_kses_post( $tag ),
 		wp_kses_post( $location ),
 		wp_kses_post( $price ),

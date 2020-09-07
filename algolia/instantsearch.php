@@ -13,7 +13,7 @@ get_header();
 
 ?>
 
-	<section class="hero-section" role="banner">
+	<section class="hero-section" role="banner" aria-label="Page Header">
 		<div class="wrap">
 			<div class="hero-inner">
 				<?php echo wp_kses_post( RosenfieldCollection\Theme2020\Structure\hero_title() ); ?>
@@ -21,42 +21,42 @@ get_header();
 		</div>
 	</section>
 	<div class="wrap">
-		<section class="refinements">
+		<section class="refinements" aria-label="Statistics and Current Refinements" role="contentinfo" id="rosenfield-collection-current-refinements">
 			<div id="algolia-stats"></div>
 			<span class="entry-sep">&middot;</span>
 			<div id="current-refinements"></div>
 		</section>
 		<main id="genesis-content" class="content">
-			<section id="search-box-mobile"></section>
+			<div id="search-box-mobile"></div>
 			<div id="algolia-hits"></div>
 			<div id="algolia-pagination"></div>
 		</main>
-		<aside class="sidebar sidebar-primary">
-			<section id="search-box"></section>
-			<section id="facet-users"></section>
-			<section id="facet-form"></section>
-			<section id="facet-firing"></section>
-			<section id="facet-technique"></section>
-			<section id="facet-column"></section>
-			<section id="facet-row"></section>
+		<aside class="sidebar sidebar-primary" role="search" aria-label="Primary Sidebar" id="genesis-sidebar-primary">
+			<div id="search-box"></div>
+			<div id="facet-users"></div>
+			<div id="facet-form"></div>
+			<div id="facet-firing"></div>
+			<div id="facet-technique"></div>
+			<div id="facet-column"></div>
+			<div id="facet-row"></div>
 
 			<?php if ( is_user_logged_in() && current_user_can( 'edit_others_pages' ) ) : ?>
-				<section id="facet-location"></section>
-				<section id="facet-tags"></section>
+				<div id="facet-location"></div>
+				<div id="facet-tags"></div>
 			<?php endif; ?>
 
 		</aside>
 	</div>
 
 	<script type="text/html" id="tmpl-instantsearch-hit">
-		<article class="entry" itemtype="http://schema.org/Article">
+		<article class="entry" itemtype="http://schema.org/Article" aria-label="{{ data.post_title }} {{ data.rc_id }} by {{ data.post_author.display_name }}">
 			<# if ( data.images.thumbnail ) { #>
 			<a href="{{ data.permalink }}" class="entry-image-link first one-sixth">
-				<img src="{{ data.images.thumbnail.url }}" alt="{{ data.post_title }}" itemprop="image" />
+				<img src="{{ data.images.thumbnail.url }}" alt="Image for {{ data.post_title }} {{ data.rc_id }}" itemprop="image" />
 			</a>
 			<# } #>
 			<div class="entry-wrap five-sixths">
-				<h2 class="entry-title" itemprop="name headline">
+				<h2 class="entry-title" itemprop="name">
 					<a href="{{ data.permalink }}" class="entry-title-link" rel="bookmark" itemprop="url">{{{ data._highlightResult.post_title.value }}}</a>
 				</h2>
 				<div class="entry-content">
