@@ -29,8 +29,8 @@ function do_artist_filter() {
 			);
 
 			printf(
-				'<li class="%s"><a href="%s"><span class="screen-reader-text">%s</span> %s</a></li>',
-				get_query_var( 'artist_filter' ) === '' ? 'current' : '',
+				'<li %s><a href="%s"><span class="screen-reader-text">%s</span> %s</a></li>',
+				get_query_var( 'artist_filter' ) === '' ? 'class="current"' : '',
 				esc_url( get_permalink( get_page_by_path( 'artists', OBJECT, 'page' ) ) ),
 				esc_html__( 'Go to page', 'rosenfield-collection-2020' ),
 				esc_html__( 'All Artists', 'rosenfield-collection-2020' )
@@ -38,8 +38,8 @@ function do_artist_filter() {
 
 			foreach ( $letters as $letter ) {
 				printf(
-					'<li class="%s"><a href="%s"><span class="screen-reader-text">%s</span> %s</a></li>',
-					get_query_var( 'artist_filter' ) === $letter ? 'current' : '',
+					'<li %s><a href="%s"><span class="screen-reader-text">%s</span> %s</a></li>',
+					get_query_var( 'artist_filter' ) === $letter ? 'class="current"' : '',
 					esc_url(
 						add_query_arg(
 							'artist_filter',
