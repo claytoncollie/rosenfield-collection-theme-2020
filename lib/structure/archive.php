@@ -95,10 +95,10 @@ function read_more_link( string $more_link_text ) : string {
 function entry_wrap_open() {
 	if ( is_type_archive() ) {
 		\genesis_markup(
-			[
+			array(
 				'open'    => '<div %s>',
 				'context' => 'entry-wrap',
-			]
+			)
 		);
 	}
 }
@@ -114,10 +114,10 @@ function entry_wrap_open() {
 function entry_wrap_close() {
 	if ( is_type_archive() ) {
 		\genesis_markup(
-			[
+			array(
 				'close'   => '</div>',
 				'context' => 'entry-wrap',
-			]
+			)
 		);
 	}
 }
@@ -136,11 +136,11 @@ function entry_wrap_close() {
 function widget_entry_wrap_open( string $open, array $args ) : string {
 	if ( isset( $args['params']['is_widget'] ) && $args['params']['is_widget'] ) {
 		$markup = \genesis_markup(
-			[
+			array(
 				'open'    => '<div %s>',
 				'context' => 'entry-wrap',
 				'echo'    => false,
-			]
+			)
 		);
 
 		$open = $markup . $open;

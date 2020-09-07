@@ -11,16 +11,16 @@
 
 namespace RosenfieldCollection\Theme2020;
 
-return [
-	'add'    => [
-		'object'  => [ 1536, 1536, false ],
-		'archive' => [ 440, 440, true ],
-	],
-	'remove' => [
+return array(
+	'add'    => array(
+		'object'  => array( 1536, 1536, false ),
+		'archive' => array( 440, 440, true ),
+	),
+	'remove' => array(
 		'medium',
 		'medium_large',
 		'large',
 		'1536x1536',
 		'2048x2048',
-	],
-];
+	),
+);

@@ -30,9 +30,9 @@ function do_the_pending_posts() {
 /**
  * Filter the permalink on the PENDINGG page to include a query arugment with the post ID.
  *
- * @param string  $url Permalink.
- * @param WP_Post $post Post Object.
- * @param boolean $leavename Whether to keep the post name.
+ * @param string   $url Permalink.
+ * @param \WP_Post $post Post Object.
+ * @param boolean  $leavename Whether to keep the post name.
  * @return string
  * @since 1.3.0
  */

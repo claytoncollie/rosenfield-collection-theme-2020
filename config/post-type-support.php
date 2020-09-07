@@ -11,13 +11,13 @@
 
 namespace RosenfieldCollection\Theme2020;
 
-return [
-	'add'    => [
-		'hero-section' => [ 'page', 'post' ],
-		'excerpt'      => [ 'page', 'post' ],
-	],
-	'remove' => [
-		'genesis-scripts' => [ 'post' ],
-		'genesis-layouts' => [ 'post' ],
-	],
-];
+return array(
+	'add'    => array(
+		'hero-section' => array( 'page', 'post' ),
+		'excerpt'      => array( 'page', 'post' ),
+	),
+	'remove' => array(
+		'genesis-scripts' => array( 'post' ),
+		'genesis-layouts' => array( 'post' ),
+	),
+);

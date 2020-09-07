@@ -11,28 +11,28 @@
 
 namespace RosenfieldCollection\Theme2020;
 
-return [
-	'script' => [
+return array(
+	'script' => array(
 		'mainMenu'         => sprintf( '<span class="hamburger"></span><span class="screen-reader-text">%s</span>', __( 'Menu', 'rosenfield-collection-2020' ) ),
 		'menuIconClass'    => null,
 		'subMenuIconClass' => null,
-		'menuClasses'      => [
-			'combine' => [
+		'menuClasses'      => array(
+			'combine' => array(
 				'.nav-primary',
-			],
-		],
-		'menuAnimation'    => [
+			),
+		),
+		'menuAnimation'    => array(
 			'effect'   => 'fadeToggle',
 			'duration' => 'fast',
 			'easing'   => 'swing',
-		],
-		'subMenuAnimation' => [
+		),
+		'subMenuAnimation' => array(
 			'effect'   => 'slideToggle',
 			'duration' => 'fast',
 			'easing'   => 'swing',
-		],
-	],
-	'extras' => [
+		),
+	),
+	'extras' => array(
 		'media_query_width' => '896px',
-	],
-];
+	),
+);

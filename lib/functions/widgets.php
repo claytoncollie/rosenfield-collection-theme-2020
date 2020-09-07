@@ -47,21 +47,21 @@ function widget_area_defaults( array $defaults, string $id ) : array {
 
 	if ( false !== strpos( $id, 'front-page-' ) ) {
 		$defaults['before'] = \genesis_markup(
-			[
+			array(
 				'open'    => '<div class="' . $id . $hero . '"><div class="wrap">',
 				'context' => 'widget-area-wrap',
 				'echo'    => false,
-				'params'  => [
+				'params'  => array(
 					'id' => $id,
-				],
-			]
+				),
+			)
 		);
 		$defaults['after']  = \genesis_markup(
-			[
+			array(
 				'close'   => '</div></div>',
 				'context' => 'widget-area-wrap',
 				'echo'    => false,
-			]
+			)
 		);
 	}
 

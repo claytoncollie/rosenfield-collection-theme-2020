@@ -25,8 +25,8 @@ function do_the_post_meta() {
 	$length     = get_field( 'length' );
 	$width      = get_field( 'width' );
 	$height     = get_field( 'height' );
-	$first_name = get_the_author_meta( 'first_name' ) ?: '';
-	$last_name  = get_the_author_meta( 'last_name' ) ?: '';
+	$first_name = get_the_author_meta( 'first_name' ) ? get_the_author_meta( 'first_name' ) : '';
+	$last_name  = get_the_author_meta( 'last_name' ) ? get_the_author_meta( 'last_name' ) : '';
 
 	// Load all 'rc_form' terms for the post.
 	$terms     = get_the_terms( get_the_ID(), 'rc_form' );

@@ -13,18 +13,18 @@ namespace RosenfieldCollection\Theme2020;
 
 use function RosenfieldCollection\Theme2020\Functions\get_theme_url;
 
-return [
-	'add'    => [
-		[
+return array(
+	'add'    => array(
+		array(
 			'id'    => 'narrow-content',
 			'label' => __( 'Narrow Content', 'rosenfield-collection-2020' ),
 			'img'   => get_theme_url() . 'assets/img/narrow-content.gif',
-		],
-	],
-	'remove' => [
+		),
+	),
+	'remove' => array(
 		'content-sidebar',
 		'content-sidebar-sidebar',
 		'sidebar-sidebar-content',
 		'sidebar-content-sidebar',
-	],
-];
+	),
+);

@@ -11,24 +11,24 @@
 
 namespace RosenfieldCollection\Theme2020;
 
-$front_page_widgets = [];
-$theme_supports     = genesis_get_config( 'theme-support' )['add'];
+$front_page_widgets = array(); // phpcs:ignore
+$theme_supports     = genesis_get_config( 'theme-support' )['add']; // phpcs:ignore
 
-for ( $i = 1; $i <= $theme_supports['front-page-widgets']; $i++ ) {
-	$front_page_widgets[] = [
+for ( $i = 1; $i <= $theme_supports['front-page-widgets']; $i++ ) { // phpcs:ignore
+	$front_page_widgets[] = array( // phpcs:ignore
 		'id'          => 'front-page-' . $i,
 		'name'        => __( 'Front Page ', 'rosenfield-collection-2020' ) . $i,
 		/* translators: The front page widget area number. */
 		'description' => \sprintf( __( 'The Front Page %s widget area.', 'rosenfield-collection-2020' ), $i ),
-	];
+	);
 }
 
-return [
+return array(
 	'add'    =>
 		$front_page_widgets,
-	'remove' => [
+	'remove' => array(
 		'header-right',
 		'sidebar',
 		'sidebar-alt',
-	],
-];
+	),
+);

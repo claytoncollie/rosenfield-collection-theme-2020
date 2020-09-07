@@ -30,13 +30,13 @@ function enqueue_assets() {
 		$type      = false !== strpos( $asset['src'], '.js' ) ? 'script' : 'style';
 		$handle    = $asset['handle'];
 		$src       = isset( $asset['src'] ) ? $asset['src'] : '';
-		$deps      = isset( $asset['deps'] ) ? $asset['deps'] : [];
+		$deps      = isset( $asset['deps'] ) ? $asset['deps'] : array();
 		$ver       = isset( $asset['ver'] ) ? $asset['ver'] : \genesis_get_theme_version();
 		$media     = isset( $asset['media'] ) ? $asset['media'] : 'all';
 		$in_footer = isset( $asset['in_footer'] ) ? $asset['in_footer'] : true;
 		$editor    = isset( $asset['editor'] ) ? $asset['editor'] : false;
 		$condition = isset( $asset['condition'] ) ? $asset['condition'] : '__return_true';
-		$localize  = isset( $asset['localize'] ) ? $asset['localize'] : [];
+		$localize  = isset( $asset['localize'] ) ? $asset['localize'] : array();
 		$last_arg  = 'style' === $type ? $media : $in_footer;
 		$register  = "wp_register_$type";
 		$enqueue   = "wp_enqueue_$type";

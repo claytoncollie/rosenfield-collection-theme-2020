@@ -11,7 +11,7 @@
 
 namespace RosenfieldCollection\Theme2020\Functions;
 
-use RosenfieldCollection\Theme2020\Functions\svg as svg;
+use function RosenfieldCollection\Theme2020\Functions\svg as svg;
 
 /**
  * Add body class when image gallery is not populated.
@@ -45,7 +45,7 @@ function do_the_object_gallery() {
 				esc_html( get_the_author_meta( 'first_name' ) ),
 				esc_html( get_the_author_meta( 'last_name' ) ),
 				esc_url( $image['url'] ),
-				svg( 'cloud-download-alt-solid' ),
+				svg( 'cloud-download-alt-solid' ), // phpcs:ignore
 				esc_html__( 'Download', 'rosenfield-collection-2020' )
 			);
 		}
@@ -67,7 +67,7 @@ function do_the_object_gallery() {
 					)
 				),
 				esc_url( wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) ) ),
-				svg( 'cloud-download-alt-solid' ),
+				svg( 'cloud-download-alt-solid' ), // phpcs:ignore
 				esc_html__( 'Download', 'rosenfield-collection-2020' )
 			);
 		echo '</ul></section>';

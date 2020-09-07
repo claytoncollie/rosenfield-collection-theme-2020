@@ -80,7 +80,7 @@ function hero_setup() {
  * @return array
  */
 function hero_body_class( array $classes ) : array {
-	$classes   = \array_diff( $classes, [ 'no-hero-section' ] );
+	$classes   = \array_diff( $classes, array( 'no-hero-section' ) );
 	$classes[] = 'has-hero-section';
 
 	return $classes;
@@ -141,12 +141,12 @@ function hero_title() {
 
 	if ( isset( $title ) && $title ) {
 		\genesis_markup(
-			[
+			array(
 				'open'    => $open,
 				'close'   => $close,
 				'content' => $title,
 				'context' => 'hero-title',
-			]
+			)
 		);
 	}
 }
@@ -186,12 +186,12 @@ function hero_excerpt() {
 
 	if ( $excerpt ) {
 		\genesis_markup(
-			[
+			array(
 				'open'    => '<p %s itemprop="description">',
 				'close'   => '</p>',
 				'content' => $excerpt,
 				'context' => 'hero-subtitle',
-			]
+			)
 		);
 	}
 }
@@ -237,12 +237,12 @@ function hero_view_toggle() {
 function do_archive_headings_intro_text( string $heading = '', string $intro_text = '', string $context = '' ) {
 	if ( $context && $intro_text ) {
 		\genesis_markup(
-			[
+			array(
 				'open'    => '<p %s itemprop="description">',
 				'close'   => '</p>',
 				'content' => $intro_text,
 				'context' => 'hero-subtitle',
-			]
+			)
 		);
 	}
 }
@@ -289,10 +289,10 @@ function hero_entry_attr( array $atts ) : array {
  */
 function hero_display() {
 	\genesis_markup(
-		[
+		array(
 			'open'    => '<section %s role="banner">',
 			'context' => 'hero-section',
-		]
+		)
 	);
 
 	\do_action( 'genesis_before_hero_section' );
@@ -300,19 +300,19 @@ function hero_display() {
 	\genesis_structural_wrap( 'hero-section', 'open' );
 
 	\genesis_markup(
-		[
+		array(
 			'open'    => '<div %s>',
 			'context' => 'hero-inner',
-		]
+		)
 	);
 
 	\do_action( 'genesis_hero_section' );
 
 	\genesis_markup(
-		[
+		array(
 			'close'   => '</div>',
 			'context' => 'hero-inner',
-		]
+		)
 	);
 
 	\genesis_structural_wrap( 'hero-section', 'close' );
@@ -320,9 +320,9 @@ function hero_display() {
 	\do_action( 'genesis_after_hero_section' );
 
 	\genesis_markup(
-		[
+		array(
 			'close'   => '</section>',
 			'context' => 'hero-section',
-		]
+		)
 	);
 }

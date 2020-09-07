@@ -79,7 +79,6 @@ get_header();
 							<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_row }}
 						<# } #>
 					</p>
-					
 				</div>
 			</div>
 		</article>
@@ -125,12 +124,12 @@ get_header();
 				});
 				search.addWidget(
 					instantsearch.widgets.stats({
-						  container: '#algolia-stats',
+						container: '#algolia-stats',
 					})
 				);
 				search.addWidget(
 					instantsearch.widgets.currentRefinements({
-						  container: '#current-refinements',
+						container: '#current-refinements',
 					})
 				);
 				search.addWidget(

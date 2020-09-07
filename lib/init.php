@@ -42,7 +42,7 @@ namespace RosenfieldCollection\Theme2020;
 			require_once $filename;
 		}
 	},
-	[
+	array(
 		// Composer.
 		'../vendor/autoload',
 
@@ -84,5 +84,5 @@ namespace RosenfieldCollection\Theme2020;
 		'structure/single',
 		'structure/wrap',
 
-	]
+	)
 );

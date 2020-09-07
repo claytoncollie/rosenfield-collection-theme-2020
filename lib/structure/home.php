@@ -39,7 +39,7 @@ function front_page_loop() {
  * @return array
  */
 function front_page_body_class( array $classes ) : array {
-	$classes   = \array_diff( $classes, [ 'no-hero-section' ] );
+	$classes   = \array_diff( $classes, array( 'no-hero-section' ) );
 	$classes[] = 'front-page';
 
 	return $classes;

@@ -26,15 +26,15 @@ function body_classes( array $classes ) : array {
 	// Remove unnecessary page template classes.
 	$template  = \get_page_template_slug();
 	$basename  = \basename( $template, '.php' );
-	$directory = \str_replace( [ '/', \basename( $template ) ], '', $template );
+	$directory = \str_replace( array( '/', \basename( $template ) ), '', $template );
 	$classes   = \array_diff(
 		$classes,
-		[
+		array(
 			'page-template',
 			'page-template-' . $basename,
 			'page-template-' . $directory,
 			'page-template-' . $directory . $basename . '-php',
-		]
+		)
 	);
 
 	// Add simple template name.

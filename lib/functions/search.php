@@ -11,7 +11,7 @@
 
 namespace RosenfieldCollection\Theme2020\Functions;
 
-use RosenfieldCollection\Theme2020\Functions\svg as svg;
+use function RosenfieldCollection\Theme2020\Functions\svg as svg;
 
 \add_action( 'genesis_after_title_area', __NAMESPACE__ . '\do_header_search_form', 12 );
 /**

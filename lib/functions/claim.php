@@ -46,7 +46,7 @@ function acf_form_claim() {
  * @since 1.3.0
  */
 function claim_set_featured_image( $value, $post_id, $field ) {
-	if ( empty( $_POST['acf']['claim'] ) ) {
+	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore
 		return $post_id;
 	}
 
@@ -80,7 +80,7 @@ function claim_set_featured_image( $value, $post_id, $field ) {
  * @since 1.3.0
  */
 function claim_post_status_transition( $post_id ) {
-	if ( empty( $_POST['acf']['claim'] ) ) {
+	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore
 		return $post_id;
 	}
 
@@ -96,8 +96,8 @@ function claim_post_status_transition( $post_id ) {
 		return $post_id;
 	}
 
-	if ( ! empty( $_POST['acf']['claim'] ) ) {
-		if ( 'true' !== $_POST['acf']['claim'] ) {
+	if ( ! empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore
+		if ( 'true' !== $_POST['acf']['claim'] ) { // phpcs:ignore
 			return $post_id;
 		}
 	}
@@ -133,7 +133,7 @@ function claim_post_status_transition( $post_id ) {
  * @since 1.3.0
  */
 function claim_delete_attachment( $post_id ) {
-	if ( empty( $_POST['acf']['claim'] ) ) {
+	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore
 		return $post_id;
 	}
 

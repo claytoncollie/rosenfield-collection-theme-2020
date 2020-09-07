@@ -11,7 +11,7 @@
 
 namespace RosenfieldCollection\Theme2020;
 
-return [
+return array(
 	'avatar_size'               => 48,
 	'blog_cat_num'              => 9,
 	'breadcrumb_home'           => 0,
@@ -29,4 +29,4 @@ return [
 	'image_alignment'           => 'alignnone',
 	'posts_nav'                 => 'numeric',
 	'site_layout'               => 'full-width-content',
-];
+);

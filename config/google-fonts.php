@@ -11,6 +11,6 @@
 
 namespace RosenfieldCollection\Theme2020;
 
-return [
+return array(
 	'Lato:400,700,900|PT+Serif:400,400i',
-];
+);

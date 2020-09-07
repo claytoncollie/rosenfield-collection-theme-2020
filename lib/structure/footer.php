@@ -24,10 +24,10 @@ namespace RosenfieldCollection\Theme2020\Structure;
  */
 function do_footer_credits() {
 	\genesis_markup(
-		[
+		array(
 			'open'    => '<section class="footer-credits"><div class="wrap">',
 			'context' => 'footer-credits',
-		]
+		)
 	);
 
 	// Display the copyright info.
@@ -43,9 +43,9 @@ function do_footer_credits() {
 	\genesis_do_subnav();
 
 	\genesis_markup(
-		[
+		array(
 			'close'   => '</div></section>',
 			'context' => 'footer-credits',
-		]
+		)
 	);
 }

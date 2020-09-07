@@ -11,6 +11,16 @@
 
 namespace RosenfieldCollection\Theme2020\Structure;
 
+use function RosenfieldCollection\Theme2020\Functions\svg as svg;
+
+/**
+ * Remove default sidebars from this template.
+ *
+ * @since 1.4.0
+ */
+\remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
+\remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
+
 \add_action( 'genesis_hero_section', __NAMESPACE__ . '\do_the_artist_avatar', 8 );
 /**
  * Display author avatar from user profile.
@@ -79,26 +89,30 @@ function do_the_artist_info() {
 	}
 	if ( ! empty( $twitter ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="%s"><i class="fab fa-twitter-square fa-2x"></i></a></div>',
-			esc_url( $twitter )
+			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
+			esc_url( $twitter ),
+			svg( 'twitter-square-brands' ) // phpcs:ignore
 		);
 	}
 	if ( ! empty( $facebook ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="%s"><i class="fab fa-facebook-square fa-2x"></i></a></div>',
-			esc_url( $facebook )
+			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
+			esc_url( $facebook ),
+			svg( 'facebook-square-brands' ) // phpcs:ignore
 		);
 	}
 	if ( ! empty( $instagram ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="%s"><i class="fab fa-instagram fa-2x"></i></a></div>',
-			esc_url( $instagram )
+			'<div class="author-social"><a target="_blank" href="%s">%s</div>',
+			esc_url( $instagram ),
+			svg( 'instagram-square-brands' ) // phpcs:ignore
 		);
 	}
 	if ( ! empty( $pinterest ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="%s"><i class="fab fa-pinterest-square fa-2x"></i></a></div>',
-			esc_url( $pinterest )
+			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
+			esc_url( $pinterest ),
+			svg( 'pinterest-square-brands' ) // phpcs:ignore
 		);
 	}
 	if ( ! empty( $bio ) ) {
