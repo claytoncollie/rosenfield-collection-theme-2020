@@ -71,6 +71,7 @@ namespace RosenfieldCollection\Theme2020;
 		'functions/pending',
 		'functions/claim',
 		'functions/query-vars',
+		'functions/skip-links',
 
 		// Structure.
 		'structure/archive',
