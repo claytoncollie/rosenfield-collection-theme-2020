@@ -11,6 +11,8 @@
 
 namespace RosenfieldCollection\Theme2020\Functions;
 
+use RosenfieldCollection\Theme2020\Functions\svg as svg;
+
 \add_action( 'genesis_after_title_area', __NAMESPACE__ . '\do_header_search_form', 12 );
 /**
  * Outputs the header search form.
@@ -19,8 +21,9 @@ namespace RosenfieldCollection\Theme2020\Functions;
  */
 function do_header_search_form() {
 	$button = sprintf(
-		'<a href="#" role="button" aria-expanded="false" aria-controls="header-search-wrap" class="toggle-header-search close"><span class="screen-reader-text">%s</span><i class="fas fa-times"></i></a>',
-		__( 'Hide Search', 'rosenfield-collection-2020' )
+		'<a href="#" role="button" aria-expanded="false" aria-controls="header-search-wrap" class="toggle-header-search close"><span class="screen-reader-text">%s</span>%s</a>',
+		__( 'Hide Search', 'rosenfield-collection-2020' ),
+		svg( 'times-solid' )
 	);
 
 	printf(
@@ -65,7 +68,8 @@ function add_search_menu_item( string $items, object $args ) : string {
  */
 function get_header_search_toggle() : string {
 	return sprintf(
-		'<a href="#header-search-wrap" aria-controls="header-search-wrap" aria-expanded="false" role="button" class="toggle-header-search"><span class="screen-reader-text">%s</span><i class="fas fa-search"></i></a>',
-		__( 'Show Search', 'rosenfield-collection-2020' )
+		'<a href="#header-search-wrap" aria-controls="header-search-wrap" aria-expanded="false" role="button" class="toggle-header-search"><span class="screen-reader-text">%s</span>%s</a>',
+		__( 'Show Search', 'rosenfield-collection-2020' ),
+		svg( 'search-solid' )
 	);
 }

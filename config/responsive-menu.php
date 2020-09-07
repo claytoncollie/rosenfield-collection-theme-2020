@@ -13,7 +13,7 @@ namespace RosenfieldCollection\Theme2020;
 
 return [
 	'script' => [
-		'mainMenu'         => sprintf( '<span class="hamburger"> </span><span class="screen-reader-text">%s</span>', __( 'Menu', 'rosenfield-collection-2020' ) ),
+		'mainMenu'         => sprintf( '<span class="hamburger"></span><span class="screen-reader-text">%s</span>', __( 'Menu', 'rosenfield-collection-2020' ) ),
 		'menuIconClass'    => null,
 		'subMenuIconClass' => null,
 		'menuClasses'      => [

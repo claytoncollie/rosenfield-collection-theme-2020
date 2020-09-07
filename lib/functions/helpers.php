@@ -12,6 +12,33 @@
 namespace RosenfieldCollection\Theme2020\Functions;
 
 /**
+* Load an inline SVG.
+*
+* @param string $filename The filename of the SVG you want to load.
+*
+* @return string The content of the SVG you want to load.
+*
+* @since 1.4.0
+*/
+function svg( string $filename ) : string {
+
+	$output = '';
+ 
+    // Add the path to your SVG directory inside your theme.
+    $svg_path = '/assets/svg/';
+ 
+    // Check the SVG file exists
+    if ( file_exists( get_stylesheet_directory() . $svg_path . $filename . '.svg' ) ) {
+ 
+        // Load and return the contents of the file
+        $output = file_get_contents( get_stylesheet_directory_uri() . $svg_path . $filename . '.svg' );
+    }
+
+    // Return a blank string if we can't find the file.
+    return $output;
+}
+
+/**
  * Returns the admin-pricing field with proper wrapping
  *
  * @param string $label Field Label.

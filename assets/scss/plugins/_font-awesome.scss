@@ -1,0 +1,13 @@
+/* ## Font Awesome
+--------------------------------------------- */
+
+.fa-w-11,
+.fa-w-16,
+.fa-w-20 {
+	width: 16px;
+
+	.site-header &,
+	.admin-only & {
+		color: $color--white;
+	}
+}
