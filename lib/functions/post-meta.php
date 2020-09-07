@@ -32,7 +32,7 @@ function do_the_post_meta() {
 	$terms     = get_the_terms( get_the_ID(), 'rc_form' );
 	$object_id = get_field( 'object_id' );
 
-	echo '<section class="post-meta"><div class="wrap"><div class="data">';
+	echo '<section id="rosenfield-collection-object-data" class="post-meta"><div class="wrap"><div class="data">';
 
 	if ( ! empty( $terms ) ) {
 		$term   = array_pop( $terms );

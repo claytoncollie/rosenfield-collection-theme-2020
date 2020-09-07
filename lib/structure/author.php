@@ -13,11 +13,7 @@ namespace RosenfieldCollection\Theme2020\Structure;
 
 use function RosenfieldCollection\Theme2020\Functions\svg as svg;
 
-/**
- * Remove default sidebars from this template.
- *
- * @since 1.4.0
- */
+// Remove default sidebars.
 \remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
 \remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
 

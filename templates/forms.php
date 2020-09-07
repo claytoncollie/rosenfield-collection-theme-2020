@@ -14,6 +14,10 @@ namespace RosenfieldCollection\Theme2020\Templates;
 // Force full-width-content layout setting.
 \add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 
+// Remove default sidebars.
+\remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
+\remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
+
 // Remove default loop.
 \remove_action( 'genesis_loop', 'genesis_do_loop' );
 

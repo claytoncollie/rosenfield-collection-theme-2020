@@ -128,7 +128,8 @@ function do_artists_loop() {
 		 */
 		if ( $total_users > $number ) {
 			printf(
-				'<section class="archive-pagination pagination"><div class="wrap">%s</div></section>',
+				'<section id="genesis-archive-pagination" class="archive-pagination pagination" role="navigation" aria-label="%s"><div class="wrap">%s</div></section>',
+				esc_html__( 'Pagination', 'rosenfield-collection-2020' ),
 				wp_kses_post(
 					paginate_links(
 						array(

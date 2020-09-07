@@ -23,17 +23,20 @@ function do_artist_filter() {
 		$letters = $field['choices'];
 
 		if ( ! empty( $letters ) ) {
-			echo '<section class="author-filter"><ul>';
+			echo '<section id="rosenfield-collection-artist-filter" class="author-filter"><ul>';
 
 			printf(
-				'<li><a href="%s">%s</a></li>',
+				'<li class="%s"><a href="%s"><span class="screen-reader-text">%s</span> %s</a></li>',
+				get_query_var( 'artist_filter' ) === '' ? 'current' : '',
 				esc_url( get_permalink( get_page_by_path( 'artists', OBJECT, 'page' ) ) ),
+				esc_html__( 'Go to page', 'rosenfield-collection-2020' ),
 				esc_html__( 'All Artists', 'rosenfield-collection-2020' )
 			);
 
 			foreach ( $letters as $letter ) {
 				printf(
-					'<li><a href="%s">%s</a></li>',
+					'<li class="%s"><a href="%s"><span class="screen-reader-text">%s</span> %s</a></li>',
+					get_query_var( 'artist_filter' ) === $letter ? 'current' : '',
 					esc_url(
 						add_query_arg(
 							'artist_filter',
@@ -41,6 +44,7 @@ function do_artist_filter() {
 							get_permalink()
 						)
 					),
+					esc_html__( 'Filter artist by the letter', 'rosenfield-collection-2020' ),
 					esc_html( ucwords( $letter ) )
 				);
 			}

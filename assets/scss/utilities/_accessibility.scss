@@ -19,9 +19,11 @@
 
 		position: absolute;
 		padding: $spacing--s;
-		color: $color--white;
-		background-color: $color--muted;
+		margin: $spacing--s;
+		color: $color--black;
+		background-color: $color--white;
 		text-decoration: none;
+		z-index: 99999999;
 	}
 }
 

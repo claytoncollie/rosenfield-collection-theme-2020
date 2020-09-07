@@ -62,6 +62,13 @@
 					color: $color--white;
 					background-color: $color--black;
 				}
+
+			}
+
+			&.current a {
+				border-color: $color--black;
+				color: $color--white;
+				background-color: $color--black;
 			}
 		}
 	}
