@@ -58,9 +58,7 @@ namespace RosenfieldCollection\Theme2020;
 		'functions/artists',
 		'functions/statistics',
 		'functions/post-title',
-		'functions/report',
-		'functions/purchase-price',
-		'functions/admin-only',
+		'functions/post-meta-admin',
 		'functions/view-all-objects',
 		'functions/image-gallery',
 		'functions/post-meta',
@@ -73,6 +71,7 @@ namespace RosenfieldCollection\Theme2020;
 		'functions/query-vars',
 		'functions/skip-links',
 		'functions/a11y',
+		'functions/labels',
 
 		// Structure.
 		'structure/archive',

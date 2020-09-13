@@ -38,25 +38,6 @@ function svg( string $filename ) : string {
 }
 
 /**
- * Returns the admin-pricing field with proper wrapping
- *
- * @param string $label Field Label.
- * @param string $content Content.
- *
- * @return string
- *
- * @since 1.0.0
- */
-function admin_pricing( string $label, string $content ) : string {
-	return sprintf(
-		'<section class="admin-pricing" role="complmentary" arai-label="%s"><h3 class="admin-pricing-content">%s</h3><span class="admin-pricing-label">%s</span></section>',
-		esc_html__( 'Total cost for all objects in term', 'rosenfield-collection-2020' ),
-		wp_kses_post( $content ),
-		esc_html( $label )
-	);
-}
-
-/**
  * Return first if conditions match up for column count.
  *
  * @param integer $i Column count as of right now.
