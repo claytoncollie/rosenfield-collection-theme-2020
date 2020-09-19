@@ -14,10 +14,6 @@ namespace RosenfieldCollection\Theme2020\Structure;
 use function RosenfieldCollection\Theme2020\Functions\is_type_archive;
 use function RosenfieldCollection\Theme2020\Functions\get_object_prefix_and_id;
 
-// Remove default sidebars.
-\remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
-\remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
-
 // Reposition entry image.
 \remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
 \add_action( 'genesis_entry_header', 'genesis_do_post_image', 1 );

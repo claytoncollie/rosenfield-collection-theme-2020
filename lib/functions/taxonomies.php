@@ -82,10 +82,25 @@ function get_the_taxonomy_archive( string $taxonomy ) : string {
 				$posts                           = get_posts( $query_args );
 
 				if ( ! empty( $posts ) ) {
-					$img = get_the_post_thumbnail( $posts[0]->ID, 'archive' );
+					$img = get_the_post_thumbnail(
+						$posts[0]->ID,
+						'archive',
+						array(
+							'alt' => sprintf(
+								'%s %s',
+								esc_html__( 'Object:', 'rosenfield-collection-2020' ),
+								esc_html( get_object_prefix_and_id() )
+							),
+						)
+					);
 				}
 
-				$output     .= sprintf( '<article class="entry one-fourth %s">', esc_attr( column_class( $i, 4 ) ) );
+				$output     .= sprintf(
+					'<article class="entry one-fourth %s" aria-label="%s: %s">',
+					esc_attr( column_class( $i, 4 ) ),
+					esc_html__( 'Category', 'rosenfield-collection-2020' ),
+					esc_html( $cat->name )
+				);
 				$output     .= sprintf(
 					'<a href="%s" rel="bookmark" itemprop="url" class="entry-image-link">%s</a>',
 					esc_url( get_term_link( $cat ) ),

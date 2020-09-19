@@ -17,9 +17,6 @@ namespace RosenfieldCollection\Theme2020;
 // Remove default loop.
 \remove_action( 'genesis_loop', 'genesis_do_loop' );
 
-// Remove default sidebar.
-\remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
-
 // Display public post_meta.
 \add_filter( 'body_class', __NAMESPACE__ . '\Functions\is_gallery' );
 

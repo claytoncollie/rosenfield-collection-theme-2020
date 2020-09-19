@@ -42,12 +42,14 @@ function do_the_object_gallery() {
 		);
 		foreach ( $images as $image ) {
 			printf(
-				'<li><img src="%s" alt="%s %s %s"><a href="%s" class="button">%s <span class="label-download">%s</span></a></li>',
+				'<li><img src="%s" alt="%s %s %s"><a href="%s" class="button" aria-label="%s %s">%s <span class="label-download">%s</span></a></li>',
 				esc_url( $image['sizes']['object'] ),
 				esc_html__( 'Made by', 'rosenfield-collection-2020' ),
 				esc_html( get_the_author_meta( 'first_name' ) ),
 				esc_html( get_the_author_meta( 'last_name' ) ),
 				esc_url( $image['url'] ),
+				esc_html__( 'Download full size image', 'rosenfield-collection-2020' ),
+				esc_html( $image['title'] ),
 				svg( 'cloud-download-alt-solid' ), // phpcs:ignore
 				esc_html__( 'Download', 'rosenfield-collection-2020' )
 			);
@@ -59,7 +61,7 @@ function do_the_object_gallery() {
 			esc_html__( 'Large single image', 'rosenfield-collection-2020' )
 		);
 			printf(
-				'<li>%s<a href="%s" class="button">%s <span class="label-download">%s</span></a></li>',
+				'<li>%s<a href="%s" class="button" aria-label="%s %s">%s <span class="label-download">%s</span></a></li>',
 				get_the_post_thumbnail(
 					get_the_ID(),
 					'object',
@@ -73,6 +75,8 @@ function do_the_object_gallery() {
 					)
 				),
 				esc_url( wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) ) ),
+				esc_html__( 'Download full size image for object', 'rosenfield-collection-2020' ),
+				esc_html( get_object_prefix_and_id() ),
 				svg( 'cloud-download-alt-solid' ), // phpcs:ignore
 				esc_html__( 'Download', 'rosenfield-collection-2020' )
 			);

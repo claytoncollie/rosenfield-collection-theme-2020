@@ -80,7 +80,13 @@ function do_artists_loop() {
 				}
 			}
 
-			printf( '<article class="entry one-sixth %s">', esc_attr( column_class( $i, 6 ) ) );
+			printf(
+				'<article class="entry one-sixth %s" aria-label="%s: %s %s">',
+				esc_attr( column_class( $i, 6 ) ),
+				esc_html__( 'Artist', 'rosenfield-collection-2020' ),
+				esc_html( $first_name ),
+				esc_html( $last_name )
+			);
 
 			if ( $attachment_id ) {
 				printf(

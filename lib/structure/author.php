@@ -13,10 +13,6 @@ namespace RosenfieldCollection\Theme2020\Structure;
 
 use function RosenfieldCollection\Theme2020\Functions\svg as svg;
 
-// Remove default sidebars.
-\remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
-\remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
-
 \add_action( 'genesis_hero_section', __NAMESPACE__ . '\do_the_artist_avatar', 8 );
 /**
  * Display author avatar from user profile.

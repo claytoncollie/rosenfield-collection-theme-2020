@@ -86,6 +86,27 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./assets/js/autocomplete.js":
+/*!***********************************!*\
+  !*** ./assets/js/autocomplete.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+jQuery(window).load(function () {
+  jQuery('.aa-dropdown-menu').each(function () {
+    jQuery('.aa-dropdown-menu').attr('aria-label', 'Autocomplete search results');
+  });
+});
+jQuery(window).load(function () {
+  jQuery('input.aa-input').each(function () {
+    var label = jQuery(this).attr('aria-owns');
+    jQuery(this).attr('aria-controls', label);
+  });
+});
+
+/***/ }),
+
 /***/ "./assets/js/header-search.js":
 /*!************************************!*\
   !*** ./assets/js/header-search.js ***!
@@ -229,19 +250,19 @@ window.addEventListener('scroll', function () {
   scrollPosition = window.scrollY;
 
   if (scrollPosition >= siteHeaderHeight) {
-    if (typeof postMeta !== 'undefined') {
+    if ('undefined' !== typeof postMeta) {
       postMeta.classList.add('sticky');
     }
 
-    if (typeof adminOnly !== 'undefined') {
+    if ('undefined' !== typeof adminOnly) {
       adminOnly.classList.add('sticky');
     }
   } else {
-    if (typeof postMeta !== 'undefined') {
+    if ('undefined' !== typeof postMeta) {
       postMeta.classList.remove('sticky');
     }
 
-    if (typeof adminOnly !== 'undefined') {
+    if ('undefined' !== typeof adminOnly) {
       adminOnly.classList.remove('sticky');
     }
   }
@@ -265,16 +286,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ }),
 
 /***/ 1:
-/*!****************************************************************************************************************************************************!*\
-  !*** multi ./node_modules/slick-carousel/slick/slick.min.js ./assets/js/slick-slider.js ./assets/js/header-search.js ./assets/js/sticky-header.js ***!
-  \****************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************!*\
+  !*** multi ./node_modules/slick-carousel/slick/slick.min.js ./assets/js/slick-slider.js ./assets/js/header-search.js ./assets/js/sticky-header.js ./assets/js/autocomplete.js ***!
+  \********************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/claytoncollie/WordPress/rosenfieldcollection/app/public/wp-content/themes/rosenfield-collection-theme-2020/node_modules/slick-carousel/slick/slick.min.js */"./node_modules/slick-carousel/slick/slick.min.js");
 __webpack_require__(/*! /Users/claytoncollie/WordPress/rosenfieldcollection/app/public/wp-content/themes/rosenfield-collection-theme-2020/assets/js/slick-slider.js */"./assets/js/slick-slider.js");
 __webpack_require__(/*! /Users/claytoncollie/WordPress/rosenfieldcollection/app/public/wp-content/themes/rosenfield-collection-theme-2020/assets/js/header-search.js */"./assets/js/header-search.js");
-module.exports = __webpack_require__(/*! /Users/claytoncollie/WordPress/rosenfieldcollection/app/public/wp-content/themes/rosenfield-collection-theme-2020/assets/js/sticky-header.js */"./assets/js/sticky-header.js");
+__webpack_require__(/*! /Users/claytoncollie/WordPress/rosenfieldcollection/app/public/wp-content/themes/rosenfield-collection-theme-2020/assets/js/sticky-header.js */"./assets/js/sticky-header.js");
+module.exports = __webpack_require__(/*! /Users/claytoncollie/WordPress/rosenfieldcollection/app/public/wp-content/themes/rosenfield-collection-theme-2020/assets/js/autocomplete.js */"./assets/js/autocomplete.js");
 
 
 /***/ }),

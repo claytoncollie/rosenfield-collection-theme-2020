@@ -11,7 +11,7 @@
 	var $header    = $( '.site-header' ),
 		$hsToggle  = $( '.toggle-header-search' ),
 		$hsWrap    = $( '#header-search-wrap' ),
-		$hsInput   = $hsWrap.find( 'input[type="search"]' )
+		$hsInput   = $hsWrap.find( 'input[type="search"]' );
 
 	// Make sure JS class is added.
 	$( document ).ready( function() {

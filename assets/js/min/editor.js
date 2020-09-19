@@ -93,13 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-wp.domReady(function () {
-  wp.blocks.unregisterBlockStyle('core/button', 'squared');
-  wp.blocks.registerBlockStyle('core/button', {
-    name: 'rounded',
-    label: 'Rounded'
-  });
-});
+
 
 /***/ }),
 

@@ -11,10 +11,6 @@
 
 namespace RosenfieldCollection\Theme2020\Structure;
 
-// Remove default sidebars.
-\remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
-\remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
-
 \add_action( 'genesis_meta', __NAMESPACE__ . '\front_page_loop', 5 );
 /**
  * Only add hooks if were on the front page.

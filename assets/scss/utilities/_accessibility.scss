@@ -18,12 +18,12 @@
 		@include hide-visually(unhide);
 
 		position: absolute;
-		padding: $spacing--s;
+		z-index: 99999999;
 		margin: $spacing--s;
+		padding: $spacing--s;
 		color: $color--black;
 		background-color: $color--white;
 		text-decoration: none;
-		z-index: 99999999;
 	}
 }
 

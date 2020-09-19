@@ -20,9 +20,17 @@ function do_the_thumbnail_gallery() {
 	$images = get_field( 'images' );
 
 	if ( ! empty( $images ) ) {
-		echo '<section class="slider-thumbnails"><ul class="slider-thumbnails-images">';
+		printf(
+			'<section class="slider-thumbnails" aria-label="%s"><ul class="slider-thumbnails-images">',
+			esc_html__( 'Thumbnail images', 'rosenfield-collection-2020' )
+		);
 		foreach ( $images as $image ) {
-			printf( '<li><img src="%s"></li>', esc_url( $image['sizes']['thumbnail'] ) );
+			printf(
+				'<li><img src="%s" alt="%s %s"></li>',
+				esc_url( $image['sizes']['thumbnail'] ),
+				esc_html__( 'Thumbnail of', 'rosenfield-collection-2020' ),
+				esc_html( $image['title'] )
+			);
 		}
 		echo '</ul></section>';
 	}

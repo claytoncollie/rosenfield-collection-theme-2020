@@ -94,6 +94,7 @@ mix
         `${devPath}/js/slick-slider.js`,
         `${devPath}/js/header-search.js`,
         `${devPath}/js/sticky-header.js`,
+        `${devPath}/js/autocomplete.js`,
     ], `${devPath}/js/min/main.js`);
 
 /*

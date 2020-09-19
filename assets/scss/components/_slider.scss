@@ -10,20 +10,20 @@
 
 	li {
 		position: relative;
-		list-style-type: none;
 		padding-left: 1px;
+		list-style-type: none;
 	}
-	
+
 	img {
-		box-shadow: none;
 		border: 1px solid $color--border;
+		box-shadow: none;
 	}
 
 	button,
 	.button {
 		position: absolute;
-		left: 1px;
 		bottom: 0;
+		left: 1px;
 		padding-right: $spacing--s;
 		padding-left: $spacing--s;
 
