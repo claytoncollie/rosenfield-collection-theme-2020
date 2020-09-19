@@ -17,6 +17,9 @@ namespace RosenfieldCollection\Theme2020\Templates;
 // Add special scripts to wp_head.
 \add_action( 'wp_head', 'acf_form_head', 0 );
 
+// Display author.
+\add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\do_claim_meta', 8 );
+
 // Display ACF form to edit pending post.
 \add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\acf_form_claim', 12 );
 

@@ -24,7 +24,7 @@ function do_artist_filter() {
 
 		if ( ! empty( $letters ) ) {
 			printf(
-				'<section id="rosenfield-collection-artist-filter" class="author-filter" role="navigation" aria-label="%s"><ul>',
+				'<section id="rosenfield-collection-artist-filter" class="inline-filter" role="navigation" aria-label="%s"><ul>',
 				esc_html__( 'Filter artists by last name', 'rosenfield-collection-2020' )
 			);
 

@@ -18,13 +18,32 @@ namespace RosenfieldCollection\Theme2020\Functions;
  * @since 1.3.0
  */
 function do_the_pending_posts() {
-	genesis_custom_loop(
-		array(
-			'post_type'   => 'post',
-			'post_status' => 'pending',
-			'nopaging'    => true,
-		)
-	);
+	$query_var = get_query_var( 'rc_form' );
+
+	if ( ! empty( $query_var ) ) {
+		genesis_custom_loop(
+			array(
+				'post_type'   => 'post',
+				'post_status' => 'pending',
+				'nopaging'    => true,
+				'tax_query'   => array(
+					array(
+						'taxonomy' => 'rc_form',
+						'field'    => 'slug',
+						'terms'    => $query_var,
+					),
+				),
+			)
+		);
+	} else {
+		genesis_custom_loop(
+			array(
+				'post_type'   => 'post',
+				'post_status' => 'pending',
+				'nopaging'    => true,
+			)
+		);
+	}
 }
 
 /**

@@ -23,6 +23,9 @@ namespace RosenfieldCollection\Theme2020\Templates;
 // Filter the permalink to include the post_id.
 \add_filter( 'post_link', 'RosenfieldCollection\Theme2020\Functions\get_the_permalink_with_post_id', 10, 3 );
 
+// Add pending filter.
+\add_action( 'genesis_hero_section', 'RosenfieldCollection\Theme2020\Functions\do_pending_filter', 25 );
+
 // Add custom loop to obnly show pending posts.
 \add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\do_the_pending_posts', 12 );
 

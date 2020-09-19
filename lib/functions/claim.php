@@ -12,6 +12,24 @@
 namespace RosenfieldCollection\Theme2020\Functions;
 
 /**
+ * Display post author.
+ *
+ * @return void
+ * @since 1.6.0
+ */
+function do_claim_meta() {
+	$post_id = get_query_var( 'post_id' );
+
+	if ( ! empty( $post_id ) ) {
+		printf(
+			'<h2>%s %s</h2>',
+			esc_html( get_the_author_meta( 'first_name', get_post_field( 'post_author', $post_id ) ) ),
+			esc_html( get_the_author_meta( 'last_name', get_post_field( 'post_author', $post_id ) ) )
+		);
+	}
+}
+
+/**
  * Frontend editing form for POSTs.
  *
  * @return void

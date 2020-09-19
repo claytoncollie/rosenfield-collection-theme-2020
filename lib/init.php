@@ -67,6 +67,7 @@ namespace RosenfieldCollection\Theme2020;
 		'functions/artist-filter',
 		'functions/image-sizes',
 		'functions/pending',
+		'functions/pending-filter',
 		'functions/claim',
 		'functions/query-vars',
 		'functions/skip-links',
