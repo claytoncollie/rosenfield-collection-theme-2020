@@ -1,6 +1,6 @@
 {
   "name": "rosenfield-collection-2020",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Genesis starter theme with a modern development workflow.",
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
     "template": "genesis"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "build": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "cross-env sync=1 NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "lint": "npm run lint:styles && npm run lint:scripts && npm run lint:php",
     "lint:styles": "cross-env stylelint './assets/scss/**/*.scss' --syntax scss --fix",
