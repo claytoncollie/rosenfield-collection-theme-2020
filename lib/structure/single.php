@@ -11,6 +11,10 @@
 
 namespace RosenfieldCollection\Theme2020\Structure;
 
+// Remove sidebar.
+\remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
+\remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
+
 // Remove featured image.
 \remove_action( 'genesis_entry_content', 'genesis_do_singular_image', 8 );
 
