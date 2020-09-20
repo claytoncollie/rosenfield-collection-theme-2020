@@ -76,7 +76,13 @@ function do_artists_loop() {
 			if ( ! $attachment_id ) {
 				$posts = get_posts( 'author=' . $id . '&posts_per_page=1' );
 				foreach ( $posts as $post ) {
-					$fallback = get_the_post_thumbnail( $post->ID, 'thumbnail' );
+					$fallback = get_the_post_thumbnail(
+						$post->ID,
+						'thumbnail',
+						array(
+							'alt' => esc_html( $first_name ) . ' ' . esc_html( $last_name ),
+						)
+					);
 				}
 			}
 

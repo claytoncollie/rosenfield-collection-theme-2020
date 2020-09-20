@@ -23,11 +23,12 @@ namespace RosenfieldCollection\Theme2020\Functions;
 function attr_entry( array $attributes ) : array {
 	if ( is_archive() || is_home() ) {
 		$attributes['aria-label'] = sprintf(
-			'%s %s %s %s',
+			'%s: %s %s %s %s',
+			esc_html( get_object_prefix_and_id() ),
 			esc_html( get_the_title() ),
-			wp_kses_post( get_field( 'object_id' ) ),
-			esc_html__( 'by', 'rosenfield-collection-2020' ),
-			esc_html( get_the_author() )
+			esc_html__( 'made by', 'rosenfield-collection-2020' ),
+			esc_html( get_the_author_meta( 'first_name' ) ),
+			esc_html( get_the_author_meta( 'last_name' ) )
 		);
 	}
 
@@ -46,9 +47,13 @@ function attr_entry( array $attributes ) : array {
 function attr_entry_title_link( array $attributes ) : array {
 	if ( is_archive() || is_home() ) {
 		$attributes['aria-label'] = sprintf(
-			'%s %s',
-			esc_html__( 'Learn more about object', 'rosenfield-collection-2020' ),
-			wp_kses_post( get_object_prefix_and_id() )
+			'%s: %s %s %s %s %s',
+			wp_kses_post( get_object_prefix_and_id() ),
+			esc_html__( 'Learn more about', 'rosenfield-collection-2020' ),
+			esc_html( get_the_title() ),
+			esc_html__( 'made by', 'rosenfield-collection-2020' ),
+			esc_html( get_the_author_meta( 'first_name' ) ),
+			esc_html( get_the_author_meta( 'last_name' ) )
 		);
 	}
 
@@ -72,9 +77,13 @@ function attr_entry_image( array $attr, \WP_Post $attachment, $size ) : array {
 		if ( isset( $attr['alt'] ) ) {
 			if ( empty( $attr['alt'] ) ) {
 				$attr['alt'] = sprintf(
-					'%s %s',
-					esc_html__( 'Front view of', 'rosenfield-collection-2020' ),
-					esc_html( get_object_prefix_and_id() )
+					'%s: %s %s %s %s %s',
+					esc_html( get_object_prefix_and_id() ),
+					esc_html__( 'Main image for', 'rosenfield-collection-2020' ),
+					esc_html( get_the_title() ),
+					esc_html__( 'made by', 'rosenfield-collection-2020' ),
+					esc_html( get_the_author_meta( 'first_name' ) ),
+					esc_html( get_the_author_meta( 'last_name' ) )
 				);
 			}
 		}
