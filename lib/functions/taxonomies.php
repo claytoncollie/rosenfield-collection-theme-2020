@@ -88,8 +88,8 @@ function get_the_taxonomy_archive( string $taxonomy ) : string {
 						array(
 							'alt' => sprintf(
 								'%s %s',
-								esc_html__( 'Object:', 'rosenfield-collection-2020' ),
-								esc_html( get_object_prefix_and_id() )
+								esc_html__( 'Newest object from category:', 'rosenfield-collection-2020' ),
+								esc_html( $cat->name )
 							),
 						)
 					);

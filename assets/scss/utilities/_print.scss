@@ -76,13 +76,16 @@
 	.nav-primary,
 	.nav-secondary,
 	.post-edit-link,
-	.sidebar {
+	.sidebar,
+	.hero-section .entry-sep,
+	.hero-section .more-link,
+	.post-meta .location,
+	.slider-gallery .button {
 		display: none !important;
 	}
 
 	.title-area {
 		width: 100%;
-		text-align: center;
 	}
 
 	.site-title > a {
@@ -93,8 +96,31 @@
 
 	.site-inner {
 		position: relative;
-		top: -#{$spacing--xl};
 		padding-top: 0;
+	}
+
+	.post-meta {
+		border-bottom: 1px dotted $color--secondary;
+
+		&.sticky {
+			position: relative;
+		}
+	}
+
+	.slick {
+
+		&-list {
+			overflow: visible;
+		}
+
+		&-track {
+			width: 100% !important;
+			transform: translate3d(0, 0, 0) !important;
+		}
+
+		&-cloned {
+			display: none !important;
+		}
 	}
 
 	.author-box {

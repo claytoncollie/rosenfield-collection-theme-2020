@@ -125,6 +125,7 @@
 	&-sep {
 		display: inline-block;
 		margin: 0 $spacing--s;
+		color: $color--gray-800;
 
 		p & {
 			display: none;

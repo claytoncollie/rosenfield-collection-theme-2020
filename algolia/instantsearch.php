@@ -49,15 +49,15 @@ get_header();
 	</div>
 
 	<script type="text/html" id="tmpl-instantsearch-hit">
-		<article class="entry" itemtype="http://schema.org/Article" aria-label="{{ data.post_title }} {{ data.rc_id }} by {{ data.post_author.display_name }}">
+		<article class="entry" itemtype="http://schema.org/Article" aria-label="{{ data.rc_id }}: {{ data.post_title }} made by {{ data.post_author.display_name }}">
 			<# if ( data.images.thumbnail ) { #>
 			<a href="{{ data.permalink }}" class="entry-image-link first one-sixth">
-				<img src="{{ data.images.thumbnail.url }}" alt="Image for {{ data.post_title }} {{ data.rc_id }}" itemprop="image" />
+				<img src="{{ data.images.thumbnail.url }}" alt="{{ data.rc_id }}: Main image for {{ data.post_title }} made by {{ data.post_author.display_name }}" itemprop="image" />
 			</a>
 			<# } #>
 			<div class="entry-wrap five-sixths">
 				<h2 class="entry-title" itemprop="name">
-					<a href="{{ data.permalink }}" class="entry-title-link" rel="bookmark" itemprop="url">{{{ data._highlightResult.post_title.value }}}</a>
+					<a href="{{ data.permalink }}" class="entry-title-link" rel="bookmark" itemprop="url" aria-label="{{ data.rc_id }}: Read more about {{ data.post_title }} made by {{ data.post_author.display_name }}">{{{ data._highlightResult.post_title.value }}}</a>
 				</h2>
 				<div class="entry-content">
 					<p>
