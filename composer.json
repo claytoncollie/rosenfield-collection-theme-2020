@@ -46,7 +46,13 @@
     "install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
     "phpcs": "phpcs --standard=WordPress --extensions=php -p -s lib config templates tests functions.php",
     "phpcbf": "phpcbf --standard=WordPress --extensions=php -p lib config templates tests functions.php",
-    "test-unit": "composer dump && \"vendor/bin/phpunit\" --testsuite unit --color=always",
-    "test-integration": "composer dump && \"vendor/bin/phpunit\" --testsuite integration --configuration tests/phpunit/integration/phpunit.xml.dist --color=always"
+    "test-unit": [
+      "@composer dump",
+      "phpunit --testsuite unit --color=always"
+    ],
+    "test-integration": [
+      "@composer dump",
+      "phpunit --testsuite integration --configuration tests/phpunit/integration/phpunit.xml.dist --color=always"
+    ]
   }
 }
