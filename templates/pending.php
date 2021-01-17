@@ -26,7 +26,7 @@ namespace RosenfieldCollection\Theme2020\Templates;
 // Add pending filter.
 \add_action( 'genesis_hero_section', 'RosenfieldCollection\Theme2020\Functions\do_pending_filter', 25 );
 
-// Add custom loop to obnly show pending posts.
+// Add custom loop to only show pending posts.
 \add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\do_the_pending_posts', 12 );
 
 // Run the Genesis loop.

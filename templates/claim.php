@@ -18,10 +18,10 @@ namespace RosenfieldCollection\Theme2020\Templates;
 \add_action( 'wp_head', 'acf_form_head', 0 );
 
 // Display author.
-\add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\do_claim_meta', 8 );
+\add_action( 'genesis_entry_content', 'RosenfieldCollection\Theme2020\Functions\do_claim_meta', 8 );
 
 // Display ACF form to edit pending post.
-\add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\acf_form_claim', 12 );
+\add_action( 'genesis_entry_content', 'RosenfieldCollection\Theme2020\Functions\acf_form_claim', 12 );
 
 // Run the Genesis loop.
 \genesis();

@@ -11,6 +11,26 @@
 
 namespace RosenfieldCollection\Theme2020\Functions;
 
+\add_action( 'parse_request', __NAMESPACE__ . '\redirect_after_trash' );
+/**
+ * Redirect user to pending page after a post has been deleted.
+ *
+ * @return void
+ * @since
+ */
+function redirect_after_trash() {
+
+	// Bail early if in admin.
+	if ( is_admin() ) {
+		return;
+	}
+
+	if ( array_key_exists( 'trashed', $_GET ) && '1' === $_GET['trashed'] ) { // phpcs:ignore
+		wp_safe_redirect( get_bloginfo( 'url' ) . '/pending' );
+		exit;
+	}
+}
+
 /**
  * Display post author.
  *
@@ -22,9 +42,10 @@ function do_claim_meta() {
 
 	if ( ! empty( $post_id ) ) {
 		printf(
-			'<h2>%s %s</h2>',
+			'<section class="claim-header"><div class="wrap"><h2>%s %s</h2><a href="%s" class="button warning">Delete</a></div></section>',
 			esc_html( get_the_author_meta( 'first_name', get_post_field( 'post_author', $post_id ) ) ),
-			esc_html( get_the_author_meta( 'last_name', get_post_field( 'post_author', $post_id ) ) )
+			esc_html( get_the_author_meta( 'last_name', get_post_field( 'post_author', $post_id ) ) ),
+			esc_url( wp_nonce_url( get_admin_url() . 'post.php?post=' . $post_id . '&action=trash', 'trash-post_' . $post_id ) )
 		);
 	}
 }

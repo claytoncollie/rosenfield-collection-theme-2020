@@ -276,6 +276,14 @@
 		}
 	}
 
+	&.warning {
+		border: 1px solid $color--error;
+		color: $color--white;
+		background: $color--error;
+		padding: $spacing--m * $minor-third $gutter;
+	
+	}
+
 	&.fa,
 	&.fab,
 	&.fas {

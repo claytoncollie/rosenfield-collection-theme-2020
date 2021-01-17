@@ -47,7 +47,7 @@ function do_the_pending_posts() {
 }
 
 /**
- * Filter the permalink on the PENDINGG page to include a query arugment with the post ID.
+ * Filter the permalink on the PENDING page to include a query argument with the post ID.
  *
  * @param string   $url Permalink.
  * @param \WP_Post $post Post Object.
