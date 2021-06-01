@@ -37,7 +37,6 @@
     "stylelint-config-recommended-scss": "^3.2.0",
     "stylelint-config-wordpress": "^13.1.0",
     "stylelint-order": "^0.8.1",
-    "theme-claim": "^0.1.2",
     "vue-template-compiler": "^2.6.11"
   },
   "theme": {
@@ -58,7 +57,6 @@
     "lint:php": "cross-env ./vendor/bin/phpcs . --runtime-set testVersion 5.6- -s",
     "i18n": "npm run i18n:textdomain && npm run i18n:pot",
     "i18n:textdomain": "npx wpi18n addtextdomain --exclude=vendor,tests,node_modules",
-    "i18n:pot": "npx wpi18n makepot --domain-path=assets/lang",
-    "rename": "genesis-theme-claim"
+    "i18n:pot": "npx wpi18n makepot --domain-path=assets/lang"
   }
 }
