@@ -277,11 +277,11 @@
 	}
 
 	&.warning {
+		padding: $spacing--m * $minor-third $gutter;
 		border: 1px solid $color--error;
 		color: $color--white;
 		background: $color--error;
-		padding: $spacing--m * $minor-third $gutter;
-	
+
 	}
 
 	&.fa,
