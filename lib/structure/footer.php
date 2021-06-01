@@ -25,7 +25,7 @@ namespace RosenfieldCollection\Theme2020\Structure;
 function do_footer_credits() {
 	\genesis_markup(
 		array(
-			'open'    => '<section class="footer-credits"><div class="wrap">',
+			'open'    => '<div class="wrap">',
 			'context' => 'footer-credits',
 		)
 	);
@@ -44,7 +44,7 @@ function do_footer_credits() {
 
 	\genesis_markup(
 		array(
-			'close'   => '</div></section>',
+			'close'   => '</div>',
 			'context' => 'footer-credits',
 		)
 	);
