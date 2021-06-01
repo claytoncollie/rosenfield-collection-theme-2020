@@ -42,7 +42,9 @@ function do_the_object_gallery() {
 		);
 		foreach ( $images as $image ) {
 			printf(
-				'<li><img src="%s" alt="%s %s %s"><a href="%s" class="button" aria-label="%s %s">%s <span class="label-download">%s</span></a></li>',
+				'<li><img width="%s" height="%s" src="%s" alt="%s %s %s"><a href="%s" class="button" aria-label="%s %s">%s <span class="label-download">%s</span></a></li>',
+				esc_attr( $image['sizes']['object-width'] ),
+				esc_attr( $image['sizes']['object-height'] ),
 				esc_url( $image['sizes']['object'] ),
 				esc_html__( 'Made by', 'rosenfield-collection-2020' ),
 				esc_html( get_the_author_meta( 'first_name' ) ),

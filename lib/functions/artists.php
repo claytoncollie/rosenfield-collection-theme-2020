@@ -96,8 +96,10 @@ function do_artists_loop() {
 
 			if ( $attachment_id ) {
 				printf(
-					'<a href="%s" class="entry-image-link" rel="bookmark"><img src="%s" alt="%s %s" /></a>',
+					'<a href="%s" class="entry-image-link" rel="bookmark"><img width="%s" height="%s" src="%s" alt="%s %s" /></a>',
 					esc_url( $link ),
+					esc_attr( $avatar[1] ),
+					esc_attr( $avatar[2] ),
 					esc_url( $avatar[0] ),
 					esc_html( $first_name ),
 					esc_html( $last_name )

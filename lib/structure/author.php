@@ -38,7 +38,9 @@ function do_the_artist_avatar() {
 
 	if ( ! empty( $avatar ) ) {
 		printf(
-			'<img src="%s" class="author-avatar" alt="%s %s" />',
+			'<img width="%s" height="%s" src="%s" class="author-avatar" alt="%s %s" />',
+			esc_attr( $avatar[1] ),
+			esc_attr( $avatar[2] ),
 			esc_url( $avatar[0] ),
 			esc_html( $author->first_name ),
 			esc_html( $author->last_name )

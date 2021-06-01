@@ -26,7 +26,9 @@ function do_the_thumbnail_gallery() {
 		);
 		foreach ( $images as $image ) {
 			printf(
-				'<li><img src="%s" alt="%s %s"></li>',
+				'<li><img width="%s" height="%s" src="%s" alt="%s %s"></li>',
+				esc_attr( $image['sizes']['thumbnail-width'] ),
+				esc_attr( $image['sizes']['thumbnail-height'] ),
 				esc_url( $image['sizes']['thumbnail'] ),
 				esc_html__( 'Thumbnail of', 'rosenfield-collection-2020' ),
 				esc_html( $image['title'] )
