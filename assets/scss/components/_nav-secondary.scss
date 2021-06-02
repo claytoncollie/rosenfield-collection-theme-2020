@@ -16,8 +16,15 @@
 
 		// Link
 		a {
+			margin: 0;
+			padding: 0;
 			color: $color--text;
 			text-decoration: underline;
+
+			@include mq(m) {
+				margin-bottom: $spacing--s;
+				padding: $spacing--xs $spacing--s * $golden;
+			}
 		}
 
 		a:hover,

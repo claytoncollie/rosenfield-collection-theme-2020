@@ -23,15 +23,6 @@
 	}
 }
 
-#search-box-mobile {
-	display: inline-block;
-	width: 100%;
-
-	@include mq(m) {
-		display: none;
-	}
-}
-
 .refinements {
 	display: flex;
 	width: 100%;
@@ -89,3 +80,56 @@
 	@include hide-visually();
 }
 
+.ais-ClearRefinements-button {
+	width: 100%;
+	margin-bottom: $spacing--m;
+}
+
+.ais-SearchBox {
+
+	&-form {
+		position: relative;
+		max-width: 768px;
+		margin: $spacing--l auto 0;
+	}
+
+	&-input {
+		padding: $spacing--m $spacing--xl;
+		border-radius: 25px;
+		background-color: $color--white;
+	}
+
+	&-submit {
+		position: absolute;
+		z-index: 1;
+		top: 40%;
+		left: 1.5rem;
+		width: 20px;
+		height: 20px;
+		padding: 0;
+		border: 0;
+		color: $color--dark;
+		background-color: transparent;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $color--dark;
+			background-color: transparent;
+		}
+	}
+
+	&-submiticon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translateX(-50%) translateY(-50%);
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+}

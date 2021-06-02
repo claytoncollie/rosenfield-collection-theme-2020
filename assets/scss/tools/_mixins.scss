@@ -243,6 +243,7 @@
 		&:hover,
 		&:focus {
 			opacity: 0.5;
+			color: $color--dark;
 			background-color: $color--muted;
 			cursor: not-allowed;
 		}

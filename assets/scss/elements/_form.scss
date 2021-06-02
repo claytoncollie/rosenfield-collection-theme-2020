@@ -8,7 +8,7 @@
 
 ::placeholder {
 	opacity: 1; // Firefox fix
-	color: $color--primary;
+	color: $color--gray-600;
 }
 
 abbr[title] {
@@ -38,7 +38,6 @@ textarea {
 	padding: $spacing--s;
 	border: $base--border;
 	border-radius: $base--border--radius;
-	background-clip: padding-box; // Remove iOS box shadow
 	box-shadow: none;
 	font-size: $base--font-size;
 
@@ -81,7 +80,6 @@ input[type="color"] {
 }
 
 input[type="search"] {
-	background-color: $color--gray-300;
 	-webkit-appearance: none;
 
 	&::-webkit-search-cancel-button,

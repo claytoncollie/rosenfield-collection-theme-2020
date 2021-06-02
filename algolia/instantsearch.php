@@ -17,6 +17,7 @@ get_header();
 		<div class="wrap">
 			<div class="hero-inner">
 				<?php echo wp_kses_post( RosenfieldCollection\Theme2020\Structure\hero_title() ); ?>
+				<div id="search-box"></div>
 			</div>
 		</div>
 	</section>
@@ -27,24 +28,21 @@ get_header();
 			<div id="current-refinements"></div>
 		</section>
 		<main id="genesis-content" class="content">
-			<div id="search-box-mobile"></div>
 			<div id="algolia-hits"></div>
 			<div id="algolia-pagination"></div>
 		</main>
 		<aside class="sidebar sidebar-primary" role="search" aria-label="Primary Sidebar" id="genesis-sidebar-primary">
-			<div id="search-box"></div>
+			<div id="clear-refinements"></div>
 			<div id="facet-users"></div>
 			<div id="facet-form"></div>
 			<div id="facet-firing"></div>
 			<div id="facet-technique"></div>
 			<div id="facet-column"></div>
 			<div id="facet-row"></div>
-
 			<?php if ( is_user_logged_in() && current_user_can( 'edit_others_pages' ) ) : ?>
 				<div id="facet-location"></div>
 				<div id="facet-tags"></div>
 			<?php endif; ?>
-
 		</aside>
 	</div>
 
@@ -52,7 +50,7 @@ get_header();
 		<article class="entry" itemtype="http://schema.org/Article" aria-label="{{ data.rc_id }}: {{ data.post_title }} made by {{ data.post_author.display_name }}">
 			<# if ( data.images.thumbnail ) { #>
 			<a href="{{ data.permalink }}" class="entry-image-link first one-sixth">
-				<img src="{{ data.images.thumbnail.url }}" alt="{{ data.rc_id }}: Main image for {{ data.post_title }} made by {{ data.post_author.display_name }}" itemprop="image" />
+				<img height="{{ data.images.thumbnail.height }}" width="{{ data.images.thumbnail.width }}" src="{{ data.images.thumbnail.url }}" alt="{{ data.rc_id }}: Main image for {{ data.post_title }} made by {{ data.post_author.display_name }}" itemprop="image" />
 			</a>
 			<# } #>
 			<div class="entry-wrap five-sixths">
@@ -61,8 +59,7 @@ get_header();
 				</h2>
 				<div class="entry-content">
 					<p>
-						{{ data.post_author.display_name }}<span class="entry-sep">&middot;</span>
-						{{ data.rc_id }}
+						{{ data.post_author.display_name }}<span class="entry-sep">&middot;</span>{{ data.rc_id }}
 						<# if ( data.taxonomies.rc_form ) { #>
 							<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_form }}
 						<# } #>
@@ -153,19 +150,11 @@ get_header();
 				search.addWidget(
 					instantsearch.widgets.searchBox({
 						container: '#search-box',
+						autofocus: true,
 						searchAsYouType: true,
 						showReset: false,
-						showSubmit: false,
-						placeholder: 'Search this website',
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.searchBox({
-						container: '#search-box-mobile',
-						searchAsYouType: true,
-						showReset: false,
-						showSubmit: false,
-						placeholder: 'Search this website',
+						showSubmit: true,
+						placeholder: 'Search by any keyword, artist, form, firing, or technique',
 					})
 				);
 				search.addWidget(
@@ -262,6 +251,11 @@ get_header();
 						})
 					);
 				}
+				search.addWidget(
+					instantsearch.widgets.clearRefinements({
+						container: '#clear-refinements',
+					})
+				);
 
 				search.start();
 

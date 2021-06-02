@@ -78,8 +78,7 @@
 		margin: 0 auto;
 	}
 
-	.search-results &,
-	.no-search-results & {
+	.search & {
 		margin-top: $spacing--m;
 
 		@include mq(m) {

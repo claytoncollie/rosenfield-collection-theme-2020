@@ -10,7 +10,7 @@
 
 	.featuredpost &,
 	.is-archive &,
-	.search-results & .no-search-results & {
+	.search & {
 		margin-bottom: $gutter;
 		border-radius: $base--border--radius;
 		background-color: $color--white;
@@ -54,8 +54,7 @@
 		}
 	}
 
-	.search-results &,
-	.no-search-results & {
+	.search & {
 		display: flex;
 		margin-bottom: $spacing--m;
 		border-bottom: 1px dotted $color--secondary;
@@ -81,8 +80,7 @@
 			font-size: $font-size--h3;
 		}
 
-		.search-results &,
-		.no-search-results & {
+		.search & {
 			margin-bottom: 0;
 
 			@include mq(m) {
@@ -153,8 +151,7 @@
 			}
 		}
 
-		.search-results p &,
-		.no-search-results p & {
+		.search p & {
 			display: inline-block;
 		}
 
@@ -235,8 +232,7 @@
 			border: 1px solid $color--border;
 			box-shadow: $base--box-shadow;
 
-			.search-results &,
-			.no-search-results & {
+			.search & {
 				min-width: auto;
 			}
 
@@ -313,9 +309,9 @@
 		width: 100%;
 		padding: $spacing--s;
 
-		.search-results &,
-		.no-search-results & {
+		.search & {
 			padding-top: 0;
+			text-align: left;
 
 			@include mq(m) {
 				padding-top: $spacing--s;
