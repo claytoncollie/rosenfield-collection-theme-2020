@@ -4,7 +4,7 @@
 
 	$( document ).ready( function() {
 
-		$( '.js-superfish' ).superfish( {
+		$( '.js-superfish' ).superfish({
 			'delay': 100,
 			'animation': {
 				'opacity': 'show',
@@ -12,8 +12,8 @@
 			},
 			'speed': 3000,
 			'dropShadows': false
-		} );
-	} );
+		});
+	});
 
 }( document, jQuery ) );
 
