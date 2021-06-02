@@ -21,6 +21,21 @@ namespace RosenfieldCollection\Theme2020\Functions;
 function do_artists_loop() {
 	$i      = 0;
 	$number = 36;
+	$filter = get_query_var( 'artist_filter' );
+
+	if ( ! empty( $filter ) ) {
+		$artist_filter = array(
+			'meta_key'     => 'artist_filter',
+			'meta_value'   => $filter,
+			'meta_compare' => '=',
+		);
+		// Set high value to disable pagination when using query var.
+		$number = 999;
+	} else {
+		$artist_filter = array();
+	}
+
+	// Set up pagination.
 	$paged  = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$offset = ( $paged - 1 ) * $number;
 
@@ -31,18 +46,6 @@ function do_artists_loop() {
 		'number'              => $number,
 		'offset'              => $offset,
 	);
-
-	$filter = get_query_var( 'artist_filter' );
-
-	if ( ! empty( $filter ) ) {
-		$artist_filter = array(
-			'meta_key'     => 'artist_filter',
-			'meta_value'   => $filter,
-			'meta_compare' => '=',
-		);
-	} else {
-		$artist_filter = array();
-	}
 
 	$args = array_merge_recursive( $arguments, $artist_filter );
 
