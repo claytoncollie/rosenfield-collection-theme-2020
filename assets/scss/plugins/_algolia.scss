@@ -48,7 +48,7 @@
 	width: 100%;
 
 	@include mq(m) {
-		margin-left: $spacing--xl;
+		padding-left: $spacing--xl;
 	}
 }
 
