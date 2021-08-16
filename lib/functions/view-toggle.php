@@ -77,7 +77,7 @@ function do_the_view_toggle_post_meta() {
 	$columns    = get_the_term_list( get_the_ID(), 'rc_column', '', ', ' );
 	$tag        = get_the_term_list( get_the_ID(), 'post_tag', '', ', ', '' );
 	$location   = get_the_term_list( get_the_ID(), 'rc_location', '', ', ', '' );
-	$price      = get_field( 'rc_object_purchace_price' );
+	$price      = get_field( 'rc_object_purchace_price', get_the_ID() );
 
 	echo '<div class="taxonomies">';
 
