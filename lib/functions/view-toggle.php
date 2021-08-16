@@ -75,6 +75,9 @@ function do_the_view_toggle_post_meta() {
 	$techniques = get_the_term_list( get_the_ID(), 'rc_technique', '', ', ' );
 	$rows       = get_the_term_list( get_the_ID(), 'rc_row', '', ', ' );
 	$columns    = get_the_term_list( get_the_ID(), 'rc_column', '', ', ' );
+	$tag        = get_the_term_list( get_the_ID(), 'post_tag', '', ', ', '' );
+	$location   = get_the_term_list( get_the_ID(), 'rc_location', '', ', ', '' );
+	$price      = get_field( 'rc_object_purchace_price' );
 
 	echo '<div class="taxonomies">';
 
@@ -113,6 +116,24 @@ function do_the_view_toggle_post_meta() {
 			'<span class="entry-sep">&middot;</span>%s %s',
 			esc_html__( 'Row', 'rosenfield-collection-2020' ),
 			wp_kses_post( $rows )
+		);
+	}
+	if ( ! empty( $tag ) ) {
+		printf(
+			'<span class="entry-sep">&middot;</span>%s',
+			wp_kses_post( $tag )
+		);
+	}
+	if ( ! empty( $location ) ) {
+		printf(
+			'<span class="entry-sep">&middot;</span>%s',
+			wp_kses_post( $location )
+		);
+	}
+	if ( ! empty( $price ) ) {
+		printf(
+			'<span class="entry-sep">&middot;</span>%s',
+			wp_kses_post( $price )
 		);
 	}
 
