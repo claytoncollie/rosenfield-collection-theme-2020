@@ -75,10 +75,9 @@ function do_the_view_toggle_post_meta() {
 	$techniques = get_the_term_list( get_the_ID(), 'rc_technique', '', ', ' );
 	$rows       = get_the_term_list( get_the_ID(), 'rc_row', '', ', ' );
 	$columns    = get_the_term_list( get_the_ID(), 'rc_column', '', ', ' );
-	$tag        = get_the_term_list( get_the_ID(), 'post_tag', '', ', ' );
 	$location   = get_the_term_list( get_the_ID(), 'rc_location', '', ', ' );
 	$price      = get_field( 'rc_object_purchase_price', get_the_ID() );
-var_dump($price);
+
 	echo '<div class="taxonomies">';
 
 	if ( ! empty( $forms ) ) {
@@ -102,41 +101,37 @@ var_dump($price);
 
 	echo '</div>';
 
-	echo '<div class="location">';
+	if ( is_user_logged_in() ) {
+		echo '<div class="location">';
 
-	if ( ! empty( $columns ) ) {
-		printf(
-			'%s %s',
-			esc_html__( 'Column', 'rosenfield-collection-2020' ),
-			wp_kses_post( $columns )
-		);
-	}
-	if ( ! empty( $rows ) ) {
-		printf(
-			'<span class="entry-sep">&middot;</span>%s %s',
-			esc_html__( 'Row', 'rosenfield-collection-2020' ),
-			wp_kses_post( $rows )
-		);
-	}
-	if ( ! empty( $tag ) ) {
-		printf(
-			'<span class="entry-sep">&middot;</span>%s',
-			wp_kses_post( $tag )
-		);
-	}
-	if ( ! empty( $location ) ) {
-		printf(
-			'<span class="entry-sep">&middot;</span>%s',
-			wp_kses_post( $location )
-		);
-	}
-	if ( ! empty( $price ) ) {
-		printf(
-			'<span class="entry-sep">&middot;</span>%s',
-			wp_kses_post( $price )
-		);
-	}
+		if ( ! empty( $columns ) ) {
+			printf(
+				'%s %s',
+				esc_html__( 'Column', 'rosenfield-collection-2020' ),
+				wp_kses_post( $columns )
+			);
+		}
+		if ( ! empty( $rows ) ) {
+			printf(
+				'<span class="entry-sep">&middot;</span>%s %s',
+				esc_html__( 'Row', 'rosenfield-collection-2020' ),
+				wp_kses_post( $rows )
+			);
+		}
+		if ( ! empty( $location ) ) {
+			printf(
+				'<span class="entry-sep">&middot;</span>%s',
+				wp_kses_post( $location )
+			);
+		}
+		if ( ! empty( $price ) ) {
+			printf(
+				'<span class="entry-sep">&middot;</span>$ %s',
+				wp_kses_post( $price )
+			);
+		}
 
-	echo '</div>';
+		echo '</div>';
+	}
 }
 

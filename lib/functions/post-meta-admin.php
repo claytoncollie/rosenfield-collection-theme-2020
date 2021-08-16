@@ -25,7 +25,7 @@ function do_the_admin_bar() {
 
 	$tag      = has_term( '', 'post_tag' ) ? get_the_term_list( get_the_ID(), 'post_tag', '', ', ', '<span class="entry-sep">&middot;</span>' ) : '';
 	$location = has_term( '', 'rc_location' ) ? get_the_term_list( get_the_ID(), 'rc_location', '', ', ', '<span class="entry-sep">&middot;</span>' ) : '';
-	$price    = get_field( 'rc_object_purchace_price' ) ? sprintf( '$%s', get_field( 'rc_object_purchace_price' ) ) : '';
+	$price    = get_field( 'rc_object_purchace_price', get_the_ID() ) ? sprintf( '$%s', get_field( 'rc_object_purchace_price', get_the_ID() ) ) : '';
 
 	printf(
 		'<section id="rosenfield-collection-admin-object-data" class="admin-only" role="contentinfo" aria-label="%s"><div class="wrap"><div class="admin-only-purchase">%s%s%s</div><div class="admin-only-labels">%s<span class="entry-sep">&middot;</span>%s</div></div></section>',
