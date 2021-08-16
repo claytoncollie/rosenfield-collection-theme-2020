@@ -23,10 +23,6 @@ function do_the_admin_bar() {
 		return;
 	}
 
-	if ( ! current_user_can( 'edit_others_pages' ) ) {
-		return;
-	}
-
 	$tag      = has_term( '', 'post_tag' ) ? get_the_term_list( get_the_ID(), 'post_tag', '', ', ', '<span class="entry-sep">&middot;</span>' ) : '';
 	$location = has_term( '', 'rc_location' ) ? get_the_term_list( get_the_ID(), 'rc_location', '', ', ', '<span class="entry-sep">&middot;</span>' ) : '';
 	$price    = get_field( 'rc_object_purchace_price' ) ? sprintf( '$%s', get_field( 'rc_object_purchace_price' ) ) : '';
