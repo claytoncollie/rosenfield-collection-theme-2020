@@ -75,10 +75,10 @@ function do_the_view_toggle_post_meta() {
 	$techniques = get_the_term_list( get_the_ID(), 'rc_technique', '', ', ' );
 	$rows       = get_the_term_list( get_the_ID(), 'rc_row', '', ', ' );
 	$columns    = get_the_term_list( get_the_ID(), 'rc_column', '', ', ' );
-	$tag        = get_the_term_list( get_the_ID(), 'post_tag', '', ', ', '' );
-	$location   = get_the_term_list( get_the_ID(), 'rc_location', '', ', ', '' );
-	$price      = get_field( 'rc_object_purchace_price', get_the_ID() );
-
+	$tag        = get_the_term_list( get_the_ID(), 'post_tag', '', ', ' );
+	$location   = get_the_term_list( get_the_ID(), 'rc_location', '', ', ' );
+	$price      = get_field( 'rc_object_purchase_price', get_the_ID() );
+var_dump($price);
 	echo '<div class="taxonomies">';
 
 	if ( ! empty( $forms ) ) {
