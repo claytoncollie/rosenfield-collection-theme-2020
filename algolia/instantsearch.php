@@ -88,35 +88,28 @@ get_header();
 					alert('It looks like you haven\'t indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.');
 				}
 
-				const indexName = algolia.indices.searchable_posts.name;
-
 				// Instantiate instantsearch.js.
 				var search = instantsearch({
-					indexName: indexName,
-					searchClient: algoliasearch(algolia.application_id, algolia.search_api_key),
+					indexName: algolia.indices.searchable_posts.name,
+					searchClient: algoliasearch( algolia.application_id, algolia.search_api_key ),
 					routing: {
+						router: instantsearch.routers.history({ writeDelay: 1000 }),
 						stateMapping: {
-							stateToRoute(uiState) {
-								const indexUiState = uiState[indexName];
+							stateToRoute( indexUiState ) {
 								return {
-									s: indexUiState.query,
-									paged: indexUiState.page
+									s: indexUiState[ algolia.indices.searchable_posts.name ].query,
+									page: indexUiState[ algolia.indices.searchable_posts.name ].page
 								}
 							},
-							routeToState(routeState) {
-									return {
-										[indexName]: {
-											query: routeState.s,
-											page: routeState.page,
-										}
-									}
+							routeToState( routeState ) {
+								const indexUiState = {};
+								indexUiState[ algolia.indices.searchable_posts.name ] = {
+									query: routeState.s,
+									page: routeState.page
+								};
+								return indexUiState;
 							}
 						}
-					},
-					searchParameters: {
-						facetingAfterDistinct: true,
-						highlightPreTag: '__ais-highlight__',
-						highlightPostTag: '__/ais-highlight__'
 					}
 				});
 				search.addWidget(
