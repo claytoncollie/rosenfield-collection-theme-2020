@@ -1,7 +1,9 @@
 <?php
 /**
  * Rosenfield Collection Theme.
- *
+ * 
+ * @version   2.0.0
+ * 
  * @package   RosenfieldCollection\Theme2020
  * @link      https://www.rosenfieldcollection.com
  * @author    Clayton Collie
