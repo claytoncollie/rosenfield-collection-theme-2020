@@ -44,9 +44,9 @@
 }
 
 .ais-Stats {
-	position: relative;
-	top: initial;
-	font-size: initial;
+	position: relative !important;
+	top: initial !important;
+	font-size: initial !important;
 }
 
 #algolia-hits {
