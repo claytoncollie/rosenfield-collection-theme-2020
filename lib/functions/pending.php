@@ -26,6 +26,7 @@ function do_the_pending_posts() {
 				'post_type'   => 'post',
 				'post_status' => 'pending',
 				'nopaging'    => true,
+				'orderby'	  => 'author',
 				'tax_query'   => array(
 					array(
 						'taxonomy' => 'rc_form',
