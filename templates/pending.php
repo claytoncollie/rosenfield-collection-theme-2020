@@ -22,7 +22,11 @@ namespace RosenfieldCollection\Theme2020\Templates;
 \add_action(
 	'genesis_entry_content',
 	function() {
+		echo get_the_author_meta( 'ID' );
+		echo '<br>';
 		echo get_the_author_meta( 'user_nicename' );
+		echo '<br>';
+		echo get_the_date();
 	}
 );
 // Filter the permalink to include the post_id.
