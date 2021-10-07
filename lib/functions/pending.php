@@ -26,6 +26,7 @@ function do_the_pending_posts() {
 				'post_type'   => 'post',
 				'post_status' => 'pending',
 				'paged'       => get_query_var( 'paged' ),
+				'order'       => 'ASC',
 				'orderby'     => 'author',
 				'tax_query'   => array(
 					array(
@@ -42,6 +43,7 @@ function do_the_pending_posts() {
 				'post_type'   => 'post',
 				'post_status' => 'pending',
 				'orderby'     => 'author',
+				'order'       => 'ASC',
 				'paged'       => get_query_var( 'paged' ),
 			)
 		);
