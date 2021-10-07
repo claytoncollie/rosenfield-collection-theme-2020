@@ -25,7 +25,7 @@ function do_the_pending_posts() {
 			array(
 				'post_type'   => 'post',
 				'post_status' => 'pending',
-				'nopaging'    => true,
+				// 'nopaging'    => true,
 				'orderby'	  => 'author',
 				'tax_query'   => array(
 					array(
@@ -41,7 +41,8 @@ function do_the_pending_posts() {
 			array(
 				'post_type'   => 'post',
 				'post_status' => 'pending',
-				'nopaging'    => true,
+				// 'nopaging'    => true,
+				'orderby'	  => 'author',
 			)
 		);
 	}

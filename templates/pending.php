@@ -15,10 +15,10 @@ namespace RosenfieldCollection\Theme2020\Templates;
 \add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 
 // Remove author name.
-\remove_action( 'genesis_entry_content', 'RosenfieldCollection\Theme2020\Functions\author_by_line', 8 );
+// \remove_action( 'genesis_entry_content', 'RosenfieldCollection\Theme2020\Functions\author_by_line', 8 );
 
 // Remove the non-existant object ID.
-\remove_action( 'genesis_entry_content', 'RosenfieldCollection\Theme2020\Functions\object_id_by_line', 9 );
+// \remove_action( 'genesis_entry_content', 'RosenfieldCollection\Theme2020\Functions\object_id_by_line', 9 );
 
 // Filter the permalink to include the post_id.
 \add_filter( 'post_link', 'RosenfieldCollection\Theme2020\Functions\get_the_permalink_with_post_id', 10, 3 );
