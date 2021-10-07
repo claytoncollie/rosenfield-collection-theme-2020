@@ -25,8 +25,9 @@ function do_the_pending_posts() {
 			array(
 				'post_type'   => 'post',
 				'post_status' => 'pending',
+				'paged'       => get_query_var( 'paged' )
 				// 'nopaging'    => true,
-				'orderby'	  => 'author',
+				'orderby'     => 'author',
 				'tax_query'   => array(
 					array(
 						'taxonomy' => 'rc_form',
@@ -42,7 +43,8 @@ function do_the_pending_posts() {
 				'post_type'   => 'post',
 				'post_status' => 'pending',
 				// 'nopaging'    => true,
-				'orderby'	  => 'author',
+				'orderby'     => 'author',
+				'paged'       => get_query_var( 'paged' ),
 			)
 		);
 	}

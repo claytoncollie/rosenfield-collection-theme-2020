@@ -19,7 +19,9 @@ namespace RosenfieldCollection\Theme2020\Templates;
 
 // Remove the non-existant object ID.
 // \remove_action( 'genesis_entry_content', 'RosenfieldCollection\Theme2020\Functions\object_id_by_line', 9 );
-
+\add_action( 'genesis_entry_content', function() {
+	echo get_the_author_meta( 'user_nicename' );
+} );
 // Filter the permalink to include the post_id.
 \add_filter( 'post_link', 'RosenfieldCollection\Theme2020\Functions\get_the_permalink_with_post_id', 10, 3 );
 
@@ -28,6 +30,6 @@ namespace RosenfieldCollection\Theme2020\Templates;
 
 // Add custom loop to only show pending posts.
 \add_action( 'genesis_loop', 'RosenfieldCollection\Theme2020\Functions\do_the_pending_posts', 12 );
-
+add_action( 'genesis_after_endwhile', 'genesis_posts_nav' );
 // Run the Genesis loop.
 \genesis();
