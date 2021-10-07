@@ -25,7 +25,7 @@ function do_the_pending_posts() {
 			array(
 				'post_type'   => 'post',
 				'post_status' => 'pending',
-				'paged'       => get_query_var( 'paged' )
+				'paged'       => get_query_var( 'paged' ),
 				// 'nopaging'    => true,
 				'orderby'     => 'author',
 				'tax_query'   => array(
