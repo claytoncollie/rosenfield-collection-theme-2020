@@ -18,36 +18,32 @@ namespace RosenfieldCollection\Theme2020\Functions;
  * @since 1.3.0
  */
 function do_the_pending_posts() {
-	$query_var = get_query_var( 'rc_form' );
+	$form = get_query_var( 'rc_form' );
+	$user = get_query_var( 'artist' );
 
-	if ( ! empty( $query_var ) ) {
-		genesis_custom_loop(
+	$args = array(
+		'post_type'   => 'post',
+		'post_status' => 'pending',
+		'paged'       => get_query_var( 'paged' ),
+		'order'       => 'ASC',
+		'orderby'     => 'author',
+	);
+
+	if ( ! empty( $user ) ) {
+		$args['author'] = absint( $user );
+	}
+
+	if ( ! empty( $form ) ) {
+		$args['tax_query'] = array(
 			array(
-				'post_type'   => 'post',
-				'post_status' => 'pending',
-				'paged'       => get_query_var( 'paged' ),
-				'order'       => 'ASC',
-				'orderby'     => 'author',
-				'tax_query'   => array(
-					array(
-						'taxonomy' => 'rc_form',
-						'field'    => 'slug',
-						'terms'    => $query_var,
-					),
-				),
-			)
-		);
-	} else {
-		genesis_custom_loop(
-			array(
-				'post_type'   => 'post',
-				'post_status' => 'pending',
-				'orderby'     => 'author',
-				'order'       => 'ASC',
-				'paged'       => get_query_var( 'paged' ),
-			)
+				'taxonomy' => 'rc_form',
+				'field'    => 'slug',
+				'terms'    => $form,
+			),
 		);
 	}
+
+	genesis_custom_loop( $args );
 }
 
 /**

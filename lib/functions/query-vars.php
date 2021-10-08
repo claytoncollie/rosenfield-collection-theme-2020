@@ -23,5 +23,6 @@ function add_query_var( array $query_vars ) : array {
 	$query_vars[] = 'post_id';
 	$query_vars[] = 'artist_filter';
 	$query_vars[] = 'view';
+	$query_vars[] = 'artist';
 	return $query_vars;
 }
