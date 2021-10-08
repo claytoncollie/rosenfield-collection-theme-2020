@@ -37,3 +37,38 @@ function do_the_admin_bar() {
 		wp_kses_post( get_horizontal_label_url() )
 	);
 }
+
+/**
+ * Display the purchase price.
+ *
+ * @return void
+ *
+ * @since 1.9.20
+ */
+function the_purchase_price() {
+	printf( '<hr><div>Purchase Price: %s</div><hr>', esc_html( get_field( 'rc_object_purchase_price' ) ) );
+}
+
+/**
+ * Display the purchase date.
+ *
+ * @return void
+ *
+ * @since 1.9.20
+ */
+function the_purchase_date() {
+	printf( '<div>Purchase Date: %s</div><hr>', esc_html( get_field( 'rc_object_purchase_date' ) ) );
+}
+
+/**
+ * Display the purchase location.
+ *
+ * @return void
+ *
+ * @since 1.9.20
+ */
+function the_purchase_location() {
+	$location = get_term( get_field( 'rc_object_location' ), 'rc_location' );
+	$name     = ! is_wp_error( $location ) && ! empty( $location ) ? $location->name : '';
+	printf( '<div>Purchase Location:<br>%s</div>', esc_html( $name ) );
+}
