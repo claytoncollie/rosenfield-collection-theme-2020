@@ -44,7 +44,7 @@ function do_the_post_meta() {
 		printf(
 			'<span>%s%s</span>',
 			esc_html( $prefix ),
-			intval( $object_id )
+			esc_html( $object_id )
 		);
 	}
 	printf(
