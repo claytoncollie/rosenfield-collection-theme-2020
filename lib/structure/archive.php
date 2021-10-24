@@ -148,3 +148,24 @@ function widget_entry_wrap_open( string $open, array $args ) : string {
 
 	return $open;
 }
+
+add_filter( 'pre_get_posts', 'sort_by_object_id' );
+/**
+ * Sort the taxonomy archive pages by object ID
+ *
+ * @param \WP_Query WP_Query.
+ */
+function sort_by_object_id( \WP_Query $query ) {
+	if ( is_admin() ) {
+		return;
+	}
+	if ( ! $query->is_main_query() ) {
+		return;
+	}
+	if ( ! $query->is_tax() ) {
+		return;
+	}
+	$query->set( 'meta_key', 'object_id' );
+	$query->set( 'orderby', 'meta_value_num' );
+	$query->set( 'order', 'DESC' );
+}
