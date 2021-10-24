@@ -149,7 +149,7 @@ function widget_entry_wrap_open( string $open, array $args ) : string {
 	return $open;
 }
 
-add_filter( 'pre_get_posts', 'sort_by_object_id' );
+\add_filter( 'pre_get_posts', __NAMESPACE__ . '\sort_by_object_id' );
 /**
  * Sort the taxonomy archive pages by object ID
  *
