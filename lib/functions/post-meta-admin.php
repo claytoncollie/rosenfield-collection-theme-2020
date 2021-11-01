@@ -46,7 +46,7 @@ function do_the_admin_bar() {
  * @since 1.9.20
  */
 function the_purchase_price() {
-	printf( '<hr><div>Purchase Price: %s</div><hr>', esc_html( get_field( 'rc_object_purchase_price' ) ) );
+	printf( '<hr><div>Price: <strong>%s</strong></div><hr>', esc_html( get_field( 'rc_object_purchase_price' ) ) );
 }
 
 /**
@@ -57,7 +57,7 @@ function the_purchase_price() {
  * @since 1.9.20
  */
 function the_purchase_date() {
-	printf( '<div>Purchase Date: %s</div><hr>', esc_html( get_field( 'rc_object_purchase_date' ) ) );
+	printf( '<div>Date: <strong>%s</strong></div><hr>', esc_html( get_field( 'rc_object_purchase_date' ) ) );
 }
 
 /**
@@ -68,7 +68,6 @@ function the_purchase_date() {
  * @since 1.9.20
  */
 function the_purchase_location() {
-	$location = get_term( get_field( 'rc_object_location' ), 'rc_location' );
-	$name     = ! is_wp_error( $location ) && ! empty( $location ) ? $location->name : '';
-	printf( '<div>Purchase Location:<br>%s</div>', esc_html( $name ) );
+	$location = has_term( '', 'rc_location' ) ? get_the_term_list( get_the_ID(), 'rc_location', '', ', ', '' ) : '';
+	printf( '<div>Location: <strong>%s</strong></div>', esc_html( $location ) );
 }
