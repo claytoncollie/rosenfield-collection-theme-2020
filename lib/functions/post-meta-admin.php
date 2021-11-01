@@ -69,5 +69,5 @@ function the_purchase_date() {
  */
 function the_purchase_location() {
 	$location = has_term( '', 'rc_location' ) ? get_the_term_list( get_the_ID(), 'rc_location', '', ', ', '' ) : '';
-	printf( '<div>Location: <strong>%s</strong></div>', esc_html( $location ) );
+	printf( '<div>Location: <strong>%s</strong></div>', wp_kses_post( $location ) );
 }
