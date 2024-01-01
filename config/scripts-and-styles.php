@@ -2,16 +2,16 @@
 /**
  * Rosenfield Collection Theme.
  *
- * @package   RosenfieldCollection\Theme2020
+ * @package   RosenfieldCollection\Theme
  * @link      https://www.rosenfieldcollection.com
  * @author    Clayton Collie
  * @copyright Copyright © 2019 Clayton Collie
  * @license   GPL-2.0-or-later
  */
 
-namespace RosenfieldCollection\Theme2020;
+namespace RosenfieldCollection\Theme;
 
-use function RosenfieldCollection\Theme2020\Functions\get_theme_url;
+use function RosenfieldCollection\Theme\Helpers\get_theme_url;
 
 $asset_url    = \trailingslashit( get_theme_url() . 'assets' ); // phpcs:ignore
 $google_fonts = \implode( '|', \genesis_get_config( 'google-fonts' ) ); // phpcs:ignore

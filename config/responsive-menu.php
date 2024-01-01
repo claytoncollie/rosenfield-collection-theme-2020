@@ -2,18 +2,18 @@
 /**
  * Rosenfield Collection Theme.
  *
- * @package   RosenfieldCollection\Theme2020
+ * @package   RosenfieldCollection\Theme
  * @link      https://www.rosenfieldcollection.com
  * @author    Clayton Collie
  * @copyright Copyright © 2019 Clayton Collie
  * @license   GPL-2.0-or-later
  */
 
-namespace RosenfieldCollection\Theme2020;
+namespace RosenfieldCollection\Theme;
 
 return array(
 	'script' => array(
-		'mainMenu'         => sprintf( '<span class="hamburger"></span><span class="screen-reader-text">%s</span>', __( 'Menu', 'rosenfield-collection-2020' ) ),
+		'mainMenu'         => sprintf( '<span class="hamburger"></span><span class="screen-reader-text">%s</span>', __( 'Menu', 'rosenfield-collection' ) ),
 		'menuIconClass'    => null,
 		'subMenuIconClass' => null,
 		'menuClasses'      => array(

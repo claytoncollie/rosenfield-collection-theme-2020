@@ -1,7 +1,7 @@
 /**
  * Autofocus the search input on page load.
  *
- * @package RosenfieldCollection\Theme2020
+ * @package RosenfieldCollection\Theme
  * @author CLayton Collie
  * @license GPL-2.0-or-later
  */

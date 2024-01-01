@@ -2,14 +2,14 @@
 /**
  * Rosenfield Collection Theme.
  *
- * @package   RosenfieldCollection\Theme2020
+ * @package   RosenfieldCollection\Theme
  * @link      https://www.rosenfieldcollection.com
  * @author    Clayton Collie
  * @copyright Copyright © 2019 Clayton Collie
  * @license   GPL-2.0-or-later
  */
 
-namespace RosenfieldCollection\Theme2020;
+namespace RosenfieldCollection\Theme;
 
 return array(
 	'add'    => array(
@@ -26,8 +26,8 @@ return array(
 			'skip-links',
 		),
 		'genesis-menus'            => array(
-			'primary'   => __( 'Header Menu', 'rosenfield-collection-2020' ),
-			'secondary' => __( 'Footer Menu', 'rosenfield-collection-2020' ),
+			'primary'   => __( 'Header Menu', 'rosenfield-collection' ),
+			'secondary' => __( 'Footer Menu', 'rosenfield-collection' ),
 		),
 		'genesis-structural-wraps' => array(
 			'header',

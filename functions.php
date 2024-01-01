@@ -2,15 +2,71 @@
 /**
  * Rosenfield Collection Theme.
  *
- * @package   RosenfieldCollection\Theme2020
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-// Starts the engine (do not remove).
-require_once \get_template_directory() . '/lib/init.php';
+define( 'ROSENFIELD_COLLECTION_THEME_TEMPLATE_PATH', get_template_directory() );
+define( 'ROSENFIELD_COLLECTION_THEME_STYLESHEET_PATH', get_stylesheet_directory() );
+define( 'ROSENFIELD_COLLECTION_THEME_STYLESHEET_URL', get_stylesheet_directory_uri() );
+define( 'ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH', ROSENFIELD_COLLECTION_THEME_STYLESHEET_PATH . '/includes/' );
+define( 'ROSENFIELD_COLLECTION_THEME_DIST_PATH', ROSENFIELD_COLLECTION_THEME_STYLESHEET_PATH . '/dist/' );
+define( 'ROSENFIELD_COLLECTION_THEME_DIST_URL', ROSENFIELD_COLLECTION_THEME_STYLESHEET_URL . '/dist/' );
 
-// Loads child theme (do not remove).
-require_once \get_stylesheet_directory() . '/lib/init.php';
+// Bootstrap Genesis theme (do not remove).
+require_once ROSENFIELD_COLLECTION_THEME_TEMPLATE_PATH . '/lib/init.php';
+
+// Composer dependencies (do not remove).
+if ( file_exists( ROSENFIELD_COLLECTION_THEME_STYLESHEET_PATH . '/vendor/autoload.php' ) ) {
+	require ROSENFIELD_COLLECTION_THEME_STYLESHEET_PATH . '/vendor/autoload.php';
+}
+
+// Functionality.
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'helpers.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'setup.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'enqueue.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'markup.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'header.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'widgets.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'search.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'taxonomies.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'artists.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'statistics.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'post-title.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'post-meta-admin.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'view-all-objects.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'image-gallery.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'post-meta.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'thumbnail-gallery.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'view-toggle.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'artist-filter.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'image-sizes.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'pending.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'pending-filter.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'claim-object.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'query-vars.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'skip-links.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'accessibility.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'labels.php';
+
+// Structure.
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/hero.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/home.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/wrap.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/menus.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/author.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/footer.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/header.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/single.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/archive.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/pagination.php';
+
+\RosenfieldCollection\Theme\Structure\Hero\setup();
+\RosenfieldCollection\Theme\Structure\Home\setup();
+\RosenfieldCollection\Theme\Structure\Wrap\setup();
+\RosenfieldCollection\Theme\Structure\Menus\setup();
+\RosenfieldCollection\Theme\Structure\Author\setup();
+\RosenfieldCollection\Theme\Structure\Footer\setup();
+\RosenfieldCollection\Theme\Structure\Header\setup();
+\RosenfieldCollection\Theme\Structure\Single\setup();
+\RosenfieldCollection\Theme\Structure\Archive\setup();
+\RosenfieldCollection\Theme\Structure\Pagination\setup();

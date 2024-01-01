@@ -4,7 +4,7 @@
  *
  * @version   2.0.0
  *
- * @package   RosenfieldCollection\Theme2020
+ * @package   RosenfieldCollection\Theme
  * @link      https://www.rosenfieldcollection.com
  * @author    Clayton Collie
  * @copyright Copyright © 2019 Clayton Collie
@@ -18,7 +18,7 @@ get_header();
 	<section class="hero-section" role="banner" aria-label="Page Header">
 		<div class="wrap">
 			<div class="hero-inner">
-				<?php echo wp_kses_post( RosenfieldCollection\Theme2020\Structure\hero_title() ); ?>
+				<?php echo wp_kses_post( RosenfieldCollection\Theme\Structure\hero_title() ); ?>
 				<div id="search-box"></div>
 			</div>
 		</div>
