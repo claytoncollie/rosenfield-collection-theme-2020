@@ -1,25 +1,27 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Statistics.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\Statistics;
 
-\add_action( 'genesis_after_front-page-1_widget_area', __NAMESPACE__ . '\front_page_1_stats' );
+/**
+ * Setup
+ *
+ * @return void
+ */
+function setup(): void {
+	add_action( 'genesis_after_front-page-1_widget_area', __NAMESPACE__ . '\front_page_1_stats' );
+}
+
 /**
  * Display the high level stats on the homepage.
  *
  * @return void
- *
- * @since 1.0.0
  */
-function front_page_1_stats() {
+function front_page_1_stats(): void {
 	printf(
 		'<section class="statistics">%s%s</section>',
 		wp_kses_post( get_post_count_published( 'one-half first' ) ),
@@ -28,15 +30,13 @@ function front_page_1_stats() {
 }
 
 /**
- * Return the totla number of users for homepage stats.
+ * Return the total number of users for homepage stats.
  *
  * @param string $classes Set column width.
  *
  * @return string
- *
- * @since 1.0.0
  */
-function get_user_count( string $classes ) : string {
+function get_user_count( string $classes ): string {
 	$output = '';
 
 	$users = count_users();
@@ -54,15 +54,13 @@ function get_user_count( string $classes ) : string {
 }
 
 /**
- * Return totle number of published posts.
+ * Return total number of published posts.
  *
  * @param string $classes Set column width.
  *
  * @return string
- *
- * @since 1.0.0
  */
-function get_post_count_published( string $classes ) : string {
+function get_post_count_published( string $classes ): string {
 	$output = '';
 
 	$post_count = wp_count_posts();
@@ -78,5 +76,3 @@ function get_post_count_published( string $classes ) : string {
 
 	return $output;
 }
-
-

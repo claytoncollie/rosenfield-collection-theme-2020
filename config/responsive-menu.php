@@ -1,38 +1,34 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Responsive Menu.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme;
+namespace RosenfieldCollection\Theme\Config\ResponsiveMenu;
 
-return array(
-	'script' => array(
+return [
+	'script' => [
 		'mainMenu'         => sprintf( '<span class="hamburger"></span><span class="screen-reader-text">%s</span>', __( 'Menu', 'rosenfield-collection' ) ),
 		'menuIconClass'    => null,
 		'subMenuIconClass' => null,
-		'menuClasses'      => array(
-			'combine' => array(
+		'menuClasses'      => [
+			'combine' => [
 				'.nav-primary',
-			),
-		),
-		'menuAnimation'    => array(
+			],
+		],
+		'menuAnimation'    => [
 			'effect'   => 'fadeToggle',
 			'duration' => 'fast',
 			'easing'   => 'swing',
-		),
-		'subMenuAnimation' => array(
+		],
+		'subMenuAnimation' => [
 			'effect'   => 'slideToggle',
 			'duration' => 'fast',
 			'easing'   => 'swing',
-		),
-	),
-	'extras' => array(
+		],
+	],
+	'extras' => [
 		'media_query_width' => '896px',
-	),
-);
+	],
+];

@@ -19,8 +19,6 @@ function setup(): void {
 /**
  * Only add hooks if were on the front page.
  *
- * @since 1.0.0
- *
  * @return void
  */
 function front_page_loop() {
@@ -36,14 +34,12 @@ function front_page_loop() {
 /**
  * Add additional classes to the body element.
  *
- * @since 1.0.0
- *
- * @param  array $classes Body classes.
+ * @param array $classes Body classes.
  *
  * @return array
  */
-function front_page_body_class( array $classes ) : array {
-	$classes   = \array_diff( $classes, array( 'no-hero-section' ) );
+function front_page_body_class( array $classes ): array {
+	$classes   = \array_diff( $classes, [ 'no-hero-section' ] );
 	$classes[] = 'front-page';
 
 	return $classes;
@@ -52,12 +48,10 @@ function front_page_body_class( array $classes ) : array {
 /**
  * Display the front page widget areas.
  *
- * @since 1.0.0
- *
  * @return void
  */
 function front_page_widget_areas() {
-	$widget_areas = \get_theme_support( 'front-page-widgets' )[0];
+	$widget_areas = \get_theme_support( 'front-page-widgets' )[0] ?? [];
 
 	for ( $i = 1; $i <= $widget_areas; $i++ ) {
 		\genesis_widget_area( 'front-page-' . $i );

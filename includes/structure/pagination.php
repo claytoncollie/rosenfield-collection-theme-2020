@@ -37,7 +37,7 @@ function setup(): void {
  *
  * @return string
  */
-function entry_pagination_wrap_open( string $open, array $args ) : string {
+function entry_pagination_wrap_open( string $open, array $args ): string {
 	if ( 'archive-pagination' === $args['context'] || 'adjacent-entry-pagination' === $args['context'] ) {
 		$open .= '<div class="wrap">';
 	}
@@ -53,7 +53,7 @@ function entry_pagination_wrap_open( string $open, array $args ) : string {
  *
  * @return string
  */
-function entry_pagination_wrap_close( string $close, array $args ) : string {
+function entry_pagination_wrap_close( string $close, array $args ): string {
 	if ( 'archive-pagination' === $args['context'] || 'adjacent-entry-pagination' === $args['context'] ) {
 		$close .= '</div>';
 	}
@@ -66,7 +66,7 @@ function entry_pagination_wrap_close( string $close, array $args ) : string {
  *
  * @return string
  */
-function previous_page_link() : string {
+function previous_page_link(): string {
 	return \sprintf( '← Previous', 'rosenfield-collection' );
 }
 
@@ -75,7 +75,7 @@ function previous_page_link() : string {
  *
  * @return string
  */
-function next_page_link() : string {
+function next_page_link(): string {
 	return \sprintf( 'Next →', 'rosenfield-collection' );
 }
 
@@ -86,7 +86,7 @@ function next_page_link() : string {
  *
  * @return string
  */
-function previous_pagination_text( string $content ) : string {
+function previous_pagination_text( string $content ): string {
 	return \str_replace( '&#xAB;', '←', $content );
 }
 
@@ -97,6 +97,6 @@ function previous_pagination_text( string $content ) : string {
  *
  * @return string
  */
-function next_pagination_text( string $content ) : string {
+function next_pagination_text( string $content ): string {
 	return \str_replace( '&#xBB;', '→', $content );
 }

@@ -7,10 +7,15 @@
 
 namespace RosenfieldCollection\Theme\Structure\Footer;
 
+/**
+ * Setup
+ *
+ * @return void
+ */
 function setup(): void {
 	add_action( 'genesis_footer', __NAMESPACE__ . '\do_footer_credits' );
 	// Remove default footer.
-	remove_action( 'genesis_footer', 'genesis_do_footer' );	
+	remove_action( 'genesis_footer', 'genesis_do_footer' ); 
 }
 
 /**
@@ -20,10 +25,10 @@ function setup(): void {
  */
 function do_footer_credits(): void {
 	\genesis_markup(
-		array(
+		[
 			'open'    => '<div class="wrap">',
 			'context' => 'footer-credits',
-		)
+		]
 	);
 
 	// Display the copyright info.
@@ -39,9 +44,9 @@ function do_footer_credits(): void {
 	\genesis_do_subnav();
 
 	\genesis_markup(
-		array(
+		[
 			'close'   => '</div>',
 			'context' => 'footer-credits',
-		)
+		]
 	);
 }

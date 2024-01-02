@@ -7,6 +7,11 @@
 
 namespace RosenfieldCollection\Theme\Structure\Header;
 
+/**
+ * Setup
+ *
+ * @return void
+ */
 function setup(): void {
 	add_filter( 'genesis_markup_title-area_close', __NAMESPACE__ . '\title_area_hook', 10, 1 );
 }
@@ -18,7 +23,7 @@ function setup(): void {
  *
  * @return string
  */
-function title_area_hook( string $close_html ) : string {
+function title_area_hook( string $close_html ): string {
 	if ( $close_html ) {
 		\ob_start();
 		\do_action( 'genesis_after_title_area' );
@@ -27,4 +32,3 @@ function title_area_hook( string $close_html ) : string {
 
 	return $close_html;
 }
-

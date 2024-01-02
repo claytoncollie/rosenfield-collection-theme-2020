@@ -1,40 +1,38 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Taxonomies.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\Taxonomies;
+
+use function RosenfieldCollection\Theme\Helpers\column_class;
 
 /**
  * Taxonomy archive for Firing
  *
- * @since  1.4.0
+ * @return void
  */
-function do_taxonomy_loop__firing() {
+function do_taxonomy_loop__firing(): void {
 	echo wp_kses_post( get_the_taxonomy_archive( 'rc_firing' ) );
 }
 
 /**
  * Taxonomy archive for Forms
  *
- * @since  1.4.0
+ * @return void
  */
-function do_taxonomy_loop__form() {
+function do_taxonomy_loop__form(): void {
 	echo wp_kses_post( get_the_taxonomy_archive( 'rc_form' ) );
 }
 
 /**
  * Taxonomy archive for Technique
  *
- * @since  1.4.0
+ * @return void
  */
-function do_taxonomy_loop__technique() {
+function do_taxonomy_loop__technique(): void {
 	echo wp_kses_post( get_the_taxonomy_archive( 'rc_technique' ) );
 }
 
@@ -44,33 +42,31 @@ function do_taxonomy_loop__technique() {
  * @param string $taxonomy Taxonomy term.
  *
  * @return string
- *
- * @since 1.0.0
  */
-function get_the_taxonomy_archive( string $taxonomy ) : string {
+function get_the_taxonomy_archive( string $taxonomy ): string {
 	$output       = '';
 	$column_class = '';
 	$i            = 0;
 
-	$args = array(
+	$args = [
 		'taxonomy'   => esc_attr( $taxonomy ),
 		'post_type'  => 'post',
 		'title_li'   => '',
 		'depth'      => 1,
 		'hide_empty' => 1,
 		'images'     => 1,
-	);
+	];
 
-	$query_args = array(
+	$query_args = [
 		'post_type'   => esc_attr( $args['post_type'] ),
 		'numberposts' => 1,
-		'meta_query'  => array(
-			array(
+		'meta_query'  => [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			[
 				'key'     => '_thumbnail_id',
 				'compare' => 'EXISTS',
-			),
-		),
-	);
+			],
+		],
+	];
 
 	if ( ! empty( $args['images'] ) ) {
 		$cats = get_categories( $args );
@@ -80,18 +76,20 @@ function get_the_taxonomy_archive( string $taxonomy ) : string {
 				$img                             = '';
 				$query_args[ $args['taxonomy'] ] = $cat->slug;
 				$posts                           = get_posts( $query_args );
+				$term_link                       = get_term_link( $cat );
+				$term_link                       = ! empty( $term_link ) && ! is_wp_error( $term_link ) ? (string) $term_link : '';
 
 				if ( ! empty( $posts ) ) {
 					$img = get_the_post_thumbnail(
 						$posts[0]->ID,
 						'archive',
-						array(
+						[
 							'alt' => sprintf(
 								'%s %s',
 								esc_html__( 'Newest object from category:', 'rosenfield-collection' ),
 								esc_html( $cat->name )
 							),
-						)
+						]
 					);
 				}
 
@@ -103,18 +101,18 @@ function get_the_taxonomy_archive( string $taxonomy ) : string {
 				);
 				$output     .= sprintf(
 					'<a href="%s" rel="bookmark" itemprop="url" class="entry-image-link">%s</a>',
-					esc_url( get_term_link( $cat ) ),
+					esc_url( $term_link ),
 					$img
 				);
 				$output     .= '<div class="entry-wrap"><header class="entry-header">';
 				$output     .= sprintf(
 					'<h2 class="entry-title" itemprop="headline"><a href="%s">%s</a></h2>',
-					esc_url( get_term_link( $cat ) ),
+					esc_url( $term_link ),
 					esc_html( $cat->name )
 				);
 					$output .= sprintf(
 						'<a class="more-link" href="%s" aria-label="%s: %s">%s</a><span class="entry-sep">&middot;</span>%s',
-						esc_url( get_term_link( $cat ) ),
+						esc_url( $term_link ),
 						esc_html__( 'View Category', 'rosenfield-collection' ),
 						esc_html( $cat->name ),
 						esc_html__( 'View All', 'rosenfield-collection' ),
@@ -122,7 +120,7 @@ function get_the_taxonomy_archive( string $taxonomy ) : string {
 					);
 				$output     .= '</header></div></article>';
 
-				$i++;
+				++$i;
 			}
 		}
 	}

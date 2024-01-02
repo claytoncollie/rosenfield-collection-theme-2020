@@ -1,27 +1,29 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Setup.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\Setup;
 
 use function RosenfieldCollection\Theme\Helpers\get_theme_dir;
 
-\add_action( 'after_setup_theme', __NAMESPACE__ . '\setup', 5 );
 /**
- * Theme setup.
- *
- * @since 1.0.0
+ * Setup
  *
  * @return void
  */
-function setup() {
+function setup(): void {
+	add_action( 'after_setup_theme', __NAMESPACE__ . '\config', 5 );
+}
+
+/**
+ * Theme setup.
+ *
+ * @return void
+ */
+function config(): void {
 
 	// Get setup configs.
 	$responsive_menu   = \genesis_get_config( 'responsive-menu' );

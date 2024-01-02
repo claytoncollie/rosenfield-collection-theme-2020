@@ -1,47 +1,46 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Image Sizes.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\ImageSizes;
 
 /**
- * Remove the big image threshold.
+ * Setup
  *
- * @since 1.1.0
+ * @return void
  */
-\add_filter( 'big_image_size_threshold', '__return_false' );
+function setup(): void {
+	add_action( 'init', __NAMESPACE__ . '\remove_image_sizes', 99 );
+	add_filter( 'intermediate_image_sizes_advanced', __NAMESPACE__ . '\remove_default_image_sizes' );
+	add_filter( 'admin_post_thumbnail_size', __NAMESPACE__ . '\admin_featured_image_size', 10, 1 );
+	// Remove the big image threshold.
+	add_filter( 'big_image_size_threshold', '__return_false' ); 
+}
 
-\add_action( 'init', __NAMESPACE__ . '\remove_image_sizes', 99 );
 /**
  * Remove all but needed image sizes.
  *
  * @return void
- * @since 1.1.0
  */
-function remove_image_sizes() {
-	foreach ( get_intermediate_image_sizes() as $size ) {
-		if ( ! in_array( $size, array( 'thumbnail', 'object', 'archive', 'full' ), true ) ) {
+function remove_image_sizes(): void {
+	foreach ( get_intermediate_image_sizes() as $size ) { // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
+		if ( ! in_array( $size, [ 'thumbnail', 'object', 'archive', 'full' ], true ) ) {
 			remove_image_size( $size );
 		}
 	}
 }
 
-\add_filter( 'intermediate_image_sizes_advanced', __NAMESPACE__ . '\remove_default_image_sizes' );
 /**
  * Remove WP Core image sizes.
  *
  * @param array $sizes Image sizes.
+ * 
  * @return array
- * @since 1.1.0
  */
-function remove_default_image_sizes( array $sizes ) : array {
+function remove_default_image_sizes( array $sizes ): array {
 	unset( $sizes['medium_large'] );
 	unset( $sizes['large'] );
 	unset( $sizes['1536x1536'] );
@@ -49,18 +48,15 @@ function remove_default_image_sizes( array $sizes ) : array {
 	return $sizes;
 }
 
-\add_filter( 'admin_post_thumbnail_size', __NAMESPACE__ . '\admin_featured_image_size', 10, 3 );
 /**
  * Change Display Size of Featured Image Thumbnail in WordPress Admin Dashboard
  *
  * @param string|array $size Image size.
- * @param int      $thumbnail_id Attachment ID.
- * @param \WP_Post     $post Post object.
+ * 
  * @return string|array
- * @since 1.2.0
  */
-function admin_featured_image_size( $size, int $thumbnail_id, \WP_Post $post ) {
-	$sizes = get_intermediate_image_sizes();
+function admin_featured_image_size( $size ) {
+	$sizes = get_intermediate_image_sizes(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
 
 	$result = array_search( 'archive', $sizes, true );
 

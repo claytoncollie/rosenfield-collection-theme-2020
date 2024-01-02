@@ -1,22 +1,18 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Post Meta.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\PostMeta;
 
 /**
  * Object meta data
  *
- * @since  1.0.0
+ * @return void
  */
-function do_the_post_meta() {
+function do_the_post_meta(): void {
 	$forms      = get_the_term_list( get_the_ID(), 'rc_form', '', ', ', '' );
 	$firings    = get_the_term_list( get_the_ID(), 'rc_firing', '', ', ' );
 	$techniques = get_the_term_list( get_the_ID(), 'rc_technique', '', ', ' );
@@ -100,4 +96,3 @@ function do_the_post_meta() {
 
 	echo '</div></div></section>';
 }
-

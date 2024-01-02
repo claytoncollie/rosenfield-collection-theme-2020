@@ -1,12 +1,8 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Claim Object.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
 namespace RosenfieldCollection\Theme\ClaimObject;
@@ -33,7 +29,7 @@ function redirect_after_trash(): void {
 		return;
 	}
 
-	if ( array_key_exists( 'trashed', $_GET ) && '1' === $_GET['trashed'] ) { // phpcs:ignore
+	if ( array_key_exists( 'trashed', $_GET ) && '1' === $_GET['trashed'] ) {
 		wp_safe_redirect( get_bloginfo( 'url' ) . '/pending' );
 		exit;
 	}
@@ -67,15 +63,15 @@ function acf_form_claim(): void {
 
 	if ( ! empty( $post_id ) ) {
 		acf_form(
-			array(
+			[
 				'post_id'           => absint( $post_id ),
 				'post_title'        => true,
 				'post_content'      => false,
-				'field_groups'      => array( 6277, 22858, 26396 ),
+				'field_groups'      => [ 6277, 22858, 26396 ],
 				'html_after_fields' => '<input type="hidden" name="acf[claim]" value="true"/>',
 				'return'            => get_permalink( get_page_by_path( 'pending', OBJECT, 'page' ) ),
 				'submit_value'      => esc_html__( 'Save Draft', 'rosenfield-collection' ),
-			)
+			]
 		);
 	}
 }
@@ -84,12 +80,12 @@ function acf_form_claim(): void {
  * Set the featured image on form submission.
  *
  * @param int $value Field value.
- * @param int     $post_id Post ID.
+ * @param int $post_id Post ID.
  * 
  * @return int
  */
 function claim_set_featured_image( int $value, int $post_id ): int {
-	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore
+	if ( empty( $_POST['acf']['claim'] ) ) {
 		return $post_id;
 	}
 
@@ -122,7 +118,7 @@ function claim_set_featured_image( int $value, int $post_id ): int {
  * @return int
  */
 function claim_post_status_transition( int $post_id ): int {
-	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore
+	if ( empty( $_POST['acf']['claim'] ) ) {
 		return $post_id;
 	}
 
@@ -138,17 +134,17 @@ function claim_post_status_transition( int $post_id ): int {
 		return $post_id;
 	}
 
-	if ( ! empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore
-		if ( 'true' !== $_POST['acf']['claim'] ) { // phpcs:ignore
+	if ( ! empty( $_POST['acf']['claim'] ) ) {
+		if ( 'true' !== $_POST['acf']['claim'] ) {
 			return $post_id;
 		}
 	}
 
 	$post_id = wp_update_post(
-		array(
+		[
 			'ID'          => $post_id,
 			'post_status' => 'draft',
-		)
+		]
 	);
 
 	if ( ! empty( $post_id ) ) {
@@ -174,7 +170,7 @@ function claim_post_status_transition( int $post_id ): int {
  * @return int
  */
 function claim_delete_attachment( int $post_id ): int {
-	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore
+	if ( empty( $_POST['acf']['claim'] ) ) {
 		return $post_id;
 	}
 

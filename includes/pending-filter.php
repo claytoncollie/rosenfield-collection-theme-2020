@@ -1,27 +1,23 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Pending Filters.
  *
  * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\PendingFilter;
 
 /**
  * Display select field to filter by form
  *
- * @since  1.0.0
+ * @return void
  */
-function do_pending_filter_by_form() {
+function do_pending_filter_by_form(): void {
 	$terms = get_terms(
-		array(
+		[
 			'taxonomy'   => 'rc_form',
 			'hide_empty' => false,
-		)
+		]
 	);
 
 	if ( ! empty( $terms ) ) {
@@ -58,14 +54,14 @@ function do_pending_filter_by_form() {
 /**
  * Display select field to filter by artist
  *
- * @since  1.0.0
+ * @return void
  */
-function do_pending_filter_by_artist() {
+function do_pending_filter_by_artist(): void {
 	$users = get_users(
-		array(
+		[
 			'order'   => 'ASC',
 			'orderby' => 'display_name',
-		)
+		]
 	);
 
 	if ( ! empty( $users ) ) {

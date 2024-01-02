@@ -1,25 +1,30 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Post Title.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\PostTitle;
 
 use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
 
-\add_action( 'genesis_entry_content', __NAMESPACE__ . '\author_by_line', 8 );
+/**
+ * Setup
+ *
+ * @return void
+ */
+function setup(): void {
+	add_action( 'genesis_entry_content', __NAMESPACE__ . '\author_by_line', 8 );
+	add_action( 'genesis_entry_content', __NAMESPACE__ . '\object_id_by_line', 9 );
+}
+
 /**
  * Add artist name to below post title.
  *
- * @since 1.0.0
+ * @return void
  */
-function author_by_line() {
+function author_by_line(): void {
 	if ( \is_author() || \is_singular() ) {
 		return;
 	}
@@ -32,13 +37,12 @@ function author_by_line() {
 	);
 }
 
-\add_action( 'genesis_entry_content', __NAMESPACE__ . '\object_id_by_line', 9 );
 /**
  * Add artist name to below post title.
  *
- * @since 1.0.0
+ * @return void
  */
-function object_id_by_line() {
+function object_id_by_line(): void {
 	if ( \is_author() || \is_singular() ) {
 		return;
 	}

@@ -7,9 +7,13 @@
 
 namespace RosenfieldCollection\Theme\Structure\Hero;
 
+/**
+ * Setup
+ *
+ * @return void
+ */
 function setup(): void {
 	\add_action( 'genesis_meta', __NAMESPACE__ . '\hero_setup' );
-
 }
 
 /**
@@ -75,8 +79,8 @@ function hero_setup(): void {
  *
  * @return array
  */
-function hero_body_class( array $classes ) : array {
-	$classes   = \array_diff( $classes, array( 'no-hero-section' ) );
+function hero_body_class( array $classes ): array {
+	$classes   = \array_diff( $classes, [ 'no-hero-section' ] );
 	$classes[] = 'has-hero-section';
 
 	return $classes;
@@ -121,9 +125,9 @@ function hero_title(): void {
 			'</h1><span class="entry-sep">&middot;</span><a href="%s" class="more-link">%s</a></div>',
 			esc_url(
 				add_query_arg(
-					array(
+					[
 						'referrer' => get_permalink(),
-					),
+					],
 					get_permalink( get_page_by_path( 'contact', OBJECT, 'page' ) )
 				)
 			),
@@ -133,12 +137,12 @@ function hero_title(): void {
 
 	if ( isset( $title ) && $title ) {
 		\genesis_markup(
-			array(
+			[
 				'open'    => $open,
 				'close'   => $close,
 				'content' => $title,
 				'context' => 'hero-title',
-			)
+			]
 		);
 	}
 }
@@ -176,12 +180,12 @@ function hero_excerpt(): void {
 
 	if ( $excerpt ) {
 		\genesis_markup(
-			array(
+			[
 				'open'    => '<p %s itemprop="description">',
 				'close'   => '</p>',
 				'content' => $excerpt,
 				'context' => 'hero-subtitle',
-			)
+			]
 		);
 	}
 }
@@ -226,12 +230,12 @@ function hero_view_toggle(): void {
 function do_archive_headings_intro_text( string $heading = '', string $intro_text = '', string $context = '' ): void {
 	if ( $context && $intro_text ) {
 		\genesis_markup(
-			array(
+			[
 				'open'    => '<p %s itemprop="description">',
 				'close'   => '</p>',
 				'content' => $intro_text,
 				'context' => 'hero-subtitle',
-			)
+			]
 		);
 	}
 }
@@ -243,7 +247,7 @@ function do_archive_headings_intro_text( string $heading = '', string $intro_tex
  *
  * @return array
  */
-function hero_archive_title_attr( array $atts ) : array {
+function hero_archive_title_attr( array $atts ): array {
 	$atts['class']      = 'hero-title';
 	$atts['itemprop']   = 'headline';
 	$atts['role']       = 'banner';
@@ -259,7 +263,7 @@ function hero_archive_title_attr( array $atts ) : array {
  *
  * @return array
  */
-function hero_entry_attr( array $atts ) : array {
+function hero_entry_attr( array $atts ): array {
 	if ( \is_singular() ) {
 		$atts['itemref'] = 'hero-section';
 	}
@@ -274,10 +278,10 @@ function hero_entry_attr( array $atts ) : array {
  */
 function hero_display(): void {
 	\genesis_markup(
-		array(
+		[
 			'open'    => '<section %s role="banner" aria-label="Page header">',
 			'context' => 'hero-section',
-		)
+		]
 	);
 
 	\do_action( 'genesis_before_hero_section' );
@@ -285,19 +289,19 @@ function hero_display(): void {
 	\genesis_structural_wrap( 'hero-section', 'open' );
 
 	\genesis_markup(
-		array(
+		[
 			'open'    => '<div %s>',
 			'context' => 'hero-inner',
-		)
+		]
 	);
 
 	\do_action( 'genesis_hero_section' );
 
 	\genesis_markup(
-		array(
+		[
 			'close'   => '</div>',
 			'context' => 'hero-inner',
-		)
+		]
 	);
 
 	\genesis_structural_wrap( 'hero-section', 'close' );
@@ -305,9 +309,9 @@ function hero_display(): void {
 	\do_action( 'genesis_after_hero_section' );
 
 	\genesis_markup(
-		array(
+		[
 			'close'   => '</section>',
 			'context' => 'hero-section',
-		)
+		]
 	);
 }

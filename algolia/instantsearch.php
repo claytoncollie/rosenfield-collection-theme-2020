@@ -18,7 +18,7 @@ get_header();
 	<section class="hero-section" role="banner" aria-label="Page Header">
 		<div class="wrap">
 			<div class="hero-inner">
-				<?php echo wp_kses_post( RosenfieldCollection\Theme\Structure\hero_title() ); ?>
+				<?php echo wp_kses_post( RosenfieldCollection\Theme\Structure\Hero\hero_title() ); ?>
 				<div id="search-box"></div>
 			</div>
 		</div>

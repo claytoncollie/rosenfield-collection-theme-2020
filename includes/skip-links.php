@@ -1,21 +1,23 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Skip Links.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\SkipLinks;
 
-\add_filter( 'genesis_skip_links_output', __NAMESPACE__ . '\skip_links', 10, 2 );
 /**
- * Change Front Page 1 title to H1.
+ * Setup
  *
- * @since 1.5.0
+ * @return void
+ */
+function setup(): void {
+	add_filter( 'genesis_skip_links_output', __NAMESPACE__ . '\skip_links', 10, 2 );
+}
+
+/**
+ * Filter the available skip links
  *
  * @param array $links {
  *     Default skiplinks.
@@ -26,7 +28,7 @@ namespace RosenfieldCollection\Theme\Functions;
  *
  * @return array
  */
-function skip_links( array $links ) : array {
+function skip_links( array $links ): array {
 	if ( is_page( 'artists' ) ) {
 		$links['rosenfield-collection-artist-filter'] = esc_html__( 'Skip to artist filter by last name', 'rosenfield-collection' );
 	}

@@ -1,22 +1,18 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Thumbnail Gallery.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\ThumbnailGallery;
 
 /**
  * Gallery Loop
  *
- * @since  1.0.0
+ * @return void
  */
-function do_the_thumbnail_gallery() {
+function do_the_thumbnail_gallery(): void {
 	$images = get_field( 'images' );
 
 	if ( ! empty( $images ) ) {

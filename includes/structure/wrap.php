@@ -51,7 +51,7 @@ function structural_wrap_hooks(): void {
  *
  * @return mixed
  */
-function content_sidebar_wrap( array $atts ) : array {
+function content_sidebar_wrap( array $atts ): array {
 	$atts['class'] = 'wrap';
 	return $atts;
 }

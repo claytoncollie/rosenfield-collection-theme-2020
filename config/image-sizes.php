@@ -1,26 +1,22 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Image Sizes.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme;
+namespace RosenfieldCollection\Theme\COnfig\ImagesSizes;
 
-return array(
-	'add'    => array(
-		'object'  => array( 1536, 1536, false ),
-		'archive' => array( 440, 440, true ),
-	),
-	'remove' => array(
+return [
+	'add'    => [
+		'object'  => [ 1536, 1536, false ],
+		'archive' => [ 440, 440, true ],
+	],
+	'remove' => [
 		'medium',
 		'medium_large',
 		'large',
 		'1536x1536',
 		'2048x2048',
-	),
-);
+	],
+];

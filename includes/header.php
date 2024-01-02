@@ -1,24 +1,18 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Header.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\Header;
 
 /**
  * Custom header image callback.
  *
- * @since 1.0.0
- *
  * @return string
  */
-function header() : string {
+function header(): string {
 	$id  = '';
 	$url = '';
 
@@ -46,7 +40,6 @@ function header() : string {
 		$id = \get_page_by_path( 'search' );
 		$id = $id ? $id->ID : false;
 	} elseif ( \is_404() ) {
-		// phpcs:ignore WordPress.VIP.RestrictedFunctions.get_page_by_path_get_page_by_path
 		$id = \get_page_by_path( 'error' );
 		$id = $id ? $id->ID : false;
 	} elseif ( \is_singular() ) {
@@ -66,7 +59,6 @@ function header() : string {
 	if ( $url ) {
 		$selector = \get_theme_support( 'custom-header', 'header-selector' );
 
-		/** @noinspection CssUnknownTarget */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 		return \printf( '<style id="hero-css" type="text/css">' . esc_attr( $selector ) . '{background-image:url(%s)}</style>' . "\n", esc_url( $url ) );
 	} else {
 		return '';

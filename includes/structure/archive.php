@@ -41,7 +41,7 @@ function setup(): void {
  *
  * @return array
  */
-function archive_post_class( array $classes ) : array {
+function archive_post_class( array $classes ): array {
 	if ( ! is_type_archive() ) {
 		return $classes;
 	}
@@ -78,7 +78,7 @@ function archive_post_class( array $classes ) : array {
  *
  * @return string
  */
-function read_more_link( string $more_link_text ) : string {
+function read_more_link( string $more_link_text ): string {
 	$more_link_text = sprintf(
 		'<a class="more-link" href="%s">%s</a>',
 		esc_url( get_permalink( get_the_ID() ) ),
@@ -95,10 +95,10 @@ function read_more_link( string $more_link_text ) : string {
 function entry_wrap_open(): void {
 	if ( is_type_archive() ) {
 		\genesis_markup(
-			array(
+			[
 				'open'    => '<div %s>',
 				'context' => 'entry-wrap',
-			)
+			]
 		);
 	}
 }
@@ -111,10 +111,10 @@ function entry_wrap_open(): void {
 function entry_wrap_close(): void {
 	if ( is_type_archive() ) {
 		\genesis_markup(
-			array(
+			[
 				'close'   => '</div>',
 				'context' => 'entry-wrap',
-			)
+			]
 		);
 	}
 }
@@ -127,14 +127,14 @@ function entry_wrap_close(): void {
  *
  * @return string
  */
-function widget_entry_wrap_open( string $open, array $args ) : string {
+function widget_entry_wrap_open( string $open, array $args ): string {
 	if ( isset( $args['params']['is_widget'] ) && $args['params']['is_widget'] ) {
 		$markup = \genesis_markup(
-			array(
+			[
 				'open'    => '<div %s>',
 				'context' => 'entry-wrap',
 				'echo'    => false,
-			)
+			]
 		);
 
 		$open = $markup . $open;
@@ -146,7 +146,7 @@ function widget_entry_wrap_open( string $open, array $args ) : string {
 /**
  * Sort the taxonomy archive pages by object ID
  *
- * @param WP_Query WP_Query.
+ * @param WP_Query $query Main Query.
  * 
  * @return void
  */

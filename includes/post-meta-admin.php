@@ -1,24 +1,21 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * .
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\PostMetaAdmin;
+
+use function RosenfieldCollection\Theme\Labels\get_vertical_label_url;
+use function RosenfieldCollection\Theme\Labels\get_horizontal_label_url;
 
 /**
- * Display the adin only information on single post template
+ * Display the admin only information on single post template
  *
  * @return void
- *
- * @since 1.0.0
  */
-function do_the_admin_bar() {
+function do_the_admin_bar(): void {
 	if ( ! is_user_logged_in() ) {
 		return;
 	}
@@ -42,10 +39,8 @@ function do_the_admin_bar() {
  * Display the purchase price.
  *
  * @return void
- *
- * @since 1.9.20
  */
-function the_purchase_price() {
+function the_purchase_price(): void {
 	printf( '<hr><div>Price: <strong>%s</strong></div><hr>', esc_html( get_field( 'rc_object_purchase_price' ) ) );
 }
 
@@ -53,10 +48,8 @@ function the_purchase_price() {
  * Display the purchase date.
  *
  * @return void
- *
- * @since 1.9.20
  */
-function the_purchase_date() {
+function the_purchase_date(): void {
 	printf( '<div>Date: <strong>%s</strong></div><hr>', esc_html( get_field( 'rc_object_purchase_date' ) ) );
 }
 
@@ -64,10 +57,8 @@ function the_purchase_date() {
  * Display the purchase location.
  *
  * @return void
- *
- * @since 1.9.20
  */
-function the_purchase_location() {
+function the_purchase_location(): void {
 	$location = has_term( '', 'rc_location' ) ? get_the_term_list( get_the_ID(), 'rc_location', '', ', ', '' ) : '';
 	printf( '<div>Location: <strong>%s</strong></div>', wp_kses_post( $location ) );
 }

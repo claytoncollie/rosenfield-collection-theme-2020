@@ -1,0 +1,28 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+parameters:
+	level: 8
+	reportUnmatchedIgnoredErrors: false
+	checkMissingIterableValueType: false
+	checkMissingCallableSignature: false
+	bootstrapFiles:
+		- phpstan/constants.php
+	excludePaths:
+		analyseAndScan:
+			- dist/*
+			- node_modules/*
+		analyse:
+			- vendor/*
+	scanFiles:
+		- vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+		- vendor/php-stubs/genesis-stubs/genesis-stubs.php
+		- vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
+	paths:
+		- .
+	stubFiles:
+		- phpstan/wp-query.stub
+	ignoreErrors:
+		# Uses func_get_args()
+		- '#^Function apply_filters invoked with [34567] parameters, 2 required\.$#'
+		- '#^Function remove_filter invoked with [34567] parameters, 2-3 required\.$#'
+		- '#^Function remove_action invoked with [34567] parameters, 2-3 required\.$#'

@@ -1,46 +1,43 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Pending.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\Pending;
+
+use WP_Post;
 
 /**
  * Display all posts labeled PENDING
  *
  * @return void
- * @since 1.3.0
  */
-function do_the_pending_posts() {
+function do_the_pending_posts(): void {
 	$form = get_query_var( 'rc_form' );
 	$user = get_query_var( 'artist' );
 
-	$args = array(
+	$args = [
 		'post_type'   => 'post',
 		'post_status' => 'pending',
 		'paged'       => get_query_var( 'paged' ),
 		'order'       => 'ASC',
 		'orderby'     => 'author',
-	);
+	];
 
 	if ( ! empty( $user ) ) {
 		$args['author'] = absint( $user );
 	}
 
 	if ( ! empty( $form ) ) {
-		$args['tax_query'] = array(
-			array(
+		$args['tax_query'] = [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			[
 				'taxonomy' => 'rc_form',
 				'field'    => 'slug',
 				'terms'    => $form,
-			),
-		);
+			],
+		];
 	}
 
 	genesis_custom_loop( $args );
@@ -49,13 +46,12 @@ function do_the_pending_posts() {
 /**
  * Filter the permalink on the PENDING page to include a query argument with the post ID.
  *
- * @param string   $url Permalink.
- * @param \WP_Post $post Post Object.
- * @param boolean  $leavename Whether to keep the post name.
+ * @param string  $url Permalink.
+ * @param WP_Post $post Post Object.
+ * 
  * @return string
- * @since 1.3.0
  */
-function get_the_permalink_with_post_id( string $url, \WP_Post $post, bool $leavename ) : string {
+function get_the_permalink_with_post_id( string $url, WP_Post $post ): string {
 	if ( is_admin() ) {
 		return $url;
 	}

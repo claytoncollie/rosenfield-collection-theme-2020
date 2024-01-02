@@ -23,7 +23,7 @@ if ( file_exists( ROSENFIELD_COLLECTION_THEME_STYLESHEET_PATH . '/vendor/autoloa
 // Functionality.
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'helpers.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'setup.php';
-require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'enqueue.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'assets.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'markup.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'header.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'widgets.php';
@@ -38,7 +38,6 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'image-gallery.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'post-meta.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'thumbnail-gallery.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'view-toggle.php';
-require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'artist-filter.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'image-sizes.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'pending.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'pending-filter.php';
@@ -60,6 +59,23 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/single.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/archive.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/pagination.php';
 
+// Functionality.
+\RosenfieldCollection\Theme\Accessibility\setup();
+\RosenfieldCollection\Theme\Assets\setup();
+\RosenfieldCollection\Theme\Artists\setup();
+\RosenfieldCollection\Theme\ClaimObject\setup();
+\RosenfieldCollection\Theme\ImageSizes\setup();
+\RosenfieldCollection\Theme\Markup\setup();
+\RosenfieldCollection\Theme\PostTitle\setup();
+\RosenfieldCollection\Theme\QueryVars\setup();
+\RosenfieldCollection\Theme\Search\setup();
+\RosenfieldCollection\Theme\Setup\setup();
+\RosenfieldCollection\Theme\SkipLinks\setup();
+\RosenfieldCollection\Theme\Statistics\setup();
+\RosenfieldCollection\Theme\ViewToggle\setup();
+\RosenfieldCollection\Theme\Widgets\setup();
+
+// Structure.
 \RosenfieldCollection\Theme\Structure\Hero\setup();
 \RosenfieldCollection\Theme\Structure\Home\setup();
 \RosenfieldCollection\Theme\Structure\Wrap\setup();

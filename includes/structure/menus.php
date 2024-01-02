@@ -28,7 +28,7 @@ function setup(): void {
  * 
  * @return array Menu options with depth set to 1.
  */
-function limit_menu_depth( array $args ) : array {
+function limit_menu_depth( array $args ): array {
 	$args['depth'] = 1;
 	return $args;
 }

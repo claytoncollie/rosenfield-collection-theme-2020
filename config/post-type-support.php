@@ -2,22 +2,18 @@
 /**
  * Rosenfield Collection Theme.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme;
+namespace RosenfieldCollection\Theme\Config\PostTypeSupport;
 
-return array(
-	'add'    => array(
-		'hero-section' => array( 'page', 'post' ),
-		'excerpt'      => array( 'page', 'post' ),
-	),
-	'remove' => array(
-		'genesis-scripts' => array( 'post' ),
-		'genesis-layouts' => array( 'post' ),
-	),
-);
+return [
+	'add'    => [
+		'hero-section' => [ 'page', 'post' ],
+		'excerpt'      => [ 'page', 'post' ],
+	],
+	'remove' => [
+		'genesis-scripts' => [ 'post' ],
+		'genesis-layouts' => [ 'post' ],
+	],
+];

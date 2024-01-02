@@ -1,33 +1,39 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * View Toggle.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\ViewToggle;
 
-\add_action( 'pre_get_posts', __NAMESPACE__ . '\nopaging', 99 );
+use WP_Query;
+
+/**
+ * Setup
+ *
+ * @return void
+ */
+function setup(): void {
+	add_action( 'pre_get_posts', __NAMESPACE__ . '\nopaging', 99 );
+	add_filter( 'body_class', __NAMESPACE__ . '\body_class' );
+	add_action( 'genesis_entry_footer', __NAMESPACE__ . '\do_the_view_toggle_post_meta' );
+}
+
 /**
  * Filter the posts per page on taxonomy archives.
  *
- * @param \WP_Query $query Main Query.
+ * @param WP_Query $query Main Query.
  *
- * @return \WP_Query
- *
- * @since 1.0.0
+ * @return void
  */
-function nopaging( \WP_Query $query ) {
+function nopaging( WP_Query $query ): void {
 	if ( is_admin() ) {
-		return $query;
+		return;
 	}
 
 	if ( ! $query->is_main_query() ) {
-		return $query;
+		return;
 	}
 
 	$view = get_query_var( 'view' );
@@ -39,15 +45,14 @@ function nopaging( \WP_Query $query ) {
 	}
 }
 
-\add_filter( 'body_class', __NAMESPACE__ . '\body_class' );
 /**
  * Add body class for taxonomy archive.
  *
  * @param array $classes Body classes.
+ * 
  * @return array
- * @since 1.0.0
  */
-function body_class( array $classes ) : array {
+function body_class( array $classes ): array {
 	$view = get_query_var( 'view' );
 
 	if ( ! empty( $view ) ) {
@@ -59,13 +64,12 @@ function body_class( array $classes ) : array {
 	return $classes;
 }
 
-\add_action( 'genesis_entry_footer', __NAMESPACE__ . '\do_the_view_toggle_post_meta' );
 /**
  * Object meta data
  *
- * @since  1.0.0
+ * @return void
  */
-function do_the_view_toggle_post_meta() {
+function do_the_view_toggle_post_meta(): void {
 	if ( ! is_tax() && ! is_tag() ) {
 		return;
 	}
@@ -134,4 +138,3 @@ function do_the_view_toggle_post_meta() {
 		echo '</div>';
 	}
 }
-

@@ -1,24 +1,18 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Labels.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\Labels;
 
 /**
- * Get the URL to build a verttical label
+ * Get the URL to build a vertical label
  *
  * @return string
- *
- * @since 1.0.0
  */
-function get_vertical_label_url() : string {
+function get_vertical_label_url(): string {
 	return sprintf(
 		'<a href="%s" rel="nofollow">%s</a>',
 		esc_url( get_permalink() . 'vertical' ),
@@ -30,10 +24,8 @@ function get_vertical_label_url() : string {
  * Get the URL to build a horizontal label
  *
  * @return string
- *
- * @since 1.0.0
  */
-function get_horizontal_label_url() : string {
+function get_horizontal_label_url(): string {
 	return sprintf(
 		'<a href="%s" rel="nofollow">%s</a>',
 		esc_url( get_permalink() . 'horizontal' ),

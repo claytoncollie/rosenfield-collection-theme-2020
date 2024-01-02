@@ -7,8 +7,13 @@
 
 namespace RosenfieldCollection\Theme\Structure\Author;
 
-use function RosenfieldCollection\Theme\Functions\svg as svg;
+use function RosenfieldCollection\Theme\Helpers\svg;
 
+/**
+ * Setup
+ *
+ * @return void
+ */
 function setup(): void {
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\do_the_artist_avatar', 8 );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\do_the_artist_info', 12 );
@@ -80,28 +85,28 @@ function do_the_artist_info(): void {
 		printf(
 			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $twitter ),
-			svg( 'twitter-square-brands' ) // phpcs:ignore
+			svg( 'twitter-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
 	if ( ! empty( $facebook ) ) {
 		printf(
 			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $facebook ),
-			svg( 'facebook-square-brands' ) // phpcs:ignore
+			svg( 'facebook-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
 	if ( ! empty( $instagram ) ) {
 		printf(
 			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $instagram ),
-			svg( 'instagram-square-brands' ) // phpcs:ignore
+			svg( 'instagram-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
 	if ( ! empty( $pinterest ) ) {
 		printf(
 			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $pinterest ),
-			svg( 'pinterest-square-brands' ) // phpcs:ignore
+			svg( 'pinterest-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
 	if ( ! empty( $bio ) ) {
@@ -111,4 +116,3 @@ function do_the_artist_info(): void {
 		);
 	}
 }
-

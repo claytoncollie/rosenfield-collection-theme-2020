@@ -1,17 +1,14 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Image Gallery.
  *
  * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\ImageGallery;
 
-use function RosenfieldCollection\Theme\Functions\svg as svg;
+use function RosenfieldCollection\Theme\Helpers\svg;
+use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
 
 /**
  * Add body class when image gallery is not populated.
@@ -19,10 +16,8 @@ use function RosenfieldCollection\Theme\Functions\svg as svg;
  * @param array $classes Body classes.
  *
  * @return array
- *
- * @since 1.0.0
  */
-function is_gallery( $classes ) : array {
+function is_gallery( array $classes ): array {
 	$classes[] .= empty( get_field( 'images' ) ) ? 'no-gallery' : '';
 	return $classes;
 }
@@ -30,9 +25,9 @@ function is_gallery( $classes ) : array {
 /**
  * Gallery Loop
  *
- * @since  1.0.0
+ * @return void
  */
-function do_the_object_gallery() {
+function do_the_object_gallery(): void {
 	$images = get_field( 'images' );
 
 	if ( ! empty( $images ) ) {
@@ -43,16 +38,16 @@ function do_the_object_gallery() {
 		foreach ( $images as $image ) {
 			printf(
 				'<li><img width="%s" height="%s" src="%s" alt="%s %s %s"><a href="%s" class="button" aria-label="%s %s">%s <span class="label-download">%s</span></a></li>',
-				esc_attr( $image['sizes']['object-width'] ),
-				esc_attr( $image['sizes']['object-height'] ),
-				esc_url( $image['sizes']['object'] ),
+				esc_attr( $image['sizes']['object-width'] ?? '' ),
+				esc_attr( $image['sizes']['object-height'] ?? '' ),
+				esc_url( $image['sizes']['object'] ?? '' ),
 				esc_html__( 'Made by', 'rosenfield-collection' ),
 				esc_html( get_the_author_meta( 'first_name' ) ),
 				esc_html( get_the_author_meta( 'last_name' ) ),
 				esc_url( $image['url'] ),
 				esc_html__( 'Download full size image', 'rosenfield-collection' ),
 				esc_html( $image['title'] ),
-				svg( 'cloud-download-alt-solid' ), // phpcs:ignore
+				svg( 'cloud-download-alt-solid' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				esc_html__( 'Download', 'rosenfield-collection' )
 			);
 		}
@@ -67,19 +62,19 @@ function do_the_object_gallery() {
 				get_the_post_thumbnail(
 					get_the_ID(),
 					'object',
-					array(
+					[
 						'alt' => sprintf(
 							'%s %s %s',
 							esc_html__( 'Made by', 'rosenfield-collection' ),
 							esc_html( get_the_author_meta( 'first_name' ) ),
 							esc_html( get_the_author_meta( 'last_name' ) )
 						),
-					)
+					]
 				),
 				esc_url( wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) ) ),
 				esc_html__( 'Download full size image for object', 'rosenfield-collection' ),
 				esc_html( get_object_prefix_and_id() ),
-				svg( 'cloud-download-alt-solid' ), // phpcs:ignore
+				svg( 'cloud-download-alt-solid' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				esc_html__( 'Download', 'rosenfield-collection' )
 			);
 		echo '</ul></section>';

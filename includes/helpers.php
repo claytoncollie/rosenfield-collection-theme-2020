@@ -13,10 +13,8 @@ namespace RosenfieldCollection\Theme\Helpers;
  * @param string $filename The filename of the SVG you want to load.
  *
  * @return string The content of the SVG you want to load.
- *
- * @since 1.4.0
  */
-function svg( string $filename ) : string {
+function svg( string $filename ): string {
 	$output = '';
 
 	// Add the path to your SVG directory inside your theme.
@@ -26,7 +24,7 @@ function svg( string $filename ) : string {
 	if ( file_exists( get_stylesheet_directory() . $svg_path . $filename . '.svg' ) ) {
 
 		// Load and return the contents of the file.
-		$output = file_get_contents( get_stylesheet_directory_uri() . $svg_path . $filename . '.svg' ); // phpcs:ignore
+		$output = file_get_contents( get_stylesheet_directory_uri() . $svg_path . $filename . '.svg' );
 	}
 
 	// Return a blank string if we can't find the file.
@@ -41,7 +39,7 @@ function svg( string $filename ) : string {
  *
  * @return string
  */
-function column_class( int $i, int $columns ) : string {
+function column_class( int $i, int $columns ): string {
 	if ( 0 === $i || 0 === $i % $columns ) {
 		return 'first';
 	} else {
@@ -53,7 +51,7 @@ function column_class( int $i, int $columns ) : string {
  *
  * @return string
  */
-function get_object_prefix_and_id() : string {
+function get_object_prefix_and_id(): string {
 	$output = '';
 	$prefix = get_taxonomy_term_prefix();
 	$id     = get_field( 'object_id' );
@@ -70,7 +68,7 @@ function get_object_prefix_and_id() : string {
  *
  * @return string
  */
-function get_taxonomy_term_prefix() : string {
+function get_taxonomy_term_prefix(): string {
 	$prefix = '';
 	$terms  = get_the_terms( get_the_ID(), 'rc_form' );
 
@@ -90,11 +88,9 @@ function get_taxonomy_term_prefix() : string {
 /**
  * Returns the child theme directory.
  *
- * @since 1.0.0
- *
  * @return string
  */
-function get_theme_dir() : string {
+function get_theme_dir(): string {
 	static $dir = null;
 
 	if ( \is_null( $dir ) ) {
@@ -107,11 +103,9 @@ function get_theme_dir() : string {
 /**
  * Returns the child theme URL.
  *
- * @since 1.0.0
- *
  * @return string
  */
-function get_theme_url() : string {
+function get_theme_url(): string {
 	static $url = null;
 
 	if ( \is_null( $url ) ) {
@@ -124,43 +118,35 @@ function get_theme_url() : string {
 /**
  * Check if were on any type of singular page.
  *
- * @since 1.0.0
- *
  * @return bool
  */
-function is_type_single() : bool {
+function is_type_single(): bool {
 	return \is_front_page() || \is_single() || \is_page() || \is_404() || \is_attachment() || \is_singular();
 }
 
 /**
  * Check if were on any type of archive page.
  *
- * @since 1.0.0
- *
  * @return bool
  */
-function is_type_archive() : bool {
+function is_type_archive(): bool {
 	return is_type_archive_page() || \is_home() || \is_post_type_archive() || \is_category() || \is_tag() || \is_tax() || \is_author() || \is_date() || \is_year() || \is_month() || \is_day() || \is_time() || \is_archive();
 }
 
 /**
  * Check if we are nay of these pages.
  *
- * @since 1.4.0
- *
  * @return bool
  */
-function is_type_archive_page() : bool {
-	return \is_page( array( 'forms', 'firings', 'techniques', 'artists' ) );
+function is_type_archive_page(): bool {
+	return \is_page( [ 'forms', 'firings', 'techniques', 'artists' ] );
 }
 
 /**
  * Checks if current page has the hero section enabled.
  *
- * @since 1.0.0
- *
  * @return bool
  */
-function has_hero_section() : bool {
+function has_hero_section(): bool {
 	return \in_array( 'has-hero-section', \get_body_class(), true );
 }

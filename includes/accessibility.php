@@ -1,20 +1,23 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Accessibility.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
 namespace RosenfieldCollection\Theme\Accessibility;
 
+use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
+
+/**
+ * Setup
+ *
+ * @return void
+ */
 function setup(): void {
 	add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\entry' );
 	add_filter( 'genesis_attr_entry-title-link', __NAMESPACE__ . '\entry_title_link' );
-	add_filter( 'wp_get_attachment_image_attributes', __NAMESPACE__ . '\entry_image', 99, 3 );
+	add_filter( 'wp_get_attachment_image_attributes', __NAMESPACE__ . '\entry_image', 99 );
 	add_filter( 'genesis_attr_nav-secondary', __NAMESPACE__ . '\nav_secondary' );
 	add_filter( 'genesis_attr_archive-pagination', __NAMESPACE__ . '\pagination' );
 }
@@ -22,13 +25,11 @@ function setup(): void {
 /**
  * Add ID markup to secondary navigation.
  *
- * @since 1.6.0
- *
  * @param array $attributes Existing attributes for primary navigation element.
  * 
- * @return array Amended attributes for primary navigation element.
+ * @return array
  */
-function entry( array $attributes ) : array {
+function entry( array $attributes ): array {
 	if ( is_archive() || is_home() ) {
 		$attributes['aria-label'] = sprintf(
 			'%s: %s %s %s %s',
@@ -46,13 +47,11 @@ function entry( array $attributes ) : array {
 /**
  * Add ID markup to secondary navigation.
  *
- * @since 1.6.0
- *
  * @param array $attributes Existing attributes for primary navigation element.
  * 
- * @return array Amended attributes for primary navigation element.
+ * @return array
  */
-function entry_title_link( array $attributes ) : array {
+function entry_title_link( array $attributes ): array {
 	if ( is_archive() || is_home() ) {
 		$attributes['aria-label'] = sprintf(
 			'%s: %s %s %s %s %s',
@@ -70,14 +69,12 @@ function entry_title_link( array $attributes ) : array {
 
 /**
  * Define the alt text if it is not present.
- *
- * @since 1.6.0
  * 
- * @param array    $attr Image attributes.
+ * @param array $attributes Image attributes.
  *
  * @return array
  */
-function entry_image( array $attributes ) : array {
+function entry_image( array $attributes ): array {
 	if ( is_archive() || is_home() ) {
 		if ( isset( $attributes['alt'] ) ) {
 			if ( empty( $attributes['alt'] ) ) {
@@ -100,13 +97,11 @@ function entry_image( array $attributes ) : array {
 /**
  * Add ID markup to secondary navigation.
  *
- * @since 1.5.0
- *
  * @param array $attributes Existing attributes for primary navigation element.
  * 
- * @return array Amended attributes for primary navigation element.
+ * @return array
  */
-function nav_secondary( array $attributes ) : array {
+function nav_secondary( array $attributes ): array {
 	$attributes['id'] = 'genesis-nav-secondary';
 	return $attributes;
 }
@@ -114,13 +109,11 @@ function nav_secondary( array $attributes ) : array {
 /**
  * Add attributes for pagination element.
  *
- * @since 1.5.0
- *
  * @param array $attributes Existing attributes for pagination element.
  * 
- * @return array Amended attributes for pagination element.
+ * @return array
  */
-function pagination( array $attributes ) : array {
+function pagination( array $attributes ): array {
 	$attributes['id'] = 'genesis-archive-pagination';
 	return $attributes;
 }

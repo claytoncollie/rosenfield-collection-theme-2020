@@ -1,22 +1,18 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * View All Objects.
  *
- * @package   RosenfieldCollection\Theme
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\Functions;
+namespace RosenfieldCollection\Theme\ViewAllObjects;
 
 /**
  * Read more link to view author profile.
  *
- * @since  1.0.0
+ * @return void
  */
-function do_the_view_all_objects() {
+function do_the_view_all_objects(): void {
 	$avatar_id = get_field( 'artist_photo', 'user_' . get_the_author_meta( 'ID' ) );
 
 	if ( ! empty( $avatar_id ) ) {
@@ -24,10 +20,10 @@ function do_the_view_all_objects() {
 			$avatar_id,
 			'thumbnail',
 			false,
-			array(
+			[
 				'class' => 'author-avatar',
 				'alt'   => esc_html( get_the_author_meta( 'first_name' ) ) . ' ' . esc_html( get_the_author_meta( 'last_name' ) ),
-			)
+			]
 		);
 	} else {
 		$avatar = '';
