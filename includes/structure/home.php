@@ -14,6 +14,7 @@ namespace RosenfieldCollection\Theme\Structure\Home;
  */
 function setup(): void {
 	add_action( 'genesis_meta', __NAMESPACE__ . '\front_page_loop', 5 );
+	add_action( 'genesis_after_front-page-1_widget_area', __NAMESPACE__ . '\front_page_1_stats' );
 }
 
 /**
@@ -56,4 +57,13 @@ function front_page_widget_areas() {
 	for ( $i = 1; $i <= $widget_areas; $i++ ) {
 		\genesis_widget_area( 'front-page-' . $i );
 	}
+}
+
+/**
+ * Display the high level stats on the homepage.
+ *
+ * @return void
+ */
+function front_page_1_stats(): void {
+	get_template_part( 'partials/statistics' );
 }

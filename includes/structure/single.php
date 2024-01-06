@@ -13,6 +13,8 @@ namespace RosenfieldCollection\Theme\Structure\Single;
  * @return void
  */
 function setup(): void {
+	add_action( 'genesis_hero_section', __NAMESPACE__ . '\view_all_from_artist', 12 );
+	
 	// Remove sidebar.
 	remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
 	remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
@@ -22,4 +24,17 @@ function setup(): void {
 	remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 	// Disable post edit link.
 	add_filter( 'edit_post_link', '__return_empty_string' );
+}
+
+/**
+ * View all objects by artist link
+ *
+ * @return void
+ */
+function view_all_from_artist(): void {
+	if ( ! is_singular( 'post' ) ) {
+		return;
+	}
+
+	get_template_part( 'partials/view-all-from-artist' );
 }
