@@ -25,6 +25,7 @@ function setup(): void {
 	add_action( 'genesis_entry_footer', __NAMESPACE__ . '\entry_wrap_close', 15 );
 	add_filter( 'genesis_markup_entry-header_open', __NAMESPACE__ . '\widget_entry_wrap_open', 10, 2 );
 	add_filter( 'pre_get_posts', __NAMESPACE__ . '\sort_by_object_id' );
+	add_action( 'genesis_entry_content', __NAMESPACE__ . '\object_by_line', 8 );
 	// Reposition entry image.
 	remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
 	add_action( 'genesis_entry_header', 'genesis_do_post_image', 1 );
@@ -166,4 +167,20 @@ function sort_by_object_id( WP_Query $query ): void {
 	$query->set( 'meta_key', 'object_id' );
 	$query->set( 'orderby', 'meta_value_num' );
 	$query->set( 'order', 'DESC' );
+}
+
+/**
+ * Display the object author name and object ID below the post title
+ *
+ * @return void
+ */
+function object_by_line(): void {
+	if ( is_singular() ) {
+		return;
+	}
+	if ( is_author() ) {
+		return;
+	}
+
+	get_template_part( 'partials/object-by-line' );
 }

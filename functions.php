@@ -30,7 +30,6 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'widgets.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'search.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'taxonomies.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'artists.php';
-require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'post-title.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'post-meta-admin.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'image-gallery.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'post-meta.php';
@@ -65,7 +64,6 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/pagination.p
 \RosenfieldCollection\Theme\ImageSizes\setup();
 \RosenfieldCollection\Theme\ListView\setup();
 \RosenfieldCollection\Theme\Markup\setup();
-\RosenfieldCollection\Theme\PostTitle\setup();
 \RosenfieldCollection\Theme\QueryVars\setup();
 \RosenfieldCollection\Theme\Search\setup();
 \RosenfieldCollection\Theme\Setup\setup();
