@@ -8,6 +8,13 @@
 namespace RosenfieldCollection\Theme\ImageSizes;
 
 /**
+ * Thumbnail
+ * 
+ * @var string
+ */
+const THUMBNAIL = 'thumbnail';
+
+/**
  * Setup
  *
  * @return void

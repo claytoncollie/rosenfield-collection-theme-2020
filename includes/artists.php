@@ -24,9 +24,16 @@ const QUERY_VAR = 'artist_filter';
 /**
  * Posts per page
  * 
- * @var string
+ * @var int
  */
 const POSTS_PER_PAGE = 36;
+
+/**
+ * Number of posts to show when using filter variable
+ * 
+ * @var int
+ */
+const MAX_PER_PAGE = 999;
 
 /**
  * Setup

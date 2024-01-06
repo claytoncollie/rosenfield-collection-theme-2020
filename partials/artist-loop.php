@@ -9,15 +9,18 @@ use function RosenfieldCollection\Theme\Helpers\column_class;
 
 use const RosenfieldCollection\Theme\Artists\QUERY_VAR;
 use const RosenfieldCollection\Theme\Artists\POSTS_PER_PAGE;
+use const RosenfieldCollection\Theme\Artists\MAX_PER_PAGE;
+use const RosenfieldCollection\Theme\ImageSizes\THUMBNAIL;
 
 // Keep count for columns.
 $index = 0;
 // Get the query var to know if we are filtering or not.
 $filter_value = get_query_var( QUERY_VAR ) ?? [];
 // Set high value to disable pagination when using query var.
-$posts_per_page = ! empty( $filter_value ) ? 999 : POSTS_PER_PAGE;
+$posts_per_page = ! empty( $filter_value ) ? MAX_PER_PAGE : POSTS_PER_PAGE;
 // Set up pagination.
-$page_number = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+$is_paged    = get_query_var( 'paged' );
+$page_number = $is_paged ? $is_paged : 1;
 $offset      = ( $page_number - 1 ) * $posts_per_page;
 // Setup the possible meta query.
 $filter_query = [];
@@ -56,15 +59,15 @@ $total_pages = intval( $total_users / $posts_per_page ) + 1;
 
 foreach ( $user_query->results as $user ) :
 	$fallback        = '';
-	$user_id         = $user->ID;
-	$first_name      = $user->first_name;
-	$last_name       = $user->last_name;
-	$full_name       = $first_name . ' ' . $last_name;
+	$user_id         = (int) $user->ID;
+	$first_name      = (string) $user->first_name;
+	$last_name       = (string) $user->last_name;
+	$full_name       = (string) $first_name . ' ' . $last_name;
 	$column_class    = column_class( $index, 6 );
 	$permalink       = get_author_posts_url( $user_id );
 	$number_of_posts = count_user_posts( $user_id );
-	$attachment_id   = get_field( 'artist_photo', 'user_' . $user_id );
-	$avatar          = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
+	$attachment_id   = (int) get_field( 'artist_photo', 'user_' . $user_id );
+	$avatar          = wp_get_attachment_image_src( $attachment_id, THUMBNAIL );
 	$avatar          = is_array( $avatar ) ? $avatar : [];
 	$avatar_width    = $avatar[1] ?? false;
 	$avatar_width    = $avatar_width ? (string) $avatar_width : '';
@@ -83,7 +86,7 @@ foreach ( $user_query->results as $user ) :
 		foreach ( $author_posts as $author_post ) {
 			$fallback = get_the_post_thumbnail(
 				(int) $author_post->ID,
-				'thumbnail',
+				THUMBNAIL,
 				[
 					'alt' => esc_html( $full_name ),
 				]
@@ -136,7 +139,7 @@ foreach ( $user_query->results as $user ) :
 					[
 						'base'      => get_pagenum_link( 1 ) . '%_%',
 						'format'    => 'page/%#%/',
-						'current'   => max( 1, get_query_var( 'paged' ) ),
+						'current'   => max( 1, $is_paged ),
 						'total'     => $total_pages,
 						'prev_next' => true,
 						'type'      => 'list',
