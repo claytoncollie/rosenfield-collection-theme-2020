@@ -36,13 +36,14 @@
 	<!-- Prefixes for all constants, functions, classes, and variables. -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="prefixes" type="array" value="genesis,RosenfieldCollection,ROSENFIELD_COLLECTION_THEME"/>
+			<property name="prefixes" type="array" value="rc_,genesis,RosenfieldCollection,ROSENFIELD_COLLECTION_THEME"/>
 		</properties>
 	</rule>
 
 	<!-- Don't worry about global namespace variables -->
 	<rule ref="WordPress">
 		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound"/>
+		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
 	</rule>
 
 	<!-- Define the text-domain for the entire theme -->

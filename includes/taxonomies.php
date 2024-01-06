@@ -10,12 +10,54 @@ namespace RosenfieldCollection\Theme\Taxonomies;
 use function RosenfieldCollection\Theme\Helpers\column_class;
 
 /**
+ * Firing
+ * 
+ * @var string
+ */
+const FIRING = 'rc_firing';
+
+/**
+ * Form
+ * 
+ * @var string
+ */
+const FORM = 'rc_form';
+
+/**
+ * Technique
+ * 
+ * @var string
+ */
+const TECHNIQUE = 'rc_technique';
+
+/**
+ * Row
+ * 
+ * @var string
+ */
+const ROW = 'rc_row';
+
+/**
+ * Column
+ * 
+ * @var string
+ */
+const COLUMN = 'rc_column';
+
+/**
+ * Location
+ * 
+ * @var string
+ */
+const LOCATION = 'rc_location';
+
+/**
  * Taxonomy archive for Firing
  *
  * @return void
  */
 function do_taxonomy_loop__firing(): void {
-	echo wp_kses_post( get_the_taxonomy_archive( 'rc_firing' ) );
+	echo wp_kses_post( get_the_taxonomy_archive( FIRING ) );
 }
 
 /**
@@ -24,7 +66,7 @@ function do_taxonomy_loop__firing(): void {
  * @return void
  */
 function do_taxonomy_loop__form(): void {
-	echo wp_kses_post( get_the_taxonomy_archive( 'rc_form' ) );
+	echo wp_kses_post( get_the_taxonomy_archive( FORM ) );
 }
 
 /**
@@ -33,7 +75,7 @@ function do_taxonomy_loop__form(): void {
  * @return void
  */
 function do_taxonomy_loop__technique(): void {
-	echo wp_kses_post( get_the_taxonomy_archive( 'rc_technique' ) );
+	echo wp_kses_post( get_the_taxonomy_archive( TECHNIQUE ) );
 }
 
 /**
