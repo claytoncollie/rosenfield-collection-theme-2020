@@ -29,7 +29,17 @@ function setup(): void {
  * @return array
  */
 function has_gallery( array $classes ): array {
-	$classes[] .= empty( get_field( 'images' ) ) ? 'no-gallery' : '';
+	if ( ! is_singular( 'post' ) ) {
+		return $classes;
+	}
+
+	$images = get_field( 'images' );
+	if ( empty( $images ) ) {
+		$classes[] = ' no-gallery';
+		return $classes;
+	}
+
+	$classes[] = ' gallery';
 	return $classes;
 }
 
@@ -89,12 +99,4 @@ function the_gallery(): void {
 			'images' => $images,
 		] 
 	);
-}
-
-/**
- * Gallery Loop
- *
- * @return void
- */
-function do_the_object_gallery(): void {
 }
