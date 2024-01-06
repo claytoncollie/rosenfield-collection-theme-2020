@@ -7,8 +7,19 @@
 
 namespace RosenfieldCollection\Theme\ImageGallery;
 
-use function RosenfieldCollection\Theme\Helpers\svg;
 use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
+
+use const RosenfieldCollection\Theme\ImageSizes\IMAGE_OBJECT;
+
+/**
+ * Setup
+ *
+ * @return void
+ */
+function setup(): void {
+	add_filter( 'body_class', __NAMESPACE__ . '\has_gallery' );
+	add_action( 'genesis_loop', __NAMESPACE__ . '\the_gallery' );
+}
 
 /**
  * Add body class when image gallery is not populated.
@@ -17,9 +28,67 @@ use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
  *
  * @return array
  */
-function is_gallery( array $classes ): array {
+function has_gallery( array $classes ): array {
 	$classes[] .= empty( get_field( 'images' ) ) ? 'no-gallery' : '';
 	return $classes;
+}
+
+/**
+ * Display the image gallery
+ * 
+ * @return void
+ */
+function the_gallery(): void {
+	if ( ! is_singular( 'post' ) ) {
+		return;
+	}
+
+	$images = get_field( 'images' );
+
+	// Substitute the featured image for an empty gallery
+	if ( empty( $images ) ) {
+		$image_id = get_post_thumbnail_id();
+		$image_id = $image_id ? (int) $image_id : 0;
+		if ( empty( $image_id ) ) {
+			return;
+		}
+		$image = wp_get_attachment_image_src( $image_id, IMAGE_OBJECT );
+		$image = is_array( $image ) ? $image : [];
+		if ( empty( $image ) ) {
+			return;
+		}
+
+		$image_url = wp_get_attachment_url( $image_id );
+		$image_url = $image_url ? (string) $image_url : '';
+		if ( empty( $image_url ) ) {
+			return;
+		}
+
+		$prefix_id = get_object_prefix_and_id();
+		if ( empty( $prefix_id ) ) {
+			return;
+		}
+
+		$images = [
+			[
+				'sizes' => [
+					'object'        => $image[0] ?? '',
+					'object-width'  => $image[1] ?? '',
+					'object-height' => $image[2] ?? '',
+				],
+				'url'   => $image_url,
+				'title' => $prefix_id,
+			],
+		];
+	}
+
+	get_template_part( 
+		'partials/image-gallery',
+		null,
+		[ 
+			'images' => $images,
+		] 
+	);
 }
 
 /**
@@ -28,55 +97,4 @@ function is_gallery( array $classes ): array {
  * @return void
  */
 function do_the_object_gallery(): void {
-	$images = get_field( 'images' );
-
-	if ( ! empty( $images ) ) {
-		printf(
-			'<section class="slider-gallery" role="navigation" aria-label="%s"><ul class="slider-gallery-images">',
-			esc_html__( 'All images', 'rosenfield-collection' )
-		);
-		foreach ( $images as $image ) {
-			printf(
-				'<li><img width="%s" height="%s" src="%s" alt="%s %s %s"><a href="%s" class="button" aria-label="%s %s">%s <span class="label-download">%s</span></a></li>',
-				esc_attr( $image['sizes']['object-width'] ?? '' ),
-				esc_attr( $image['sizes']['object-height'] ?? '' ),
-				esc_url( $image['sizes']['object'] ?? '' ),
-				esc_html__( 'Made by', 'rosenfield-collection' ),
-				esc_html( get_the_author_meta( 'first_name' ) ),
-				esc_html( get_the_author_meta( 'last_name' ) ),
-				esc_url( $image['url'] ),
-				esc_html__( 'Download full size image', 'rosenfield-collection' ),
-				esc_html( $image['title'] ),
-				svg( 'cloud-download-alt-solid' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				esc_html__( 'Download', 'rosenfield-collection' )
-			);
-		}
-		echo '</ul></section>';
-	} elseif ( has_post_thumbnail() ) {
-		printf(
-			'<section class="slider-gallery" aria-label="%s"><ul class="slider-gallery-images">',
-			esc_html__( 'Large single image', 'rosenfield-collection' )
-		);
-			printf(
-				'<li>%s<a href="%s" class="button" aria-label="%s %s">%s <span class="label-download">%s</span></a></li>',
-				get_the_post_thumbnail(
-					get_the_ID(),
-					'object',
-					[
-						'alt' => sprintf(
-							'%s %s %s',
-							esc_html__( 'Made by', 'rosenfield-collection' ),
-							esc_html( get_the_author_meta( 'first_name' ) ),
-							esc_html( get_the_author_meta( 'last_name' ) )
-						),
-					]
-				),
-				esc_url( wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) ) ),
-				esc_html__( 'Download full size image for object', 'rosenfield-collection' ),
-				esc_html( get_object_prefix_and_id() ),
-				svg( 'cloud-download-alt-solid' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				esc_html__( 'Download', 'rosenfield-collection' )
-			);
-		echo '</ul></section>';
-	}
 }

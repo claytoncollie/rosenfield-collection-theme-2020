@@ -15,6 +15,13 @@ namespace RosenfieldCollection\Theme\ImageSizes;
 const THUMBNAIL = 'thumbnail';
 
 /**
+ * Object
+ * 
+ * @var string
+ */
+const IMAGE_OBJECT = 'object';
+
+/**
  * Setup
  *
  * @return void

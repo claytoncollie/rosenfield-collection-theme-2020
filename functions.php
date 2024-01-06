@@ -64,6 +64,7 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/pagination.p
 \RosenfieldCollection\Theme\Assets\setup();
 \RosenfieldCollection\Theme\Artists\setup();
 \RosenfieldCollection\Theme\ClaimObject\setup();
+\RosenfieldCollection\Theme\ImageGallery\setup();
 \RosenfieldCollection\Theme\ImageSizes\setup();
 \RosenfieldCollection\Theme\Markup\setup();
 \RosenfieldCollection\Theme\PostTitle\setup();
