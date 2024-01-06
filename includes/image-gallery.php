@@ -19,6 +19,7 @@ use const RosenfieldCollection\Theme\ImageSizes\IMAGE_OBJECT;
 function setup(): void {
 	add_filter( 'body_class', __NAMESPACE__ . '\has_gallery' );
 	add_action( 'genesis_loop', __NAMESPACE__ . '\the_gallery' );
+	add_action( 'genesis_sidebar', __NAMESPACE__ . '\the_thumbnails' );
 }
 
 /**
@@ -98,5 +99,29 @@ function the_gallery(): void {
 		[ 
 			'images' => $images,
 		] 
+	);
+}
+
+/**
+ * Display the thumbnail images
+ * 
+ * @return void
+ */
+function the_thumbnails(): void {
+	if ( ! is_singular( 'post' ) ) {
+		return;
+	}
+
+	$images = get_field( 'images' );
+	if ( empty( $images ) ) {
+		return;
+	}
+
+	get_template_part(
+		'partials/image-thumbnails',
+		null,
+		[ 
+			'images' => $images,
+		]  
 	);
 }

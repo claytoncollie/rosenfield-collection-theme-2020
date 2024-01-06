@@ -22,8 +22,5 @@ namespace RosenfieldCollection\Theme;
 // Display view all link.
 \add_action( 'genesis_hero_section', __NAMESPACE__ . '\ViewAllObjects\do_the_view_all_objects', 12 );
 
-// Display thumbnail gallery.
-\add_action( 'genesis_sidebar', __NAMESPACE__ . '\ThumbnailGallery\do_the_thumbnail_gallery' );
-
 // Run the Genesis loop.
 \genesis();
