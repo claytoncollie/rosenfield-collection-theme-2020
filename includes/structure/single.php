@@ -20,17 +20,8 @@ function setup(): void {
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\view_all_from_artist', 12 );
 	add_action( 'genesis_before_content_sidebar_wrap', __NAMESPACE__ . '\the_post_meta', 8 );
 	add_filter( 'body_class', __NAMESPACE__ . '\has_gallery' );
-	add_action( 'genesis_loop', __NAMESPACE__ . '\the_gallery' );
+	add_action( 'genesis_entry_content', __NAMESPACE__ . '\the_gallery' );
 	add_action( 'genesis_sidebar', __NAMESPACE__ . '\the_thumbnails' );
-	// Remove sidebar.
-	remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
-	remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
-	// Remove featured image.
-	remove_action( 'genesis_entry_content', 'genesis_do_singular_image', 8 );
-	// Remove entry info.
-	remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
-	// Disable post edit link.
-	add_filter( 'edit_post_link', '__return_empty_string' );
 }
 
 /**
@@ -57,6 +48,7 @@ function the_post_meta(): void {
 	}
 
 	get_template_part( 'partials/post-meta-single' );
+	get_template_part( 'partials/post-meta-admin-single' );
 }
 
 /**

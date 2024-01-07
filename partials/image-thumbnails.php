@@ -13,7 +13,7 @@ if ( empty( $images ) ) {
 
 ?>
 
-<section class="slider-thumbnails" aria-label="Thumbnail Images">
+<div class="slider-thumbnails">
 	<ul class="slider-thumbnails-images">
 		<?php 
 		foreach ( $images as $image ) : 
@@ -39,4 +39,4 @@ if ( empty( $images ) ) {
 			</li>
 		<?php endforeach; ?>
 	</ul>
-</section>
+</div>

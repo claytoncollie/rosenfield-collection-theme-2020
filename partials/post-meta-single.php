@@ -39,7 +39,8 @@ $width  = $width ? (string) $width : '';
 $height = get_field( 'height', $post_id );
 $height = $height ? (string) $height : '';
 
-$author_id        = (int) get_the_author_meta( 'ID' );
+$author_id        = get_post_field( 'post_author', $post_id );
+$author_id        = ! empty( $author_id ) ? (int) $author_id : 0;
 $author_permalink = get_author_posts_url( $author_id );
 $first_name       = get_the_author_meta( 'first_name', $author_id );
 $last_name        = get_the_author_meta( 'last_name', $author_id );

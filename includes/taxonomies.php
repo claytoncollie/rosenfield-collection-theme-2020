@@ -10,6 +10,13 @@ namespace RosenfieldCollection\Theme\Taxonomies;
 use function RosenfieldCollection\Theme\Helpers\column_class;
 
 /**
+ * Post tag
+ * 
+ * @var string
+ */
+const POST_TAG = 'post_tag';
+
+/**
  * Firing
  * 
  * @var string

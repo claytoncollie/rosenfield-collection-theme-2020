@@ -25,6 +25,7 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'helpers.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'setup.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'assets.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'markup.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'genesis.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'header.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'widgets.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'search.php';
@@ -37,7 +38,6 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'pending-filter.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'claim-object.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'query-vars.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'accessibility.php';
-require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'labels.php';
 
 // Structure.
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/hero.php';
@@ -56,6 +56,7 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/pagination.p
 \RosenfieldCollection\Theme\Assets\setup();
 \RosenfieldCollection\Theme\Artists\setup();
 \RosenfieldCollection\Theme\ClaimObject\setup();
+\RosenfieldCollection\Theme\Genesis\setup();
 \RosenfieldCollection\Theme\ImageSizes\setup();
 \RosenfieldCollection\Theme\Markup\setup();
 \RosenfieldCollection\Theme\QueryVars\setup();

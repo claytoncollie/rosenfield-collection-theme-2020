@@ -19,7 +19,7 @@ $full_name  = $first_name . ' ' . $last_name;
 
 ?>
 
-<section class="slider-gallery" role="navigation" aria-label="All Images">
+<div class="slider-gallery" role="navigation">
 	<ul class="slider-gallery-images">
 		<?php 
 		foreach ( $images as $image ) : 
@@ -45,5 +45,5 @@ $full_name  = $first_name . ' ' . $last_name;
 			</li>
 		<?php endforeach; ?>
 	</ul>
-</section>
+</div>
 	
