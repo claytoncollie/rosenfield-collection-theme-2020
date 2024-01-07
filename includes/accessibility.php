@@ -20,6 +20,7 @@ function setup(): void {
 	add_filter( 'wp_get_attachment_image_attributes', __NAMESPACE__ . '\entry_image', 99 );
 	add_filter( 'genesis_attr_nav-secondary', __NAMESPACE__ . '\nav_secondary' );
 	add_filter( 'genesis_attr_archive-pagination', __NAMESPACE__ . '\pagination' );
+	add_filter( 'genesis_skip_links_output', __NAMESPACE__ . '\skip_links', 10, 2 );
 }
 
 /**
@@ -116,4 +117,46 @@ function nav_secondary( array $attributes ): array {
 function pagination( array $attributes ): array {
 	$attributes['id'] = 'genesis-archive-pagination';
 	return $attributes;
+}
+
+/**
+ * Filter the available skip links
+ *
+ * @param array $links {
+ *     Default skiplinks.
+ *
+ *     @type string HTML ID attribute value to link to.
+ *     @type string Anchor text.
+ * }
+ *
+ * @return array
+ */
+function skip_links( array $links ): array {
+	if ( is_page( 'artists' ) ) {
+		$links['rosenfield-collection-artist-filter'] = esc_html__( 'Skip to artist filter by last name', 'rosenfield-collection' );
+	}
+
+	if ( is_single() ) {
+		$links['rosenfield-collection-object-data'] = esc_html__( 'Skip to object data', 'rosenfield-collection' );
+	}
+
+	if ( is_single() && is_user_logged_in() ) {
+		$links['rosenfield-collection-admin-object-data'] = esc_html__( 'Skip to admin object data', 'rosenfield-collection' );
+	}
+
+	if ( is_search() ) {
+		$links['rosenfield-collection-current-refinements'] = esc_html__( 'Skip to current refinements', 'rosenfield-collection' );
+	}
+
+	if ( is_archive() || is_home() || is_page( 'artists' ) ) {
+		$links['genesis-archive-pagination'] = esc_html__( 'Skip to pagination', 'rosenfield-collection' );
+	}
+
+	$links['rosenfield-collection-footer-credits'] = esc_html__( 'Skip to footer credits', 'rosenfield-collection' );
+
+	if ( genesis_nav_menu_supported( 'secondary' ) && has_nav_menu( 'secondary' ) ) {
+		$links['genesis-nav-secondary'] = esc_html__( 'Skip to secondary navigation', 'rosenfield-collection' );
+	}
+
+	return $links;
 }

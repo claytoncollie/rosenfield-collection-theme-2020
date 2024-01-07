@@ -13,9 +13,6 @@ namespace RosenfieldCollection\Theme;
 // Remove default loop.
 \remove_action( 'genesis_loop', 'genesis_do_loop' );
 
-// Display public post_meta.
-\add_action( 'genesis_before_content_sidebar_wrap', __NAMESPACE__ . '\PostMeta\do_the_post_meta', 8 );
-
 // Display admin-only post_meta.
 \add_action( 'genesis_before_content_sidebar_wrap', __NAMESPACE__ . '\PostMetaAdmin\do_the_admin_bar', 9 );
 

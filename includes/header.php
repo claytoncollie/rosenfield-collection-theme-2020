@@ -16,9 +16,7 @@ function header(): string {
 	$id  = '';
 	$url = '';
 
-	if ( class_exists( 'WooCommerce' ) && \is_shop() ) {
-		$id = \wc_get_page_id( 'shop' );
-	} elseif ( \is_post_type_archive() ) {
+	if ( \is_post_type_archive() ) {
 		// phpcs:ignore WordPress.VIP.RestrictedFunctions.get_page_by_path_get_page_by_path
 		$id = \get_page_by_path( \get_query_var( 'post_type' ) );
 		$id = $id && \has_post_thumbnail( $id->ID ) ? $id->ID : false;

@@ -26,6 +26,9 @@ function setup(): void {
 	add_filter( 'genesis_markup_entry-header_open', __NAMESPACE__ . '\widget_entry_wrap_open', 10, 2 );
 	add_filter( 'pre_get_posts', __NAMESPACE__ . '\sort_by_object_id' );
 	add_action( 'genesis_entry_content', __NAMESPACE__ . '\object_by_line', 8 );
+	add_action( 'pre_get_posts', __NAMESPACE__ . '\nopaging', 99 );
+	add_filter( 'body_class', __NAMESPACE__ . '\body_class' );
+	add_action( 'genesis_entry_footer', __NAMESPACE__ . '\the_post_meta' );
 	// Reposition entry image.
 	remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
 	add_action( 'genesis_entry_header', 'genesis_do_post_image', 1 );
@@ -183,4 +186,62 @@ function object_by_line(): void {
 	}
 
 	get_template_part( 'partials/object-by-line' );
+}
+
+/**
+ * Filter the posts per page on taxonomy archives.
+ *
+ * @param WP_Query $query Main Query.
+ *
+ * @return void
+ */
+function nopaging( WP_Query $query ): void {
+	if ( is_admin() ) {
+		return;
+	}
+
+	if ( ! $query->is_main_query() ) {
+		return;
+	}
+
+	$view = get_query_var( 'view' );
+	$view = $view ? (string) $view : '';
+	if ( 'list' !== $view ) {
+		return;
+	}
+		
+	$query->set( 'nopaging', true );
+}
+
+/**
+ * Add body class for taxonomy archive.
+ *
+ * @param array $classes Body classes.
+ * 
+ * @return array
+ */
+function body_class( array $classes ): array {
+	$view = get_query_var( 'view' );
+	$view = $view ? (string) $view : '';
+	if ( 'list' !== $view ) {
+		return $classes;
+	}
+
+	$classes[] = ' view-toggle-list';
+	return $classes;
+}
+
+/**
+ * Display the post meta next to each object
+ * 
+ * Includes data only for logged in users.
+ *
+ * @return void
+ */
+function the_post_meta(): void {
+	if ( ! is_tax() && ! is_tag() ) {
+		return;
+	}
+
+	get_template_part( 'partials/post-meta-list-view' );  
 }
