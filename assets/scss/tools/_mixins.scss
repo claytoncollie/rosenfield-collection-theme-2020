@@ -52,7 +52,9 @@ $breakpoints: $mq-breakpoints) {
 	// Remove unnecessary media query prefix 'all and '
 	@if ($media-type =="all" and $media-query !="") {
 		$media-type: "";
-		$media-query: $media-query), 6;
+		/* stylelint-disable */
+		$media-query: str-slice(unquote($media-query), 6);
+		/* stylelint-enable */
 	}
 
 	@media #{$media-type + $media-query} {
