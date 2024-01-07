@@ -69,7 +69,7 @@ function has_gallery( array $classes ): array {
 		return $classes;
 	}
 
-	$classes[] = ' gallery';
+	$classes[] = ' has-gallery';
 	return $classes;
 }
 

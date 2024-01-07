@@ -108,9 +108,7 @@ function hero_title(): void {
 	$open  = '<h1 %s itemprop="headline">';
 	$close = '</h1>';
 
-	if ( \class_exists( 'WooCommerce' ) && \is_shop() ) {
-		$title = \get_the_title( \wc_get_page_id( 'shop' ) );
-	} elseif ( \is_home() && 'posts' === \get_option( 'show_on_front' ) ) {
+	if ( \is_home() && 'posts' === \get_option( 'show_on_front' ) ) {
 		$title = \apply_filters( 'genesis_latest_posts_title', esc_html__( 'Latest Posts', 'rosenfield-collection' ) );
 	} elseif ( \is_404() ) {
 		$title = \apply_filters( 'genesis_404_entry_title', esc_html__( 'Not found, error 404', 'rosenfield-collection' ) );
@@ -156,11 +154,7 @@ function hero_excerpt(): void {
 	$excerpt = '';
 	$id      = '';
 
-	if ( \class_exists( 'WooCommerce' ) && \is_shop() ) {
-		\ob_start();
-		\woocommerce_result_count();
-		$excerpt = \ob_get_clean();
-	} elseif ( \is_home() && 'posts' === \get_option( 'show_on_front' ) ) {
+	if ( \is_home() && 'posts' === \get_option( 'show_on_front' ) ) {
 		$excerpt = \apply_filters( 'genesis_latest_posts_subtitle', esc_html__( 'Showing the latest posts', 'rosenfield-collection' ) );
 	} elseif ( \is_home() ) {
 		$id = \get_option( 'page_for_posts' );

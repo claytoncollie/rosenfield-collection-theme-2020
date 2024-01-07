@@ -57,7 +57,7 @@ function header(): string {
 	if ( $url ) {
 		$selector = \get_theme_support( 'custom-header', 'header-selector' );
 
-		return \printf( '<style id="hero-css" type="text/css">' . esc_attr( $selector ) . '{background-image:url(%s)}</style>' . "\n", esc_url( $url ) );
+		return \printf( '<style id="hero-css" type="text/css">' . esc_html( $selector ) . '{background-image:url(%s)}</style>' . "\n", esc_url( $url ) );
 	} else {
 		return '';
 	}

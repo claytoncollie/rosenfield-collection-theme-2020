@@ -42,7 +42,7 @@ function do_pending_filter_by_form(): void {
 						get_permalink()
 					)
 				),
-				$term->slug === get_query_var( 'rc_form' ) ? 'selected' : '',
+				get_query_var( 'rc_form' ) === $term->slug ? 'selected' : '',
 				esc_html( ucwords( $term->name ) )
 			);
 		}
@@ -86,7 +86,7 @@ function do_pending_filter_by_artist(): void {
 						get_permalink()
 					)
 				),
-				$user->ID == get_query_var( 'artist' ) ? 'selected' : '',
+				get_query_var( 'artist' ) === $user->ID ? 'selected' : '',
 				esc_html( ucwords( $user->display_name ) )
 			);
 		}

@@ -35,7 +35,7 @@ function do_header_search_form(): void {
 	printf(
 		'<div id="header-search-wrap" class="header-search-wrap">%s %s</div>',
 		get_search_form( false ),
-		$button
+		$button // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	);
 }
 
