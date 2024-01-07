@@ -1,9 +1,12 @@
-@charset "UTF-8"; // Fixes an issue where Ruby locale is not set properly
+@charset "UTF-8"; 
+// Fixes an issue where Ruby locale is not set properly
+
 // See https://github.com/sass-mq/sass-mq/pull/10
 
-/// Based on 16:9 screen resolutions
-///
-/// @link https://pacoup.com/2011/06/12/list-of-true-169-resolutions/
+// Based on 16:9 screen resolutions
+//
+// @link https://pacoup.com/2011/06/12/list-of-true-169-resolutions/
+
 $mq-base: 896px;
 $mq-increment: 128px;
 
@@ -19,15 +22,13 @@ $mq-xxl: $mq-base + ($mq-increment * 3);
 $mq-xxxl: $mq-base + ($mq-increment * 4);
 $mq-xxxxl: $mq-base + ($mq-increment * 5);
 
-////
-/// Breakpoint list
-///
-/// Name your breakpoints in a way that creates a ubiquitous language
-/// across team members. It will improve communication between
-/// stakeholders, designers, developers, and testers.
-///
-/// @type Map
-////
+
+// Breakpoint list
+//
+// Name your breakpoints in a way that creates a ubiquitous language
+// across team members. It will improve communication between
+// stakeholders, designers, developers, and testers.
+
 $mq-breakpoints: (
 	xxxxs: $mq-xxxxs,
 	xxxs: $mq-xxxs,
@@ -40,11 +41,9 @@ $mq-breakpoints: (
 	xxl: $mq-xxl,
 	xxxl: $mq-xxxl,
 	xxxxl: $mq-xxxxl,
-) !default;
+	) !default;
 
-/// Customize the media type (e.g. `@media screen` or `@media print`)
-/// By default sass-mq uses an "all" media type (`@media all and …`)
-///
-/// @type String
-/// @link https://github.com/sass-mq/sass-mq#changing-media-type Full documentation and examples
+// Customize the media type (e.g. `@media screen` or `@media print`)
+// By default sass-mq uses an "all" media type (`@media all and …`)
+
 $mq-media-type: all !default;

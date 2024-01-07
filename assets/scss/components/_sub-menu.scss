@@ -1,10 +1,4 @@
-////
-/// Sub menu component.
-///
-/// @group  Components
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-////
+// Sub menu component.
 
 .sub-menu {
 	display: none;
@@ -86,7 +80,7 @@
 			outline: $base--border;
 		}
 
-		&:before {
+		&::before {
 			content: "";
 
 			@include triangle("down", 1rem, 0.5rem, $color--text);
@@ -94,7 +88,7 @@
 
 		&.activated {
 
-			&:before {
+			&::before {
 
 				@include triangle("up", 1rem, 0.5rem, $color--text);
 			}

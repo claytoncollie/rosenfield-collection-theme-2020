@@ -1,4 +1,9 @@
-node_modules/
-vendor/
-assets/js/min/*.js
-lib/js/menu/superfish.js
+# Ignnore directories
+.git
+.github
+.vscode
+build
+dist
+node_modules
+tests
+vendor

@@ -1,14 +1,9 @@
-////
-/// Editor stylesheet.
-///
-/// This is the primary editor stylesheet. It is used for the WordPress 5.0+
-/// block editor (Gutenberg) and is not intended for older versions of the
-/// WordPress edit screen.
-///
-/// @group  Styles
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   http://sass-guidelin.es/#main-file
-////
+// Editor stylesheet.
+//
+// This is the primary editor stylesheet. It is used for the WordPress 5.0+
+// block editor (Gutenberg) and is not intended for older versions of the
+// WordPress edit screen.
+
 @import "../../node_modules/bourbon/core/bourbon";
 @import "settings/_index";
 @import "tools/_index";

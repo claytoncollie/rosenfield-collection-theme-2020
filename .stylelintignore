@@ -1,6 +1,12 @@
-# Ignore vendor directories.
-node_modules/*
-vendor/*
+# Ignore directories.
+.git
+.github
+.vscode
+build
+dist
+node_modules
+tests
+vendor
 
 # Ignore minified styles.
 *.min.css

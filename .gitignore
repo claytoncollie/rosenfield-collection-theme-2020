@@ -1,16 +1,29 @@
-# Ignore OS generated files.
-.DS_Store
-
-# Ignore node_modules.
+dist
 node_modules
-
-# Ignore auto-generated lock files.
-composer.lock
-package-lock.json
-yarn.lock
-
-# Ignore editor files.
-.idea
-
-# Dev packages
 vendor
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.bz2
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.tgz
+*.map
+
+# Logs and databases
+*.idea
+*.log
+*.sql
+*.env
+
+# OS generated files
+**.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+._*

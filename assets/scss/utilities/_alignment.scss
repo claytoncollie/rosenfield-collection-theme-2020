@@ -1,10 +1,4 @@
-////
-/// Alignment classes.
-///
-/// @group  Utilities
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-////
+// Alignment classes.
 
 .align {
 
@@ -52,7 +46,7 @@
 			transform: none;
 		}
 
-		> img {
+		>img {
 			display: inline-block;
 			width: 100%;
 			margin: $spacing--m auto;

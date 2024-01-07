@@ -1,16 +1,10 @@
-////
-/// Primary screen stylesheet.
-///
-/// This is the primary stylesheet. We don't actually write any styles here.
-/// Instead, we import all of our styles from partials within the sub-folders.
-/// This file is set up based on the Inverted Triangle CSS (ITCSS) system,
-/// which gets more specific as we drill down each layer.  This keeps your
-/// style code lean and organized.
-///
-/// @group  Styles
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   http://sass-guidelin.es/#main-file
-////
+// Primary screen stylesheet.
+//
+// This is the primary stylesheet. We don't actually write any styles here.
+// Instead, we import all of our styles from partials within the sub-folders.
+// This file is set up based on the Inverted Triangle CSS (ITCSS) system,
+// which gets more specific as we drill down each layer.  This keeps your
+// style code lean and organized.
 
 @import "~bourbon";
 @import "node_modules/slick-carousel/slick/slick";

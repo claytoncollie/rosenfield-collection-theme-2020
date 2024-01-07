@@ -1,10 +1,4 @@
-////
-/// Box Sizing.
-///
-/// @group  Generic
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-////
+// Box Sizing.
 
 html {
 	overflow-x: hidden;
@@ -21,8 +15,8 @@ html {
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
 	box-sizing: inherit;
 }
 
