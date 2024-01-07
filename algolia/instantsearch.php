@@ -1,15 +1,11 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Instant Search.
  *
- * @version   2.0.0
- *
- * @package   RosenfieldCollection\Theme2020
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
+
+use function RosenfieldCollection\Theme\Structure\Hero\hero_title;
 
 get_header();
 
@@ -18,7 +14,7 @@ get_header();
 	<section class="hero-section" role="banner" aria-label="Page Header">
 		<div class="wrap">
 			<div class="hero-inner">
-				<?php echo wp_kses_post( RosenfieldCollection\Theme2020\Structure\hero_title() ); ?>
+				<?php echo wp_kses_post( hero_title() ); ?>
 				<div id="search-box"></div>
 			</div>
 		</div>

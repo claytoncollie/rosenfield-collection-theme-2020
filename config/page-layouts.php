@@ -1,30 +1,26 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Page Layouts.
  *
- * @package   RosenfieldCollection\Theme2020
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme2020;
+namespace RosenfieldCollection\Theme\Config\PageLayouts;
 
-use function RosenfieldCollection\Theme2020\Functions\get_theme_url;
+use function RosenfieldCollection\Theme\Helpers\get_theme_url;
 
-return array(
-	'add'    => array(
-		array(
+return [
+	'add'    => [
+		[
 			'id'    => 'narrow-content',
-			'label' => __( 'Narrow Content', 'rosenfield-collection-2020' ),
+			'label' => __( 'Narrow Content', 'rosenfield-collection' ),
 			'img'   => get_theme_url() . 'assets/img/narrow-content.gif',
-		),
-	),
-	'remove' => array(
+		],
+	],
+	'remove' => [
 		'content-sidebar',
 		'content-sidebar-sidebar',
 		'sidebar-sidebar-content',
 		'sidebar-content-sidebar',
-	),
-);
+	],
+];

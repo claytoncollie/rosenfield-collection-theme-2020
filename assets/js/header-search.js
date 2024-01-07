@@ -1,7 +1,7 @@
 /**
  * This script adds the header search effects to the theme.
  *
- * @package RosenfieldCollection\Theme2020
+ * @package RosenfieldCollection\Theme
  * @author CLayton Collie
  * @license GPL-2.0-or-later
  */

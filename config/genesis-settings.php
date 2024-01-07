@@ -1,17 +1,13 @@
 <?php
 /**
- * Rosenfield Collection Theme.
+ * Genesis Settings
  *
- * @package   RosenfieldCollection\Theme2020
- * @link      https://www.rosenfieldcollection.com
- * @author    Clayton Collie
- * @copyright Copyright © 2019 Clayton Collie
- * @license   GPL-2.0-or-later
+ * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme2020;
+namespace RosenfieldCollection\Theme\Config\GenesisSettings;
 
-return array(
+return [
 	'avatar_size'               => 48,
 	'blog_cat_num'              => 9,
 	'breadcrumb_home'           => 0,
@@ -29,4 +25,4 @@ return array(
 	'image_alignment'           => 'alignnone',
 	'posts_nav'                 => 'numeric',
 	'site_layout'               => 'full-width-content',
-);
+];
