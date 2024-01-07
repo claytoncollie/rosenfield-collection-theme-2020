@@ -1,4 +1,4 @@
-@charset "UTF-8"; 
+@charset "UTF-8";
 // Fixes an issue where Ruby locale is not set properly
 
 // See https://github.com/sass-mq/sass-mq/pull/10
@@ -41,7 +41,7 @@ $mq-breakpoints: (
 	xxl: $mq-xxl,
 	xxxl: $mq-xxxl,
 	xxxxl: $mq-xxxxl,
-	) !default;
+) !default;
 
 // Customize the media type (e.g. `@media screen` or `@media print`)
 // By default sass-mq uses an "all" media type (`@media all and …`)

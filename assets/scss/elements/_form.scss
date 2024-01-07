@@ -15,10 +15,10 @@ label {
 	font-size: $base--font-size;
 	font-weight: $font-weight--semibold;
 
-	i+&,
-	input+&,
-	select+&,
-	textarea+& {
+	i + &,
+	input + &,
+	select + &,
+	textarea + & {
 		font-size: smaller;
 		font-weight: $font-weight--regular;
 	}

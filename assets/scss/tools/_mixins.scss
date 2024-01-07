@@ -9,10 +9,10 @@
 // @param {String} $breakpoints ($mq-breakpoints) - Breakpoints map
 
 @mixin mq($from: false,
-	$until: false,
-	$and: false,
-	$media-type: $mq-media-type,
-	$breakpoints: $mq-breakpoints) {
+$until: false,
+$and: false,
+$media-type: $mq-media-type,
+$breakpoints: $mq-breakpoints) {
 	$min-width: 0;
 	$max-width: 0;
 	$media-query: "";
@@ -22,9 +22,7 @@
 
 		@if type-of($from)==number {
 			$min-width: $from;
-		}
-
-		@else {
+		} @else {
 			$min-width: mq-get-breakpoint-width($from, $breakpoints);
 		}
 	}
@@ -34,9 +32,7 @@
 
 		@if type-of($until)==number {
 			$max-width: $until;
-		}
-
-		@else {
+		} @else {
 			$max-width: mq-get-breakpoint-width($until, $breakpoints);
 		}
 	}

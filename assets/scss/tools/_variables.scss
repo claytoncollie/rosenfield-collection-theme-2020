@@ -1,8 +1,6 @@
 // Custom variables.
 
 // Buttons map.
-//
-// Adds to Bourbon buttons list.
 $all-buttons: append($all-buttons, ".button");
 $all-buttons: append($all-buttons, ".button.menu-item a");
 

@@ -16,9 +16,7 @@
 	@if map-has-key($breakpoints, $name) {
 
 		@return map-get($breakpoints, $name);
-	}
-
-	@else {
+	} @else {
 
 		@warn "Breakpoint #{$name} wasn't found in $breakpoints.";
 	}
