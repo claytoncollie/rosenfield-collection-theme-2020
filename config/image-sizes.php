@@ -5,7 +5,7 @@
  * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\COnfig\ImagesSizes;
+namespace RosenfieldCollection\Theme\Config\ImagesSizes;
 
 return [
 	'add'    => [
