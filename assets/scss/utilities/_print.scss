@@ -1,16 +1,10 @@
-////
-/// Print only styles.
-///
-/// @group  Utilities
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-////
+// Print only styles.
 
 @media print {
 
 	*,
-	*:before,
-	*:after {
+	*::before,
+	*::after {
 		color: $color--dark !important;
 		background: transparent !important;
 		box-shadow: none !important;
@@ -33,6 +27,8 @@
 
 	img {
 		max-width: 100% !important;
+		page-break-after: avoid;
+		page-break-inside: avoid;
 	}
 
 	@page {
@@ -64,7 +60,6 @@
 	.breadcrumb,
 	.comment-edit-link,
 	.comment-form,
-	.comment-list .reply a,
 	.comment-reply-title,
 	.edit-link,
 	.entry-comments-link,
@@ -137,11 +132,6 @@
 		page-break-after: avoid;
 		page-break-inside: avoid;
 		widows: 3;
-	}
-
-	img {
-		page-break-after: avoid;
-		page-break-inside: avoid;
 	}
 
 	blockquote,

@@ -7,8 +7,6 @@
 
 namespace RosenfieldCollection\Theme\Setup;
 
-use function RosenfieldCollection\Theme\Helpers\get_theme_dir;
-
 /**
  * Setup
  *
@@ -32,12 +30,6 @@ function config(): void {
 	$image_sizes       = \genesis_get_config( 'image-sizes' );
 	$page_layouts      = \genesis_get_config( 'page-layouts' );
 	$widget_areas      = \genesis_get_config( 'widget-areas' );
-
-	// Add theme textdomain.
-	\load_child_theme_textdomain( \genesis_get_theme_handle(), get_theme_dir() . '/assets/lang' );
-
-	// Add editor styles.
-	\add_editor_style( '/assets/css/editor.css' );
 
 	// Add responsive menus.
 	\genesis_register_responsive_menus( $responsive_menu );

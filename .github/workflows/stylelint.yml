@@ -26,4 +26,4 @@ jobs:
       run: npm install
 
     - name: Lint Stylesheets
-      run: npm run lint-styles
+      run: npm run lint-css

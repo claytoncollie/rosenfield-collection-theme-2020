@@ -5,9 +5,6 @@
  * @package RosenfieldCollection\Theme
  */
 
-// Force full-width-content layout setting.
-add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
-
 // Add special scripts to wp_head.
 add_action( 'wp_head', 'acf_form_head', 0 );
 

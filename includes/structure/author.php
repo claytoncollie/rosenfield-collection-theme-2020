@@ -83,7 +83,7 @@ function do_the_artist_info(): void {
 	}
 	if ( ! empty( $twitter ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="author-social"><a target="_blank" href="https://twitter.com/%s">%s</a></div>',
 			esc_url( $twitter ),
 			svg( 'twitter-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);

@@ -8,63 +8,53 @@
 namespace RosenfieldCollection\Theme\Assets;
 
 /**
- * Setup
- *
- * @return void
+ * Actions and Filters
  */
 function setup(): void {
-	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
-	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\deregister_scripts' );
-	// Genesis style trump.
-	remove_action( 'genesis_meta', 'genesis_load_stylesheet' );
-	add_action( 'wp_enqueue_scripts', 'genesis_enqueue_main_stylesheet', 99 );
-}
-	
-/**
- * Register and enqueue all scripts and styles.
- *
- * @return void
- */
-function enqueue_assets(): void {
-	$assets = \genesis_get_config( 'scripts-and-styles' )['add'];
-
-	foreach ( $assets as $asset ) {
-		$type      = false !== strpos( $asset['src'], '.js' ) ? 'script' : 'style';
-		$handle    = $asset['handle'];
-		$src       = isset( $asset['src'] ) ? $asset['src'] : '';
-		$deps      = isset( $asset['deps'] ) ? $asset['deps'] : [];
-		$ver       = isset( $asset['ver'] ) ? $asset['ver'] : \genesis_get_theme_version();
-		$media     = isset( $asset['media'] ) ? $asset['media'] : 'all';
-		$in_footer = isset( $asset['in_footer'] ) ? $asset['in_footer'] : true;
-		$editor    = isset( $asset['editor'] ) ? $asset['editor'] : false;
-		$condition = isset( $asset['condition'] ) ? $asset['condition'] : '__return_true';
-		$localize  = isset( $asset['localize'] ) ? $asset['localize'] : [];
-		$last_arg  = 'style' === $type ? $media : $in_footer;
-		$register  = "wp_register_$type";
-		$enqueue   = "wp_enqueue_$type";
-
-		if ( \is_admin() && $editor || ! \is_admin() && ! $editor || 'both' === $editor ) {
-			if ( is_callable( $condition ) && $condition() ) {
-				$register( $handle, $src, $deps, $ver, $last_arg );
-				$enqueue( $handle );
-
-				if ( ! empty( $localize ) ) {
-					\wp_localize_script( $handle, $localize['name'], $localize['data'] );
-				}
-			}
-		}
-	}
+	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts' );
+	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\styles' );
+	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\editor_styles' );
 }
 
 /**
- * Deregister scripts.
- *
+ * Enqueue scripts.
+ * 
  * @return void
  */
-function deregister_scripts(): void {
-	$assets = \genesis_get_config( 'scripts-and-styles' )['remove'];
+function scripts(): void {
+	wp_enqueue_script(
+		'rosenfield-collection-frontend',
+		ROSENFIELD_COLLECTION_THEME_DIST_URL . 'frontend.js',
+		[ 'jquery' ],
+		(string) filemtime( ROSENFIELD_COLLECTION_THEME_DIST_PATH . 'frontend.js' ),
+		true
+	);
+}
 
-	foreach ( $assets as $asset ) {
-		\wp_deregister_script( $asset );
-	}
+/**
+ * Enqueue styles.
+ * 
+ * @return void
+ */
+function styles(): void {
+	wp_enqueue_style(
+		'rosenfield-collection-main',
+		ROSENFIELD_COLLECTION_THEME_DIST_URL . 'main.css',
+		[],
+		(string) filemtime( ROSENFIELD_COLLECTION_THEME_DIST_PATH . 'main.css' ),
+	);
+}
+
+/**
+ * Enqueue editor styles.
+ * 
+ * @return void
+ */
+function editor_styles(): void {
+	wp_enqueue_style(
+		'rosenfield-collection-editor',
+		ROSENFIELD_COLLECTION_THEME_DIST_URL . 'editor.css',
+		[],
+		(string) filemtime( ROSENFIELD_COLLECTION_THEME_DIST_PATH . 'editor.css' ),
+	);
 }

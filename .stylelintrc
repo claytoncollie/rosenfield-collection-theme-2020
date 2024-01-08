@@ -1,0 +1,14 @@
+{
+	"extends": [
+		"@wordpress/stylelint-config/scss"
+	],
+	"rules": {
+		"scss/comment-no-empty": null,
+		"no-descending-specificity": null,
+		"scss/operator-no-unspaced": null,
+		"selector-class-pattern": null,
+		"block-no-empty": null,
+		"scss/no-global-function-names": null,
+		"function-url-quotes": null
+	}
+}

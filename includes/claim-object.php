@@ -29,7 +29,7 @@ function redirect_after_trash(): void {
 		return;
 	}
 
-	if ( array_key_exists( 'trashed', $_GET ) && '1' === $_GET['trashed'] ) {
+	if ( array_key_exists( 'trashed', $_GET ) && '1' === $_GET['trashed'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		wp_safe_redirect( get_bloginfo( 'url' ) . '/pending' );
 		exit;
 	}
@@ -85,7 +85,7 @@ function acf_form_claim(): void {
  * @return int
  */
 function claim_set_featured_image( int $value, int $post_id ): int {
-	if ( empty( $_POST['acf']['claim'] ) ) {
+	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		return $post_id;
 	}
 
@@ -118,7 +118,7 @@ function claim_set_featured_image( int $value, int $post_id ): int {
  * @return int
  */
 function claim_post_status_transition( int $post_id ): int {
-	if ( empty( $_POST['acf']['claim'] ) ) {
+	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		return $post_id;
 	}
 
@@ -134,8 +134,8 @@ function claim_post_status_transition( int $post_id ): int {
 		return $post_id;
 	}
 
-	if ( ! empty( $_POST['acf']['claim'] ) ) {
-		if ( 'true' !== $_POST['acf']['claim'] ) {
+	if ( ! empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( 'true' !== $_POST['acf']['claim'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			return $post_id;
 		}
 	}
@@ -170,7 +170,7 @@ function claim_post_status_transition( int $post_id ): int {
  * @return int
  */
 function claim_delete_attachment( int $post_id ): int {
-	if ( empty( $_POST['acf']['claim'] ) ) {
+	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		return $post_id;
 	}
 

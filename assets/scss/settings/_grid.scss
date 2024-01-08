@@ -1,10 +1,4 @@
-////
-/// Grid settings.
-///
-/// @group  Settings
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   https://seothemes.com/themes/genesis-starter-theme
-////
+// Grid settings.
 
 // Grid spacing.
 $gutter: $spacing--l;
@@ -27,9 +21,9 @@ $four-fifths: calc(#{$one-fifth} * 4 + (#{$gutter} * 3));
 $four-sixths: calc(#{$one-sixth} * 4 + (#{$gutter} * 3));
 $five-sixths: calc(#{$one-sixth} * 5 + (#{$gutter} * 4));
 
-///
-/// Columns map
-///
+//
+// Columns map
+//
 $columns: (
 	one-half: $one-half,
 	one-third: $one-third,

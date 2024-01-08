@@ -1,10 +1,4 @@
-////
-/// Menu toggle component.
-///
-/// @group  Components
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-////
+// Menu toggle component.
 
 .menu-toggle {
 	display: flex;
@@ -30,8 +24,8 @@
 	}
 
 	.hamburger,
-	.hamburger:before,
-	.hamburger:after {
+	.hamburger::before,
+	.hamburger::after {
 		display: block;
 		position: absolute;
 		width: $spacing--m * $perfect-fifth;
@@ -46,11 +40,11 @@
 		bottom: auto;
 		margin: auto;
 
-		&:before {
+		&::before {
 			top: -$spacing--s;
 		}
 
-		&:after {
+		&::after {
 			bottom: -$spacing--s;
 		}
 	}
@@ -60,12 +54,12 @@
 		.hamburger {
 			background-color: transparent;
 
-			&:before {
+			&::before {
 				top: 0;
 				transform: rotate(45deg);
 			}
 
-			&:after {
+			&::after {
 				bottom: 0;
 				transform: rotate(-45deg);
 			}

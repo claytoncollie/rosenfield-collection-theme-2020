@@ -1,14 +1,9 @@
-////
-/// Gutenberg classes.
-///
-/// @group  Utilities
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   https://seothemes.com/themes/genesis-starter-theme
-////
+// Gutenberg classes.
 
-/// Loops through the theme colors and adds utility classes for them. Primarily,
-/// these are the `.has-{$color}-color` and `.has-{$color}-background-color`
-/// classes added via Gutenberg. However, they are useful elsewhere.
+// Loops through the theme colors and adds utility classes for them.
+// Primarily, these are the `.has-{$color}-color` and
+// `.has-{$color}-background-color` classes added via Gutenberg.
+// However, they are useful elsewhere.
 
 @each $color-name, $color-value in $colors {
 
@@ -21,9 +16,9 @@
 	}
 }
 
-/// Loops through the editor font sizes and adds utility classes for them. This
-/// handles the `.has-{$size}-font-size` classes added via Gutenberg, which may
-/// be useful elsewhere.
+// Loops through the editor font sizes and adds utility classes
+// for them. This handles the `.has-{$size}-font-size` classes
+// added via Gutenberg, which may be useful elsewhere.
 
 @each $font-size-name, $font-size-value in $font-sizes {
 

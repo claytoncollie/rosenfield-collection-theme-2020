@@ -1,32 +1,11 @@
-////
-/// Custom variables.
-///
-/// @group  Tools
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-////
+// Custom variables.
 
-////
-/// Buttons map.
-///
-/// Adds to Bourbon buttons list.
-///
-/// @group  Tools
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-////
-
+// Buttons map.
 $all-buttons: append($all-buttons, ".button");
 $all-buttons: append($all-buttons, ".button.menu-item a");
 
-////
-/// Headings map
-///
-/// @group  Tools
-/// @author Clayton Collie <info@rosenfieldcollection.com>
-/// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-////
 
+// Headings map
 $all-headings: (
 	h1,
 	h2,
