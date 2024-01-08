@@ -48,11 +48,6 @@ function body_classes( array $classes ): array {
 		$classes[] = 'template-' . $basename;
 	}
 
-	// Add transparent header class.
-	if ( \current_theme_supports( 'transparent-header' ) ) {
-		$classes[] = 'transparent-header';
-	}
-
 	// Add sticky header class.
 	if ( \current_theme_supports( 'sticky-header' ) ) {
 		$classes[] = 'sticky-header';

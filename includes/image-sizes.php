@@ -22,6 +22,13 @@ const THUMBNAIL = 'thumbnail';
 const IMAGE_OBJECT = 'object';
 
 /**
+ * Archive
+ *
+ * @var string
+ */
+const IMAGE_ARCHIVE = 'archive';
+
+/**
  * Setup
  *
  * @return void

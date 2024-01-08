@@ -13,6 +13,8 @@ namespace RosenfieldCollection\Theme\Genesis;
  * @return void
  */
 function setup(): void {
+	// Force full-width-content layout setting.
+	add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 	// Remove sidebar.
 	remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
 	remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
@@ -22,4 +24,8 @@ function setup(): void {
 	remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 	// Disable post edit link.
 	add_filter( 'edit_post_link', '__return_empty_string' );
+	// Remove block editor controls.
+	add_filter( 'genesis_title_toggle_enabled', '__return_false' );
+	add_filter( 'genesis_footer_widgets_toggle_enabled', '__return_false' );
+	add_filter( 'genesis_breadcrumbs_toggle_enabled', '__return_false' );
 }

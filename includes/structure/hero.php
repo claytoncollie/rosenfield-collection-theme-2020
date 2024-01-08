@@ -198,15 +198,17 @@ function hero_view_toggle(): void {
 		return;
 	}
 
-	$taxonomy = $wp_query->get_queried_object();
+	$taxonomy  = $wp_query->get_queried_object();
+	$term_link = get_term_link( $taxonomy->term_id, $taxonomy->taxonomy );
+	$term_link = ! is_wp_error( $term_link ) ? (string) $term_link : '';
 
 	printf(
 		'<section class="view-toggle" role="navigation" aria-label="%s"><a href="%s" id="view-toggle-grid" aria-label="%s">%s</a><span class="entry-sep">&middot;</span><a href="%s" id="view-toggle-list" aria-label="%s">%s</a></section>',
 		esc_html__( 'Toggle to view as list or grid', 'rosenfield-collection' ),
-		esc_url( get_term_link( absint( $taxonomy->term_id ), $taxonomy->taxonomy ) ),
+		esc_url( $term_link ),
 		esc_html__( 'View as grid', 'rosenfield-collection' ),
 		esc_html__( 'Grid', 'rosenfield-collection' ),
-		esc_url( add_query_arg( 'view', 'list', get_term_link( absint( $taxonomy->term_id ), $taxonomy->taxonomy ) ) ),
+		esc_url( add_query_arg( 'view', 'list', $term_link ) ),
 		esc_html__( 'View as list', 'rosenfield-collection' ),
 		esc_html__( 'List', 'rosenfield-collection' )
 	);

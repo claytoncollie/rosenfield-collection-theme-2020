@@ -5,9 +5,6 @@
  * @package RosenfieldCollection\Theme
  */
 
-// Force full-width-content layout setting.
-add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
-
 // Remove the non-existent object ID.
 remove_action( 'genesis_entry_content', 'RosenfieldCollection\Theme\PostTitle\object_id_by_line', 9 );
 

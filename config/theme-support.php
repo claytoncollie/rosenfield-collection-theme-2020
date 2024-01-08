@@ -47,5 +47,11 @@ return [
 		'responsive-embeds',
 		'wp-block-styles',
 	],
-	'remove' => [],
+	'remove' => [
+		'genesis-seo-settings-menu',
+		'genesis-readme-menu',
+		'genesis-customizer-seo-settings',
+		'genesis-auto-updates',
+		'genesis-breadcrumbs',
+	],
 ];
