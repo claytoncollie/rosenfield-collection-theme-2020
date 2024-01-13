@@ -63,7 +63,7 @@ foreach ( $terms as $term ) :
 	);
 	
 	$image = get_the_post_thumbnail(
-		(int) $posts[0]->ID ?? 0,
+		(int) $posts[0]->ID,
 		IMAGE_ARCHIVE,
 		[
 			'alt' => sprintf(

@@ -11,23 +11,13 @@ namespace RosenfieldCollection\Theme\Helpers;
  * Load an inline SVG.
  *
  * @param string $filename The filename of the SVG you want to load.
- *
- * @return string The content of the SVG you want to load.
  */
 function svg( string $filename ): string {
-	$output = '';
-
-	// Add the path to your SVG directory inside your theme.
-	$svg_path = '/assets/svg/';
-
-	// Check the SVG file exists.
-	if ( file_exists( get_stylesheet_directory() . $svg_path . $filename . '.svg' ) ) {
-		// Load and return the contents of the file.
-		return file_get_contents( get_stylesheet_directory_uri() . $svg_path . $filename . '.svg' );
+	if ( file_exists( ROSENFIELD_COLLECTION_THEME_STYLESHEET_PATH . '/assets/svg/' . $filename . '.svg' ) ) {
+		return (string) file_get_contents( ROSENFIELD_COLLECTION_THEME_STYLESHEET_URL . '/assets/svg/' . $filename . '.svg' );
 	}
 
-	// Return a blank string if we can't find the file.
-	return $output;
+	return '';
 }
 
 /**
@@ -78,19 +68,6 @@ function get_taxonomy_term_prefix(): string {
 }
 
 /**
- * Returns the child theme directory.
- */
-function get_theme_dir(): string {
-	static $dir = null;
-
-	if ( \is_null( $dir ) ) {
-		$dir = \trailingslashit( \get_stylesheet_directory() );
-	}
-
-	return $dir;
-}
-
-/**
  * Returns the child theme URL.
  */
 function get_theme_url(): string {
@@ -122,11 +99,4 @@ function is_type_archive(): bool {
  */
 function is_type_archive_page(): bool {
 	return \is_page( [ 'forms', 'firings', 'techniques', 'artists' ] );
-}
-
-/**
- * Checks if current page has the hero section enabled.
- */
-function has_hero_section(): bool {
-	return \in_array( 'has-hero-section', \get_body_class(), true );
 }

@@ -36,15 +36,23 @@ function redirect_after_trash(): void {
  */
 function do_claim_meta(): void {
 	$post_id = get_query_var( 'post_id' );
-
-	if ( ! empty( $post_id ) ) {
-		printf(
-			'<section class="claim-header"><div class="wrap"><h2>%s %s</h2><a href="%s" class="button warning">Delete</a></div></section>',
-			esc_html( get_the_author_meta( 'first_name', get_post_field( 'post_author', $post_id ) ) ),
-			esc_html( get_the_author_meta( 'last_name', get_post_field( 'post_author', $post_id ) ) ),
-			esc_url( wp_nonce_url( get_admin_url() . 'post.php?post=' . $post_id . '&action=trash', 'trash-post_' . $post_id ) )
-		);
+	$post_id = $post_id ? (int) $post_id : 0;
+	if ( empty( $post_id ) ) {
+		return;
 	}
+
+	$author_id = get_post_field( 'post_author', $post_id );
+	$author_id = empty( $author_id ) ? 0 : (int) $author_id;
+	if ( empty( $author_id ) ) {
+		return;
+	}
+
+	printf(
+		'<section class="claim-header"><div class="wrap"><h2>%s %s</h2><a href="%s" class="button warning">Delete</a></div></section>',
+		esc_html( get_the_author_meta( 'first_name', $author_id ) ),
+		esc_html( get_the_author_meta( 'last_name', $author_id ) ),
+		esc_url( wp_nonce_url( get_admin_url() . 'post.php?post=' . $post_id . '&action=trash', 'trash-post_' . $post_id ) )
+	);
 }
 
 /**

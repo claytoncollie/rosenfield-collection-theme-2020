@@ -82,10 +82,10 @@ foreach ( $user_query->results as $user ) :
 	* the first post and use as fallback image.
 	*/
 	if ( 0 === $attachment_id ) {
-		$author_posts = get_posts( 'author=' . esc_attr( $user_id ) . '&posts_per_page=1' );
+		$author_posts = get_posts( 'author=' . $user_id . '&posts_per_page=1' );
 		foreach ( $author_posts as $author_post ) {
 			$fallback = get_the_post_thumbnail(
-				(int) $author_post->ID,
+				(int) $author_post->ID, // @phpstan-ignore-line
 				THUMBNAIL,
 				[
 					'alt' => esc_html( $full_name ),
@@ -135,7 +135,7 @@ foreach ( $user_query->results as $user ) :
 		<div class="wrap">
 			<?php 
 			echo wp_kses_post(
-				paginate_links(
+				(string) paginate_links(
 					[
 						'base'      => get_pagenum_link( 1 ) . '%_%',
 						'format'    => 'page/%#%/',

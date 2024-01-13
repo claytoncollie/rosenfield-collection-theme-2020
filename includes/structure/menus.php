@@ -23,8 +23,6 @@ function setup(): void {
  * Reduces secondary navigation menu to one level depth.
  *
  * @param array $args Original menu options.
- * 
- * @return array Menu options with depth set to 1.
  */
 function limit_menu_depth( array $args ): array {
 	$args['depth'] = 1;

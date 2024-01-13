@@ -9,6 +9,7 @@ parameters:
 		- phpstan/constants.php
 	excludePaths:
 		analyseAndScan:
+			- rector.php
 			- dist/*
 			- node_modules/*
 		analyse:

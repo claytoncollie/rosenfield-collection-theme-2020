@@ -102,9 +102,9 @@ function the_gallery(): void {
 		$images = [
 			[
 				'sizes' => [
-					'object'        => $image[0] ?? '',
-					'object-width'  => $image[1] ?? '',
-					'object-height' => $image[2] ?? '',
+					'object'        => $image[0],
+					'object-width'  => $image[1],
+					'object-height' => $image[2],
 				],
 				'url'   => $image_url,
 				'title' => $prefix_id,

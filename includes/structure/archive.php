@@ -46,10 +46,6 @@ function archive_post_class( array $classes ): array {
 		return $classes;
 	}
 
-	if ( \class_exists( 'WooCommerce' ) && \is_woocommerce() ) {
-		return $classes;
-	}
-
 	if ( \did_action( 'genesis_before_sidebar_widget_area' ) !== 0 ) {
 		return $classes;
 	}

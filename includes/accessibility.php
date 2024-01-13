@@ -18,7 +18,7 @@ function setup(): void {
 	add_filter( 'wp_get_attachment_image_attributes', __NAMESPACE__ . '\entry_image', 99 );
 	add_filter( 'genesis_attr_nav-secondary', __NAMESPACE__ . '\nav_secondary' );
 	add_filter( 'genesis_attr_archive-pagination', __NAMESPACE__ . '\pagination' );
-	add_filter( 'genesis_skip_links_output', __NAMESPACE__ . '\skip_links', 10, 2 );
+	add_filter( 'genesis_skip_links_output', __NAMESPACE__ . '\skip_links' );
 }
 
 /**

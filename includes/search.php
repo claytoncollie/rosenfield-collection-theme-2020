@@ -40,8 +40,6 @@ function do_header_search_form(): void {
  *
  * @param string $items The menu HTML.
  * @param object $args The menu options.
- * 
- * @return string Updated menu HTML.
  */
 function add_search_menu_item( string $items, object $args ): string {
 	$search_toggle = sprintf( '<li class="menu-item search-lg">%s</li>', get_header_search_toggle() );
@@ -60,8 +58,6 @@ function add_search_menu_item( string $items, object $args ): string {
 
 /**
  * Outputs the header search form toggle button.
- *
- * @return string HTML output of the Show Search button.
  */
 function get_header_search_toggle(): string {
 	return sprintf(

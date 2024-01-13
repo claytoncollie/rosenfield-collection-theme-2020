@@ -19,7 +19,7 @@ if ( empty( $letters ) ) {
 
 $is_archive  = get_query_var( QUERY_VAR ) === '' ? 'current' : '';
 $page_object = get_page_by_path( 'artists', OBJECT, 'page' );
-$view_all    = (string) get_permalink( $page_object );
+$view_all    = (string) get_permalink( $page_object ); // @phpstan-ignore-line
 
 ?>
 

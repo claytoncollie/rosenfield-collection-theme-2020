@@ -11,7 +11,7 @@ namespace RosenfieldCollection\Theme\Structure\Wrap;
  * Setup
  */
 function setup(): void {
-	add_filter( 'genesis_before', __NAMESPACE__ . '\structural_wrap_hooks' );
+	add_action( 'genesis_before', __NAMESPACE__ . '\structural_wrap_hooks' );
 	add_filter( 'genesis_attr_content-sidebar-wrap', __NAMESPACE__ . '\content_sidebar_wrap' );
 }
 
