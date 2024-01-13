@@ -7,6 +7,8 @@
 
 namespace RosenfieldCollection\Theme\Helpers;
 
+use const RosenfieldCollection\Theme\Taxonomies\FORM;
+
 /**
  * Load an inline SVG.
  *
@@ -51,20 +53,29 @@ function get_object_prefix_and_id(): string {
  * Get the taxonomy term prefix
  */
 function get_taxonomy_term_prefix(): string {
-	$prefix = '';
-	$terms  = get_the_terms( get_the_ID(), 'rc_form' );
-
-	if ( ! empty( $terms ) ) {
-		foreach ( $terms as $term ) {
-			$term_id = $term->term_id;
-		}
+	$post_id = get_the_ID();
+	$post_id = $post_id ? (int) $post_id : 0;
+	if ( empty( $post_id ) ) {
+		return '';
 	}
 
-	if ( ! empty( $term_id ) ) {
-		return get_term_meta( $term_id, 'rc_form_object_prefix', true );
+	$terms = get_the_terms( $post_id, FORM );
+	if ( ! $terms ) {
+		return '';
+	}
+	if ( is_wp_error( $terms ) ) {
+		return '';
 	}
 
-	return $prefix;
+	foreach ( $terms as $term ) {
+		$term_id = $term->term_id;
+	}
+
+	if ( empty( $term_id ) ) {
+		return '';
+	}
+	
+	return get_term_meta( $term_id, 'rc_form_object_prefix', true );
 }
 
 /**
@@ -73,8 +84,8 @@ function get_taxonomy_term_prefix(): string {
 function get_theme_url(): string {
 	static $url = null;
 
-	if ( \is_null( $url ) ) {
-		$url = \trailingslashit( \get_stylesheet_directory_uri() );
+	if ( is_null( $url ) ) {
+		$url = \trailingslashit( get_stylesheet_directory_uri() );
 	}
 
 	return $url;
@@ -84,19 +95,19 @@ function get_theme_url(): string {
  * Check if were on any type of singular page.
  */
 function is_type_single(): bool {
-	return \is_front_page() || \is_single() || \is_page() || \is_404() || \is_attachment() || \is_singular();
+	return is_front_page() || is_single() || is_page() || is_404() || is_attachment() || is_singular();
 }
 
 /**
  * Check if were on any type of archive page.
  */
 function is_type_archive(): bool {
-	return is_type_archive_page() || \is_home() || \is_post_type_archive() || \is_category() || \is_tag() || \is_tax() || \is_author() || \is_date() || \is_year() || \is_month() || \is_day() || \is_time() || \is_archive();
+	return is_type_archive_page() || is_home() || is_post_type_archive() || is_category() || is_tag() || is_tax() || is_author() || is_date() || is_year() || is_month() || is_day() || is_time() || is_archive();
 }
 
 /**
  * Check if we are nay of these pages.
  */
 function is_type_archive_page(): bool {
-	return \is_page( [ 'forms', 'firings', 'techniques', 'artists' ] );
+	return is_page( [ 'forms', 'firings', 'techniques', 'artists' ] );
 }

@@ -26,10 +26,11 @@ function setup(): void {
 function body_classes( array $classes ): array {
 
 	// Remove unnecessary page template classes.
-	$template  = \get_page_template_slug();
-	$basename  = \basename( $template, '.php' );
-	$directory = \str_replace( [ '/', \basename( $template ) ], '', $template );
-	$classes   = \array_diff(
+	$template  = get_page_template_slug();
+	$template  = $template ? (string) $template : '';
+	$basename  = basename( $template, '.php' );
+	$directory = str_replace( [ '/', \basename( $template ) ], '', $template );
+	$classes   = array_diff(
 		$classes,
 		[
 			'page-template',
@@ -45,7 +46,7 @@ function body_classes( array $classes ): array {
 	}
 
 	// Add sticky header class.
-	if ( \current_theme_supports( 'sticky-header' ) ) {
+	if ( current_theme_supports( 'sticky-header' ) ) {
 		$classes[] = 'sticky-header';
 	}
 
@@ -74,7 +75,7 @@ function body_classes( array $classes ): array {
  * Remove sidebars on narrow content layout.
  */
 function narrow_content(): void {
-	if ( 'narrow-content' === \genesis_site_layout() ) {
-		\add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
+	if ( 'narrow-content' === genesis_site_layout() ) {
+		add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 	}
 }

@@ -22,7 +22,7 @@ function setup(): void {
 	add_action( 'genesis_entry_header', __NAMESPACE__ . '\entry_wrap_open', 4 );
 	add_action( 'genesis_entry_footer', __NAMESPACE__ . '\entry_wrap_close', 15 );
 	add_filter( 'genesis_markup_entry-header_open', __NAMESPACE__ . '\widget_entry_wrap_open', 10, 2 );
-	add_filter( 'pre_get_posts', __NAMESPACE__ . '\sort_by_object_id' );
+	add_action( 'pre_get_posts', __NAMESPACE__ . '\sort_by_object_id' );
 	add_action( 'genesis_entry_content', __NAMESPACE__ . '\object_by_line', 8 );
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\nopaging', 99 );
 	add_filter( 'body_class', __NAMESPACE__ . '\body_class' );
@@ -50,7 +50,7 @@ function archive_post_class( array $classes ): array {
 		return $classes;
 	}
 
-	if ( 'full-width-content' === \genesis_site_layout() ) {
+	if ( 'full-width-content' === genesis_site_layout() ) {
 		$classes[] = 'one-fourth';
 		$count     = 4;
 	} else {
@@ -71,9 +71,21 @@ function archive_post_class( array $classes ): array {
  * Modify the content limit read more link
  */
 function read_more_link(): string {
+	$post_id = get_the_ID();
+	$post_id = $post_id ? (int) $post_id : 0;
+	if ( empty( $post_id ) ) {
+		return '';
+	}
+
+	$permalink = get_permalink( $post_id );
+	$permalink = $permalink ? (string) $permalink : '';
+	if ( empty( $permalink ) ) {
+		return '';
+	}
+
 	return sprintf(
 		'<a class="more-link" href="%s">%s</a>',
-		esc_url( get_permalink( get_the_ID() ) ),
+		esc_url( $permalink ),
 		esc_html( ucwords( get_object_prefix_and_id() ) )
 	);
 }
@@ -83,7 +95,7 @@ function read_more_link(): string {
  */
 function entry_wrap_open(): void {
 	if ( is_type_archive() ) {
-		\genesis_markup(
+		genesis_markup(
 			[
 				'open'    => '<div %s>',
 				'context' => 'entry-wrap',
@@ -97,7 +109,7 @@ function entry_wrap_open(): void {
  */
 function entry_wrap_close(): void {
 	if ( is_type_archive() ) {
-		\genesis_markup(
+		genesis_markup(
 			[
 				'close'   => '</div>',
 				'context' => 'entry-wrap',
@@ -114,7 +126,7 @@ function entry_wrap_close(): void {
  */
 function widget_entry_wrap_open( string $open, array $args ): string {
 	if ( isset( $args['params']['is_widget'] ) && $args['params']['is_widget'] ) {
-		$markup = \genesis_markup(
+		$markup = genesis_markup(
 			[
 				'open'    => '<div %s>',
 				'context' => 'entry-wrap',

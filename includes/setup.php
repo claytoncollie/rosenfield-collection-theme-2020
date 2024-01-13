@@ -20,21 +20,21 @@ function setup(): void {
 function config(): void {
 
 	// Get setup configs.
-	$responsive_menu   = \genesis_get_config( 'responsive-menu' );
-	$theme_support     = \genesis_get_config( 'theme-support' );
-	$post_type_support = \genesis_get_config( 'post-type-support' );
-	$image_sizes       = \genesis_get_config( 'image-sizes' );
-	$page_layouts      = \genesis_get_config( 'page-layouts' );
-	$widget_areas      = \genesis_get_config( 'widget-areas' );
+	$responsive_menu   = genesis_get_config( 'responsive-menu' );
+	$theme_support     = genesis_get_config( 'theme-support' );
+	$post_type_support = genesis_get_config( 'post-type-support' );
+	$image_sizes       = genesis_get_config( 'image-sizes' );
+	$page_layouts      = genesis_get_config( 'page-layouts' );
+	$widget_areas      = genesis_get_config( 'widget-areas' );
 
 	// Add responsive menus.
-	\genesis_register_responsive_menus( $responsive_menu );
+	genesis_register_responsive_menus( $responsive_menu );
 
 	// Add theme supports.
 	\array_walk(
 		$theme_support['add'],
 		function ( $value, $key ): void {
-			\is_int( $key ) ? \add_theme_support( $value ) : \add_theme_support( $key, $value );
+			is_int( $key ) ? add_theme_support( $value ) : add_theme_support( $key, $value );
 		}
 	);
 
@@ -42,7 +42,7 @@ function config(): void {
 	\array_walk(
 		$theme_support['remove'],
 		function ( $name ): void {
-			\remove_theme_support( $name );
+			remove_theme_support( $name );
 		}
 	);
 
@@ -51,7 +51,7 @@ function config(): void {
 		$post_type_support['add'],
 		function ( $post_types, $feature ): void {
 			foreach ( $post_types as $post_type ) {
-				\add_post_type_support( $post_type, $feature );
+				add_post_type_support( $post_type, $feature );
 			}
 		}
 	);
@@ -61,7 +61,7 @@ function config(): void {
 		$post_type_support['remove'],
 		function ( $post_types, $feature ): void {
 			foreach ( $post_types as $post_type ) {
-				\remove_post_type_support( $post_type, $feature );
+				remove_post_type_support( $post_type, $feature );
 			}
 		}
 	);
@@ -70,7 +70,7 @@ function config(): void {
 	\array_walk(
 		$image_sizes['add'],
 		function ( $args, $name ): void {
-			\add_image_size( $name, $args[0], $args[1], $args[2] );
+			add_image_size( $name, $args[0], $args[1], $args[2] );
 		}
 	);
 
@@ -78,7 +78,7 @@ function config(): void {
 	\array_walk(
 		$image_sizes['remove'],
 		function ( $name ): void {
-			\remove_image_size( $name );
+			remove_image_size( $name );
 		}
 	);
 
@@ -86,7 +86,7 @@ function config(): void {
 	\array_walk(
 		$page_layouts['add'],
 		function ( array $args ): void {
-			\genesis_register_layout( $args['id'], $args );
+			genesis_register_layout( $args['id'], $args );
 		}
 	);
 
@@ -94,7 +94,7 @@ function config(): void {
 	\array_walk(
 		$page_layouts['remove'],
 		function ( $name ): void {
-			\genesis_unregister_layout( $name );
+			genesis_unregister_layout( $name );
 		}
 	);
 
@@ -102,7 +102,7 @@ function config(): void {
 	\array_walk(
 		$widget_areas['add'],
 		function ( $id ): void {
-			\genesis_register_widget_area( $id );
+			genesis_register_widget_area( $id );
 		}
 	);
 

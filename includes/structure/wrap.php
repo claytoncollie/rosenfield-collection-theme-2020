@@ -19,10 +19,10 @@ function setup(): void {
  * Add hooks before and after structural wraps.
  */
 function structural_wrap_hooks(): void {
-	$wraps = \get_theme_support( 'genesis-structural-wraps' );
+	$wraps = get_theme_support( 'genesis-structural-wraps' );
 
 	foreach ( $wraps[0] as $context ) {
-		\add_filter(
+		add_filter(
 			'genesis_structural_wrap-' . $context,
 			function ( string $output, $original ) use ( $context ): string {
 				$position = ( 'open' === $original ) ? 'before' : 'after';

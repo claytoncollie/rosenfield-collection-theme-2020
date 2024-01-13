@@ -30,7 +30,7 @@ function do_header_search_form(): void {
 
 	printf(
 		'<div id="header-search-wrap" class="header-search-wrap">%s %s</div>',
-		get_search_form( false ),
+		get_search_form( [ 'echo' => false ] ),
 		$button // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	);
 }
@@ -49,7 +49,7 @@ function add_search_menu_item( string $items, object $args ): string {
 		esc_html__( 'Search', 'rosenfield-collection' )
 	);
 
-	if ( 'primary' === $args->theme_location ) {
+	if ( 'primary' === $args->theme_location ) { // @phpstan-ignore-line
 		$items .= $search_toggle . $search_mobile;
 	}
 
