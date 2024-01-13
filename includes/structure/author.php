@@ -11,8 +11,6 @@ use function RosenfieldCollection\Theme\Helpers\svg;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\do_the_artist_avatar', 8 );
@@ -21,8 +19,6 @@ function setup(): void {
 
 /**
  * Display author avatar from user profile.
- *
- * @return void
  */
 function do_the_artist_avatar(): void {
 	if ( ! is_author() ) {
@@ -53,8 +49,6 @@ function do_the_artist_avatar(): void {
 
 /**
  * Author info for author archive
- *
- * @return void
  */
 function do_the_artist_info(): void {
 	if ( ! is_author() || is_paged() ) {

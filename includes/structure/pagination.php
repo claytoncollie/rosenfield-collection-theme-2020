@@ -9,8 +9,6 @@ namespace RosenfieldCollection\Theme\Structure\Pagination;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_filter( 'genesis_markup_open', __NAMESPACE__ . '\entry_pagination_wrap_open', 10, 2 );
@@ -34,8 +32,6 @@ function setup(): void {
  *
  * @param string $open Opening markup.
  * @param array  $args Markup args.
- *
- * @return string
  */
 function entry_pagination_wrap_open( string $open, array $args ): string {
 	if ( 'archive-pagination' === $args['context'] || 'adjacent-entry-pagination' === $args['context'] ) {
@@ -50,8 +46,6 @@ function entry_pagination_wrap_open( string $open, array $args ): string {
  *
  * @param string $close Closing markup.
  * @param array  $args  Markup args.
- *
- * @return string
  */
 function entry_pagination_wrap_close( string $close, array $args ): string {
 	if ( 'archive-pagination' === $args['context'] || 'adjacent-entry-pagination' === $args['context'] ) {
@@ -63,8 +57,6 @@ function entry_pagination_wrap_close( string $close, array $args ): string {
 
 /**
  * Changes the previous page link text.
- *
- * @return string
  */
 function previous_page_link(): string {
 	return \sprintf( '← Previous', 'rosenfield-collection' );
@@ -72,8 +64,6 @@ function previous_page_link(): string {
 
 /**
  * Changes the next page link text.
- *
- * @return string
  */
 function next_page_link(): string {
 	return \sprintf( 'Next →', 'rosenfield-collection' );
@@ -83,8 +73,6 @@ function next_page_link(): string {
  * Changes the previous link arrow icon.
  *
  * @param string $content Previous link text.
- *
- * @return string
  */
 function previous_pagination_text( string $content ): string {
 	return \str_replace( '&#xAB;', '←', $content );
@@ -94,8 +82,6 @@ function previous_pagination_text( string $content ): string {
  * Changes the next link arrow icon.
  *
  * @param string $content Next link text.
- *
- * @return string
  */
 function next_pagination_text( string $content ): string {
 	return \str_replace( '&#xBB;', '→', $content );

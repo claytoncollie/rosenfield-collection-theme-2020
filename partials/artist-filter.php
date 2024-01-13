@@ -48,7 +48,7 @@ $view_all    = (string) get_permalink( $page_object );
 					<span class="screen-reader-text">
 						<?php echo esc_html__( 'Filter artist by the letter ', 'rosenfield-collection' ); ?>
 					</span> 
-					<?php echo esc_html( ucwords( $letter ) ); ?>
+					<?php echo esc_html( ucwords( (string) $letter ) ); ?>
 				</a>
 			</li>
 		<?php endforeach; ?>

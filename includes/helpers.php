@@ -22,9 +22,8 @@ function svg( string $filename ): string {
 
 	// Check the SVG file exists.
 	if ( file_exists( get_stylesheet_directory() . $svg_path . $filename . '.svg' ) ) {
-
 		// Load and return the contents of the file.
-		$output = file_get_contents( get_stylesheet_directory_uri() . $svg_path . $filename . '.svg' );
+		return file_get_contents( get_stylesheet_directory_uri() . $svg_path . $filename . '.svg' );
 	}
 
 	// Return a blank string if we can't find the file.
@@ -36,20 +35,15 @@ function svg( string $filename ): string {
  *
  * @param int $i Column count as of right now.
  * @param int $columns Number of columns we are starting with.
- *
- * @return string
  */
 function column_class( int $i, int $columns ): string {
 	if ( 0 === $i || 0 === $i % $columns ) {
 		return 'first';
-	} else {
-		return '';
 	}
+	return '';
 }
 /**
  * Get the object prefix and ID.
- *
- * @return string
  */
 function get_object_prefix_and_id(): string {
 	$output = '';
@@ -57,7 +51,7 @@ function get_object_prefix_and_id(): string {
 	$id     = get_field( 'object_id' );
 
 	if ( ! empty( $id ) && ! empty( $prefix ) ) {
-		$output = $prefix . $id;
+		return $prefix . $id;
 	}
 
 	return $output;
@@ -65,8 +59,6 @@ function get_object_prefix_and_id(): string {
 
 /**
  * Get the taxonomy term prefix
- *
- * @return string
  */
 function get_taxonomy_term_prefix(): string {
 	$prefix = '';
@@ -79,7 +71,7 @@ function get_taxonomy_term_prefix(): string {
 	}
 
 	if ( ! empty( $term_id ) ) {
-		$prefix = get_term_meta( $term_id, 'rc_form_object_prefix', true );
+		return get_term_meta( $term_id, 'rc_form_object_prefix', true );
 	}
 
 	return $prefix;
@@ -87,8 +79,6 @@ function get_taxonomy_term_prefix(): string {
 
 /**
  * Returns the child theme directory.
- *
- * @return string
  */
 function get_theme_dir(): string {
 	static $dir = null;
@@ -102,8 +92,6 @@ function get_theme_dir(): string {
 
 /**
  * Returns the child theme URL.
- *
- * @return string
  */
 function get_theme_url(): string {
 	static $url = null;
@@ -117,8 +105,6 @@ function get_theme_url(): string {
 
 /**
  * Check if were on any type of singular page.
- *
- * @return bool
  */
 function is_type_single(): bool {
 	return \is_front_page() || \is_single() || \is_page() || \is_404() || \is_attachment() || \is_singular();
@@ -126,8 +112,6 @@ function is_type_single(): bool {
 
 /**
  * Check if were on any type of archive page.
- *
- * @return bool
  */
 function is_type_archive(): bool {
 	return is_type_archive_page() || \is_home() || \is_post_type_archive() || \is_category() || \is_tag() || \is_tax() || \is_author() || \is_date() || \is_year() || \is_month() || \is_day() || \is_time() || \is_archive();
@@ -135,8 +119,6 @@ function is_type_archive(): bool {
 
 /**
  * Check if we are nay of these pages.
- *
- * @return bool
  */
 function is_type_archive_page(): bool {
 	return \is_page( [ 'forms', 'firings', 'techniques', 'artists' ] );
@@ -144,8 +126,6 @@ function is_type_archive_page(): bool {
 
 /**
  * Checks if current page has the hero section enabled.
- *
- * @return bool
  */
 function has_hero_section(): bool {
 	return \in_array( 'has-hero-section', \get_body_class(), true );

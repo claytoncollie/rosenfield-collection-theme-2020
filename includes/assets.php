@@ -18,8 +18,6 @@ function setup(): void {
 
 /**
  * Enqueue scripts.
- * 
- * @return void
  */
 function scripts(): void {
 	wp_enqueue_script(
@@ -33,8 +31,6 @@ function scripts(): void {
 
 /**
  * Enqueue styles.
- * 
- * @return void
  */
 function styles(): void {
 	wp_enqueue_style(
@@ -47,8 +43,6 @@ function styles(): void {
 
 /**
  * Enqueue editor styles.
- * 
- * @return void
  */
 function editor_styles(): void {
 	wp_enqueue_style(

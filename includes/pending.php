@@ -11,8 +11,6 @@ use WP_Post;
 
 /**
  * Display all posts labeled PENDING
- *
- * @return void
  */
 function do_the_pending_posts(): void {
 	$form = get_query_var( 'rc_form' );
@@ -48,8 +46,6 @@ function do_the_pending_posts(): void {
  *
  * @param string  $url Permalink.
  * @param WP_Post $post Post Object.
- * 
- * @return string
  */
 function get_the_permalink_with_post_id( string $url, WP_Post $post ): string {
 	if ( is_admin() ) {
@@ -64,7 +60,5 @@ function get_the_permalink_with_post_id( string $url, WP_Post $post ): string {
 		return $url;
 	}
 
-	$url = add_query_arg( 'post_id', get_the_ID(), esc_url( get_bloginfo( 'url' ) . '/claim' ) );
-
-	return $url;
+	return add_query_arg( 'post_id', get_the_ID(), esc_url( get_bloginfo( 'url' ) . '/claim' ) );
 }

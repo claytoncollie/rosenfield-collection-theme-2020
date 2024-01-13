@@ -14,8 +14,6 @@ use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_filter( 'post_class', __NAMESPACE__ . '\archive_post_class' );
@@ -42,8 +40,6 @@ function setup(): void {
  * Add column class to archive posts.
  *
  * @param array $classes Array of post classes.
- *
- * @return array
  */
 function archive_post_class( array $classes ): array {
 	if ( ! is_type_archive() ) {
@@ -54,7 +50,7 @@ function archive_post_class( array $classes ): array {
 		return $classes;
 	}
 
-	if ( \did_action( 'genesis_before_sidebar_widget_area' ) ) {
+	if ( \did_action( 'genesis_before_sidebar_widget_area' ) !== 0 ) {
 		return $classes;
 	}
 
@@ -77,24 +73,17 @@ function archive_post_class( array $classes ): array {
 
 /**
  * Modify the content limit read more link
- *
- * @param string $more_link_text Default more link text.
- *
- * @return string
  */
-function read_more_link( string $more_link_text ): string {
-	$more_link_text = sprintf(
+function read_more_link(): string {
+	return sprintf(
 		'<a class="more-link" href="%s">%s</a>',
 		esc_url( get_permalink( get_the_ID() ) ),
 		esc_html( ucwords( get_object_prefix_and_id() ) )
 	);
-	return $more_link_text;
 }
 
 /**
  * Outputs the opening entry wrap markup.
- *
- * @return void
  */
 function entry_wrap_open(): void {
 	if ( is_type_archive() ) {
@@ -109,8 +98,6 @@ function entry_wrap_open(): void {
 
 /**
  * Outputs the closing entry wrap markup.
- *
- * @return void
  */
 function entry_wrap_close(): void {
 	if ( is_type_archive() ) {
@@ -128,8 +115,6 @@ function entry_wrap_close(): void {
  *
  * @param string $open Opening markup.
  * @param array  $args Markup args.
- *
- * @return string
  */
 function widget_entry_wrap_open( string $open, array $args ): string {
 	if ( isset( $args['params']['is_widget'] ) && $args['params']['is_widget'] ) {
@@ -151,8 +136,6 @@ function widget_entry_wrap_open( string $open, array $args ): string {
  * Sort the taxonomy archive pages by object ID
  *
  * @param WP_Query $query Main Query.
- * 
- * @return void
  */
 function sort_by_object_id( WP_Query $query ): void {
 	if ( is_admin() ) {
@@ -174,8 +157,6 @@ function sort_by_object_id( WP_Query $query ): void {
 
 /**
  * Display the object author name and object ID below the post title
- *
- * @return void
  */
 function object_by_line(): void {
 	if ( is_singular() ) {
@@ -192,8 +173,6 @@ function object_by_line(): void {
  * Filter the posts per page on taxonomy archives.
  *
  * @param WP_Query $query Main Query.
- *
- * @return void
  */
 function nopaging( WP_Query $query ): void {
 	if ( is_admin() ) {
@@ -217,8 +196,6 @@ function nopaging( WP_Query $query ): void {
  * Add body class for taxonomy archive.
  *
  * @param array $classes Body classes.
- * 
- * @return array
  */
 function body_class( array $classes ): array {
 	$view = get_query_var( 'view' );
@@ -233,10 +210,8 @@ function body_class( array $classes ): array {
 
 /**
  * Display the post meta next to each object
- * 
- * Includes data only for logged in users.
  *
- * @return void
+ * Includes data only for logged in users.
  */
 function the_post_meta(): void {
 	if ( ! is_tax() && ! is_tag() ) {

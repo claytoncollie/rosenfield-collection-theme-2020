@@ -9,8 +9,6 @@ namespace RosenfieldCollection\Theme\Setup;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\config', 5 );
@@ -18,8 +16,6 @@ function setup(): void {
 
 /**
  * Theme setup.
- *
- * @return void
  */
 function config(): void {
 
@@ -37,7 +33,7 @@ function config(): void {
 	// Add theme supports.
 	\array_walk(
 		$theme_support['add'],
-		function ( $value, $key ) {
+		function ( $value, $key ): void {
 			\is_int( $key ) ? \add_theme_support( $value ) : \add_theme_support( $key, $value );
 		}
 	);
@@ -45,7 +41,7 @@ function config(): void {
 	// Remove theme supports.
 	\array_walk(
 		$theme_support['remove'],
-		function ( $name ) {
+		function ( $name ): void {
 			\remove_theme_support( $name );
 		}
 	);
@@ -53,7 +49,7 @@ function config(): void {
 	// Add post type supports.
 	\array_walk(
 		$post_type_support['add'],
-		function ( $post_types, $feature ) {
+		function ( $post_types, $feature ): void {
 			foreach ( $post_types as $post_type ) {
 				\add_post_type_support( $post_type, $feature );
 			}
@@ -63,7 +59,7 @@ function config(): void {
 	// Remove post type supports.
 	\array_walk(
 		$post_type_support['remove'],
-		function ( $post_types, $feature ) {
+		function ( $post_types, $feature ): void {
 			foreach ( $post_types as $post_type ) {
 				\remove_post_type_support( $post_type, $feature );
 			}
@@ -73,7 +69,7 @@ function config(): void {
 	// Add image sizes.
 	\array_walk(
 		$image_sizes['add'],
-		function ( $args, $name ) {
+		function ( $args, $name ): void {
 			\add_image_size( $name, $args[0], $args[1], $args[2] );
 		}
 	);
@@ -81,7 +77,7 @@ function config(): void {
 	// Remove image sizes.
 	\array_walk(
 		$image_sizes['remove'],
-		function ( $name ) {
+		function ( $name ): void {
 			\remove_image_size( $name );
 		}
 	);
@@ -89,7 +85,7 @@ function config(): void {
 	// Add page layouts.
 	\array_walk(
 		$page_layouts['add'],
-		function ( $args ) {
+		function ( array $args ): void {
 			\genesis_register_layout( $args['id'], $args );
 		}
 	);
@@ -97,7 +93,7 @@ function config(): void {
 	// Remove page layouts.
 	\array_walk(
 		$page_layouts['remove'],
-		function ( $name ) {
+		function ( $name ): void {
 			\genesis_unregister_layout( $name );
 		}
 	);
@@ -105,7 +101,7 @@ function config(): void {
 	// Add widget areas.
 	\array_walk(
 		$widget_areas['add'],
-		function ( $id ) {
+		function ( $id ): void {
 			\genesis_register_widget_area( $id );
 		}
 	);
@@ -113,7 +109,7 @@ function config(): void {
 	// Remove widget areas.
 	\array_walk(
 		$widget_areas['remove'],
-		function ( $id ) {
+		function ( $id ): void {
 			\unregister_sidebar( $id );
 		}
 	);

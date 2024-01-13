@@ -9,7 +9,7 @@ $post_count  = wp_count_posts();
 $post_count  = get_object_vars( $post_count );
 $published   = (int) $post_count['publish'] ?? 0;
 $users       = count_users();
-$total_users = (int) $users['total_users'] ?? 0;
+$total_users = $users['total_users'] ?? 0;
 
 ?>
 

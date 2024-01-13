@@ -60,8 +60,6 @@ const LOCATION = 'rc_location';
 
 /**
  * WordPress actions and filters
- *
- * @return void
  */
 function setup(): void {
 	add_action( 'genesis_loop', __NAMESPACE__ . '\the_taxonomy_loop__firing' );
@@ -71,8 +69,6 @@ function setup(): void {
 
 /**
  * Taxonomy archive for Firing
- *
- * @return void
  */
 function the_taxonomy_loop__firing(): void {
 	if ( ! is_page_template( 'templates/firings.php' ) ) {
@@ -90,8 +86,6 @@ function the_taxonomy_loop__firing(): void {
 
 /**
  * Taxonomy archive for Forms
- *
- * @return void
  */
 function the_taxonomy_loop__form(): void {
 	if ( ! is_page_template( 'templates/forms.php' ) ) {
@@ -109,8 +103,6 @@ function the_taxonomy_loop__form(): void {
 
 /**
  * Taxonomy archive for Technique
- *
- * @return void
  */
 function the_taxonomy_loop__technique(): void {
 	if ( ! is_page_template( 'templates/techniques.php' ) ) {

@@ -9,8 +9,6 @@ namespace RosenfieldCollection\Theme\Structure\Footer;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_action( 'genesis_footer', __NAMESPACE__ . '\do_footer_credits' );
@@ -20,8 +18,6 @@ function setup(): void {
 
 /**
  * Output custom footer credits.
- *
- * @return void
  */
 function do_footer_credits(): void {
 	\genesis_markup(

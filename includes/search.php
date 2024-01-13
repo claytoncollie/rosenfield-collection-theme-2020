@@ -11,8 +11,6 @@ use function RosenfieldCollection\Theme\Helpers\svg;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_action( 'genesis_after_title_area', __NAMESPACE__ . '\do_header_search_form', 12 );
@@ -22,8 +20,6 @@ function setup(): void {
 
 /**
  * Outputs the header search form.
- *
- * @return void
  */
 function do_header_search_form(): void {
 	$button = sprintf(

@@ -37,8 +37,6 @@ const MAX_PER_PAGE = 999;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_filter( 'query_vars', __NAMESPACE__ . '\add_query_var' );
@@ -50,8 +48,6 @@ function setup(): void {
  * Adds the query variable to the query object.
  *
  * @param array $query_vars Publicly available variables.
- * 
- * @return array
  */
 function add_query_var( array $query_vars ): array {
 	$query_vars[] = QUERY_VAR;
@@ -60,8 +56,6 @@ function add_query_var( array $query_vars ): array {
 
 /**
  * Display the alphabetical filter
- * 
- * @return void
  */
 function the_filter(): void {
 	if ( ! is_page_template( 'templates/artists.php' ) ) {
@@ -73,8 +67,6 @@ function the_filter(): void {
 
 /**
  * Display the main loop
- * 
- * @return void
  */
 function the_loop(): void {
 	if ( ! is_page_template( 'templates/artists.php' ) ) {
