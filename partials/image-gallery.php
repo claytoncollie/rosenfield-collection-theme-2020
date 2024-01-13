@@ -43,7 +43,7 @@ $full_name  = $first_name . ' ' . $last_name;
 					</span>
 				</a>
 			</li>
-		<?php endforeach; ?>
+<?php endforeach; ?>
 	</ul>
 </div>
 	

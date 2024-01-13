@@ -17,7 +17,7 @@ $index = 0;
 // Get the query var to know if we are filtering or not.
 $filter_value = get_query_var( QUERY_VAR ) ?? [];
 // Set high value to disable pagination when using query var.
-$posts_per_page = ! empty( $filter_value ) ? MAX_PER_PAGE : POSTS_PER_PAGE;
+$posts_per_page = empty( $filter_value ) ? POSTS_PER_PAGE : MAX_PER_PAGE;
 // Set up pagination.
 $is_paged    = get_query_var( 'paged' );
 $page_number = $is_paged ? $is_paged : 1;
@@ -50,19 +50,19 @@ if ( empty( $user_query->results ) ) {
 }
 
 if ( ! empty( $filter_value ) ) {
-	$total_users = (int) count( $user_query->results );
+	$total_users = count( $user_query->results );
 } else {
-	$total_users = (int) count( get_users( [ 'has_published_posts' => [ 'post' ] ] ) );
+	$total_users = count( get_users( [ 'has_published_posts' => [ 'post' ] ] ) );
 }
 
-$total_pages = intval( $total_users / $posts_per_page ) + 1;
+$total_pages = (int) ( $total_users / $posts_per_page ) + 1;
 
 foreach ( $user_query->results as $user ) :
 	$fallback        = '';
 	$user_id         = (int) $user->ID;
 	$first_name      = (string) $user->first_name;
 	$last_name       = (string) $user->last_name;
-	$full_name       = (string) $first_name . ' ' . $last_name;
+	$full_name       = $first_name . ' ' . $last_name;
 	$column_class    = column_class( $index, 6 );
 	$permalink       = get_author_posts_url( $user_id );
 	$number_of_posts = count_user_posts( $user_id );
@@ -74,14 +74,14 @@ foreach ( $user_query->results as $user ) :
 	$avatar_height   = $avatar[2] ?? false;
 	$avatar_height   = $avatar_height ? (string) $avatar_height : '';
 	$avatar_src      = $avatar[0] ?? '';
-	$avatar_src      = $avatar_src ? (string) $avatar_src : '';
+	$avatar_src      = '' !== $avatar_src && '0' !== $avatar_src ? (string) $avatar_src : '';
 
 	/**
 	* If the artist/user does not have a photo in the custom field
 	* then get_posts for that author an grab the featured image from
 	* the first post and use as fallback image.
 	*/
-	if ( ! $attachment_id ) {
+	if ( 0 === $attachment_id ) {
 		$author_posts = get_posts( 'author=' . esc_attr( $user_id ) . '&posts_per_page=1' );
 		foreach ( $author_posts as $author_post ) {
 			$fallback = get_the_post_thumbnail(
@@ -96,7 +96,7 @@ foreach ( $user_query->results as $user ) :
 	?>
 
 	<article class="entry one-sixth <?php echo esc_attr( $column_class ); ?>" aria-label="Artist: <?php echo esc_attr( $full_name ); ?>">
-		<?php if ( $attachment_id ) : ?>
+		<?php if ( 0 !== $attachment_id ) : ?>
 			<a href="<?php echo esc_url( $permalink ); ?>" class="entry-image-link" rel="bookmark">
 				<img 
 					width="<?php echo esc_attr( $avatar_width ); ?>" 

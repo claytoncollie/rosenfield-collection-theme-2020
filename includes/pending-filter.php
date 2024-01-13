@@ -9,8 +9,6 @@ namespace RosenfieldCollection\Theme\PendingFilter;
 
 /**
  * Display select field to filter by form
- *
- * @return void
  */
 function do_pending_filter_by_form(): void {
 	$terms = get_terms(
@@ -53,8 +51,6 @@ function do_pending_filter_by_form(): void {
 
 /**
  * Display select field to filter by artist
- *
- * @return void
  */
 function do_pending_filter_by_artist(): void {
 	$users = get_users(
@@ -87,7 +83,7 @@ function do_pending_filter_by_artist(): void {
 					)
 				),
 				get_query_var( 'artist' ) === $user->ID ? 'selected' : '',
-				esc_html( ucwords( $user->display_name ) )
+				esc_html( ucwords( (string) $user->display_name ) )
 			);
 		}
 

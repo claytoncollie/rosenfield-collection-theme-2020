@@ -9,8 +9,6 @@ namespace RosenfieldCollection\Theme\Structure\Hero;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	\add_action( 'genesis_meta', __NAMESPACE__ . '\hero_setup' );
@@ -18,8 +16,6 @@ function setup(): void {
 
 /**
  * Sets up hero section.
- *
- * @return void
  */
 function hero_setup(): void {
 	if ( \is_admin() || ! \current_theme_supports( 'hero-section' ) || ! \post_type_supports( \get_post_type(), 'hero-section' ) || \genesis_entry_header_hidden_on_current_page() ) {
@@ -66,18 +62,19 @@ function hero_setup(): void {
 	\add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_excerpt', 20 );
 	\add_action( 'genesis_before_content', __NAMESPACE__ . '\hero_remove_404_title' );
 	\add_action( 'genesis_before_content_sidebar_wrap', __NAMESPACE__ . '\hero_display' );
-
-	if ( ! \is_customize_preview() && \is_front_page() ) {
-		\add_action( 'genesis_before_hero-section_wrap', 'the_custom_header_markup' );
+	if ( \is_customize_preview() ) {
+		return;
 	}
+	if ( ! \is_front_page() ) {
+		return;
+	}
+	\add_action( 'genesis_before_hero-section_wrap', 'the_custom_header_markup' );
 }
 
 /**
  * Adds hero utility class to body element.
  *
  * @param array $classes List of body classes.
- *
- * @return array
  */
 function hero_body_class( array $classes ): array {
 	$classes   = \array_diff( $classes, [ 'no-hero-section' ] );
@@ -88,8 +85,6 @@ function hero_body_class( array $classes ): array {
 
 /**
  * Remove default title of 404 pages.
- *
- * @return void
  */
 function hero_remove_404_title(): void {
 	if ( \is_404() ) {
@@ -101,8 +96,6 @@ function hero_remove_404_title(): void {
 
 /**
  * Display title in hero section.
- *
- * @return void
  */
 function hero_title(): void {
 	$open  = '<h1 %s itemprop="headline">';
@@ -132,23 +125,24 @@ function hero_title(): void {
 			esc_html__( 'Suggest an edit', 'rosenfield-collection' )
 		);
 	}
-
-	if ( isset( $title ) && $title ) {
-		\genesis_markup(
-			[
-				'open'    => $open,
-				'close'   => $close,
-				'content' => $title,
-				'context' => 'hero-title',
-			]
-		);
+	if ( ! isset( $title ) ) {
+		return;
 	}
+	if ( ! $title ) {
+		return;
+	}
+	\genesis_markup(
+		[
+			'open'    => $open,
+			'close'   => $close,
+			'content' => $title,
+			'context' => 'hero-title',
+		]
+	);
 }
 
 /**
  * Display page excerpt.
- *
- * @return void
  */
 function hero_excerpt(): void {
 	$excerpt = '';
@@ -188,8 +182,6 @@ function hero_excerpt(): void {
  * Display two links for JS to bind to.
  *
  * Will toggle view between grid (default) and list.
- *
- * @return void
  */
 function hero_view_toggle(): void {
 	global $wp_query;
@@ -200,7 +192,7 @@ function hero_view_toggle(): void {
 
 	$taxonomy  = $wp_query->get_queried_object();
 	$term_link = get_term_link( $taxonomy->term_id, $taxonomy->taxonomy );
-	$term_link = ! is_wp_error( $term_link ) ? (string) $term_link : '';
+	$term_link = is_wp_error( $term_link ) ? '' : (string) $term_link;
 
 	printf(
 		'<section class="view-toggle" role="navigation" aria-label="%s"><a href="%s" id="view-toggle-grid" aria-label="%s">%s</a><span class="entry-sep">&middot;</span><a href="%s" id="view-toggle-list" aria-label="%s">%s</a></section>',
@@ -220,28 +212,28 @@ function hero_view_toggle(): void {
  * @param string $heading    Optional. Archive heading, default is empty string.
  * @param string $intro_text Optional. Archive intro text, default is empty string.
  * @param string $context    Optional. Archive context, default is empty string.
- *
- * @return void
  */
 function do_archive_headings_intro_text( string $heading = '', string $intro_text = '', string $context = '' ): void {
-	if ( $context && $intro_text ) {
-		\genesis_markup(
-			[
-				'open'    => '<p %s itemprop="description">',
-				'close'   => '</p>',
-				'content' => $intro_text,
-				'context' => 'hero-subtitle',
-			]
-		);
+	if ( '' === $context || '0' === $context ) {
+		return;
 	}
+	if ( '' === $intro_text || '0' === $intro_text ) {
+		return;
+	}
+	\genesis_markup(
+		[
+			'open'    => '<p %s itemprop="description">',
+			'close'   => '</p>',
+			'content' => $intro_text,
+			'context' => 'hero-subtitle',
+		]
+	);
 }
 
 /**
  * Adds attributes to hero archive title markup.
  *
  * @param array $atts Hero title attributes.
- *
- * @return array
  */
 function hero_archive_title_attr( array $atts ): array {
 	$atts['class']      = 'hero-title';
@@ -256,8 +248,6 @@ function hero_archive_title_attr( array $atts ): array {
  * Adds attributes to hero section markup.
  *
  * @param array $atts Hero entry attributes.
- *
- * @return array
  */
 function hero_entry_attr( array $atts ): array {
 	if ( \is_singular() ) {
@@ -269,8 +259,6 @@ function hero_entry_attr( array $atts ): array {
 
 /**
  * Display the hero section.
- *
- * @return void
  */
 function hero_display(): void {
 	\genesis_markup(

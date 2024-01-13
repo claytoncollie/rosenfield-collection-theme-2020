@@ -13,8 +13,6 @@ use const RosenfieldCollection\Theme\ImageSizes\IMAGE_OBJECT;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\view_all_from_artist', 12 );
@@ -26,8 +24,6 @@ function setup(): void {
 
 /**
  * View all objects by artist link
- *
- * @return void
  */
 function view_all_from_artist(): void {
 	if ( ! is_singular( 'post' ) ) {
@@ -39,8 +35,6 @@ function view_all_from_artist(): void {
 
 /**
  * View the objects post meta
- *
- * @return void
  */
 function the_post_meta(): void {
 	if ( ! is_singular( 'post' ) ) {
@@ -55,8 +49,6 @@ function the_post_meta(): void {
  * Add body class when image gallery is not populated.
  *
  * @param array $classes Body classes.
- *
- * @return array
  */
 function has_gallery( array $classes ): array {
 	if ( ! is_singular( 'post' ) ) {
@@ -75,8 +67,6 @@ function has_gallery( array $classes ): array {
 
 /**
  * Display the image gallery
- * 
- * @return void
  */
 function the_gallery(): void {
 	if ( ! is_singular( 'post' ) ) {
@@ -133,8 +123,6 @@ function the_gallery(): void {
 
 /**
  * Display the thumbnail images
- * 
- * @return void
  */
 function the_thumbnails(): void {
 	if ( ! is_singular( 'post' ) ) {

@@ -9,8 +9,6 @@ namespace RosenfieldCollection\Theme\Genesis;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	// Force full-width-content layout setting.

@@ -25,8 +25,8 @@ $location         = $location && ! is_wp_error( $location ) ? (string) $location
 $price            = get_field( 'rc_object_purchase_price', $post_id );
 $price            = $price ? (string) $price : '';
 $permalink        = get_permalink();
-$vertical_label   = $permalink ? (string) $permalink . 'vertical' : '';
-$horizontal_label = $permalink ? (string) $permalink . 'horizontal' : '';
+$vertical_label   = $permalink ? $permalink . 'vertical' : '';
+$horizontal_label = $permalink ? $permalink . 'horizontal' : '';
 
 ?>
 

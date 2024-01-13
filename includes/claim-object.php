@@ -9,8 +9,6 @@ namespace RosenfieldCollection\Theme\ClaimObject;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_action( 'parse_request', __NAMESPACE__ . '\redirect_after_trash' );
@@ -21,8 +19,6 @@ function setup(): void {
 
 /**
  * Redirect user to pending page after a post has been deleted.
- *
- * @return void
  */
 function redirect_after_trash(): void {
 	if ( is_admin() ) {
@@ -37,8 +33,6 @@ function redirect_after_trash(): void {
 
 /**
  * Display post author.
- *
- * @return void
  */
 function do_claim_meta(): void {
 	$post_id = get_query_var( 'post_id' );
@@ -55,8 +49,6 @@ function do_claim_meta(): void {
 
 /**
  * Frontend editing form for POSTs.
- *
- * @return void
  */
 function acf_form_claim(): void {
 	$post_id = get_query_var( 'post_id' );
@@ -81,8 +73,6 @@ function acf_form_claim(): void {
  *
  * @param int $value Field value.
  * @param int $post_id Post ID.
- * 
- * @return int
  */
 function claim_set_featured_image( int $value, int $post_id ): int {
 	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
@@ -114,8 +104,6 @@ function claim_set_featured_image( int $value, int $post_id ): int {
  * Sends email on form submission to admin_email(s).
  *
  * @param int $post_id Post ID.
- * 
- * @return int
  */
 function claim_post_status_transition( int $post_id ): int {
 	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
@@ -134,10 +122,9 @@ function claim_post_status_transition( int $post_id ): int {
 		return $post_id;
 	}
 
-	if ( ! empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		if ( 'true' !== $_POST['acf']['claim'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			return $post_id;
-		}
+	// phpcs:ignore WordPress.Security.NonceVerification.Missing
+	if ( ! empty( $_POST['acf']['claim'] ) && 'true' !== $_POST['acf']['claim'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return $post_id;
 	}
 
 	$post_id = wp_update_post(
@@ -166,8 +153,6 @@ function claim_post_status_transition( int $post_id ): int {
  * Delete the pending posts featured image from database and filesystem.
  *
  * @param int $post_id Post ID.
- * 
- * @return int
  */
 function claim_delete_attachment( int $post_id ): int {
 	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing

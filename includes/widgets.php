@@ -9,8 +9,6 @@ namespace RosenfieldCollection\Theme\Widgets;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_filter( 'genesis_register_widget_area_defaults', __NAMESPACE__ . '\front_page_1_heading', 10, 2 );
@@ -22,8 +20,6 @@ function setup(): void {
  *
  * @param array $defaults Default settings.
  * @param array $args     Other args.
- *
- * @return array
  */
 function front_page_1_heading( array $defaults, array $args ): array {
 	if ( 'front-page-1' === $args['id'] ) {
@@ -39,13 +35,11 @@ function front_page_1_heading( array $defaults, array $args ): array {
  *
  * @param array  $defaults Widget area defaults.
  * @param string $id       Widget area ID.
- *
- * @return array
  */
 function widget_area_defaults( array $defaults, string $id ): array {
 	$hero = 'front-page-1' === $id ? ' hero-section" role="banner' : '';
 
-	if ( false !== strpos( $id, 'front-page-' ) ) {
+	if ( str_contains( $id, 'front-page-' ) ) {
 		$defaults['before'] = \genesis_markup(
 			[
 				'open'    => '<div class="' . $id . $hero . '"><div class="wrap">',

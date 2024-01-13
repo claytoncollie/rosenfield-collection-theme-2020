@@ -9,8 +9,6 @@ namespace RosenfieldCollection\Theme\Structure\Menus;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_filter( 'wp_nav_menu_args', __NAMESPACE__ . '\limit_menu_depth' );

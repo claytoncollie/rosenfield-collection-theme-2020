@@ -30,8 +30,6 @@ const IMAGE_ARCHIVE = 'archive';
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_action( 'init', __NAMESPACE__ . '\remove_image_sizes', 99 );
@@ -43,8 +41,6 @@ function setup(): void {
 
 /**
  * Remove all but needed image sizes.
- *
- * @return void
  */
 function remove_image_sizes(): void {
 	foreach ( get_intermediate_image_sizes() as $size ) { // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
@@ -58,8 +54,6 @@ function remove_image_sizes(): void {
  * Remove WP Core image sizes.
  *
  * @param array $sizes Image sizes.
- * 
- * @return array
  */
 function remove_default_image_sizes( array $sizes ): array {
 	unset( $sizes['medium_large'] );
@@ -71,17 +65,11 @@ function remove_default_image_sizes( array $sizes ): array {
 
 /**
  * Change Display Size of Featured Image Thumbnail in WordPress Admin Dashboard
- *
- * @param string|array $size Image size.
- * 
- * @return string|array
  */
-function admin_featured_image_size( $size ) {
+function admin_featured_image_size(): string {
 	$sizes = get_intermediate_image_sizes(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
 
 	$result = array_search( 'archive', $sizes, true );
 
-	$size = is_numeric( $result ) ? $sizes[ $result ] : 'thumbnail';
-
-	return $size;
+	return is_numeric( $result ) ? $sizes[ $result ] : 'thumbnail';
 }

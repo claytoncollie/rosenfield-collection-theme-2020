@@ -1,31 +1,31 @@
 {
-  "name": "rosenfieldcollection/theme",
-  "type": "wordpress-theme",
-  "license": "GPL-2.0-or-later",
-  "require-dev": {
-	"dealerdirect/phpcodesniffer-composer-installer": "1.0.0",
-	"szepeviktor/phpstan-wordpress": "1.3.2",
-	"php-stubs/genesis-stubs": "3.4.0",
-	"php-stubs/acf-pro-stubs": "6.1.7",
-	"automattic/vipwpcs": "3.0.0",
-	"phpcompatibility/phpcompatibility-wp": "2.1.4",
-	"rector/rector": "0.18.6",
-	"php-stubs/wp-cli-stubs": "2.9.0"
-},
-"config": {
-	"allow-plugins": {
-		"dealerdirect/phpcodesniffer-composer-installer": true
+	"name": "rosenfieldcollection/theme",
+	"type": "wordpress-theme",
+	"license": "GPL-2.0-or-later",
+	"require-dev": {
+		"automattic/vipwpcs": "3.0.0",
+		"phpcompatibility/phpcompatibility-wp": "2.1.4",
+		"dealerdirect/phpcodesniffer-composer-installer": "1.0.0",
+		"szepeviktor/phpstan-wordpress": "1.3.2",
+		"php-stubs/genesis-stubs": "3.4.0",
+		"php-stubs/acf-pro-stubs": "6.1.7",
+		"php-stubs/wp-cli-stubs": "2.9.0",
+		"rector/rector": "0.19.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"scripts": {
+		"lint": "./vendor/bin/phpcs --standard=phpcs.xml",
+		"lint-fix": "./vendor/bin/phpcbf  --standard=phpcs.xml",
+		"static": "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 1G",
+		"refactor": "./vendor/bin/rector --dry-run",
+		"refactor-fix": "./vendor/bin/rector",
+		"install-coding-standards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
+		"post-install-cmd": "@install-coding-standards",
+		"post-update-cmd": "@install-coding-standards",
+		"clean": "rm -rf composer.lock && rm -rf vendor && composer install"
 	}
-},
-"scripts": {
-	"lint": "./vendor/bin/phpcs --standard=phpcs.xml",
-	"lint-fix": "./vendor/bin/phpcbf  --standard=phpcs.xml",
-	"static": "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 1G",
-	"refactor": "./vendor/bin/rector --dry-run",
-	"refactor-fix": "./vendor/bin/rector",
-	"install-coding-standards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
-	"post-install-cmd": "@install-coding-standards",
-	"post-update-cmd": "@install-coding-standards",
-	"clean": "rm -rf composer.lock && rm -rf vendor && composer install"
-}
 }

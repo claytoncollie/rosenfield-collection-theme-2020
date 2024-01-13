@@ -12,8 +12,6 @@ use function RosenfieldCollection\Theme\Helpers\is_type_single;
 
 /**
  * Setup
- *
- * @return void
  */
 function setup(): void {
 	add_filter( 'body_class', __NAMESPACE__ . '\body_classes' );
@@ -24,8 +22,6 @@ function setup(): void {
  * Add additional classes to the body element.
  *
  * @param array $classes Body classes.
- *
- * @return array
  */
 function body_classes( array $classes ): array {
 
@@ -44,7 +40,7 @@ function body_classes( array $classes ): array {
 	);
 
 	// Add simple template name.
-	if ( $basename ) {
+	if ( '' !== $basename && '0' !== $basename ) {
 		$classes[] = 'template-' . $basename;
 	}
 
@@ -76,8 +72,6 @@ function body_classes( array $classes ): array {
 
 /**
  * Remove sidebars on narrow content layout.
- *
- * @return void
  */
 function narrow_content(): void {
 	if ( 'narrow-content' === \genesis_site_layout() ) {

@@ -9,8 +9,6 @@ namespace RosenfieldCollection\Theme\PostMetaAdmin;
 
 /**
  * Display the purchase price.
- *
- * @return void
  */
 function the_purchase_price(): void {
 	printf( '<hr><div>Price: <strong>%s</strong></div><hr>', esc_html( get_field( 'rc_object_purchase_price' ) ) );
@@ -18,8 +16,6 @@ function the_purchase_price(): void {
 
 /**
  * Display the purchase date.
- *
- * @return void
  */
 function the_purchase_date(): void {
 	printf( '<div>Date: <strong>%s</strong></div><hr>', esc_html( get_field( 'rc_object_purchase_date' ) ) );
@@ -27,8 +23,6 @@ function the_purchase_date(): void {
 
 /**
  * Display the purchase location.
- *
- * @return void
  */
 function the_purchase_location(): void {
 	$location = has_term( '', 'rc_location' ) ? get_the_term_list( get_the_ID(), 'rc_location', '', ', ', '' ) : '';
