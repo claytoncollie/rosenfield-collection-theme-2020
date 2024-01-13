@@ -80,10 +80,10 @@ return static function ( RectorConfig $rectorConfig ): void {
 			SetList::DEAD_CODE,
 			SetList::CODE_QUALITY,
 			SetList::CODING_STYLE,
-			SetList::PHP_82,
-			LevelSetList::UP_TO_PHP_82,
+			SetList::PHP_81,
+			LevelSetList::UP_TO_PHP_81,
 		]
 	);
 
-	$rectorConfig->phpVersion( PhpVersion::PHP_82 );
+	$rectorConfig->phpVersion( PhpVersion::PHP_81 );
 };
