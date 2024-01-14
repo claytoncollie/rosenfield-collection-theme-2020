@@ -60,20 +60,24 @@ function do_claim_meta(): void {
  */
 function acf_form_claim(): void {
 	$post_id = get_query_var( 'post_id' );
-
-	if ( ! empty( $post_id ) ) {
-		acf_form(
-			[
-				'post_id'           => absint( $post_id ),
-				'post_title'        => true,
-				'post_content'      => false,
-				'field_groups'      => [ 6277, 22858, 26396 ],
-				'html_after_fields' => '<input type="hidden" name="acf[claim]" value="true"/>',
-				'return'            => get_permalink( get_page_by_path( 'pending', OBJECT, 'page' ) ),
-				'submit_value'      => esc_html__( 'Save Draft', 'rosenfield-collection' ),
-			]
-		);
+	$post_id = $post_id ? (int) $post_id : 0;
+	if ( empty( $post_id ) ) {
+		return;
 	}
+
+	$post = get_page_by_path( 'pending', OBJECT, 'page' );
+
+	acf_form(
+		[
+			'post_id'           => $post_id,
+			'post_title'        => true,
+			'post_content'      => false,
+			'field_groups'      => [ 6277, 22858, 26396 ],
+			'html_after_fields' => '<input type="hidden" name="acf[claim]" value="true"/>',
+			'return'            => get_permalink( $post ), // @phpstan-ignore-line
+			'submit_value'      => esc_html__( 'Save Draft', 'rosenfield-collection' ),
+		]
+	);
 }
 
 /**
@@ -149,7 +153,7 @@ function claim_post_status_transition( int $post_id ): int {
 			sprintf(
 				'%s: %s',
 				esc_html__( 'Object is awaiting approval', 'rosenfield-collection' ),
-				esc_url( get_edit_post_link( $post_id ) )
+				esc_url( (string) get_edit_post_link( $post_id ) )
 			)
 		);
 	}
@@ -181,7 +185,10 @@ function claim_delete_attachment( int $post_id ): int {
 
 	if ( has_post_thumbnail( $post_id ) ) {
 		$attachment_id = get_post_thumbnail_id( $post_id );
-		wp_delete_attachment( $attachment_id, true );
+		$attachment_id = $attachment_id ? (int) $attachment_id : 0;
+		if ( ! empty( $attachment_id ) ) {
+			wp_delete_attachment( $attachment_id, true );
+		}
 	}
 
 	return $post_id;

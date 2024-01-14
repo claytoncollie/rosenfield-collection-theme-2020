@@ -10,6 +10,7 @@ use function RosenfieldCollection\Theme\Helpers\column_class;
 use const RosenfieldCollection\Theme\Artists\QUERY_VAR;
 use const RosenfieldCollection\Theme\Artists\POSTS_PER_PAGE;
 use const RosenfieldCollection\Theme\Artists\MAX_PER_PAGE;
+use const RosenfieldCollection\Theme\Fields\ARTIST_PHOTO;
 use const RosenfieldCollection\Theme\ImageSizes\THUMBNAIL;
 
 // Keep count for columns.
@@ -66,7 +67,7 @@ foreach ( $user_query->results as $user ) :
 	$column_class    = column_class( $index, 6 );
 	$permalink       = get_author_posts_url( $user_id );
 	$number_of_posts = count_user_posts( $user_id );
-	$attachment_id   = (int) get_field( 'artist_photo', 'user_' . $user_id );
+	$attachment_id   = (int) get_field( ARTIST_PHOTO, 'user_' . $user_id );
 	$avatar          = wp_get_attachment_image_src( $attachment_id, THUMBNAIL );
 	$avatar          = is_array( $avatar ) ? $avatar : [];
 	$avatar_width    = $avatar[1] ?? false;
@@ -147,7 +148,7 @@ foreach ( $user_query->results as $user ) :
 					[
 						'base'      => get_pagenum_link( 1 ) . '%_%',
 						'format'    => 'page/%#%/',
-						'current'   => max( 1, $is_paged ),
+						'current'   => (int) max( 1, $is_paged ),
 						'total'     => $total_pages,
 						'prev_next' => true,
 						'type'      => 'list',

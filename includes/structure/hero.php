@@ -176,7 +176,7 @@ function hero_excerpt(): void {
 	}
 
 	if ( $id ) {
-		$excerpt = \has_excerpt( $id ) ? \do_shortcode( get_the_excerpt( $id ) ) : '';
+		$excerpt = has_excerpt( (int) $id ) ? do_shortcode( get_the_excerpt( (int) $id ) ) : '';
 	}
 
 	if ( $excerpt ) {

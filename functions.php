@@ -27,6 +27,7 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'accessibility.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'artists.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'assets.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'claim-object.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'fields.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'genesis.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'image-sizes.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'markup.php';

@@ -28,6 +28,7 @@ function body_classes( array $classes ): array {
 	// Remove unnecessary page template classes.
 	$template  = get_page_template_slug();
 	$template  = $template ? (string) $template : '';
+
 	$basename  = basename( $template, '.php' );
 	$directory = str_replace( [ '/', \basename( $template ) ], '', $template );
 	$classes   = array_diff(

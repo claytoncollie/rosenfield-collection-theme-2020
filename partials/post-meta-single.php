@@ -5,6 +5,8 @@
  * @package RosenfieldCollection\Theme
  */
 
+use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
+use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
 use const RosenfieldCollection\Theme\Taxonomies\COLUMN;
 use const RosenfieldCollection\Theme\Taxonomies\FIRING;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
@@ -49,9 +51,11 @@ $full_name        = $first_name . ' ' . $last_name;
 // Load all 'rc_form' terms for the post.
 $terms     = get_the_terms( $post_id, FORM );
 $terms     = $terms && ! is_wp_error( $terms ) ? $terms : [];
-$object_id = get_field( 'object_id', $post_id );
+$object_id = get_field( OBJECT_ID, $post_id );
+$object_id = $object_id ? (string) $object_id : '';
 $term      = array_pop( $terms );
-$prefix    = get_field( 'rc_form_object_prefix', $term );
+$prefix    = get_field( OBJECT_PREFIX, $term );
+$prefix    = $prefix ? (string) $prefix : '';
 
 ?>
 

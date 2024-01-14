@@ -7,6 +7,8 @@
 
 namespace RosenfieldCollection\Theme\Helpers;
 
+use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
+use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
 
 /**
@@ -40,7 +42,7 @@ function column_class( int $i, int $columns ): string {
 function get_object_prefix_and_id(): string {
 	$output = '';
 	$prefix = get_taxonomy_term_prefix();
-	$id     = get_field( 'object_id' );
+	$id     = get_field( OBJECT_ID );
 
 	if ( ! empty( $id ) && ! empty( $prefix ) ) {
 		return $prefix . $id;
@@ -75,20 +77,9 @@ function get_taxonomy_term_prefix(): string {
 		return '';
 	}
 	
-	return get_term_meta( $term_id, 'rc_form_object_prefix', true );
-}
-
-/**
- * Returns the child theme URL.
- */
-function get_theme_url(): string {
-	static $url = null;
-
-	if ( is_null( $url ) ) {
-		$url = \trailingslashit( get_stylesheet_directory_uri() );
-	}
-
-	return $url;
+	$prefix = get_term_meta( $term_id, OBJECT_PREFIX, true );
+	
+	return $prefix ? (string) $prefix : '';
 }
 
 /**

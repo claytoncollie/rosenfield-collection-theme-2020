@@ -34,7 +34,7 @@ function front_page_loop(): void {
  * @param array $classes Body classes.
  */
 function front_page_body_class( array $classes ): array {
-	$classes   = \array_diff( $classes, [ 'no-hero-section' ] );
+	$classes   = array_diff( $classes, [ 'no-hero-section' ] );
 	$classes[] = 'front-page';
 
 	return $classes;
@@ -44,9 +44,13 @@ function front_page_body_class( array $classes ): array {
  * Display the front page widget areas.
  */
 function front_page_widget_areas(): void {
-	$widget_areas = get_theme_support( 'front-page-widgets' )[0] ?? [];
+	$widget_areas = get_theme_support( 'front-page-widgets' );
+	$widget_areas = is_array( $widget_areas ) ? $widget_areas : [];
+	if ( empty( $widget_areas ) ) {
+		return;
+	}
 
-	for ( $i = 1; $i <= $widget_areas; ++$i ) {
+	for ( $i = 1; $i <= $widget_areas[0]; ++$i ) {
 		genesis_widget_area( 'front-page-' . $i );
 	}
 }

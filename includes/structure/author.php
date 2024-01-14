@@ -9,6 +9,7 @@ namespace RosenfieldCollection\Theme\Structure\Author;
 
 use function RosenfieldCollection\Theme\Helpers\svg;
 
+use const RosenfieldCollection\Theme\Fields\ARTIST_PHOTO;
 use const RosenfieldCollection\Theme\ImageSizes\THUMBNAIL;
 
 /**
@@ -31,16 +32,21 @@ function do_the_artist_avatar(): void {
 	if ( empty( $author_id ) ) {
 		return;
 	}
+	
+	$attachment_id = get_field( ARTIST_PHOTO, 'user_' . $author_id );
+	$attachment_id = $attachment_id ? (int) $attachment_id : 0;
+	if ( empty( $attachment_id ) ) {
+		return;
+	}
+
+	$avatar = wp_get_attachment_image_src( $attachment_id, THUMBNAIL );
+	if ( empty( $avatar ) ) {
+		return;
+	}
 
 	$first_name = get_the_author_meta( 'first_name', $author_id );
 	$last_name  = get_the_author_meta( 'last_name', $author_id );
 	$full_name  = $first_name . ' ' . $last_name;
-	
-	$attachment_id = get_field( 'artist_photo', 'user_' . $author_id );
-	$avatar        = wp_get_attachment_image_src( $attachment_id, THUMBNAIL );
-	if ( empty( $avatar ) ) {
-		return;
-	}
 
 	printf(
 		'<img width="%s" height="%s" src="%s" class="author-avatar" alt="%s" />',

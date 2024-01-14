@@ -9,11 +9,13 @@ namespace RosenfieldCollection\Theme\Pending;
 
 use WP_Post;
 
+use const RosenfieldCollection\Theme\Taxonomies\FORM;
+
 /**
  * Display all posts labeled PENDING
  */
 function do_the_pending_posts(): void {
-	$form = get_query_var( 'rc_form' );
+	$form = get_query_var( FORM );
 	$user = get_query_var( 'artist' );
 
 	$args = [
@@ -31,7 +33,7 @@ function do_the_pending_posts(): void {
 	if ( ! empty( $form ) ) {
 		$args['tax_query'] = [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			[
-				'taxonomy' => 'rc_form',
+				'taxonomy' => FORM,
 				'field'    => 'slug',
 				'terms'    => $form,
 			],

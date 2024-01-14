@@ -9,6 +9,8 @@ namespace RosenfieldCollection\Theme\Structure\Archive;
 
 use WP_Query;
 
+use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
+
 use function RosenfieldCollection\Theme\Helpers\is_type_archive;
 use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
 
@@ -158,7 +160,7 @@ function sort_by_object_id( WP_Query $query ): void {
 		return;
 	}
 
-	$query->set( 'meta_key', 'object_id' );
+	$query->set( 'meta_key', OBJECT_ID );
 	$query->set( 'orderby', 'meta_value_num' );
 	$query->set( 'order', 'DESC' );
 }

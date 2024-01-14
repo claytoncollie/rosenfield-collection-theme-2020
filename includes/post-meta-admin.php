@@ -13,9 +13,16 @@ use const RosenfieldCollection\Theme\Taxonomies\LOCATION;
  * Display the purchase price.
  */
 function the_purchase_price(): void {
+	$price = get_field( 'rc_object_purchase_price' );
+	$price = $price ? (string) $price : '';
+	if ( empty( $price ) ) {
+		return;
+	}
+
 	printf( 
-		'<hr><div>Price: <strong>%s</strong></div><hr>',
-		esc_html( get_field( 'rc_object_purchase_price' ) ) 
+		'<hr><div>%s: <strong>%s</strong></div><hr>',
+		esc_html__( 'Price', 'rosenfield-collection' ),
+		esc_html( $price ) 
 	);
 }
 
@@ -23,9 +30,16 @@ function the_purchase_price(): void {
  * Display the purchase date.
  */
 function the_purchase_date(): void {
+	$date = get_field( 'rc_object_purchase_date' );
+	$date = $date ? (string) $date : '';
+	if ( empty( $date ) ) {
+		return;
+	}
+
 	printf( 
-		'<div>Date: <strong>%s</strong></div><hr>',
-		esc_html( get_field( 'rc_object_purchase_date' ) ) 
+		'<div>%s: <strong>%s</strong></div><hr>',
+		esc_html__( 'Date', 'rosenfield-collection' ),
+		esc_html( $date ) 
 	);
 }
 
@@ -46,7 +60,8 @@ function the_purchase_location(): void {
 	}
 
 	printf( 
-		'<div>Location: <strong>%s</strong></div>', 
+		'<div>%s: <strong>%s</strong></div>', 
+		esc_html__( 'Location', 'rosenfield-collection' ),
 		wp_kses_post( $location ) 
 	);
 }
