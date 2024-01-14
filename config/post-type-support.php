@@ -7,13 +7,16 @@
 
 namespace RosenfieldCollection\Theme\Config\PostTypeSupport;
 
+use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
+use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
+
 return [
 	'add'    => [
-		'hero-section' => [ 'page', 'post' ],
-		'excerpt'      => [ 'page', 'post' ],
+		'hero-section' => [ PAGE_SLUG, POST_SLUG ],
+		'excerpt'      => [ PAGE_SLUG, POST_SLUG ],
 	],
 	'remove' => [
-		'genesis-scripts' => [ 'post' ],
-		'genesis-layouts' => [ 'post' ],
+		'genesis-scripts' => [ POST_SLUG ],
+		'genesis-layouts' => [ POST_SLUG ],
 	],
 ];

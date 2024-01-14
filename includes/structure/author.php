@@ -9,6 +9,9 @@ namespace RosenfieldCollection\Theme\Structure\Author;
 
 use function RosenfieldCollection\Theme\Helpers\svg;
 
+use const RosenfieldCollection\Theme\Fields\ARTIST_PHOTO;
+use const RosenfieldCollection\Theme\ImageSizes\THUMBNAIL;
+
 /**
  * Setup
  */
@@ -25,48 +28,58 @@ function do_the_artist_avatar(): void {
 		return;
 	}
 
-	$author = get_queried_object();
-
-	if ( empty( $author ) ) {
+	$author_id = (int) get_the_author_meta( 'ID' );
+	if ( empty( $author_id ) ) {
+		return;
+	}
+	
+	$attachment_id = get_field( ARTIST_PHOTO, 'user_' . $author_id );
+	$attachment_id = $attachment_id ? (int) $attachment_id : 0; // @phpstan-ignore-line
+	if ( empty( $attachment_id ) ) {
 		return;
 	}
 
-	$attachment_id = get_field( 'artist_photo', 'user_' . $author->ID );
-
-	$avatar = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
-
-	if ( ! empty( $avatar ) ) {
-		printf(
-			'<img width="%s" height="%s" src="%s" class="author-avatar" alt="%s %s" />',
-			esc_attr( $avatar[1] ),
-			esc_attr( $avatar[2] ),
-			esc_url( $avatar[0] ),
-			esc_html( $author->first_name ),
-			esc_html( $author->last_name )
-		);
+	$avatar = wp_get_attachment_image_src( $attachment_id, THUMBNAIL );
+	if ( empty( $avatar ) ) {
+		return;
 	}
+
+	$first_name = get_the_author_meta( 'first_name', $author_id );
+	$last_name  = get_the_author_meta( 'last_name', $author_id );
+	$full_name  = $first_name . ' ' . $last_name;
+
+	printf(
+		'<img width="%s" height="%s" src="%s" class="author-avatar" alt="%s" />',
+		esc_attr( (string) $avatar[1] ),
+		esc_attr( (string) $avatar[2] ),
+		esc_url( $avatar[0] ),
+		esc_attr( $full_name )
+	);
 }
 
 /**
  * Author info for author archive
  */
 function do_the_artist_info(): void {
-	if ( ! is_author() || is_paged() ) {
+	if ( is_paged() ) {
+		return;
+	}
+	
+	if ( ! is_author() ) {
 		return;
 	}
 
-	$author = get_queried_object();
-
-	if ( empty( $author ) ) {
+	$author_id = (int) get_the_author_meta( 'ID' );
+	if ( empty( $author_id ) ) {
 		return;
 	}
 
-	$website   = $author->user_url;
-	$twitter   = $author->twitter;
-	$facebook  = $author->facebook;
-	$instagram = $author->instagram;
-	$pinterest = $author->pinterest;
-	$bio       = $author->description;
+	$website   = get_the_author_meta( 'user_url', $author_id );
+	$twitter   = get_the_author_meta( 'twitter', $author_id );
+	$facebook  = get_the_author_meta( 'facebook', $author_id );
+	$instagram = get_the_author_meta( 'instagram', $author_id );
+	$pinterest = get_the_author_meta( 'pinterest', $author_id );
+	$bio       = get_the_author_meta( 'description', $author_id );
 
 	if ( ! empty( $website ) ) {
 		printf(
@@ -75,13 +88,15 @@ function do_the_artist_info(): void {
 			esc_url( $website )
 		);
 	}
+
 	if ( ! empty( $twitter ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="https://twitter.com/%s">%s</a></div>',
+			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $twitter ),
 			svg( 'twitter-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
+
 	if ( ! empty( $facebook ) ) {
 		printf(
 			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
@@ -89,6 +104,7 @@ function do_the_artist_info(): void {
 			svg( 'facebook-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
+
 	if ( ! empty( $instagram ) ) {
 		printf(
 			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
@@ -96,6 +112,7 @@ function do_the_artist_info(): void {
 			svg( 'instagram-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
+
 	if ( ! empty( $pinterest ) ) {
 		printf(
 			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
@@ -103,6 +120,7 @@ function do_the_artist_info(): void {
 			svg( 'pinterest-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
+
 	if ( ! empty( $bio ) ) {
 		printf(
 			'<p class="hero-subtitle" itemprop="description">%s</p>',

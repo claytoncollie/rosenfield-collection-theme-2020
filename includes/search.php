@@ -30,7 +30,7 @@ function do_header_search_form(): void {
 
 	printf(
 		'<div id="header-search-wrap" class="header-search-wrap">%s %s</div>',
-		get_search_form( false ),
+		get_search_form( [ 'echo' => false ] ),
 		$button // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	);
 }
@@ -40,8 +40,6 @@ function do_header_search_form(): void {
  *
  * @param string $items The menu HTML.
  * @param object $args The menu options.
- * 
- * @return string Updated menu HTML.
  */
 function add_search_menu_item( string $items, object $args ): string {
 	$search_toggle = sprintf( '<li class="menu-item search-lg">%s</li>', get_header_search_toggle() );
@@ -51,7 +49,7 @@ function add_search_menu_item( string $items, object $args ): string {
 		esc_html__( 'Search', 'rosenfield-collection' )
 	);
 
-	if ( 'primary' === $args->theme_location ) {
+	if ( 'primary' === $args->theme_location ) { // @phpstan-ignore-line
 		$items .= $search_toggle . $search_mobile;
 	}
 
@@ -60,8 +58,6 @@ function add_search_menu_item( string $items, object $args ): string {
 
 /**
  * Outputs the header search form toggle button.
- *
- * @return string HTML output of the Show Search button.
  */
 function get_header_search_toggle(): string {
 	return sprintf(

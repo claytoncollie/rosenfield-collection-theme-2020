@@ -59,14 +59,14 @@ function entry_pagination_wrap_close( string $close, array $args ): string {
  * Changes the previous page link text.
  */
 function previous_page_link(): string {
-	return \sprintf( '← Previous', 'rosenfield-collection' );
+	return __( '← Previous', 'rosenfield-collection' );
 }
 
 /**
  * Changes the next page link text.
  */
 function next_page_link(): string {
-	return \sprintf( 'Next →', 'rosenfield-collection' );
+	return __( 'Next →', 'rosenfield-collection' );
 }
 
 /**
@@ -75,7 +75,7 @@ function next_page_link(): string {
  * @param string $content Previous link text.
  */
 function previous_pagination_text( string $content ): string {
-	return \str_replace( '&#xAB;', '←', $content );
+	return str_replace( '&#xAB;', '←', $content );
 }
 
 /**
@@ -84,5 +84,5 @@ function previous_pagination_text( string $content ): string {
  * @param string $content Next link text.
  */
 function next_pagination_text( string $content ): string {
-	return \str_replace( '&#xBB;', '→', $content );
+	return str_replace( '&#xBB;', '→', $content );
 }

@@ -7,14 +7,12 @@
 
 namespace RosenfieldCollection\Theme\Config\PageLayouts;
 
-use function RosenfieldCollection\Theme\Helpers\get_theme_url;
-
 return [
 	'add'    => [
 		[
 			'id'    => 'narrow-content',
 			'label' => __( 'Narrow Content', 'rosenfield-collection' ),
-			'img'   => get_theme_url() . 'assets/img/narrow-content.gif',
+			'img'   => ROSENFIELD_COLLECTION_THEME_STYLESHEET_URL . 'assets/img/narrow-content.gif',
 		],
 	],
 	'remove' => [

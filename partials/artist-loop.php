@@ -10,7 +10,9 @@ use function RosenfieldCollection\Theme\Helpers\column_class;
 use const RosenfieldCollection\Theme\Artists\QUERY_VAR;
 use const RosenfieldCollection\Theme\Artists\POSTS_PER_PAGE;
 use const RosenfieldCollection\Theme\Artists\MAX_PER_PAGE;
+use const RosenfieldCollection\Theme\Fields\ARTIST_PHOTO;
 use const RosenfieldCollection\Theme\ImageSizes\THUMBNAIL;
+use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 
 // Keep count for columns.
 $index = 0;
@@ -37,7 +39,7 @@ $user_query = new WP_User_Query(
 		[
 			'order'               => 'ASC',
 			'orderby'             => 'display_name',
-			'has_published_posts' => [ 'post' ],
+			'has_published_posts' => [ POST_SLUG ],
 			'number'              => $posts_per_page,
 			'offset'              => $offset,
 		],
@@ -52,7 +54,7 @@ if ( empty( $user_query->results ) ) {
 if ( ! empty( $filter_value ) ) {
 	$total_users = count( $user_query->results );
 } else {
-	$total_users = count( get_users( [ 'has_published_posts' => [ 'post' ] ] ) );
+	$total_users = count( get_users( [ 'has_published_posts' => [ POST_SLUG ] ] ) );
 }
 
 $total_pages = (int) ( $total_users / $posts_per_page ) + 1;
@@ -66,7 +68,8 @@ foreach ( $user_query->results as $user ) :
 	$column_class    = column_class( $index, 6 );
 	$permalink       = get_author_posts_url( $user_id );
 	$number_of_posts = count_user_posts( $user_id );
-	$attachment_id   = (int) get_field( 'artist_photo', 'user_' . $user_id );
+	$attachment_id   = get_field( ARTIST_PHOTO, 'user_' . $user_id );
+	$attachment_id   = $attachment_id ? (int) $attachment_id : 0; // @phpstan-ignore-line
 	$avatar          = wp_get_attachment_image_src( $attachment_id, THUMBNAIL );
 	$avatar          = is_array( $avatar ) ? $avatar : [];
 	$avatar_width    = $avatar[1] ?? false;
@@ -82,15 +85,23 @@ foreach ( $user_query->results as $user ) :
 	* the first post and use as fallback image.
 	*/
 	if ( 0 === $attachment_id ) {
-		$author_posts = get_posts( 'author=' . esc_attr( $user_id ) . '&posts_per_page=1' );
-		foreach ( $author_posts as $author_post ) {
-			$fallback = get_the_post_thumbnail(
-				(int) $author_post->ID,
-				THUMBNAIL,
-				[
-					'alt' => esc_html( $full_name ),
-				]
-			);
+		$author_posts = get_posts( 
+			[
+				'author'         => $user_id,
+				'posts_per_page' => 1, 
+			]
+		);
+		
+		if ( ! empty( $author_posts ) ) {
+			foreach ( $author_posts as $author_post ) {
+				$fallback = get_the_post_thumbnail(
+					(int) $author_post->ID, // @phpstan-ignore-line
+					THUMBNAIL,
+					[
+						'alt' => esc_attr( $full_name ),
+					]
+				);
+			}
 		}
 	}
 	?>
@@ -135,11 +146,11 @@ foreach ( $user_query->results as $user ) :
 		<div class="wrap">
 			<?php 
 			echo wp_kses_post(
-				paginate_links(
+				paginate_links( // @phpstan-ignore-line
 					[
 						'base'      => get_pagenum_link( 1 ) . '%_%',
 						'format'    => 'page/%#%/',
-						'current'   => max( 1, $is_paged ),
+						'current'   => (int) max( 1, $is_paged ), // @phpstan-ignore-line
 						'total'     => $total_pages,
 						'prev_next' => true,
 						'type'      => 'list',

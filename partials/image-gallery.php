@@ -23,11 +23,11 @@ $full_name  = $first_name . ' ' . $last_name;
 	<ul class="slider-gallery-images">
 		<?php 
 		foreach ( $images as $image ) : 
-			$width     = (string) $image['sizes']['object-width'] ?? '';
-			$height    = (string) $image['sizes']['object-height'] ?? '';
-			$source    = (string) $image['sizes']['object'] ?? '';
-			$permalink = (string) $image['url'] ?? '';
-			$label     = (string) $image['title'] ?? '';
+			$width     = (string) $image['sizes']['object-width'];
+			$height    = (string) $image['sizes']['object-height'];
+			$source    = (string) $image['sizes']['object'];
+			$permalink = (string) $image['url'];
+			$label     = (string) $image['title'];
 			?>
 			<li>
 				<img 

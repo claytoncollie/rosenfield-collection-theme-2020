@@ -9,7 +9,9 @@ namespace RosenfieldCollection\Theme\Structure\Single;
 
 use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
 
+use const RosenfieldCollection\Theme\Fields\OBJECT_IMAGES;
 use const RosenfieldCollection\Theme\ImageSizes\IMAGE_OBJECT;
+use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 
 /**
  * Setup
@@ -26,7 +28,7 @@ function setup(): void {
  * View all objects by artist link
  */
 function view_all_from_artist(): void {
-	if ( ! is_singular( 'post' ) ) {
+	if ( ! is_singular( POST_SLUG ) ) {
 		return;
 	}
 
@@ -37,7 +39,7 @@ function view_all_from_artist(): void {
  * View the objects post meta
  */
 function the_post_meta(): void {
-	if ( ! is_singular( 'post' ) ) {
+	if ( ! is_singular( POST_SLUG ) ) {
 		return;
 	}
 
@@ -51,11 +53,11 @@ function the_post_meta(): void {
  * @param array $classes Body classes.
  */
 function has_gallery( array $classes ): array {
-	if ( ! is_singular( 'post' ) ) {
+	if ( ! is_singular( POST_SLUG ) ) {
 		return $classes;
 	}
 
-	$images = get_field( 'images' );
+	$images = get_field( OBJECT_IMAGES );
 	if ( empty( $images ) ) {
 		$classes[] = ' no-gallery';
 		return $classes;
@@ -69,11 +71,11 @@ function has_gallery( array $classes ): array {
  * Display the image gallery
  */
 function the_gallery(): void {
-	if ( ! is_singular( 'post' ) ) {
+	if ( ! is_singular( POST_SLUG ) ) {
 		return;
 	}
 
-	$images = get_field( 'images' );
+	$images = get_field( OBJECT_IMAGES );
 
 	// Substitute the featured image for an empty gallery.
 	if ( empty( $images ) ) {
@@ -102,9 +104,9 @@ function the_gallery(): void {
 		$images = [
 			[
 				'sizes' => [
-					'object'        => $image[0] ?? '',
-					'object-width'  => $image[1] ?? '',
-					'object-height' => $image[2] ?? '',
+					'object'        => $image[0],
+					'object-width'  => $image[1],
+					'object-height' => $image[2],
 				],
 				'url'   => $image_url,
 				'title' => $prefix_id,
@@ -125,11 +127,11 @@ function the_gallery(): void {
  * Display the thumbnail images
  */
 function the_thumbnails(): void {
-	if ( ! is_singular( 'post' ) ) {
+	if ( ! is_singular( POST_SLUG ) ) {
 		return;
 	}
 
-	$images = get_field( 'images' );
+	$images = get_field( OBJECT_IMAGES );
 	if ( empty( $images ) ) {
 		return;
 	}

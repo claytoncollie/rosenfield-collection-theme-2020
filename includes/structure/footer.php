@@ -20,7 +20,7 @@ function setup(): void {
  * Output custom footer credits.
  */
 function do_footer_credits(): void {
-	\genesis_markup(
+	genesis_markup(
 		[
 			'open'    => '<div class="wrap">',
 			'context' => 'footer-credits',
@@ -37,9 +37,9 @@ function do_footer_credits(): void {
 	);
 
 	// Display the secondary menu.
-	\genesis_do_subnav();
+	genesis_do_subnav();
 
-	\genesis_markup(
+	genesis_markup(
 		[
 			'close'   => '</div>',
 			'context' => 'footer-credits',

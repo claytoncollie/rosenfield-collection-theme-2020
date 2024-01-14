@@ -7,6 +7,10 @@
 
 namespace RosenfieldCollection\Theme\ClaimObject;
 
+use const RosenfieldCollection\Theme\Fields\PENDING_SLUG;
+use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
+use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
+
 /**
  * Setup
  */
@@ -36,15 +40,23 @@ function redirect_after_trash(): void {
  */
 function do_claim_meta(): void {
 	$post_id = get_query_var( 'post_id' );
-
-	if ( ! empty( $post_id ) ) {
-		printf(
-			'<section class="claim-header"><div class="wrap"><h2>%s %s</h2><a href="%s" class="button warning">Delete</a></div></section>',
-			esc_html( get_the_author_meta( 'first_name', get_post_field( 'post_author', $post_id ) ) ),
-			esc_html( get_the_author_meta( 'last_name', get_post_field( 'post_author', $post_id ) ) ),
-			esc_url( wp_nonce_url( get_admin_url() . 'post.php?post=' . $post_id . '&action=trash', 'trash-post_' . $post_id ) )
-		);
+	$post_id = $post_id ? (int) $post_id : 0; // @phpstan-ignore-line
+	if ( empty( $post_id ) ) {
+		return;
 	}
+
+	$author_id = get_post_field( 'post_author', $post_id );
+	$author_id = empty( $author_id ) ? 0 : (int) $author_id;
+	if ( empty( $author_id ) ) {
+		return;
+	}
+
+	printf(
+		'<section class="claim-header"><div class="wrap"><h2>%s %s</h2><a href="%s" class="button warning">Delete</a></div></section>',
+		esc_html( get_the_author_meta( 'first_name', $author_id ) ),
+		esc_html( get_the_author_meta( 'last_name', $author_id ) ),
+		esc_url( wp_nonce_url( get_admin_url() . 'post.php?post=' . $post_id . '&action=trash', 'trash-post_' . $post_id ) )
+	);
 }
 
 /**
@@ -52,20 +64,24 @@ function do_claim_meta(): void {
  */
 function acf_form_claim(): void {
 	$post_id = get_query_var( 'post_id' );
-
-	if ( ! empty( $post_id ) ) {
-		acf_form(
-			[
-				'post_id'           => absint( $post_id ),
-				'post_title'        => true,
-				'post_content'      => false,
-				'field_groups'      => [ 6277, 22858, 26396 ],
-				'html_after_fields' => '<input type="hidden" name="acf[claim]" value="true"/>',
-				'return'            => get_permalink( get_page_by_path( 'pending', OBJECT, 'page' ) ),
-				'submit_value'      => esc_html__( 'Save Draft', 'rosenfield-collection' ),
-			]
-		);
+	$post_id = $post_id ? (int) $post_id : 0; // @phpstan-ignore-line
+	if ( empty( $post_id ) ) {
+		return;
 	}
+
+	$post = get_page_by_path( PENDING_SLUG, OBJECT, PAGE_SLUG );
+
+	acf_form(
+		[
+			'post_id'           => $post_id,
+			'post_title'        => true,
+			'post_content'      => false,
+			'field_groups'      => [ 6277, 22858, 26396 ],
+			'html_after_fields' => '<input type="hidden" name="acf[claim]" value="true"/>',
+			'return'            => (string) get_permalink( $post ), // @phpstan-ignore-line
+			'submit_value'      => esc_html__( 'Save Draft', 'rosenfield-collection' ),
+		]
+	);
 }
 
 /**
@@ -83,11 +99,11 @@ function claim_set_featured_image( int $value, int $post_id ): int {
 		return $value;
 	}
 
-	if ( 'post' !== get_post_type( $post_id ) ) {
+	if ( POST_SLUG !== get_post_type( $post_id ) ) {
 		return $value;
 	}
 
-	if ( 'pending' !== get_post_status( $post_id ) ) {
+	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
 		return $value;
 	}
 
@@ -114,11 +130,11 @@ function claim_post_status_transition( int $post_id ): int {
 		return $post_id;
 	}
 
-	if ( 'post' !== get_post_type( $post_id ) ) {
+	if ( POST_SLUG !== get_post_type( $post_id ) ) {
 		return $post_id;
 	}
 
-	if ( 'pending' !== get_post_status( $post_id ) ) {
+	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
 		return $post_id;
 	}
 
@@ -141,7 +157,7 @@ function claim_post_status_transition( int $post_id ): int {
 			sprintf(
 				'%s: %s',
 				esc_html__( 'Object is awaiting approval', 'rosenfield-collection' ),
-				esc_url( get_edit_post_link( $post_id ) )
+				esc_url( (string) get_edit_post_link( $post_id ) )
 			)
 		);
 	}
@@ -163,17 +179,20 @@ function claim_delete_attachment( int $post_id ): int {
 		return $post_id;
 	}
 
-	if ( 'post' !== get_post_type( $post_id ) ) {
+	if ( POST_SLUG !== get_post_type( $post_id ) ) {
 		return $post_id;
 	}
 
-	if ( 'pending' !== get_post_status( $post_id ) ) {
+	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
 		return $post_id;
 	}
 
 	if ( has_post_thumbnail( $post_id ) ) {
 		$attachment_id = get_post_thumbnail_id( $post_id );
-		wp_delete_attachment( $attachment_id, true );
+		$attachment_id = $attachment_id ? (int) $attachment_id : 0;
+		if ( ! empty( $attachment_id ) ) {
+			wp_delete_attachment( $attachment_id, true );
+		}
 	}
 
 	return $post_id;

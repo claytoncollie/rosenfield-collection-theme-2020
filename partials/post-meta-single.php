@@ -5,6 +5,11 @@
  * @package RosenfieldCollection\Theme
  */
 
+use const RosenfieldCollection\Theme\Fields\OBJECT_HEIGHT;
+use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
+use const RosenfieldCollection\Theme\Fields\OBJECT_LENGTH;
+use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
+use const RosenfieldCollection\Theme\Fields\OBJECT_WIDTH;
 use const RosenfieldCollection\Theme\Taxonomies\COLUMN;
 use const RosenfieldCollection\Theme\Taxonomies\FIRING;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
@@ -32,12 +37,12 @@ $rows = $rows && ! is_wp_error( $rows ) ? (string) $rows : '';
 $columns = get_the_term_list( $post_id, COLUMN, '', ', ' );
 $columns = $columns && ! is_wp_error( $columns ) ? (string) $columns : '';
 
-$length = get_field( 'length', $post_id );
-$length = $length ? (string) $length : '';
-$width  = get_field( 'width', $post_id );
-$width  = $width ? (string) $width : '';
-$height = get_field( 'height', $post_id );
-$height = $height ? (string) $height : '';
+$length = get_field( OBJECT_LENGTH, $post_id );
+$length = $length ? (string) $length : ''; // @phpstan-ignore-line
+$width  = get_field( OBJECT_WIDTH, $post_id );
+$width  = $width ? (string) $width : ''; // @phpstan-ignore-line
+$height = get_field( OBJECT_HEIGHT, $post_id );
+$height = $height ? (string) $height : ''; // @phpstan-ignore-line
 
 $author_id        = get_post_field( 'post_author', $post_id );
 $author_id        = empty( $author_id ) ? 0 : (int) $author_id;
@@ -49,9 +54,11 @@ $full_name        = $first_name . ' ' . $last_name;
 // Load all 'rc_form' terms for the post.
 $terms     = get_the_terms( $post_id, FORM );
 $terms     = $terms && ! is_wp_error( $terms ) ? $terms : [];
-$object_id = get_field( 'object_id', $post_id );
+$object_id = get_field( OBJECT_ID, $post_id );
+$object_id = $object_id ? (string) $object_id : ''; // @phpstan-ignore-line
 $term      = array_pop( $terms );
-$prefix    = get_field( 'rc_form_object_prefix', $term );
+$prefix    = get_field( OBJECT_PREFIX, $term );
+$prefix    = $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 
 ?>
 
@@ -81,21 +88,21 @@ $prefix    = get_field( 'rc_form_object_prefix', $term );
 				</span>
 				<?php echo wp_kses_post( $forms ); ?>
 			<?php endif; ?>
-			
+
 			<?php if ( ! empty( $firings ) ) : ?>
 				<span class="entry-sep">
 					&middot;
 				</span>
 				<?php echo wp_kses_post( $firings ); ?>
 			<?php endif; ?>
-			
+
 			<?php if ( ! empty( $techniques ) ) : ?>
 				<span class="entry-sep">
 					&middot;
 				</span>
 				<?php echo wp_kses_post( $techniques ); ?>
 			<?php endif; ?>
-			
+
 			<?php if ( $length || $width || $height ) : ?>
 				<span class="entry-sep">
 					&middot;
@@ -108,7 +115,7 @@ $prefix    = get_field( 'rc_form_object_prefix', $term );
 			<?php endif; ?>
 
 		</div>
-		
+
 		<div class="location">
 
 			<?php if ( ! empty( $columns ) ) : ?>

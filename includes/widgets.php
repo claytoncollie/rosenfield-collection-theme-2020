@@ -40,7 +40,7 @@ function widget_area_defaults( array $defaults, string $id ): array {
 	$hero = 'front-page-1' === $id ? ' hero-section" role="banner' : '';
 
 	if ( str_contains( $id, 'front-page-' ) ) {
-		$defaults['before'] = \genesis_markup(
+		$defaults['before'] = genesis_markup(
 			[
 				'open'    => '<div class="' . $id . $hero . '"><div class="wrap">',
 				'context' => 'widget-area-wrap',
@@ -50,7 +50,7 @@ function widget_area_defaults( array $defaults, string $id ): array {
 				],
 			]
 		);
-		$defaults['after']  = \genesis_markup(
+		$defaults['after']  = genesis_markup(
 			[
 				'close'   => '</div></div>',
 				'context' => 'widget-area-wrap',

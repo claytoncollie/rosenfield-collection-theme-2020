@@ -7,27 +7,21 @@
 
 namespace RosenfieldCollection\Theme\Helpers;
 
+use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
+use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
+use const RosenfieldCollection\Theme\Taxonomies\FORM;
+
 /**
  * Load an inline SVG.
  *
  * @param string $filename The filename of the SVG you want to load.
- *
- * @return string The content of the SVG you want to load.
  */
 function svg( string $filename ): string {
-	$output = '';
-
-	// Add the path to your SVG directory inside your theme.
-	$svg_path = '/assets/svg/';
-
-	// Check the SVG file exists.
-	if ( file_exists( get_stylesheet_directory() . $svg_path . $filename . '.svg' ) ) {
-		// Load and return the contents of the file.
-		return file_get_contents( get_stylesheet_directory_uri() . $svg_path . $filename . '.svg' );
+	if ( file_exists( ROSENFIELD_COLLECTION_THEME_STYLESHEET_PATH . '/assets/svg/' . $filename . '.svg' ) ) {
+		return (string) file_get_contents( ROSENFIELD_COLLECTION_THEME_STYLESHEET_URL . '/assets/svg/' . $filename . '.svg' );
 	}
 
-	// Return a blank string if we can't find the file.
-	return $output;
+	return '';
 }
 
 /**
@@ -48,7 +42,7 @@ function column_class( int $i, int $columns ): string {
 function get_object_prefix_and_id(): string {
 	$output = '';
 	$prefix = get_taxonomy_term_prefix();
-	$id     = get_field( 'object_id' );
+	$id     = get_field( OBJECT_ID );
 
 	if ( ! empty( $id ) && ! empty( $prefix ) ) {
 		return $prefix . $id;
@@ -61,72 +55,50 @@ function get_object_prefix_and_id(): string {
  * Get the taxonomy term prefix
  */
 function get_taxonomy_term_prefix(): string {
-	$prefix = '';
-	$terms  = get_the_terms( get_the_ID(), 'rc_form' );
-
-	if ( ! empty( $terms ) ) {
-		foreach ( $terms as $term ) {
-			$term_id = $term->term_id;
-		}
+	$post_id = get_the_ID();
+	$post_id = $post_id ? (int) $post_id : 0;
+	if ( empty( $post_id ) ) {
+		return '';
 	}
 
-	if ( ! empty( $term_id ) ) {
-		return get_term_meta( $term_id, 'rc_form_object_prefix', true );
+	$terms = get_the_terms( $post_id, FORM );
+	if ( ! $terms ) {
+		return '';
+	}
+	if ( is_wp_error( $terms ) ) {
+		return '';
 	}
 
-	return $prefix;
-}
-
-/**
- * Returns the child theme directory.
- */
-function get_theme_dir(): string {
-	static $dir = null;
-
-	if ( \is_null( $dir ) ) {
-		$dir = \trailingslashit( \get_stylesheet_directory() );
+	foreach ( $terms as $term ) {
+		$term_id = $term->term_id;
 	}
 
-	return $dir;
-}
-
-/**
- * Returns the child theme URL.
- */
-function get_theme_url(): string {
-	static $url = null;
-
-	if ( \is_null( $url ) ) {
-		$url = \trailingslashit( \get_stylesheet_directory_uri() );
+	if ( empty( $term_id ) ) {
+		return '';
 	}
 
-	return $url;
+	$prefix = get_term_meta( $term_id, OBJECT_PREFIX, true );
+
+	return $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 }
 
 /**
  * Check if were on any type of singular page.
  */
 function is_type_single(): bool {
-	return \is_front_page() || \is_single() || \is_page() || \is_404() || \is_attachment() || \is_singular();
+	return is_front_page() || is_single() || is_page() || is_404() || is_attachment() || is_singular();
 }
 
 /**
  * Check if were on any type of archive page.
  */
 function is_type_archive(): bool {
-	return is_type_archive_page() || \is_home() || \is_post_type_archive() || \is_category() || \is_tag() || \is_tax() || \is_author() || \is_date() || \is_year() || \is_month() || \is_day() || \is_time() || \is_archive();
+	return is_type_archive_page() || is_home() || is_post_type_archive() || is_category() || is_tag() || is_tax() || is_author() || is_date() || is_year() || is_month() || is_day() || is_time() || is_archive();
 }
 
 /**
  * Check if we are nay of these pages.
  */
 function is_type_archive_page(): bool {
-	return \is_page( [ 'forms', 'firings', 'techniques', 'artists' ] );
-}
-
-/**
- * Checks if current page has the hero section enabled.
- */
-function has_hero_section(): bool {
-	return \in_array( 'has-hero-section', \get_body_class(), true );
+	return is_page( [ 'forms', 'firings', 'techniques', 'artists' ] );
 }

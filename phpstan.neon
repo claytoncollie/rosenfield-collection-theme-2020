@@ -1,7 +1,7 @@
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-	level: 8
+	level: max
 	reportUnmatchedIgnoredErrors: false
 	checkMissingIterableValueType: false
 	checkMissingCallableSignature: false
@@ -9,6 +9,7 @@ parameters:
 		- phpstan/constants.php
 	excludePaths:
 		analyseAndScan:
+			- rector.php
 			- dist/*
 			- node_modules/*
 		analyse:
@@ -21,8 +22,3 @@ parameters:
 		- .
 	stubFiles:
 		- phpstan/wp-query.stub
-	ignoreErrors:
-		# Uses func_get_args()
-		- '#^Function apply_filters invoked with [34567] parameters, 2 required\.$#'
-		- '#^Function remove_filter invoked with [34567] parameters, 2-3 required\.$#'
-		- '#^Function remove_action invoked with [34567] parameters, 2-3 required\.$#'
