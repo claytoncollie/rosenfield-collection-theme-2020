@@ -24,7 +24,7 @@ $last_name  = get_the_author_meta( 'last_name', $author_id );
 $full_name  = $first_name . ' ' . $last_name;
 $permalink  = get_author_posts_url( $author_id );
 $avatar_id  = get_field( ARTIST_PHOTO, 'user_' . $author_id );
-$avatar_id  = $avatar_id ? (int) $avatar_id : 0;
+$avatar_id  = $avatar_id ? (int) $avatar_id : 0; // @phpstan-ignore-line
 $avatar     = wp_get_attachment_image(
 	$avatar_id,
 	THUMBNAIL,

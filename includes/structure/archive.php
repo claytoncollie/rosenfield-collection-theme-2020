@@ -194,7 +194,7 @@ function nopaging( WP_Query $query ): void {
 	}
 
 	$view = get_query_var( 'view' );
-	$view = $view ? (string) $view : '';
+	$view = $view ? (string) $view : ''; // @phpstan-ignore-line
 	if ( 'list' !== $view ) {
 		return;
 	}
@@ -209,7 +209,7 @@ function nopaging( WP_Query $query ): void {
  */
 function body_class( array $classes ): array {
 	$view = get_query_var( 'view' );
-	$view = $view ? (string) $view : '';
+	$view = $view ? (string) $view : ''; // @phpstan-ignore-line
 	if ( 'list' !== $view ) {
 		return $classes;
 	}

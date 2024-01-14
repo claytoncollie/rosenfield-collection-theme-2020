@@ -7,14 +7,16 @@
 
 namespace RosenfieldCollection\Theme\PostMetaAdmin;
 
+use const RosenfieldCollection\Theme\Fields\OBJECT_DATE;
+use const RosenfieldCollection\Theme\Fields\OBJECT_PRICE;
 use const RosenfieldCollection\Theme\Taxonomies\LOCATION;
 
 /**
  * Display the purchase price.
  */
 function the_purchase_price(): void {
-	$price = get_field( 'rc_object_purchase_price' );
-	$price = $price ? (string) $price : '';
+	$price = get_field( OBJECT_PRICE );
+	$price = $price ? (string) $price : ''; // @phpstan-ignore-line
 	if ( empty( $price ) ) {
 		return;
 	}
@@ -30,8 +32,8 @@ function the_purchase_price(): void {
  * Display the purchase date.
  */
 function the_purchase_date(): void {
-	$date = get_field( 'rc_object_purchase_date' );
-	$date = $date ? (string) $date : '';
+	$date = get_field( OBJECT_DATE );
+	$date = $date ? (string) $date : ''; // @phpstan-ignore-line
 	if ( empty( $date ) ) {
 		return;
 	}

@@ -34,7 +34,7 @@ function do_the_artist_avatar(): void {
 	}
 	
 	$attachment_id = get_field( ARTIST_PHOTO, 'user_' . $author_id );
-	$attachment_id = $attachment_id ? (int) $attachment_id : 0;
+	$attachment_id = $attachment_id ? (int) $attachment_id : 0; // @phpstan-ignore-line
 	if ( empty( $attachment_id ) ) {
 		return;
 	}

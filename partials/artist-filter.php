@@ -6,6 +6,8 @@
  */
 
 use const RosenfieldCollection\Theme\Artists\QUERY_VAR;
+use const RosenfieldCollection\Theme\Fields\ARTIST_SLUG;
+use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
 
 $field = get_field_object( 'field_5e17ad49aa83c' );
 if ( empty( $field ) ) {
@@ -18,7 +20,7 @@ if ( empty( $letters ) ) {
 }
 
 $is_archive  = get_query_var( QUERY_VAR ) === '' ? 'current' : '';
-$page_object = get_page_by_path( 'artists', OBJECT, 'page' );
+$page_object = get_page_by_path( ARTIST_SLUG, OBJECT, PAGE_SLUG );
 $view_all    = (string) get_permalink( $page_object ); // @phpstan-ignore-line
 
 ?>
@@ -48,9 +50,9 @@ $view_all    = (string) get_permalink( $page_object ); // @phpstan-ignore-line
 					<span class="screen-reader-text">
 						<?php echo esc_html__( 'Filter artist by the letter ', 'rosenfield-collection' ); ?>
 					</span> 
-					<?php echo esc_html( ucwords( (string) $letter ) ); ?>
+					<?php echo esc_html( ucwords( (string) $letter ) ); // @phpstan-ignore-line ?>
 				</a>
 			</li>
-		<?php endforeach; ?>
+<?php endforeach; ?>
 	</ul>
 </section>

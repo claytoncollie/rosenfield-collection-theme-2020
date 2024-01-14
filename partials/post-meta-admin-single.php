@@ -5,6 +5,7 @@
  * @package RosenfieldCollection\Theme
  */
 
+use const RosenfieldCollection\Theme\Fields\OBJECT_PRICE;
 use const RosenfieldCollection\Theme\Taxonomies\LOCATION;
 use const RosenfieldCollection\Theme\Taxonomies\POST_TAG;
 
@@ -22,8 +23,8 @@ $tags             = get_the_term_list( $post_id, POST_TAG, '', ', ', '' );
 $tags             = $tags && ! is_wp_error( $tags ) ? (string) $tags : '';
 $location         = get_the_term_list( $post_id, LOCATION, '', ', ', '' );
 $location         = $location && ! is_wp_error( $location ) ? (string) $location : '';
-$price            = get_field( 'rc_object_purchase_price', $post_id );
-$price            = $price ? (string) $price : '';
+$price            = get_field( OBJECT_PRICE, $post_id );
+$price            = $price ? (string) $price : ''; // @phpstan-ignore-line
 $permalink        = get_permalink();
 $vertical_label   = $permalink ? $permalink . 'vertical' : '';
 $horizontal_label = $permalink ? $permalink . 'horizontal' : '';

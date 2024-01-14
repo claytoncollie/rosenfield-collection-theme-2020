@@ -8,6 +8,7 @@
 use function RosenfieldCollection\Theme\Helpers\column_class;
 
 use const RosenfieldCollection\Theme\ImageSizes\IMAGE_ARCHIVE;
+use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 
 $taxonomy = $args['taxonomy'] ?? '';
 if ( empty( $taxonomy ) ) {
@@ -17,7 +18,7 @@ if ( empty( $taxonomy ) ) {
 $terms = get_categories( 
 	[
 		'taxonomy'   => $taxonomy,
-		'post_type'  => 'post',
+		'post_type'  => POST_SLUG,
 		'title_li'   => '',
 		'depth'      => 1,
 		'hide_empty' => 1,
@@ -51,7 +52,7 @@ foreach ( $terms as $term ) :
 					'terms'    => $term_slug,
 				],
 			],
-			'post_type'   => 'post',
+			'post_type'   => POST_SLUG,
 			'numberposts' => 1,
 			'meta_query'  => [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				[

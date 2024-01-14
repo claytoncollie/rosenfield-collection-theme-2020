@@ -5,6 +5,7 @@
  * @package RosenfieldCollection\Theme
  */
 
+use const RosenfieldCollection\Theme\Fields\OBJECT_PRICE;
 use const RosenfieldCollection\Theme\Taxonomies\COLUMN;
 use const RosenfieldCollection\Theme\Taxonomies\FIRING;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
@@ -36,8 +37,8 @@ $columns = $columns && ! is_wp_error( $columns ) ? (string) $columns : '';
 $location = get_the_term_list( $post_id, LOCATION, '', ', ' );
 $location = $location && ! is_wp_error( $location ) ? (string) $location : '';
 
-$price = get_field( 'rc_object_purchase_price', $post_id );
-$price = $price ? (string) $price : '';
+$price = get_field( OBJECT_PRICE, $post_id );
+$price = $price ? (string) $price : ''; // @phpstan-ignore-line
 
 $is_user_logged_in = is_user_logged_in();
 

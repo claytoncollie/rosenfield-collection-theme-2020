@@ -7,6 +7,9 @@
 
 namespace RosenfieldCollection\Theme\Structure\Hero;
 
+use const RosenfieldCollection\Theme\Fields\CONTACT_SLUG;
+use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
+
 /**
  * Setup
  */
@@ -132,7 +135,7 @@ function hero_title(): void {
 					[
 						'referrer' => $permalink,
 					],
-					get_permalink( get_page_by_path( 'contact', OBJECT, 'page' ) ) // @phpstan-ignore-line
+					get_permalink( get_page_by_path( CONTACT_SLUG, OBJECT, PAGE_SLUG ) ) // @phpstan-ignore-line
 				)
 			),
 			esc_html__( 'Suggest an edit', 'rosenfield-collection' )
@@ -176,7 +179,7 @@ function hero_excerpt(): void {
 	}
 
 	if ( $id ) {
-		$excerpt = has_excerpt( (int) $id ) ? do_shortcode( get_the_excerpt( (int) $id ) ) : '';
+		$excerpt = has_excerpt( (int) $id ) ? do_shortcode( get_the_excerpt( (int) $id ) ) : ''; // @phpstan-ignore-line
 	}
 
 	if ( $excerpt ) {

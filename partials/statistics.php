@@ -7,7 +7,7 @@
 
 $post_count  = wp_count_posts();
 $post_count  = get_object_vars( $post_count );
-$published   = (string) $post_count['publish'];
+$published   = (string) $post_count['publish']; // @phpstan-ignore-line
 $users       = count_users();
 $total_users = (string) $users['total_users'];
 

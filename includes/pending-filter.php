@@ -7,6 +7,8 @@
 
 namespace RosenfieldCollection\Theme\PendingFilter;
 
+use const RosenfieldCollection\Theme\Fields\PENDING_SLUG;
+use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
 
 /**
@@ -32,7 +34,7 @@ function do_pending_filter_by_form(): void {
 		return;
 	}
 
-	$post = get_page_by_path( 'pending', OBJECT, 'page' );
+	$post = get_page_by_path( PENDING_SLUG, OBJECT, PAGE_SLUG );
 
 	printf(
 		'<section id="rosenfield-collection-pending-filter-by-form" class="inline-filter" role="navigation" aria-label="%s"><ul>',
@@ -75,7 +77,7 @@ function do_pending_filter_by_artist(): void {
 	);
 
 	if ( ! empty( $users ) ) {
-		$post = get_page_by_path( 'pending', OBJECT, 'page' );
+		$post = get_page_by_path( PENDING_SLUG, OBJECT, PAGE_SLUG );
 
 		printf(
 			'<section id="rosenfield-collection-pending-filter-by-user" class="inline-filter" role="navigation" aria-label="%s"><ul>',

@@ -31,6 +31,7 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'fields.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'genesis.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'image-sizes.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'markup.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'post-types.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'post-meta-admin.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'search.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'taxonomies.php';

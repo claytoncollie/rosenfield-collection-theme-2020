@@ -7,6 +7,10 @@
 
 namespace RosenfieldCollection\Theme\ClaimObject;
 
+use const RosenfieldCollection\Theme\Fields\PENDING_SLUG;
+use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
+use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
+
 /**
  * Setup
  */
@@ -36,7 +40,7 @@ function redirect_after_trash(): void {
  */
 function do_claim_meta(): void {
 	$post_id = get_query_var( 'post_id' );
-	$post_id = $post_id ? (int) $post_id : 0;
+	$post_id = $post_id ? (int) $post_id : 0; // @phpstan-ignore-line
 	if ( empty( $post_id ) ) {
 		return;
 	}
@@ -60,12 +64,12 @@ function do_claim_meta(): void {
  */
 function acf_form_claim(): void {
 	$post_id = get_query_var( 'post_id' );
-	$post_id = $post_id ? (int) $post_id : 0;
+	$post_id = $post_id ? (int) $post_id : 0; // @phpstan-ignore-line
 	if ( empty( $post_id ) ) {
 		return;
 	}
 
-	$post = get_page_by_path( 'pending', OBJECT, 'page' );
+	$post = get_page_by_path( PENDING_SLUG, OBJECT, PAGE_SLUG );
 
 	acf_form(
 		[
@@ -74,7 +78,7 @@ function acf_form_claim(): void {
 			'post_content'      => false,
 			'field_groups'      => [ 6277, 22858, 26396 ],
 			'html_after_fields' => '<input type="hidden" name="acf[claim]" value="true"/>',
-			'return'            => get_permalink( $post ), // @phpstan-ignore-line
+			'return'            => (string) get_permalink( $post ), // @phpstan-ignore-line
 			'submit_value'      => esc_html__( 'Save Draft', 'rosenfield-collection' ),
 		]
 	);
@@ -95,11 +99,11 @@ function claim_set_featured_image( int $value, int $post_id ): int {
 		return $value;
 	}
 
-	if ( 'post' !== get_post_type( $post_id ) ) {
+	if ( POST_SLUG !== get_post_type( $post_id ) ) {
 		return $value;
 	}
 
-	if ( 'pending' !== get_post_status( $post_id ) ) {
+	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
 		return $value;
 	}
 
@@ -126,11 +130,11 @@ function claim_post_status_transition( int $post_id ): int {
 		return $post_id;
 	}
 
-	if ( 'post' !== get_post_type( $post_id ) ) {
+	if ( POST_SLUG !== get_post_type( $post_id ) ) {
 		return $post_id;
 	}
 
-	if ( 'pending' !== get_post_status( $post_id ) ) {
+	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
 		return $post_id;
 	}
 
@@ -175,11 +179,11 @@ function claim_delete_attachment( int $post_id ): int {
 		return $post_id;
 	}
 
-	if ( 'post' !== get_post_type( $post_id ) ) {
+	if ( POST_SLUG !== get_post_type( $post_id ) ) {
 		return $post_id;
 	}
 
-	if ( 'pending' !== get_post_status( $post_id ) ) {
+	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
 		return $post_id;
 	}
 

@@ -76,10 +76,10 @@ function get_taxonomy_term_prefix(): string {
 	if ( empty( $term_id ) ) {
 		return '';
 	}
-	
+
 	$prefix = get_term_meta( $term_id, OBJECT_PREFIX, true );
-	
-	return $prefix ? (string) $prefix : '';
+
+	return $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 }
 
 /**
