@@ -9,6 +9,7 @@ namespace RosenfieldCollection\Theme\Structure\Hero;
 
 use const RosenfieldCollection\Theme\Fields\CONTACT_SLUG;
 use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
+use const RosenfieldCollection\Theme\QueryVars\VIEW_VAR;
 
 /**
  * Setup
@@ -216,7 +217,7 @@ function hero_view_toggle(): void {
 		esc_url( $term_link ),
 		esc_html__( 'View as grid', 'rosenfield-collection' ),
 		esc_html__( 'Grid', 'rosenfield-collection' ),
-		esc_url( add_query_arg( 'view', 'list', $term_link ) ),
+		esc_url( add_query_arg( VIEW_VAR, 'list', $term_link ) ),
 		esc_html__( 'View as list', 'rosenfield-collection' ),
 		esc_html__( 'List', 'rosenfield-collection' )
 	);

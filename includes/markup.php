@@ -8,7 +8,6 @@
 namespace RosenfieldCollection\Theme\Markup;
 
 use function RosenfieldCollection\Theme\Helpers\is_type_archive;
-use function RosenfieldCollection\Theme\Helpers\is_type_single;
 
 /**
  * Setup
@@ -24,37 +23,6 @@ function setup(): void {
  * @param array $classes Body classes.
  */
 function body_classes( array $classes ): array {
-
-	// Remove unnecessary page template classes.
-	$template = get_page_template_slug();
-	$template = $template ? (string) $template : '';
-
-	$basename  = basename( $template, '.php' );
-	$directory = str_replace( [ '/', \basename( $template ) ], '', $template );
-	$classes   = array_diff(
-		$classes,
-		[
-			'page-template',
-			'page-template-' . $basename,
-			'page-template-' . $directory,
-			'page-template-' . $directory . $basename . '-php',
-		]
-	);
-
-	// Add simple template name.
-	if ( '' !== $basename && '0' !== $basename ) {
-		$classes[] = 'template-' . $basename;
-	}
-
-	// Add sticky header class.
-	if ( current_theme_supports( 'sticky-header' ) ) {
-		$classes[] = 'sticky-header';
-	}
-
-	// Add single type class.
-	if ( is_type_single() ) {
-		$classes[] = 'is-single';
-	}
 
 	// Add archive type class.
 	if ( is_type_archive() ) {

@@ -10,6 +10,7 @@ namespace RosenfieldCollection\Theme\ClaimObject;
 use const RosenfieldCollection\Theme\Fields\PENDING_SLUG;
 use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
 use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
+use const RosenfieldCollection\Theme\QueryVars\POST_ID_VAR;
 
 /**
  * Setup
@@ -39,7 +40,7 @@ function redirect_after_trash(): void {
  * Display post author.
  */
 function do_claim_meta(): void {
-	$post_id = get_query_var( 'post_id' );
+	$post_id = get_query_var( POST_ID_VAR );
 	$post_id = $post_id ? (int) $post_id : 0; // @phpstan-ignore-line
 	if ( empty( $post_id ) ) {
 		return;
@@ -63,7 +64,7 @@ function do_claim_meta(): void {
  * Frontend editing form for POSTs.
  */
 function acf_form_claim(): void {
-	$post_id = get_query_var( 'post_id' );
+	$post_id = get_query_var( POST_ID_VAR );
 	$post_id = $post_id ? (int) $post_id : 0; // @phpstan-ignore-line
 	if ( empty( $post_id ) ) {
 		return;

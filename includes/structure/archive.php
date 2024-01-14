@@ -13,6 +13,7 @@ use function RosenfieldCollection\Theme\Helpers\is_type_archive;
 use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
 
 use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
+use const RosenfieldCollection\Theme\QueryVars\VIEW_VAR;
 
 /**
  * Setup
@@ -23,7 +24,6 @@ function setup(): void {
 	add_filter( 'the_content_more_link', __NAMESPACE__ . '\read_more_link' );
 	add_action( 'genesis_entry_header', __NAMESPACE__ . '\entry_wrap_open', 4 );
 	add_action( 'genesis_entry_footer', __NAMESPACE__ . '\entry_wrap_close', 15 );
-	add_filter( 'genesis_markup_entry-header_open', __NAMESPACE__ . '\widget_entry_wrap_open', 10, 2 );
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\sort_by_object_id' );
 	add_action( 'genesis_entry_content', __NAMESPACE__ . '\object_by_line', 8 );
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\nopaging', 99 );
@@ -121,28 +121,6 @@ function entry_wrap_close(): void {
 }
 
 /**
- * Outputs the opening entry wrap markup in widgets.
- *
- * @param string $open Opening markup.
- * @param array  $args Markup args.
- */
-function widget_entry_wrap_open( string $open, array $args ): string {
-	if ( isset( $args['params']['is_widget'] ) && $args['params']['is_widget'] ) {
-		$markup = genesis_markup(
-			[
-				'open'    => '<div %s>',
-				'context' => 'entry-wrap',
-				'echo'    => false,
-			]
-		);
-
-		$open = $markup . $open;
-	}
-
-	return $open;
-}
-
-/**
  * Sort the taxonomy archive pages by object ID
  *
  * @param WP_Query $query Main Query.
@@ -193,7 +171,7 @@ function nopaging( WP_Query $query ): void {
 		return;
 	}
 
-	$view = get_query_var( 'view' );
+	$view = get_query_var( VIEW_VAR );
 	$view = $view ? (string) $view : ''; // @phpstan-ignore-line
 	if ( 'list' !== $view ) {
 		return;
@@ -208,7 +186,7 @@ function nopaging( WP_Query $query ): void {
  * @param array $classes Body classes.
  */
 function body_class( array $classes ): array {
-	$view = get_query_var( 'view' );
+	$view = get_query_var( VIEW_VAR );
 	$view = $view ? (string) $view : ''; // @phpstan-ignore-line
 	if ( 'list' !== $view ) {
 		return $classes;

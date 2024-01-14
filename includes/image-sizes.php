@@ -44,7 +44,7 @@ function setup(): void {
  */
 function remove_image_sizes(): void {
 	foreach ( get_intermediate_image_sizes() as $size ) { // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
-		if ( ! in_array( $size, [ 'thumbnail', 'object', 'archive', 'full' ], true ) ) {
+		if ( ! in_array( $size, [ THUMBNAIL, IMAGE_OBJECT, IMAGE_ARCHIVE, 'full' ], true ) ) {
 			remove_image_size( $size );
 		}
 	}
@@ -69,7 +69,7 @@ function remove_default_image_sizes( array $sizes ): array {
 function admin_featured_image_size(): string {
 	$sizes = get_intermediate_image_sizes(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
 
-	$result = array_search( 'archive', $sizes, true );
+	$result = array_search( IMAGE_ARCHIVE, $sizes, true );
 
-	return is_numeric( $result ) ? $sizes[ $result ] : 'thumbnail';
+	return is_numeric( $result ) ? $sizes[ $result ] : THUMBNAIL;
 }
