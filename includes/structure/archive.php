@@ -9,10 +9,10 @@ namespace RosenfieldCollection\Theme\Structure\Archive;
 
 use WP_Query;
 
-use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
-
 use function RosenfieldCollection\Theme\Helpers\is_type_archive;
 use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
+
+use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
 
 /**
  * Setup
