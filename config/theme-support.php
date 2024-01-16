@@ -12,7 +12,6 @@ return [
 		'align-wide',
 		'automatic-feed-links',
 		'editor-styles',
-		'front-page-widgets'       => 1,
 		'genesis-accessibility'    => [
 			'404-page',
 			'drop-down-menu',
@@ -29,8 +28,6 @@ return [
 			'header',
 			'menu-secondary',
 			'hero-section',
-			'footer-widgets',
-			'front-page-widgets',
 		],
 		'gutenberg'                => [
 			'wide-images' => true,

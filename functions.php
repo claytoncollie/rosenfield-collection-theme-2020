@@ -38,7 +38,6 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'taxonomies.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'pending.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'pending-filter.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'query-vars.php';
-require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'widgets.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'wp-mail-smtp.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'wordpress.php';
 
@@ -66,7 +65,6 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/wrap.php';
 \RosenfieldCollection\Theme\Search\setup();
 \RosenfieldCollection\Theme\Setup\setup();
 \RosenfieldCollection\Theme\Taxonomies\setup();
-\RosenfieldCollection\Theme\Widgets\setup();
 \RosenfieldCollection\Theme\WpMailSMTP\setup();
 \RosenfieldCollection\Theme\WordPress\setup();
 

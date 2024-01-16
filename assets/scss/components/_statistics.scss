@@ -2,6 +2,7 @@
 
 .statistics {
 	margin-bottom: $spacing--l;
+	margin-top: $spacing--xl;
 
 	@include mq(m) {
 		margin-bottom: 0;

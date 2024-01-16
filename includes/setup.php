@@ -25,7 +25,6 @@ function config(): void {
 	$post_type_support = genesis_get_config( 'post-type-support' );
 	$image_sizes       = genesis_get_config( 'image-sizes' );
 	$page_layouts      = genesis_get_config( 'page-layouts' );
-	$widget_areas      = genesis_get_config( 'widget-areas' );
 
 	// Add responsive menus.
 	genesis_register_responsive_menus( $responsive_menu );
@@ -95,22 +94,6 @@ function config(): void {
 		$page_layouts['remove'],
 		function ( $name ): void {
 			genesis_unregister_layout( $name );
-		}
-	);
-
-	// Add widget areas.
-	\array_walk(
-		$widget_areas['add'],
-		function ( $id ): void {
-			genesis_register_widget_area( $id );
-		}
-	);
-
-	// Remove widget areas.
-	\array_walk(
-		$widget_areas['remove'],
-		function ( $id ): void {
-			\unregister_sidebar( $id );
 		}
 	);
 }

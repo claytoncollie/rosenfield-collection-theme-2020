@@ -9,6 +9,7 @@ namespace RosenfieldCollection\Theme\PendingFilter;
 
 use const RosenfieldCollection\Theme\Fields\PENDING_SLUG;
 use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
+use const RosenfieldCollection\Theme\QueryVars\ARTIST_VAR;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
 
 /**
@@ -95,12 +96,12 @@ function do_pending_filter_by_artist(): void {
 				'<option value="%s" %s>%s</option>',
 				esc_url(
 					add_query_arg(
-						'artist',
+						ARTIST_VAR,
 						$user->ID,
 						get_permalink()
 					)
 				),
-				get_query_var( 'artist' ) === $user->ID ? 'selected' : '',
+				get_query_var( ARTIST_VAR ) === $user->ID ? 'selected' : '',
 				esc_html( ucwords( (string) $user->display_name ) )
 			);
 		}

@@ -13,7 +13,7 @@ $total_users = (string) $users['total_users'];
 
 ?>
 
-<section class="statistics" aria-label="Site-wide statistics">
+<div class="statistics">
 	<div class="one-half first">
 		<h3>
 			<?php echo esc_html( $published ); ?>
@@ -30,4 +30,4 @@ $total_users = (string) $users['total_users'];
 			<?php echo esc_html__( 'Artists', 'rosenfield-collection' ); ?>
 		</p>
 	</div>
-</section>
+</div>

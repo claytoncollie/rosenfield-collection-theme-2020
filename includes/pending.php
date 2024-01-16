@@ -12,6 +12,8 @@ use WP_Post;
 use const RosenfieldCollection\Theme\Fields\CLAIM_SLUG;
 use const RosenfieldCollection\Theme\Fields\PENDING_SLUG;
 use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
+use const RosenfieldCollection\Theme\QueryVars\ARTIST_VAR;
+use const RosenfieldCollection\Theme\QueryVars\POST_ID_VAR;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
 
 /**
@@ -19,7 +21,7 @@ use const RosenfieldCollection\Theme\Taxonomies\FORM;
  */
 function do_the_pending_posts(): void {
 	$form = get_query_var( FORM );
-	$user = get_query_var( 'artist' );
+	$user = get_query_var( ARTIST_VAR );
 
 	$args = [
 		'post_type'   => POST_SLUG,
@@ -65,5 +67,5 @@ function get_the_permalink_with_post_id( string $url, WP_Post $post ): string {
 		return $url;
 	}
 
-	return add_query_arg( 'post_id', get_the_ID(), esc_url( get_bloginfo( 'url' ) . '/' . CLAIM_SLUG ) );
+	return add_query_arg( POST_ID_VAR, get_the_ID(), esc_url( get_bloginfo( 'url' ) . '/' . CLAIM_SLUG ) );
 }
