@@ -8,5 +8,5 @@
 ?>
 
 <div class="widget">
-	<?php gravity_form( 4, false, false, false, '', true, 12 ); ?>
+	<?php gravity_form( '4', false, false, false, [], true, 12 ); ?>
 </div>

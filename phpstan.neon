@@ -18,6 +18,7 @@ parameters:
 		- vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
 		- vendor/php-stubs/genesis-stubs/genesis-stubs.php
 		- vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
+		- vendor/php-stubs/gravity-forms-stubs/gravity-forms-stubs.php
 	paths:
 		- .
 	stubFiles:
