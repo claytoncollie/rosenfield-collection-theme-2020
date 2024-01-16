@@ -48,6 +48,7 @@ function hero(): void {
 	echo wp_kses_post( '<section class="front-page-1 hero-section"><div class="wrap">' );
 
 	get_template_part( 'partials/introduction' );
+	get_template_part( 'partials/subscribe' );
 	get_template_part( 'partials/statistics' );
 
 	echo wp_kses_post( '</div></section>' );

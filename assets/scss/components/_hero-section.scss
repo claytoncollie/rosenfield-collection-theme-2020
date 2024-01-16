@@ -96,3 +96,7 @@
 
 	@include hero-section;
 }
+
+.hero-description {
+	margin-bottom: $spacing--xl !important;
+}

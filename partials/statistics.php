@@ -13,19 +13,21 @@ $total_users = (string) $users['total_users'];
 
 ?>
 
-<div class="one-half first">
-	<h3>
-		<?php echo esc_html( $published ); ?>
-	</h3>
-	<p>
-		<?php echo esc_html__( 'Published Objects', 'rosenfield-collection' ); ?>
-	</p>
-</div>
-<div class="one-half ">
-	<h3>
-		<?php echo esc_html( $total_users ); ?>
-	</h3>
-	<p>
-		<?php echo esc_html__( 'Artists', 'rosenfield-collection' ); ?>
-	</p>
+<div class="statistics">
+	<div class="one-half first">
+		<h3>
+			<?php echo esc_html( $published ); ?>
+		</h3>
+		<p>
+			<?php echo esc_html__( 'Published Objects', 'rosenfield-collection' ); ?>
+		</p>
+	</div>
+	<div class="one-half ">
+		<h3>
+			<?php echo esc_html( $total_users ); ?>
+		</h3>
+		<p>
+			<?php echo esc_html__( 'Artists', 'rosenfield-collection' ); ?>
+		</p>
+	</div>
 </div>
