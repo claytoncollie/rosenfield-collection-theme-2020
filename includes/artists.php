@@ -41,7 +41,7 @@ const MAX_PER_PAGE = 999;
 function setup(): void {
 	add_filter( 'query_vars', __NAMESPACE__ . '\add_query_var' );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\the_filter', 12 );
-	add_action( 'genesis_loop', __NAMESPACE__ . '\the_loop' );
+	add_action( 'genesis_loop', __NAMESPACE__ . '\the_loop', 12 );
 }
 
 /**
