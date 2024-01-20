@@ -153,6 +153,9 @@ function object_by_line(): void {
 	if ( is_author() ) {
 		return;
 	}
+	if ( ! is_page_template( 'templates/pending.php' ) ) {
+		return;
+	}
 
 	get_template_part( 'partials/object-by-line' );
 }
