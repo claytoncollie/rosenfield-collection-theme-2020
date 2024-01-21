@@ -22,6 +22,8 @@ function setup(): void {
 	add_filter( 'the_excerpt_rss', __NAMESPACE__ . '\add_image_to_rss' );
 	add_filter( 'the_content_feed', __NAMESPACE__ . '\add_image_to_rss' );
 	add_filter( 'post_row_actions', __NAMESPACE__ . '\remove_quick_edit', 10, 1 );
+	add_action( 'admin_init', __NAMESPACE__ . '\remove_admin_color_scheme_picker' );
+	add_filter( 'user_contactmethods', __NAMESPACE__ . '\modify_user_contact_methods', 99, 1 );
 }
 
 /**
@@ -139,4 +141,31 @@ function add_image_to_rss( string $content ): string {
 function remove_quick_edit( array $actions ): array {
 	unset( $actions['inline hide-if-no-js'] );
 	return $actions;
+}
+
+/**
+ * Remove the admin color picker
+ */
+function remove_admin_color_scheme_picker(): void {
+	remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
+}
+
+/**
+ * Custom contact methods for each user profile
+ *
+ * @param array $user_contact Contact methods.
+ */
+function modify_user_contact_methods( array $user_contact ): array {
+	unset( $user_contact['aim'] );
+	unset( $user_contact['jabber'] );
+	unset( $user_contact['yim'] );
+	unset( $user_contact['gplus'] );
+	unset( $user_contact['myspace'] );
+	unset( $user_contact['linkedin'] );
+	unset( $user_contact['soundcloud'] );
+	unset( $user_contact['tumblr'] );
+	unset( $user_contact['youtube'] );
+	unset( $user_contact['wikipedia'] );
+
+	return $user_contact;
 }

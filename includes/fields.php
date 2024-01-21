@@ -73,6 +73,13 @@ const OBJECT_HEIGHT = 'height';
 const ARTIST_PHOTO = 'artist_photo';
 
 /**
+ * Artist filter meta key
+ * 
+ * @var string
+ */
+const ARTIST_FILTER = 'artist_filter';
+
+/**
  * Pending page slug
  * 
  * @var string

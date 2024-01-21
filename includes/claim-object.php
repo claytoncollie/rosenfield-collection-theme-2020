@@ -18,8 +18,8 @@ use const RosenfieldCollection\Theme\QueryVars\POST_ID_VAR;
 function setup(): void {
 	add_action( 'parse_request', __NAMESPACE__ . '\redirect_after_trash' );
 	add_filter( 'acf/update_value/name=rc_featured_image', __NAMESPACE__ . '\claim_set_featured_image', 99, 2 );
-	add_filter( 'acf/save_post', __NAMESPACE__ . '\claim_post_status_transition', 30, 1 );
-	add_filter( 'acf/save_post', __NAMESPACE__ . '\claim_delete_attachment', 5, 1 );
+	add_action( 'acf/save_post', __NAMESPACE__ . '\claim_post_status_transition', 30, 1 );
+	add_action( 'acf/save_post', __NAMESPACE__ . '\claim_delete_attachment', 5, 1 );
 }
 
 /**
@@ -120,28 +120,28 @@ function claim_set_featured_image( int $value, int $post_id ): int {
  *
  * Sends email on form submission to admin_email(s).
  *
- * @param int $post_id Post ID.
+ * @param int|string $post_id Post ID.
  */
-function claim_post_status_transition( int $post_id ): int {
+function claim_post_status_transition( int|string $post_id ): void {
 	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		return $post_id;
+		return;
 	}
 
 	if ( is_admin() ) {
-		return $post_id;
+		return;
 	}
 
 	if ( POST_SLUG !== get_post_type( $post_id ) ) {
-		return $post_id;
+		return;
 	}
 
 	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
-		return $post_id;
+		return;
 	}
 
 	// phpcs:ignore WordPress.Security.NonceVerification.Missing
 	if ( ! empty( $_POST['acf']['claim'] ) && 'true' !== $_POST['acf']['claim'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		return $post_id;
+		return;
 	}
 
 	$post_id = wp_update_post(
@@ -162,30 +162,28 @@ function claim_post_status_transition( int $post_id ): int {
 			)
 		);
 	}
-
-	return $post_id;
 }
 
 /**
  * Delete the pending posts featured image from database and filesystem.
  *
- * @param int $post_id Post ID.
+ * @param int|string $post_id Post ID.
  */
-function claim_delete_attachment( int $post_id ): int {
+function claim_delete_attachment( int|string $post_id ): void {
 	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		return $post_id;
+		return;
 	}
 
 	if ( is_admin() ) {
-		return $post_id;
+		return;
 	}
 
 	if ( POST_SLUG !== get_post_type( $post_id ) ) {
-		return $post_id;
+		return;
 	}
 
 	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
-		return $post_id;
+		return;
 	}
 
 	if ( has_post_thumbnail( $post_id ) ) {
@@ -195,6 +193,4 @@ function claim_delete_attachment( int $post_id ): int {
 			wp_delete_attachment( $attachment_id, true );
 		}
 	}
-
-	return $post_id;
 }
