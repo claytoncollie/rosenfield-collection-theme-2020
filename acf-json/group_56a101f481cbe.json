@@ -1,0 +1,60 @@
+{
+    "key": "group_56a101f481cbe",
+    "title": "Form Taxonomy",
+    "fields": [
+        {
+            "key": "field_56a10216080fb",
+            "label": "Object Prefix",
+            "name": "rc_form_object_prefix",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "B": "Bowl -> B",
+                "C&S": "Cream and Sugar -> C&S",
+                "C": "Cup -> C",
+                "CP&S": "Cup and Saucer -> CP&S",
+                "E": "Ewer -> E",
+                "J": "Jar -> J",
+                "L": "Lamp -> L",
+                "OT": "Other -> OT",
+                "P": "Plate -> P",
+                "PV": "Pouring Vessell - > PV",
+                "SW": "Service Ware - > SW",
+                "T": "Teapot -> T",
+                "V": "Vase -> V"
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "rc_form"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1575648805
+}
