@@ -18,11 +18,9 @@ function setup(): void {
 	add_filter( 'use_block_editor_for_post_type', __NAMESPACE__ . '\disable_block_editor', 10, 2 );
 	add_action( 'init', __NAMESPACE__ . '\clean_header' );
 	add_filter( 'xmlrpc_methods', __NAMESPACE__ . '\remove_xmlrpc_pingback_ping' );
-	add_action( 'load-edit.php', __NAMESPACE__ . '\no_category_dropdown' );
 	add_filter( 'the_excerpt_rss', __NAMESPACE__ . '\add_image_to_rss' );
 	add_filter( 'the_content_feed', __NAMESPACE__ . '\add_image_to_rss' );
 	add_filter( 'post_row_actions', __NAMESPACE__ . '\remove_quick_edit', 10, 1 );
-	add_action( 'admin_init', __NAMESPACE__ . '\remove_admin_color_scheme_picker' );
 	add_filter( 'user_contactmethods', __NAMESPACE__ . '\modify_user_contact_methods', 99, 1 );
 }
 
@@ -95,13 +93,6 @@ function remove_xmlrpc_pingback_ping( array $methods ): array {
 }
 
 /**
- * Remove category drop down on edit.php
- */
-function no_category_dropdown(): void {
-	add_filter( 'wp_dropdown_cats', '__return_false' );
-}
-
-/**
  * Add featured image to RSS feed item.
  *
  * @param string $content RSS content.
@@ -141,13 +132,6 @@ function add_image_to_rss( string $content ): string {
 function remove_quick_edit( array $actions ): array {
 	unset( $actions['inline hide-if-no-js'] );
 	return $actions;
-}
-
-/**
- * Remove the admin color picker
- */
-function remove_admin_color_scheme_picker(): void {
-	remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
 }
 
 /**

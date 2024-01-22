@@ -24,6 +24,7 @@ if ( file_exists( ROSENFIELD_COLLECTION_THEME_STYLESHEET_PATH . '/vendor/autoloa
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'helpers.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'setup.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'accessibility.php';
+require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'admin-columns.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'artists.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'assets.php';
 require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'comments.php';
@@ -56,6 +57,7 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/wrap.php';
 
 // Functionality.
 \RosenfieldCollection\Theme\Accessibility\setup();
+\RosenfieldCollection\Theme\AdminColumns\setup();
 \RosenfieldCollection\Theme\Assets\setup();
 \RosenfieldCollection\Theme\Artists\setup();
 \RosenfieldCollection\Theme\Comments\setup();
