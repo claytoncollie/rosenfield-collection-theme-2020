@@ -143,51 +143,54 @@ function object_id(): void {
 			'hide_empty' => false,
 		]
 	);
+	if ( empty( $terms ) ) {
+		return;
+	}
+	if ( is_wp_error( $terms ) ) {
+		return;
+	}
 
-	if ( ! empty( $terms ) ) {
+	foreach ( $terms as $term ) {
+		$posts = [];
 
-		foreach ( $terms as $term ) {
-
-			$posts = [];
-
-			$query = new WP_Query(
-				[
-					'post_type'   => POST_SLUG,
-					'post_status' => 'any',
-					'nopaging'    => true, // phpcs:ignore WordPressVIPMinimum.Performance.NoPaging.nopaging_nopaging
-					'tax_query'   => [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-						[
-							'taxonomy' => FORM,
-							'field'    => 'slug',
-							'terms'    => esc_html( $term->slug ),
-						],
+		$query = new WP_Query(
+			[
+				'post_type'   => POST_SLUG,
+				'post_status' => 'any',
+				'nopaging'    => true, // phpcs:ignore WordPressVIPMinimum.Performance.NoPaging.nopaging_nopaging
+				'tax_query'   => [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+					[
+						'taxonomy' => FORM,
+						'field'    => 'slug',
+						'terms'    => $term->slug,
 					],
-				]
-			);
+				],
+			]
+		);
 
-			if ( $query->have_posts() ) {
-				while ( $query->have_posts() ) {
-					$query->the_post();
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
 
-					$object_id = get_field( OBJECT_ID, get_the_ID() );
-
-					if ( ! empty( $object_id ) ) {
-						$posts[] .= $object_id;
-					}
+				$object_id = get_field( OBJECT_ID, get_the_ID() );
+				if ( ! empty( $object_id ) ) {
+					$posts[] = $object_id;
 				}
-				wp_reset_postdata();
+			}
+			wp_reset_postdata();
 
-				if ( ! empty( $posts ) ) {
+			if ( ! empty( $posts ) ) {
+				// Sort descending.
+				rsort( $posts );
+				// Grab fist 10 elements.
+				$posts = array_slice( $posts, 0, 10, true );
 
-					// Sort descending.
-					rsort( $posts );
+				printf( 
+					'%s: <strong>%s</strong><hr>',
+					esc_html( $term->name ),
+					esc_html( implode( ', ', $posts ) ) 
+				);
 
-					// Grab fist 10 elements.
-					$posts = array_slice( $posts, 0, 10, true );
-
-					printf( '%s: <strong>%s</strong><hr>', esc_html( $term->name ), esc_html( implode( ', ', $posts ) ) );
-
-				}
 			}
 		}
 	}
@@ -236,39 +239,40 @@ function object_status(): void {
  * Display the total cost of each taxonomy term.
  */
 function total_cost(): void {
-
 	$terms = get_terms(
 		[
 			'taxonomy'   => FORM,
 			'hide_empty' => false,
 		]
 	);
+	if ( empty( $terms ) ) {
+		return;
+	}
+	if ( is_wp_error( $terms ) ) {
+		return;
+	}
 
-	if ( ! empty( $terms ) ) {
+	printf(
+		'<table class="widefat striped"><thead><tr><td><strong>%s</strong></td><td><strong>%s</strong></td></tr></thead>',
+		esc_html__( 'Form', 'rosenfield-collection' ),
+		esc_html__( 'Cost', 'rosenfield-collection' )
+	);
 
-		printf(
-			'<table class="widefat striped"><thead><tr><td><strong>%s</strong></td><td><strong>%s</strong></td></tr></thead>',
-			esc_html__( 'Form', 'rosenfield-collection' ),
-			esc_html__( 'Cost', 'rosenfield-collection' )
-		);
+	printf(
+		'<tr><td>%s</td><td>$%s</td></tr>',
+		esc_html__( 'Collection', 'rosenfield-collection' ),
+		esc_html( get_total_purchase_price() )
+	);
 
+	foreach ( $terms as $term ) {
 		printf(
 			'<tr><td>%s</td><td>$%s</td></tr>',
-			esc_html__( 'Collection', 'rosenfield-collection' ),
-			esc_html( get_total_purchase_price() )
+			esc_html( $term->name ),
+			esc_html( get_taxonomy_purchase_price( $term->term_id ) )
 		);
-
-		foreach ( $terms as $term ) {
-			printf(
-				'<tr><td>%s</td><td>$%s</td></tr>',
-				esc_html( $term->name ),
-				esc_html( get_taxonomy_purchase_price( absint( $term->term_id ) ) )
-			);
-		}
-
-		echo '</table>';
-
 	}
+
+	echo '</table>';
 }
 
 /**
@@ -302,9 +306,8 @@ function get_taxonomy_purchase_price( int $term_id, string $taxonomy = FORM ): f
 			$query->the_post();
 
 			$price = get_field( OBJECT_PRICE );
-
 			if ( ! empty( $price ) ) {
-				$total[] .= $price;
+				$total[] = $price;
 			}
 		}
 		wp_reset_postdata();
@@ -319,16 +322,20 @@ function get_taxonomy_purchase_price( int $term_id, string $taxonomy = FORM ): f
  * Get the total collection purchase price from all taxonomies.
  */
 function get_total_purchase_price(): float {
-	$output = [];
-	$terms  = get_terms( FORM );
-
-	if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
-		foreach ( $terms as $term ) {
-			$output[] .= get_taxonomy_purchase_price( absint( $term->term_id ) );
-		}
-
-		$output = array_sum( $output );
+	$terms = get_terms( FORM );
+	if ( empty( $terms ) ) {
+		return [];
 	}
+	if ( is_wp_error( $terms ) ) {
+		return [];
+	}
+
+	$output = [];
+	foreach ( $terms as $term ) {
+		$output[] = get_taxonomy_purchase_price( absint( $term->term_id ) );
+	}
+
+	$output = array_sum( $output );
 
 	return number_format( round( (float) $output, 2, PHP_ROUND_HALF_ODD ), 2, '.', '' );
 }

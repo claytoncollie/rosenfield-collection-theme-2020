@@ -14,7 +14,7 @@ function setup(): void {
 	add_action( 'admin_init', __NAMESPACE__ . '\update_options_page' );
 	add_action( 'admin_init', __NAMESPACE__ . '\disable_comments_post_types_support' );
 	add_action( 'wp_before_admin_bar_render', __NAMESPACE__ . '\remove_admin_bar_link' );
-	add_filter( 'comments_array', __NAMESPACE__ . '\disable_comments_hide_existing_comments', 10, 2 );
+	add_filter( 'comments_array', __NAMESPACE__ . '\disable_comments_hide_existing_comments' );
 	add_action( 'admin_menu', __NAMESPACE__ . '\disable_comments_admin_menu' );
 	add_action( 'admin_init', __NAMESPACE__ . '\disable_comments_admin_menu_redirect' );
 	add_action( 'admin_init', __NAMESPACE__ . '\disable_comments_dashboard' );
@@ -109,8 +109,8 @@ function disable_comments_dashboard(): void {
  * Remove comments metabox from dashboard
  */
 function disable_comments_and_pings(): void {
-	add_filter( 'comments_open', '__return_false', 20, 2 );
-	add_filter( 'pings_open', '__return_false', 20, 2 );
+	add_filter( 'comments_open', '__return_false' );
+	add_filter( 'pings_open', '__return_false' );
 }
 
 /**
@@ -133,12 +133,20 @@ function disable_comments_widget(): void {
  * Hides comments link on dashboard
  */
 function hide_dashboard_bits(): void {
-	if ( 'dashboard' === get_current_screen()->id ) {
-		echo '<script>
-			jQuery(function($){
-				$("#dashboard_right_now .comment-count, #latest-comments").hide();
-				$("#welcome-panel .welcome-comments").parent().hide();
-			});
-			</script>';
+	$screen = get_current_screen() ?? '';
+	if ( empty( $screen ) ) {
+		return;
 	}
+
+	$screen_id = $screen->id;
+	if ( 'dashboard' !== $screen_id ) {
+		return;
+	}
+
+	echo '<script>
+		jQuery(function($){
+			$("#dashboard_right_now .comment-count, #latest-comments").hide();
+			$("#welcome-panel .welcome-comments").parent().hide();
+		});
+		</script>';
 }

@@ -162,43 +162,48 @@ function filter_by_taxonomy(): void {
 			continue;
 		}
 
-		$tax_name = $tax_obj->labels->name ?? '';
-		if ( empty( $tax_name ) ) {
+		$label = (string) $tax_obj->labels->name;
+		if ( empty( $label ) ) {
 			continue;
 		}
 
-		$terms = get_terms( $taxonomy );
+		$terms = get_terms( 
+			[
+				'taxonomy' => $taxonomy,
+			]
+		);
 		if ( empty( $terms ) ) {
 			continue;
 		}
-
-		$_GET[ $taxonomy ] = false;
-
-		if ( count( $terms ) > 0 ) {
-			printf(
-				'<select name=%s id=%s class="postform">',
-				esc_attr( $taxonomy ),
-				esc_attr( $taxonomy )
-			);
-
-			printf(
-				'<option value="">%s %s</option>',
-				esc_html__( 'Show All', 'rosenfield-collection' ),
-				esc_html( $tax_name )
-			);
-
-			foreach ( $terms as $term ) {
-				printf(
-					'<option value=%s %s>%s (%s)</option>',
-					esc_attr( $term->slug ),
-					$_GET[ $taxonomy ] === $term->slug ? ' selected="selected"' : '', // phpcs:ignore
-					esc_html( $term->name ),
-					(int) $term->count
-				);
-			}
-
-			echo '</select>';
+		if ( is_wp_error( $terms ) ) {
+			continue;
 		}
+
+		$selected_term = $_GET[ $taxonomy ] ?? ''; // phpcs:ignore
+
+		printf(
+			'<select name="%s" id="%s" class="postform">',
+			esc_attr( $taxonomy ),
+			esc_attr( $taxonomy )
+		);
+
+		printf(
+			'<option value="">%s %s</option>',
+			esc_html__( 'Show All', 'rosenfield-collection' ),
+			esc_html( $label )
+		);
+
+		foreach ( $terms as $term ) {
+			printf(
+				'<option value="%s" %s>%s (%s)</option>',
+				esc_attr( $term->slug ),
+				$selected_term === $term->slug ? ' selected="selected"' : '',
+				esc_html( $term->name ),
+				esc_html( (string) $term->count )
+			);
+		}
+
+		echo '</select>';
 	}
 }
 

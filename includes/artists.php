@@ -95,14 +95,14 @@ function set_artist_filter_value( int|string $user_id ): void {
 		return;
 	}
 
-	$user_id = str_replace( 'user_', '', $user_id );
-	$name    = get_user_meta( $user_id, 'last_name', true );
+	$user_id = str_replace( 'user_', '', (string) $user_id );
+	$name    = get_user_meta( (int) $user_id, 'last_name', true );
 	if ( empty( $name ) ) {
-		$name = get_user_meta( $user_id, 'first_name', true );
+		$name = get_user_meta( (int) $user_id, 'first_name', true );
 	}
 
-	$letter = mb_substr( (string) $name, 0, 1 );
+	$letter = mb_substr( (string) $name, 0, 1 ); // @phpstan-ignore-line
 	$letter = strtolower( $letter );
 
-	update_user_meta( $user_id, ARTIST_FILTER, $letter );
+	update_user_meta( (int) $user_id, ARTIST_FILTER, $letter );
 }

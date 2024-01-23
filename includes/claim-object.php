@@ -100,11 +100,15 @@ function claim_set_featured_image( int $value, int $post_id ): int {
 		return $value;
 	}
 
-	if ( POST_SLUG !== get_post_type( $post_id ) ) {
+	$post_type = get_post_type( $post_id );
+	$post_type = $post_type ? (string) $post_type : '';
+	if ( POST_SLUG !== $post_type ) {
 		return $value;
 	}
 
-	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
+	$post_status = get_post_status( $post_id );
+	$post_status = $post_status ? (string) $post_status : '';
+	if ( PENDING_SLUG !== $post_status ) {
 		return $value;
 	}
 
@@ -131,11 +135,15 @@ function claim_post_status_transition( int|string $post_id ): void {
 		return;
 	}
 
-	if ( POST_SLUG !== get_post_type( $post_id ) ) {
+	$post_type = get_post_type( (int) $post_id );
+	$post_type = $post_type ? (string) $post_type : '';
+	if ( POST_SLUG !== $post_type ) {
 		return;
 	}
 
-	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
+	$post_status = get_post_status( (int) $post_id );
+	$post_status = $post_status ? (string) $post_status : '';
+	if ( PENDING_SLUG !== $post_status ) {
 		return;
 	}
 
@@ -146,22 +154,24 @@ function claim_post_status_transition( int|string $post_id ): void {
 
 	$post_id = wp_update_post(
 		[
-			'ID'          => $post_id,
+			'ID'          => (int) $post_id,
 			'post_status' => 'draft',
 		]
 	);
 
-	if ( ! empty( $post_id ) ) {
-		wp_mail(
-			get_bloginfo( 'admin_email' ),
-			esc_html__( 'Rosenfield Collection: Awaiting Approval', 'rosenfield-collection' ),
-			sprintf(
-				'%s: %s',
-				esc_html__( 'Object is awaiting approval', 'rosenfield-collection' ),
-				esc_url( (string) get_edit_post_link( $post_id ) )
-			)
-		);
+	if ( empty( $post_id ) ) {
+		return;
 	}
+
+	wp_mail(
+		get_bloginfo( 'admin_email' ),
+		esc_html__( 'Rosenfield Collection: Awaiting Approval', 'rosenfield-collection' ),
+		sprintf(
+			'%s: %s',
+			esc_html__( 'Object is awaiting approval', 'rosenfield-collection' ),
+			esc_url( (string) get_edit_post_link( $post_id ) )
+		)
+	);
 }
 
 /**
@@ -178,19 +188,27 @@ function claim_delete_attachment( int|string $post_id ): void {
 		return;
 	}
 
-	if ( POST_SLUG !== get_post_type( $post_id ) ) {
+	$post_type = get_post_type( (int) $post_id );
+	$post_type = $post_type ? (string) $post_type : '';
+	if ( POST_SLUG !== $post_type ) {
 		return;
 	}
 
-	if ( PENDING_SLUG !== get_post_status( $post_id ) ) {
+	$post_status = get_post_status( (int) $post_id );
+	$post_status = $post_status ? (string) $post_status : '';
+	if ( PENDING_SLUG !== $post_status ) {
 		return;
 	}
 
-	if ( has_post_thumbnail( $post_id ) ) {
-		$attachment_id = get_post_thumbnail_id( $post_id );
-		$attachment_id = $attachment_id ? (int) $attachment_id : 0;
-		if ( ! empty( $attachment_id ) ) {
-			wp_delete_attachment( $attachment_id, true );
-		}
+	if ( ! has_post_thumbnail( (int) $post_id ) ) {
+		return;
 	}
+	
+	$attachment_id = get_post_thumbnail_id( (int) $post_id );
+	$attachment_id = $attachment_id ? (int) $attachment_id : 0;
+	if ( empty( $attachment_id ) ) {
+		return;
+	}
+		
+	wp_delete_attachment( $attachment_id, true );
 }
