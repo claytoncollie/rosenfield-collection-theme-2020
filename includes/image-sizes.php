@@ -12,7 +12,21 @@ namespace RosenfieldCollection\Theme\ImageSizes;
  * 
  * @var string
  */
-const THUMBNAIL = 'thumbnail';
+const IMAGE_THUMBNAIL = 'thumbnail';
+
+/**
+ * Medium
+ * 
+ * @var string
+ */
+const IMAGE_MEDIUM = 'medium';
+
+/**
+ * Large
+ * 
+ * @var string
+ */
+const IMAGE_LARGE = 'large';
 
 /**
  * Object
@@ -44,7 +58,7 @@ function setup(): void {
  */
 function remove_image_sizes(): void {
 	foreach ( get_intermediate_image_sizes() as $size ) { // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
-		if ( ! in_array( $size, [ THUMBNAIL, IMAGE_OBJECT, IMAGE_ARCHIVE, 'full' ], true ) ) {
+		if ( ! in_array( $size, [ IMAGE_THUMBNAIL, IMAGE_OBJECT, IMAGE_ARCHIVE, 'full' ], true ) ) {
 			remove_image_size( $size );
 		}
 	}
@@ -57,7 +71,6 @@ function remove_image_sizes(): void {
  */
 function remove_default_image_sizes( array $sizes ): array {
 	unset( $sizes['medium_large'] );
-	unset( $sizes['large'] );
 	unset( $sizes['1536x1536'] );
 	unset( $sizes['2048x2048'] );
 	return $sizes;
@@ -71,5 +84,5 @@ function admin_featured_image_size(): string {
 
 	$result = array_search( IMAGE_ARCHIVE, $sizes, true );
 
-	return is_numeric( $result ) ? $sizes[ $result ] : THUMBNAIL;
+	return is_numeric( $result ) ? $sizes[ $result ] : IMAGE_THUMBNAIL;
 }

@@ -7,10 +7,12 @@
 
 namespace RosenfieldCollection\Theme\PrintLabels;
 
-use WP_Query;
+use WP;
+use WP_Error;
 
 use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
 use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
+use const RosenfieldCollection\Theme\ImageSizes\IMAGE_LARGE;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
 
 /**
@@ -48,14 +50,14 @@ const LAYOUTS = [
  * Setup
  */
 function setup(): void {
-	add_action( 'init', __NAMESPACE__ . '\add_rewrite_endpoint' );
-	add_action( 'wp', __NAMESPACE__ . '\save_image' );
+	add_action( 'init', __NAMESPACE__ . '\register_endpoint' );
+	add_action( 'wp', __NAMESPACE__ . '\generate_image' );
 }
 
 /**
  * Add endpoints for pretty permalinks
  */
-function add_rewrite_endpoint(): void {
+function register_endpoint(): void {
 	foreach ( LAYOUTS as $layout ) {
 		add_rewrite_endpoint( $layout, EP_ALL );
 	}
@@ -64,10 +66,10 @@ function add_rewrite_endpoint(): void {
 /**
  * Check the $wp_query to make sure we are on the proper endpoint
  *
- * @param WP_Query $query WP_Query.
- * @param string   $layout Layout type.
+ * @param WP     $query WP instance.
+ * @param string $layout Layout type.
  */
-function maybe_run( WP_Query $query, string $layout ): bool {
+function maybe_run( WP $query, string $layout ): bool {
 	return isset( $query->query_vars[ esc_attr( $layout ) ] );
 }
 
@@ -121,10 +123,10 @@ function get_taxonomy_term_prefix( int $post_id ): string {
 	if ( empty( $term_id ) ) {
 		return '';
 	}
-	 
+
 	$prefix = get_term_meta( $term_id, OBJECT_PREFIX, true );
 
-	return $prefix ? (string) $prefix : '';
+	return $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 }
 
 /**
@@ -154,13 +156,13 @@ function get_the_layout( string $layout ): string {
 			'<section style="text-align:center;">%s<h1 style="font-size:40px;margin:0;">%s%s</h1></section>',
 			get_the_post_thumbnail(
 				$post_id,
-				'large',
+				IMAGE_LARGE,
 				[
 					'style' => 'width:150px;height:auto;margin-bottom:20px',
 				],
 			),
 			esc_html( $prefix ),
-			esc_html( $object_id )
+			esc_html( (string) $object_id ) // @phpstan-ignore-line
 		);
 
 	}
@@ -169,13 +171,13 @@ function get_the_layout( string $layout ): string {
 		'<section style="display:flex;align-items:center;"><div style="display:inline-block;">%s</div><h1 style="display:inline-block;font-size:40px;margin:0 0 0 20px;">%s%s</h1></section>',
 		get_the_post_thumbnail(
 			$post_id,
-			'large',
+			IMAGE_LARGE,
 			[
 				'style' => 'width:150px;height:auto;margin-left:20px',
 			],
 		),
 		esc_html( $prefix ),
-		esc_html( $object_id )
+		esc_html( (string) $object_id ) // @phpstan-ignore-line
 	);
 }
 
@@ -186,63 +188,61 @@ function get_the_layout( string $layout ): string {
  *
  * @param string $html HTML to convert.
  */
-function get_remote_response( string $html ): string {
-	$curlHandle = curl_init(); // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_init
-
-	curl_setopt( $curlHandle, CURLOPT_URL, ENDPOINT ); // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_setopt
-
-	curl_setopt( $curlHandle, CURLOPT_RETURNTRANSFER, 1 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_setopt
-
-	curl_setopt( // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_setopt
-		$curlHandle,
-		CURLOPT_POSTFIELDS,
-		http_build_query(
-			[
+function get_remote_response( string $html ): string|WP_Error {
+	$response = wp_remote_post( 
+		ENDPOINT, 
+		[
+			'body'    => [ 
 				'html' => $html,
-			]
-		)
+			],
+			'headers' => [
+				'Content-Type'  => 'application/x-www-form-urlencoded',
+				'Authorization' => 'Basic ' . base64_encode( USER_ID . ':' . API_KEY ),
+			],
+		],
 	);
 
-	curl_setopt( $curlHandle, CURLOPT_POST, 1 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_setopt
-
-	curl_setopt( $curlHandle, CURLOPT_USERPWD, USER_ID . ':' . API_KEY ); // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_setopt
-
-	$headers   = [];
-	$headers[] = 'Content-Type: application/x-www-form-urlencoded';
-	curl_setopt( $curlHandle, CURLOPT_HTTPHEADER, $headers ); // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_setopt
-
-	$result = curl_exec( $curlHandle );  // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_exec
-
-	if ( curl_errno( $curlHandle ) !== 0 ) { // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_errno
-		echo wp_kses_post( 'Error:' . curl_error( $curlHandle ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_error
+	if ( is_wp_error( $response ) ) {
+		return new WP_Error( 'Error when calling API: ' . $response->get_error_message() );
 	}
-	curl_close( $curlHandle ); // phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_close
 
-	$response = json_decode( $result, true );
+	$response_code = (int) wp_remote_retrieve_response_code( $response );
+	if ( ! in_array( $response_code, [ 200, 201 ], true ) ) {
+		return new WP_Error( 'Error code when calling API: ' . $response_code );
+	}
 
-	return $response['url'];
+	$body = wp_remote_retrieve_body( $response );
+	if ( '' === $body || '0' === $body ) {
+		return new WP_Error( 'Error code calling API: body not defined' );
+	}
+
+	$result = json_decode( $body, true );
+
+	return is_array( $result ) ? (string) $result['url'] : '';
 }
 
 /**
  * Build the document then save to the browser if we are on the proper endpoint.
  *
- * @param WP_Query $query WP_Query.
+ * @param WP $query WP instance.
  */
-function save_image( WP_Query $query ): void {
+function generate_image( WP $query ): void {
 	foreach ( LAYOUTS as $layout ) {
 
 		if ( maybe_run( $query, $layout ) ) {
 
 			$url = get_remote_response( get_the_layout( $layout ) );
-
-			if ( ! empty( $url ) ) {
-
-				header( 'Content-Type: application/octet-stream' );
-				header( 'Content-Disposition: attachment; filename=' . get_file_name( $layout ) );
-
-				readfile( $url ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_readfile
-
+			if ( is_wp_error( $url ) ) {
+				return;
 			}
+			if ( empty( $url ) ) {
+				return;
+			}
+
+			header( 'Content-Type: application/octet-stream' );
+			header( 'Content-Disposition: attachment; filename=' . get_file_name( $layout ) );
+
+			readfile( $url ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_readfile
 		}
 	}
 }

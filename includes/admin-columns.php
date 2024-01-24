@@ -17,7 +17,7 @@ use const RosenfieldCollection\Theme\Fields\OBJECT_LENGTH;
 use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
 use const RosenfieldCollection\Theme\Fields\OBJECT_PRICE;
 use const RosenfieldCollection\Theme\Fields\OBJECT_WIDTH;
-use const RosenfieldCollection\Theme\ImageSizes\THUMBNAIL;
+use const RosenfieldCollection\Theme\ImageSizes\IMAGE_THUMBNAIL;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
 
 /**
@@ -144,7 +144,7 @@ function post_column_content( string $column_name, int $post_id ): void {
 			foreach ( (array) $images as $image ) :
 				printf(
 					'<img src="%s" style="width: 50px; float: left; margin: 0 5px 5px 0px;"/>',
-					esc_url( (string) $image['sizes'][ THUMBNAIL ] ) // @phpstan-ignore-line
+					esc_url( (string) $image['sizes'][ IMAGE_THUMBNAIL ] ) // @phpstan-ignore-line
 				);
 			endforeach;
 		}

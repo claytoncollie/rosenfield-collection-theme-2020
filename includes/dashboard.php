@@ -283,7 +283,7 @@ function total_cost(): void {
  * @param integer $term_id Term ID.
  * @param string  $taxonomy Taxonomy slug.
  */
-function get_taxonomy_purchase_price( int $term_id, string $taxonomy = FORM ): float {
+function get_taxonomy_purchase_price( int $term_id, string $taxonomy = FORM ): string {
 	$output = '0';
 	$total  = [];
 
@@ -321,18 +321,22 @@ function get_taxonomy_purchase_price( int $term_id, string $taxonomy = FORM ): f
 /**
  * Get the total collection purchase price from all taxonomies.
  */
-function get_total_purchase_price(): float {
-	$terms = get_terms( FORM );
+function get_total_purchase_price(): string {
+	$terms = get_terms( 
+		[
+			'taxonomy' => FORM,
+		] 
+	);
 	if ( empty( $terms ) ) {
-		return [];
+		return '';
 	}
 	if ( is_wp_error( $terms ) ) {
-		return [];
+		return '';
 	}
 
 	$output = [];
 	foreach ( $terms as $term ) {
-		$output[] = get_taxonomy_purchase_price( absint( $term->term_id ) );
+		$output[] = get_taxonomy_purchase_price( $term->term_id );
 	}
 
 	$output = array_sum( $output );
