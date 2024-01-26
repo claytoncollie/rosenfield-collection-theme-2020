@@ -1,11 +1,11 @@
 <?php
 /**
- * Claim Object.
+ * Object Claim.
  *
  * @package RosenfieldCollection\Theme
  */
 
-namespace RosenfieldCollection\Theme\ClaimObject;
+namespace RosenfieldCollection\Theme\ObjectClaim;
 
 use const RosenfieldCollection\Theme\Fields\PENDING_SLUG;
 use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
