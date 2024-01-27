@@ -72,6 +72,7 @@ require_once ROSENFIELD_COLLECTION_THEME_INCLUDES_PATH . 'structure/wrap.php';
 \RosenfieldCollection\Theme\ObjectClaim\setup();
 \RosenfieldCollection\Theme\Pending\setup();
 \RosenfieldCollection\Theme\PostStatus\setup();
+\RosenfieldCollection\Theme\PostTypes\setup();
 \RosenfieldCollection\Theme\PrintLabels\setup();
 \RosenfieldCollection\Theme\QueryVars\setup();
 \RosenfieldCollection\Theme\Search\setup();

@@ -6,6 +6,7 @@
             "key": "field_55b4095067ec4",
             "label": "Artist Photo",
             "name": "artist_photo",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -30,6 +31,7 @@
             "key": "field_5e17ad49aa83c",
             "label": "Artist Filter",
             "name": "artist_filter",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -91,7 +93,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": false,
     "description": "",
-    "modified": 1578610101
+    "show_in_rest": false,
+    "modified": 1706372727
 }

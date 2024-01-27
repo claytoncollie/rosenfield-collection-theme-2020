@@ -6,9 +6,10 @@
             "key": "field_56a10216080fb",
             "label": "Object Prefix",
             "name": "rc_form_object_prefix",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -34,9 +35,11 @@
             "allow_null": 1,
             "multiple": 0,
             "ui": 0,
-            "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0,
+            "return_format": "value"
         }
     ],
     "location": [
@@ -54,7 +57,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": false,
     "description": "",
-    "modified": 1575648805
+    "show_in_rest": false,
+    "modified": 1706372730
 }

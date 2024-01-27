@@ -45,7 +45,8 @@ function setup(): void {
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\the_filter', 12 );
 	add_action( 'genesis_loop', __NAMESPACE__ . '\the_loop', 12 );
 	add_action( 'acf/save_post', __NAMESPACE__ . '\set_artist_filter_value', 20 );
-	add_action( 'user_register', __NAMESPACE__ . '\set_artist_filter_value', 10, 1 );
+	add_action( 'user_register', __NAMESPACE__ . '\set_artist_filter_value', 20 );
+	add_action( 'gform_user_registered', __NAMESPACE__ . '\set_artist_filter_value', 20 );
 }
 
 /**
@@ -86,10 +87,6 @@ function the_loop(): void {
  * @param int|string $user_id User ID.
  */
 function set_artist_filter_value( int|string $user_id ): void {
-	if ( ! current_user_can( 'edit_users', $user_id ) ) {
-		return;
-	}
-
 	$field = get_field( ARTIST_FILTER, $user_id );
 	if ( ! empty( $field ) ) {
 		return;

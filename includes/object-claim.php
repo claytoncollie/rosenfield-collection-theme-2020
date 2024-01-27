@@ -17,9 +17,9 @@ use const RosenfieldCollection\Theme\QueryVars\POST_ID_VAR;
  */
 function setup(): void {
 	add_action( 'parse_request', __NAMESPACE__ . '\redirect_after_trash' );
-	add_filter( 'acf/update_value/name=rc_featured_image', __NAMESPACE__ . '\claim_set_featured_image', 99, 2 );
-	add_action( 'acf/save_post', __NAMESPACE__ . '\claim_post_status_transition', 30, 1 );
-	add_action( 'acf/save_post', __NAMESPACE__ . '\claim_delete_attachment', 5, 1 );
+	add_filter( 'acf/update_value/name=rc_featured_image', __NAMESPACE__ . '\set_featured_image', 99, 2 );
+	add_action( 'acf/save_post', __NAMESPACE__ . '\transition_to_draft', 30, 1 );
+	add_action( 'acf/save_post', __NAMESPACE__ . '\delete_attachment', 5, 1 );
 }
 
 /**
@@ -30,10 +30,18 @@ function redirect_after_trash(): void {
 		return;
 	}
 
-	if ( array_key_exists( 'trashed', $_GET ) && '1' === $_GET['trashed'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		wp_safe_redirect( get_bloginfo( 'url' ) . '/pending' );
-		exit;
+	$is_trashed = filter_input( INPUT_GET, 'trashed', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+	if ( '1' !== $is_trashed ) {
+		return;
 	}
+
+	$post = get_page_by_path( PENDING_SLUG, OBJECT, PAGE_SLUG );
+	if ( empty( $post ) ) {
+		return;
+	}
+
+	wp_safe_redirect( get_permalink( $post ) );
+	exit;
 }
 
 /**
@@ -52,11 +60,27 @@ function do_claim_meta(): void {
 		return;
 	}
 
+	$permalink = add_query_arg(
+		[
+			'post'   => $post_id,
+			'action' => 'trash',
+		],
+		get_admin_url() . 'post.php'
+	);
+	$permalink = wp_nonce_url( $permalink, 'trash-post_' . $post_id );
+	if ( empty( $permalink ) ) {
+		return;
+	}   
+
+	$first_name = get_the_author_meta( 'first_name', $author_id );
+	$last_name  = get_the_author_meta( 'last_name', $author_id );
+	$full_name  = $first_name . ' ' . $last_name;
+
 	printf(
-		'<section class="claim-header"><div class="wrap"><h2>%s %s</h2><a href="%s" class="button warning">Delete</a></div></section>',
-		esc_html( get_the_author_meta( 'first_name', $author_id ) ),
-		esc_html( get_the_author_meta( 'last_name', $author_id ) ),
-		esc_url( wp_nonce_url( get_admin_url() . 'post.php?post=' . $post_id . '&action=trash', 'trash-post_' . $post_id ) )
+		'<section class="claim-header"><div class="wrap"><h2>%s</h2><a href="%s" class="button warning">%s</a></div></section>',
+		esc_html( $full_name ),
+		esc_url( $permalink ),
+		esc_html__( 'Delete', 'rosenfield-collection' )
 	);
 }
 
@@ -71,16 +95,19 @@ function acf_form_claim(): void {
 	}
 
 	$post = get_page_by_path( PENDING_SLUG, OBJECT, PAGE_SLUG );
+	if ( empty( $post ) ) {
+		return;
+	}
 
 	acf_form(
 		[
 			'post_id'           => $post_id,
 			'post_title'        => true,
 			'post_content'      => false,
-			'field_groups'      => [ 6277, 22858, 26396 ],
+			'field_groups'      => [ 'group_54563456rjr67jr6708ddf', 'group_5e75dg6699894fb9dc81c' ],
 			'html_after_fields' => '<input type="hidden" name="acf[claim]" value="true"/>',
-			'return'            => (string) get_permalink( $post ), // @phpstan-ignore-line
-			'submit_value'      => esc_html__( 'Save Draft', 'rosenfield-collection' ),
+			'return'            => get_permalink( $post ), // @phpstan-ignore-line
+			'submit_value'      => esc_html__( 'Save as a Draft', 'rosenfield-collection' ),
 		]
 	);
 }
@@ -91,12 +118,13 @@ function acf_form_claim(): void {
  * @param int $value Field value.
  * @param int $post_id Post ID.
  */
-function claim_set_featured_image( int $value, int $post_id ): int {
-	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		return $post_id;
+function set_featured_image( int $value, int $post_id ): int {
+	if ( is_admin() ) {
+		return $value;
 	}
 
-	if ( is_admin() ) {
+	$is_claim = isset( $_POST['acf']['claim'] ) ? sanitize_text_field( $_POST['acf']['claim'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	if ( 'true' !== $is_claim ) { 
 		return $value;
 	}
 
@@ -112,9 +140,8 @@ function claim_set_featured_image( int $value, int $post_id ): int {
 		return $value;
 	}
 
-	if ( ! empty( $value ) ) {
-		set_post_thumbnail( $post_id, $value );
-	}
+	// Set the featured image ID.
+	set_post_thumbnail( $post_id, $value );
 
 	return $value;
 }
@@ -126,12 +153,13 @@ function claim_set_featured_image( int $value, int $post_id ): int {
  *
  * @param int|string $post_id Post ID.
  */
-function claim_post_status_transition( int|string $post_id ): void {
-	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+function transition_to_draft( int|string $post_id ): void {
+	if ( is_admin() ) {
 		return;
 	}
 
-	if ( is_admin() ) {
+	$is_claim = isset( $_POST['acf']['claim'] ) ? sanitize_text_field( $_POST['acf']['claim'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	if ( 'true' !== $is_claim ) { 
 		return;
 	}
 
@@ -144,11 +172,6 @@ function claim_post_status_transition( int|string $post_id ): void {
 	$post_status = get_post_status( (int) $post_id );
 	$post_status = $post_status ? (string) $post_status : '';
 	if ( PENDING_SLUG !== $post_status ) {
-		return;
-	}
-
-	// phpcs:ignore WordPress.Security.NonceVerification.Missing
-	if ( ! empty( $_POST['acf']['claim'] ) && 'true' !== $_POST['acf']['claim'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		return;
 	}
 
@@ -179,12 +202,13 @@ function claim_post_status_transition( int|string $post_id ): void {
  *
  * @param int|string $post_id Post ID.
  */
-function claim_delete_attachment( int|string $post_id ): void {
-	if ( empty( $_POST['acf']['claim'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+function delete_attachment( int|string $post_id ): void {
+	if ( is_admin() ) {
 		return;
 	}
 
-	if ( is_admin() ) {
+	$is_claim = isset( $_POST['acf']['claim'] ) ? sanitize_text_field( $_POST['acf']['claim'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	if ( 'true' !== $is_claim ) { 
 		return;
 	}
 

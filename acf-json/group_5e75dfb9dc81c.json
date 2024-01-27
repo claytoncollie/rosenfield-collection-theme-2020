@@ -6,6 +6,7 @@
             "key": "field_5e75dfca824cb",
             "label": "Feautred Image",
             "name": "rc_featured_image",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 1,
@@ -42,7 +43,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": false,
     "description": "",
-    "modified": 1584783409
+    "show_in_rest": false,
+    "modified": 1706372729
 }

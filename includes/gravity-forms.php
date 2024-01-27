@@ -9,7 +9,6 @@ namespace RosenfieldCollection\Theme\GravityForms;
 
 use WP_User_Query;
 
-use const RosenfieldCollection\Theme\Fields\ARTIST_FILTER;
 use const RosenfieldCollection\Theme\Taxonomies\LOCATION;
 
 /**
@@ -28,14 +27,13 @@ function setup(): void {
 	add_filter( 'gform_pre_render_6', __NAMESPACE__ . '\filter_select_field_options' );
 	// Save the user ID as a transient.
 	add_action( 'gform_user_registered', __NAMESPACE__ . '\set_user_id' );
-	// Add a new object to the collection.
+	// Add a full object to the collection.
 	add_action( 'gform_after_submission_1', __NAMESPACE__ . '\set_post_author_id' );
-	add_action( 'gform_after_submission_1', __NAMESPACE__ . '\set_post_author_letter' );
 	add_action( 'gform_after_submission_1', __NAMESPACE__ . '\set_post_author_avatar' );
 	add_action( 'gform_after_submission_1', __NAMESPACE__ . '\set_post_images' );
-	// Claim an existing object in the collection.
+	// Checkin a partial object in the collection.
 	add_action( 'gform_after_submission_6', __NAMESPACE__ . '\set_post_author_id' );
-	add_action( 'gform_after_submission_6', __NAMESPACE__ . '\set_post_author_letter' );
+	add_action( 'gform_after_submission_6', __NAMESPACE__ . '\set_post_author_avatar' );
 	add_action( 'gform_after_submission_6', __NAMESPACE__ . '\set_post_terms' );
 }
 
@@ -57,7 +55,7 @@ function filter_select_field_options( array $form ): array {
 		}
 
 		$field_id = $field['id'] ?? 0;
-		if ( 23 !== $field_id ) {
+		if ( ! in_array( $field_id, [ 2, 23 ], true ) ) {
 			continue;
 		}
 
@@ -110,11 +108,11 @@ function filter_select_field_options( array $form ): array {
  * @param string $user_id User ID.
  */
 function set_user_id( string $user_id ): void {
-	set_transient( USER_ID_TRANSIENT, $user_id );
+	set_transient( USER_ID_TRANSIENT, $user_id, MINUTE_IN_SECONDS * 5 );
 }
 
 /**
- * Set the post author.
+ * Set the post author from an existing user.
  *
  * @param array $entry Entry data.
  */
@@ -124,52 +122,26 @@ function set_post_author_id( array $entry ): void {
 		return;
 	}
 
-	$post = get_post( $post_id );
-	if ( is_null( $post ) ) {
-		return;
+	$post_author         = $entry[23] ?? 0;
+	$another_post_author = $entry[2] ?? 0;
+	if ( empty( $post_author ) ) {
+		$post_author = $another_post_author;
 	}
-
-	$post_author = $entry[23] ?? 0;
 	if ( empty( $post_author ) ) {
 		return;
 	}
 
-	$is_post_author = get_user_by( 'id', $post_author );
+	$is_post_author = get_user_by( 'id', (int) $post_author );
 	if ( ! $is_post_author ) {
 		return;
 	}
 
 	wp_update_post( 
 		[
+			'ID'          => $post_id,
 			'post_author' => $post_author,
 		]
 	);
-}
-
-/**
- * Set the post author letter field for easy filtering
- */
-function set_post_author_letter(): void {
-	$user_id = get_transient( USER_ID_TRANSIENT );
-	if ( empty( $user_id ) ) {
-		return;
-	}
-
-	$field = get_field( ARTIST_FILTER, $user_id );
-	if ( ! empty( $field ) ) {
-		return;
-	}
-
-	$user_id = str_replace( 'user_', '', (string) $user_id ); // @phpstan-ignore-line
-	$name    = get_user_meta( (int) $user_id, 'last_name', true );
-	if ( empty( $name ) ) {
-		$name = get_user_meta( (int) $user_id, 'first_name', true );
-	}
-
-	$letter = mb_substr( (string) $name, 0, 1 ); // @phpstan-ignore-line
-	$letter = strtolower( $letter );
-
-	update_user_meta( (int) $user_id, ARTIST_FILTER, $letter );
 }
 
 /**
@@ -178,17 +150,11 @@ function set_post_author_letter(): void {
  * @param array $entry Entry data.
  */
 function set_post_author_avatar( array $entry ): void {
-	$post_id = $entry['post_id'] ?? 0;
-	if ( empty( $post_id ) ) {
-		return;
+	$avatar         = $entry[33] ?? 0;
+	$another_avatar = $entry[29] ?? 0;
+	if ( empty( $avatar ) ) {
+		$avatar = $another_avatar;
 	}
-
-	$post = get_post( $post_id );
-	if ( is_null( $post ) ) {
-		return;
-	}
-
-	$avatar = $entry[33] ?? 0;
 	if ( empty( $avatar ) ) {
 		return;
 	}
@@ -197,13 +163,13 @@ function set_post_author_avatar( array $entry ): void {
 	if ( empty( $image_id ) ) {
 		return;
 	}
-		
+
 	$user_id = get_transient( USER_ID_TRANSIENT );
 	if ( empty( $user_id ) ) {
 		return;
 	}
 			
-	update_field( 'field_55b4095067ec4', $image_id, 'user_' . $user_id );
+	update_field( 'field_555675468754568067ec4', $image_id, 'user_' . $user_id );
 }
 
 /**
@@ -214,11 +180,6 @@ function set_post_author_avatar( array $entry ): void {
 function set_post_images( array $entry ): void {
 	$post_id = $entry['post_id'] ?? 0;
 	if ( empty( $post_id ) ) {
-		return;
-	}
-
-	$post = get_post( $post_id );
-	if ( is_null( $post ) ) {
 		return;
 	}
 
@@ -242,7 +203,7 @@ function set_post_images( array $entry ): void {
 
 	$gallery = [];
 	foreach ( $images as $image ) {
-		$image_id = get_image_id( $image, $post->ID );
+		$image_id = get_image_id( $image, $post_id );
 		if ( 0 !== $image_id ) {
 			$gallery[] = $image_id;
 		}
@@ -252,7 +213,7 @@ function set_post_images( array $entry ): void {
 		return;
 	}
 		
-	update_field( 'field_546d0ad42e7f0', $gallery, $post->ID );
+	update_field( 'field_52345234546d0ad42e7f0', $gallery, $post_id );
 }
 
 /**
@@ -263,11 +224,6 @@ function set_post_images( array $entry ): void {
 function set_post_terms( array $entry ): void {
 	$post_id = $entry['post_id'] ?? 0;
 	if ( empty( $post_id ) ) {
-		return;
-	}
-
-	$post = get_post( $post_id );
-	if ( is_null( $post ) ) {
 		return;
 	}
 
@@ -282,7 +238,7 @@ function set_post_terms( array $entry ): void {
 
 			if ( ! empty( $term ) && ! is_wp_error( $term ) ) {
 				wp_set_post_terms( 
-					$post->ID,
+					$post_id,
 					$term->name, // @phpstan-ignore-line
 					LOCATION,
 					false 
@@ -294,7 +250,7 @@ function set_post_terms( array $entry ): void {
 
 		if ( ! empty( $term ) && ! is_wp_error( $term ) ) {
 			wp_set_post_terms( 
-				$post->ID,
+				$post_id,
 				$term->name, // @phpstan-ignore-line
 				LOCATION,
 				false 

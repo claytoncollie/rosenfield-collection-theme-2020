@@ -17,6 +17,7 @@ use const RosenfieldCollection\Theme\Fields\OBJECT_LENGTH;
 use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
 use const RosenfieldCollection\Theme\Fields\OBJECT_PRICE;
 use const RosenfieldCollection\Theme\Fields\OBJECT_WIDTH;
+use const RosenfieldCollection\Theme\Fields\TERM_THUMBNAIL;
 use const RosenfieldCollection\Theme\ImageSizes\IMAGE_THUMBNAIL;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
 
@@ -30,8 +31,14 @@ function setup(): void {
 	add_filter( 'manage_edit-post_sortable_columns', __NAMESPACE__ . '\post_id_column_sortable' );
 	add_filter( 'manage_users_columns', __NAMESPACE__ . '\user_column_titles' );
 	add_filter( 'manage_users_custom_column', __NAMESPACE__ . '\user_column_content', 10, 3 );
-	add_filter( 'manage_edit-rc_form_columns', __NAMESPACE__ . '\form_taxonomy_column_title' );
-	add_filter( 'manage_rc_form_custom_column', __NAMESPACE__ . '\form_taxonomy_column_content', 10, 3 );
+	add_filter( 'manage_edit-rc_form_columns', __NAMESPACE__ . '\prefix_column_title' );
+	add_filter( 'manage_rc_form_custom_column', __NAMESPACE__ . '\prefix_column_content', 10, 3 );
+	add_filter( 'manage_edit-rc_form_columns', __NAMESPACE__ . '\thumbnail_column_title' );
+	add_filter( 'manage_rc_form_custom_column', __NAMESPACE__ . '\thumbnail_column_content', 10, 3 );
+	add_filter( 'manage_edit-rc_technique_columns', __NAMESPACE__ . '\thumbnail_column_title' );
+	add_filter( 'manage_rc_technique_custom_column', __NAMESPACE__ . '\thumbnail_column_content', 10, 3 );
+	add_filter( 'manage_edit-rc_firing_columns', __NAMESPACE__ . '\thumbnail_column_title' );
+	add_filter( 'manage_rc_firing_custom_column', __NAMESPACE__ . '\thumbnail_column_content', 10, 3 );
 }
 
 /**
@@ -183,8 +190,8 @@ function post_id_column_sortable( array $sortable ): array {
  */
 function get_avatar_url( string $url, mixed $user_meta ): string {
 	/**
-	 * User meta is a mixed value so we have to see what we get before
-	 * sending data to the custom field.
+	 * User meta is a mixed value so we have to see what 
+	 * we get before sending data to the custom field.
 	 */
 	if ( is_int( $user_meta ) ) {
 		$user_id = $user_meta;
@@ -264,42 +271,60 @@ function user_column_content( string $value, string $column_name, int $user_id )
 }
 
 /**
- * Taxonomy column titles for rc_form
+ * Taxonomy column titles for the object prefix
  *
  * @param array $defaults Column defaults.
  */
-function form_taxonomy_column_title( array $defaults ): array {
-	// Unset default columns.
-	unset( $defaults['name'] );
-	unset( $defaults['description'] );
-	unset( $defaults['slug'] );
-	unset( $defaults['posts'] );
-
-	// Add columns back in proper order.
-	$defaults['name']          = esc_html__( 'Name', 'rosenfield-collection' );
+function prefix_column_title( array $defaults ): array {
 	$defaults[ OBJECT_PREFIX ] = esc_html__( 'Prefix', 'rosenfield-collection' );
-	$defaults['slug']          = esc_html__( 'Slug', 'rosenfield-collection' );
-	$defaults['posts']         = esc_html__( 'Count', 'rosenfield-collection' );
-
 	return $defaults;
 }
 
 /**
- * Taxonomy column content for rc_form
+ * Taxonomy column content for the object prefix
  *
  * @param string $content Column content.
  * @param string $column_name Column name.
  * @param int    $term_id Taxonomy term id.
  */
-function form_taxonomy_column_content( string $content, string $column_name, int $term_id ): string {
-	if ( OBJECT_PREFIX !== $column_name ) {
-		return $content;
+function prefix_column_content( string $content, string $column_name, int $term_id ): string {
+	if ( OBJECT_PREFIX === $column_name ) {
+		$prefix = get_field( OBJECT_PREFIX, FORM . '_' . $term_id );
+		if ( ! empty( $prefix ) ) {
+			return (string) $prefix; // @phpstan-ignore-line
+		}
 	}
 
-	$prefix = get_field( OBJECT_PREFIX, FORM . '_' . $term_id );
-	if ( empty( $prefix ) ) {
-		return $content;
+	return $content;
+}
+
+/**
+ * Taxonomy column for the term thumbnail
+ *
+ * @param array $defaults Column defaults.
+ */
+function thumbnail_column_title( array $defaults ): array {
+	$defaults[ TERM_THUMBNAIL ] = esc_html__( 'Thumbnail', 'rosenfield-collection' );
+	return $defaults;
+}
+
+/**
+ * Taxonomy column content the term thumbnail
+ *
+ * @param string $content Column content.
+ * @param string $column_name Column name.
+ * @param int    $term_id Taxonomy term id.
+ */
+function thumbnail_column_content( string $content, string $column_name, int $term_id ): string {
+	if ( TERM_THUMBNAIL === $column_name ) {
+		$thumbnail = get_field( TERM_THUMBNAIL, FORM . '_' . $term_id );
+		if ( ! empty( $thumbnail ) ) {
+			return wp_get_attachment_image( 
+				(int) $thumbnail, // @phpstan-ignore-line
+				[ 75, 75 ] 
+			);
+		}
 	}
 
-	return (string) $prefix; // @phpstan-ignore-line
+	return $content;
 }

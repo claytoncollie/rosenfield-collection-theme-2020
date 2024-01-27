@@ -7,17 +7,8 @@
 
 use const RosenfieldCollection\Theme\Artists\QUERY_VAR;
 use const RosenfieldCollection\Theme\Fields\ARTIST_SLUG;
+use const RosenfieldCollection\Theme\Fields\THE_ALPHABET;
 use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
-
-$field = get_field_object( 'field_5e17ad49aa83c' );
-if ( empty( $field ) ) {
-	return;
-}
-
-$letters = $field['choices'] ?? [];
-if ( empty( $letters ) ) {
-	return;
-}
 
 $is_archive  = get_query_var( QUERY_VAR ) === '' ? 'current' : '';
 $page_object = get_page_by_path( ARTIST_SLUG, OBJECT, PAGE_SLUG );
@@ -37,7 +28,7 @@ $view_all    = (string) get_permalink( $page_object ); // @phpstan-ignore-line
 		</li>
 
 		<?php 
-		foreach ( (array) $letters as $letter ) : 
+		foreach ( THE_ALPHABET as $letter ) : 
 			$is_current = get_query_var( QUERY_VAR ) === $letter ? 'current' : '';
 			$permalink  = add_query_arg(
 				QUERY_VAR,
