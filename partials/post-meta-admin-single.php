@@ -5,6 +5,7 @@
  * @package RosenfieldCollection\Theme
  */
 
+use const RosenfieldCollection\Theme\Fields\OBJECT_DATE;
 use const RosenfieldCollection\Theme\Fields\OBJECT_PRICE;
 use const RosenfieldCollection\Theme\Taxonomies\LOCATION;
 use const RosenfieldCollection\Theme\Taxonomies\POST_TAG;
@@ -23,8 +24,13 @@ $tags             = get_the_term_list( $post_id, POST_TAG, '', ', ', '' );
 $tags             = $tags && ! is_wp_error( $tags ) ? (string) $tags : '';
 $location         = get_the_term_list( $post_id, LOCATION, '', ', ', '' );
 $location         = $location && ! is_wp_error( $location ) ? (string) $location : '';
-$price            = get_field( OBJECT_PRICE, $post_id );
+$price            = get_post_meta( $post_id, OBJECT_PRICE, true );
 $price            = $price ? (string) $price : ''; // @phpstan-ignore-line
+$date             = get_post_meta( $post_id, OBJECT_DATE, true );
+$date             = $date ? (string) $date : ''; // @phpstan-ignore-line
+$date             = strtotime( $date );
+$date             = $date ? (int) $date : 0;
+$date             = gmdate( 'm/d/Y', $date );
 $permalink        = get_permalink();
 $vertical_label   = $permalink ? $permalink . 'vertical' : '';
 $horizontal_label = $permalink ? $permalink . 'horizontal' : '';
@@ -50,6 +56,13 @@ $horizontal_label = $permalink ? $permalink . 'horizontal' : '';
 			
 			<?php if ( ! empty( $price ) ) : ?>
 				$<?php echo esc_html( $price ); ?>
+				<span class="entry-sep">
+					&middot;
+				</span>
+			<?php endif; ?>
+
+			<?php if ( ! empty( $date ) ) : ?>
+				<?php echo esc_html( $date ); ?>
 			<?php endif; ?>
 
 			</div>

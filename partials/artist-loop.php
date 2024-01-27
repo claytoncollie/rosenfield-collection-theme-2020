@@ -11,7 +11,7 @@ use const RosenfieldCollection\Theme\Artists\QUERY_VAR;
 use const RosenfieldCollection\Theme\Artists\POSTS_PER_PAGE;
 use const RosenfieldCollection\Theme\Artists\MAX_PER_PAGE;
 use const RosenfieldCollection\Theme\Fields\ARTIST_PHOTO;
-use const RosenfieldCollection\Theme\ImageSizes\THUMBNAIL;
+use const RosenfieldCollection\Theme\ImageSizes\IMAGE_THUMBNAIL;
 use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 
 // Keep count for columns.
@@ -70,7 +70,7 @@ foreach ( $user_query->results as $user ) :
 	$number_of_posts = count_user_posts( $user_id );
 	$attachment_id   = get_field( ARTIST_PHOTO, 'user_' . $user_id );
 	$attachment_id   = $attachment_id ? (int) $attachment_id : 0; // @phpstan-ignore-line
-	$avatar          = wp_get_attachment_image_src( $attachment_id, THUMBNAIL );
+	$avatar          = wp_get_attachment_image_src( $attachment_id, IMAGE_THUMBNAIL );
 	$avatar          = is_array( $avatar ) ? $avatar : [];
 	$avatar_width    = $avatar[1] ?? false;
 	$avatar_width    = $avatar_width ? (string) $avatar_width : '';
@@ -96,7 +96,7 @@ foreach ( $user_query->results as $user ) :
 			foreach ( $author_posts as $author_post ) {
 				$fallback = get_the_post_thumbnail(
 					(int) $author_post->ID, // @phpstan-ignore-line
-					THUMBNAIL,
+					IMAGE_THUMBNAIL,
 					[
 						'alt' => esc_attr( $full_name ),
 					]

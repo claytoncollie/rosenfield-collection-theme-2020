@@ -10,7 +10,7 @@ namespace RosenfieldCollection\Theme\Structure\Author;
 use function RosenfieldCollection\Theme\Helpers\svg;
 
 use const RosenfieldCollection\Theme\Fields\ARTIST_PHOTO;
-use const RosenfieldCollection\Theme\ImageSizes\THUMBNAIL;
+use const RosenfieldCollection\Theme\ImageSizes\IMAGE_THUMBNAIL;
 
 /**
  * Setup
@@ -39,7 +39,7 @@ function do_the_artist_avatar(): void {
 		return;
 	}
 
-	$avatar = wp_get_attachment_image_src( $attachment_id, THUMBNAIL );
+	$avatar = wp_get_attachment_image_src( $attachment_id, IMAGE_THUMBNAIL );
 	if ( empty( $avatar ) ) {
 		return;
 	}

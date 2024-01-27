@@ -16,9 +16,7 @@ return [
 		IMAGE_ARCHIVE => [ 440, 440, true ],
 	],
 	'remove' => [
-		'medium',
 		'medium_large',
-		'large',
 		'1536x1536',
 		'2048x2048',
 	],

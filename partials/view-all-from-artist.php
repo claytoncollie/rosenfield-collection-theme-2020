@@ -6,7 +6,7 @@
  */
 
 use const RosenfieldCollection\Theme\Fields\ARTIST_PHOTO;
-use const RosenfieldCollection\Theme\ImageSizes\THUMBNAIL;
+use const RosenfieldCollection\Theme\ImageSizes\IMAGE_THUMBNAIL;
 
 $post_id = get_the_ID();
 $post_id = $post_id ? (int) $post_id : 0;
@@ -27,7 +27,7 @@ $avatar_id  = get_field( ARTIST_PHOTO, 'user_' . $author_id );
 $avatar_id  = $avatar_id ? (int) $avatar_id : 0; // @phpstan-ignore-line
 $avatar     = wp_get_attachment_image(
 	$avatar_id,
-	THUMBNAIL,
+	IMAGE_THUMBNAIL,
 	false,
 	[
 		'class' => 'author-avatar',

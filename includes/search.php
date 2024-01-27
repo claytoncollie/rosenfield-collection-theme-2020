@@ -7,7 +7,21 @@
 
 namespace RosenfieldCollection\Theme\Search;
 
+use WP_Post;
+
 use function RosenfieldCollection\Theme\Helpers\svg;
+
+use const RosenfieldCollection\Theme\Fields\ARTIST_PHOTO;
+use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
+use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
+use const RosenfieldCollection\Theme\Taxonomies\COLUMN;
+use const RosenfieldCollection\Theme\Taxonomies\FIRING;
+use const RosenfieldCollection\Theme\Taxonomies\FORM;
+use const RosenfieldCollection\Theme\Taxonomies\LOCATION;
+use const RosenfieldCollection\Theme\Taxonomies\POST_TAG;
+use const RosenfieldCollection\Theme\Taxonomies\RESULT;
+use const RosenfieldCollection\Theme\Taxonomies\ROW;
+use const RosenfieldCollection\Theme\Taxonomies\TECHNIQUE;
 
 /**
  * Setup
@@ -16,6 +30,16 @@ function setup(): void {
 	add_action( 'genesis_after_title_area', __NAMESPACE__ . '\do_header_search_form', 12 );
 	add_filter( 'genesis_nav_items', __NAMESPACE__ . '\add_search_menu_item', 10, 2 );
 	add_filter( 'wp_nav_menu_items', __NAMESPACE__ . '\add_search_menu_item', 10, 2 );
+	add_filter( 'algolia_user_record', __NAMESPACE__ . '\avatar_url', 10, 2 );
+	add_filter( 'algolia_post_images_sizes', __NAMESPACE__ . '\images_sizes' );
+	add_filter( 'algolia_excluded_post_types', __NAMESPACE__ . '\post_types_blacklist' );
+	add_filter( 'algolia_excluded_taxonomies', __NAMESPACE__ . '\taxonomies_blacklist' );
+	add_filter( 'algolia_post_shared_attributes', __NAMESPACE__ . '\index_attributes', 10, 2 );
+	add_filter( 'algolia_searchable_post_shared_attributes', __NAMESPACE__ . '\index_attributes', 10, 2 );
+	add_filter( 'algolia_posts_index_settings', __NAMESPACE__ . '\index_settings' );
+	add_filter( 'algolia_searchable_posts_index_settings', __NAMESPACE__ . '\index_settings' );
+	add_filter( 'register_post_type_args', __NAMESPACE__ . '\exclude_from_search', 10, 2 );
+	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_scripts', 12 );
 }
 
 /**
@@ -64,5 +88,158 @@ function get_header_search_toggle(): string {
 		'<a href="#header-search-wrap" aria-controls="header-search-wrap" aria-expanded="false" role="button" class="toggle-header-search"><span class="screen-reader-text">%s</span>%s</a>',
 		__( 'Show Search', 'rosenfield-collection' ),
 		svg( 'search-solid' )
+	);
+}
+
+/**
+ * Replaces the default gravatar URL with their custom photo from the user profile.
+ *
+ * @param array  $record Record data.
+ * @param object $item User meta.
+ */
+function avatar_url( array $record, object $item ): array {
+	$avatar_id = get_field( ARTIST_PHOTO, 'user_' . $item->ID ); // @phpstan-ignore-line
+	if ( ! empty( $avatar_id ) ) {
+		$record['avatar_url'] = wp_get_attachment_url( (int) $avatar_id ); // @phpstan-ignore-line
+	}
+
+	return $record;
+}
+
+/**
+ * Get all image sizes into the index.
+ */
+function images_sizes(): array {
+	return get_intermediate_image_sizes(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
+}
+
+/**
+ * Remove certain post types from the index
+ */
+function post_types_blacklist(): array {
+	return [
+		'nav_menu_item',
+		'amn_smtp',
+		'oembed_cache',
+		'customize_changeset',
+		'custom_css',
+		'user_request',
+		'attachment',
+		'revision',
+		'wp_block',
+		'acf-field',
+		'acf-field-group',
+		'shop_order',
+		'shop_order_refund',
+		'shop_coupon',
+		'deprecated_log',
+		'wp_stream_alerts',
+		'scheduled-action',
+		'wp_template',
+	];
+}
+
+/**
+ * Remove certain taxonomies from the index
+ */
+function taxonomies_blacklist(): array {
+	return [
+		'nav_menu',
+		'link_category',
+		'category',
+		'post_format',
+		ROW,
+		LOCATION,
+		COLUMN,
+		TECHNIQUE,
+		FORM,
+		FIRING,
+		POST_TAG,
+		RESULT,
+		'action-group',
+		'wp_theme',
+	];
+}
+
+/**
+ * Define the additional attributes of Algolia.
+ *
+ * @param array   $attributes Default attributes.
+ * @param WP_Post $post WP_Post object.
+ */
+function index_attributes( array $attributes, WP_Post $post ): array {
+	$terms = get_the_terms( $post, FORM );
+	if ( empty( $terms ) ) {
+		return $attributes;
+	}
+	if ( is_wp_error( $terms ) ) {
+		return $attributes;
+	}
+
+	$prefix = get_field( OBJECT_PREFIX, FORM . '_' . $terms[0]->term_id );
+	if ( empty( $prefix ) ) {
+		return $attributes;
+	}
+
+	$object_id = get_post_meta( $post->ID, OBJECT_ID, true );
+	if ( empty( $object_id ) ) {
+		return $attributes;
+	}
+
+	$attributes['rc_id'] = $prefix . $object_id;
+
+	return $attributes;
+}
+
+/**
+ * Define the sorting and filtering settings for Algolia.
+ * 
+ * @param array $settings Default settings.
+ */
+function index_settings( array $settings ): array {
+	return array_merge(
+		$settings,
+		[
+			'searchableAttributes'  => [ 
+				'unordered(post_title)',
+				'unordered(rc_id)',
+				'unordered(post_author.display_name)',
+				'unordered(taxonomies)',
+			],
+			'attributesForFaceting' => [ 
+				'searchable(post_author.display_name)',
+				'searchable(taxonomies)',
+			],
+		]
+	);
+}
+
+/**
+ * Exclude certain post types from search results
+ *
+ * @param array  $args Arguments.
+ * @param string $post_type Post type.
+ */
+function exclude_from_search( array $args, string $post_type ): array {
+	if ( 'page' === $post_type ) {
+		$args['exclude_from_search'] = true;
+	}
+
+	return $args;
+}
+
+/**
+ * Register and unregister assets.
+ */
+function register_scripts(): void {
+	// Remove instantsearch version 1 that comes bundled with plugin.
+	wp_deregister_script( 'algolia-instantsearch' );
+	// Add instantsearch version 4 so we can use new widgets.
+	wp_register_script( 
+		'algolia-instantsearch',
+		plugin_dir_url( __DIR__ ) . 'assets/js/instantsearch.production.min.js',
+		[ 'jquery', 'underscore', 'wp-util' ],
+		'1.0.0',
+		false 
 	);
 }
