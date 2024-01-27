@@ -15,3 +15,6 @@ jobs:
 
   phpstan:
     uses: ./.github/workflows/phpstan.yml
+
+  rector:
+    uses: ./.github/workflows/rector.yml
