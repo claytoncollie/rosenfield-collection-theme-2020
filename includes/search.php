@@ -39,7 +39,6 @@ function setup(): void {
 	add_filter( 'algolia_posts_index_settings', __NAMESPACE__ . '\index_settings' );
 	add_filter( 'algolia_searchable_posts_index_settings', __NAMESPACE__ . '\index_settings' );
 	add_filter( 'register_post_type_args', __NAMESPACE__ . '\exclude_from_search', 10, 2 );
-	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_scripts', 12 );
 }
 
 /**
@@ -226,20 +225,4 @@ function exclude_from_search( array $args, string $post_type ): array {
 	}
 
 	return $args;
-}
-
-/**
- * Register and unregister assets.
- */
-function register_scripts(): void {
-	// Remove instantsearch version 1 that comes bundled with plugin.
-	wp_deregister_script( 'algolia-instantsearch' );
-	// Add instantsearch version 4 so we can use new widgets.
-	wp_register_script( 
-		'algolia-instantsearch',
-		plugin_dir_url( __DIR__ ) . 'assets/js/instantsearch.production.min.js',
-		[ 'jquery', 'underscore', 'wp-util' ],
-		'1.0.0',
-		false 
-	);
 }
