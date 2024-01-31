@@ -256,18 +256,17 @@ function user_attributes( array $attributes, mixed $user ): array {
 
 /**
  * Define the user settings for Algolia.
- * 
- * @param array $settings Default settings.
  */
-function user_settings( array $settings ): array {
-	return array_merge(
-		$settings,
-		[
-			'searchableAttributes' => [ 
-				'unordered(rc_objects)',
-			],
-		]
-	);
+function user_settings(): array {
+	return [
+		'searchableAttributes' => [
+			'unordered(display_name)',
+			'unordered(rc_objects)',
+		],
+		'customRanking'        => [
+			'desc(posts_count)',
+		],
+	];
 }
 
 /**
