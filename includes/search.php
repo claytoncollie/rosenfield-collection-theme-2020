@@ -8,12 +8,15 @@
 namespace RosenfieldCollection\Theme\Search;
 
 use WP_Post;
+use WP_Query;
 
+use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
 use function RosenfieldCollection\Theme\Helpers\svg;
 
 use const RosenfieldCollection\Theme\Fields\ARTIST_PHOTO;
 use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
 use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
+use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 use const RosenfieldCollection\Theme\Taxonomies\COLUMN;
 use const RosenfieldCollection\Theme\Taxonomies\FIRING;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
@@ -37,6 +40,8 @@ function setup(): void {
 	add_filter( 'algolia_post_shared_attributes', __NAMESPACE__ . '\index_attributes', 10, 2 );
 	add_filter( 'algolia_searchable_post_shared_attributes', __NAMESPACE__ . '\index_attributes', 10, 2 );
 	add_filter( 'algolia_posts_index_settings', __NAMESPACE__ . '\index_settings' );
+	add_filter( 'algolia_user_record', __NAMESPACE__ . '\user_attributes', 10, 2 );
+	add_filter( 'algolia_users_index_settings', __NAMESPACE__ . '\user_settings' );
 	add_filter( 'algolia_searchable_posts_index_settings', __NAMESPACE__ . '\index_settings' );
 	add_filter( 'register_post_type_args', __NAMESPACE__ . '\exclude_from_search', 10, 2 );
 }
@@ -208,6 +213,58 @@ function index_settings( array $settings ): array {
 			'attributesForFaceting' => [ 
 				'searchable(post_author.display_name)',
 				'searchable(taxonomies)',
+			],
+		]
+	);
+}
+
+/**
+ * Define the additional attributes of Algolia.
+ *
+ * @param array $attributes Default attributes.
+ * @param mixed $user User object.
+ */
+function user_attributes( array $attributes, mixed $user ): array {
+	$author_id = $user->ID ?? 0; // @phpstan-ignore-line
+	if ( empty( $author_id ) ) {
+		return $attributes;
+	}
+
+	$posts = new WP_Query(
+		[
+			'post_type'      => POST_SLUG,
+			'posts_per_page' => 100,
+			'author'         => $author_id,
+		]
+	);
+	if ( ! $posts->have_posts() ) {
+		return $attributes;
+	}
+
+	while ( $posts->have_posts() ) {
+		$posts->the_post();
+
+		$attributes['rc_objects'] = [
+			'id'    => get_object_prefix_and_id(),
+			'title' => get_the_title(),
+		];
+	}
+	wp_reset_postdata();
+
+	return $attributes;
+}
+
+/**
+ * Define the user settings for Algolia.
+ * 
+ * @param array $settings Default settings.
+ */
+function user_settings( array $settings ): array {
+	return array_merge(
+		$settings,
+		[
+			'searchableAttributes' => [ 
+				'unordered(rc_objects)',
 			],
 		]
 	);
