@@ -158,7 +158,8 @@ function get_the_layout( string $layout ): string {
 				$post_id,
 				IMAGE_LARGE,
 				[
-					'style' => 'width:150px;height:auto;margin-bottom:20px',
+					'style'   => 'width:150px;height:auto;margin-bottom:20px',
+					'loading' => 'eager',
 				],
 			),
 			esc_html( $prefix ),
@@ -173,7 +174,8 @@ function get_the_layout( string $layout ): string {
 			$post_id,
 			IMAGE_LARGE,
 			[
-				'style' => 'width:150px;height:auto;margin-left:20px',
+				'style'   => 'width:150px;height:auto;margin-left:20px',
+				'loading' => 'eager',
 			],
 		),
 		esc_html( $prefix ),
