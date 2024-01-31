@@ -244,7 +244,7 @@ function user_attributes( array $attributes, mixed $user ): array {
 	while ( $posts->have_posts() ) {
 		$posts->the_post();
 
-		$attributes['rc_objects'] = [
+		$attributes['rc_objects'][] = [
 			'id'    => get_object_prefix_and_id(),
 			'title' => get_the_title(),
 		];
