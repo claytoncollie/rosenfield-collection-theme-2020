@@ -57,7 +57,7 @@ return [
 			'posts-per-page'    => 20,
 			'posts-per-rss'     => 200,
 			'rss-excerpt'       => 'summary',
-			'discourage-search' => true,
+			'discourage-search' => false,
 		],
 		'discussion' => [
 			'post.ping-flag'              => 'closed',
