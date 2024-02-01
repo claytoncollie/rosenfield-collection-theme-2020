@@ -44,6 +44,10 @@ function hero(): void {
 	if ( ! is_front_page() ) {
 		return;
 	}
+
+	if ( is_paged() ) {
+		return;
+	}
 	
 	echo wp_kses_post( '<section class="front-page-1 hero-section"><div class="wrap">' );
 
