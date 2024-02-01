@@ -5,6 +5,11 @@
  * @package RosenfieldCollection\Theme
  */
 
+// Do not run on local installs.
+if ( 'local' === wp_get_environment_type() ) {
+	return [];
+}
+
 return [
 	'application' => [
 		'theme'      => 'rosenfield-collection-theme-2020',

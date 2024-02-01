@@ -123,8 +123,8 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $bio ) ) {
 		printf(
-			'<p class="hero-subtitle" itemprop="description">%s</p>',
-			wp_kses_post( $bio )
+			'<div class="hero-subtitle" itemprop="description">%s</div>',
+			wp_kses_post( wpautop( $bio ) )
 		);
 	}
 }
