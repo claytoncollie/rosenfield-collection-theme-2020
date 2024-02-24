@@ -9,10 +9,10 @@
 // @param {String} $breakpoints ($mq-breakpoints) - Breakpoints map
 
 @mixin mq($from: false,
-$until: false,
-$and: false,
-$media-type: $mq-media-type,
-$breakpoints: $mq-breakpoints) {
+	$until: false,
+	$and: false,
+	$media-type: $mq-media-type,
+	$breakpoints: $mq-breakpoints) {
 	$min-width: 0;
 	$max-width: 0;
 	$media-query: "";
@@ -22,7 +22,9 @@ $breakpoints: $mq-breakpoints) {
 
 		@if type-of($from)==number {
 			$min-width: $from;
-		} @else {
+		}
+
+		@else {
 			$min-width: mq-get-breakpoint-width($from, $breakpoints);
 		}
 	}
@@ -32,7 +34,9 @@ $breakpoints: $mq-breakpoints) {
 
 		@if type-of($until)==number {
 			$max-width: $until;
-		} @else {
+		}
+
+		@else {
 			$max-width: mq-get-breakpoint-width($until, $breakpoints);
 		}
 	}
@@ -81,20 +85,6 @@ $breakpoints: $mq-breakpoints) {
 	}
 }
 
-
-// Border mixin
-//
-// @group  Tools
-// @author Clayton Collie <info@rosenfieldcollection.com>
-// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-
-
-@mixin border($values ) {
-
-	@include _directional-property(border, null, $values);
-}
-
-
 // Overlay mixin
 //
 // @group  Tools
@@ -108,23 +98,12 @@ $breakpoints: $mq-breakpoints) {
 
 	&::before {
 		display: block;
-		background-color: $color--overlay;
+		background-color: rgba($gray-100, 0.9);
+		;
 		content: "";
 
 		@include position(absolute, 0 0 0 0);
 	}
-}
-
-
-// Transition mixin
-//
-// @group  Tools
-// @author Clayton Collie <info@rosenfieldcollection.com>
-// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-
-
-@mixin transition {
-	transition: all $base--transition-duration $base--transition-timing-function;
 }
 
 
@@ -137,62 +116,10 @@ $breakpoints: $mq-breakpoints) {
 
 @mixin heading {
 	margin: 0 0 0.5em;
-	font-family: $font-family--heading;
-	font-weight: $font-weight--heading;
-	line-height: $line-height--heading;
+	font-family: $headings-font-family;
+	font-weight: $font-weight-normal;
+	line-height: $headings-line-height;
 }
-
-
-// Well mixin
-//
-// @group  Tools
-// @author Clayton Collie <info@rosenfieldcollection.com>
-// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-
-
-@mixin box {
-	padding: $gap;
-	border: $base--border;
-	border-radius: $base--border--radius;
-	background-color: $color--background;
-
-	p {
-
-		&:last-of-type {
-			margin-bottom: 0;
-		}
-	}
-}
-
-
-// Notice mixin
-//
-// @group  Tools
-// @author Clayton Collie <info@rosenfieldcollection.com>
-// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-
-
-@mixin notice($color: "medium") {
-
-	@if $color !="medium" {
-		border: 2px solid map_get($colors, $color);
-	}
-}
-
-
-// Icon mixin
-//
-// @group  Tools
-// @author Clayton Collie <info@rosenfieldcollection.com>
-// @link   https://github.com/claytoncollie/rosenfield-collection-theme-2020
-
-
-@mixin icon($glyph: "\f005", $font_weight: 400) {
-	font-family: "Font Awesome 5 Free", sans-serif;
-	font-weight: $font_weight;
-	content: $glyph;
-}
-
 
 // Button mixin
 //
@@ -207,12 +134,12 @@ $breakpoints: $mq-breakpoints) {
 	display: inline-block;
 	width: auto;
 	padding: $spacing--s * $minor-third $gutter;
-	border: 1px solid $color--black;
-	border-radius: $base--border--radius;
-	color: $color--white;
-	background-color: $color--primary;
-	font-size: $base--font-size / $major-second;
-	font-weight: $font-weight--heading;
+	border: 1px solid $black;
+	border-radius: $border-radius;
+	color: $white;
+	background-color: $primary;
+	font-size: $font-size-base / $major-second;
+	font-weight: $font-weight-normal;
 	line-height: 1;
 	text-align: center;
 	white-space: normal;
@@ -225,8 +152,8 @@ $breakpoints: $mq-breakpoints) {
 
 	@include hover-focus {
 		outline: none;
-		color: $color--white;
-		background-color: lighten($color--primary, 10);
+		color: $white;
+		background-color: lighten($primary, 10);
 		text-decoration: none;
 	}
 
@@ -236,8 +163,8 @@ $breakpoints: $mq-breakpoints) {
 		&:hover,
 		&:focus {
 			opacity: 0.5;
-			color: $color--dark;
-			background-color: $color--muted;
+			color: $dark;
+			background-color: $gray-400;
 			cursor: not-allowed;
 		}
 	}
@@ -260,21 +187,21 @@ $breakpoints: $mq-breakpoints) {
 	}
 
 	&.outline {
-		border: 1px solid $color--primary;
-		color: $color--primary;
+		border: 1px solid $primary;
+		color: $primary;
 		background: transparent;
 
 		@include hover-focus {
-			color: $color--white;
-			background: $color--primary;
+			color: $white;
+			background: $primary;
 		}
 	}
 
 	&.warning {
 		padding: $spacing--m * $minor-third $gutter;
-		border: 1px solid $color--error;
-		color: $color--white;
-		background: $color--error;
+		border: 1px solid $error;
+		color: $white;
+		background: $error;
 
 	}
 
@@ -282,8 +209,8 @@ $breakpoints: $mq-breakpoints) {
 	&.fab,
 	&.fas {
 		display: inline-flex;
-		font-family: $base--font-family;
-		font-weight: $font-weight--heading;
+		font-family: $font-family-base;
+		font-weight: $font-weight-normal;
 
 		&::before {
 			display: inline-block;

@@ -4,36 +4,19 @@
 // of the design is some type of component, whether it's a one-off or reusable
 // block of code.
 
-
-@import "wrap";
-@import "title-area";
+@import "site-title";
 @import "nav-primary";
 @import "nav-secondary";
 @import "menu";
 @import "menu-toggle";
-@import "sub-menu";
 @import "header-widget-area";
 @import "header-search-wrap";
-@import "custom-header";
-@import "hero-section";
-@import "front-page";
-@import "breadcrumb";
-@import "archive-description";
-@import "content";
-@import "sidebar";
-@import "author-box";
-@import "author";
-@import "avatar";
 @import "entry";
-@import "block";
-@import "gallery";
-@import "singular-image";
 @import "pagination";
 @import "search-form";
-@import "featured-content";
 @import "post-meta-admin";
 @import "post-meta";
 @import "slider";
-@import "view-toggle";
-@import "statistics";
 @import "inline-filter";
+@import "skip-links";
+@import "search";

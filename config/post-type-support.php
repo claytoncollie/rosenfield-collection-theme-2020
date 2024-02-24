@@ -12,11 +12,10 @@ use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 
 return [
 	'add'    => [
-		'hero-section' => [ PAGE_SLUG, POST_SLUG ],
-		'excerpt'      => [ PAGE_SLUG, POST_SLUG ],
+		'excerpt' => [ PAGE_SLUG ],
 	],
 	'remove' => [
-		'genesis-scripts' => [ POST_SLUG ],
-		'genesis-layouts' => [ POST_SLUG ],
+		'genesis-scripts' => [ POST_SLUG, PAGE_SLUG ],
+		'genesis-layouts' => [ POST_SLUG, PAGE_SLUG ],
 	],
 ];

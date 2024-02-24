@@ -5,8 +5,8 @@
 	width: 100vw;
 	margin: 0 -5vw;
 	padding: $spacing--m 5vw;
-	background-color: $color--black;
-	font-size: $font-size--h3;
+	background-color: $black;
+	font-size: $h3-font-size;
 	order: 2;
 
 	@include mq(m) {
@@ -17,7 +17,7 @@
 		margin: 0 0 0 auto;
 		padding: 0;
 		background: 0;
-		font-size: $base--font-size;
+		font-size: $font-size-base;
 	}
 
 	.search-lg {

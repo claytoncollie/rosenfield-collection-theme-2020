@@ -41,7 +41,7 @@
 		margin-bottom: $spacing--s;
 		padding: $spacing--xs $spacing--s * $golden;
 		border: 1px solid transparent;
-		color: $color--white;
+		color: $white;
 		text-decoration: none;
 
 		@include mq(m) {
@@ -53,8 +53,8 @@
 
 	a:hover,
 	a:focus,
-	.current-menu-item > a {
-		border-color: $color--white;
-		color: $color--white;
+	.current-menu-item>a {
+		border-color: $white;
+		color: $white;
 	}
 }

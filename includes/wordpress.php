@@ -14,7 +14,7 @@ use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
  * Actions and filters
  */
 function setup(): void {
-	add_action( 'init', __NAMESPACE__ . '\register_support' );
+	add_filter( 'allowed_block_types', __NAMESPACE__ . '\set_allowed_blocks' );
 	add_filter( 'use_block_editor_for_post_type', __NAMESPACE__ . '\disable_block_editor', 10, 2 );
 	add_action( 'init', __NAMESPACE__ . '\clean_header' );
 	add_filter( 'xmlrpc_methods', __NAMESPACE__ . '\remove_xmlrpc_pingback_ping' );
@@ -22,12 +22,6 @@ function setup(): void {
 	add_filter( 'the_content_feed', __NAMESPACE__ . '\add_image_to_rss' );
 	add_filter( 'post_row_actions', __NAMESPACE__ . '\remove_quick_edit', 10, 1 );
 	add_filter( 'user_contactmethods', __NAMESPACE__ . '\modify_user_contact_methods', 99, 1 );
-}
-
-/**
- * Register support for WordPress functionality.
- */
-function register_support(): void {
 	// Disable plugin/theme editor.
 	if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
 		define( 'DISALLOW_FILE_EDIT', true );
@@ -38,6 +32,25 @@ function register_support(): void {
 	add_filter( 'enable_update_services_configuration', '__return_false' );
 	// Remove language dropdown on login screen.
 	add_filter( 'login_display_language_dropdown', '__return_false' );
+}
+
+/**
+ * Set the allowed blocks for the editor.
+ */
+function set_allowed_blocks(): array {
+	return [
+		'core/column',
+		'core/columns',
+		'core/gallery',
+		'core/group',
+		'core/heading',
+		'core/image',
+		'core/list',
+		'core/list-item',
+		'core/paragraph',
+		'core/separator',
+		'core/spacer',
+	];
 }
 
 /**

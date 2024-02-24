@@ -37,7 +37,7 @@ $horizontal_label = $permalink ? $permalink . 'horizontal' : '';
 
 ?>
 
-<section id="rosenfield-collection-admin-object-data" class="admin-only" role="contentinfo" aria-label="Admin only object data">
+<section id="rosenfield-collection-admin-object-data" class="sticky-md-top admin-only" role="contentinfo" aria-label="Admin only object data">
 	<div class="wrap">
 		<div class="admin-only-purchase">
 			<?php if ( ! empty( $tags ) ) : ?>

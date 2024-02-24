@@ -16,8 +16,8 @@ $view_all    = (string) get_permalink( $page_object ); // @phpstan-ignore-line
 
 ?>
 
-<section id="rosenfield-collection-artist-filter" class="inline-filter" role="navigation" aria-label="Filter artists by last name">
-	<ul>
+<section id="rosenfield-collection-artist-filter" class="inline-filter pt-3" role="navigation" aria-label="Filter artists by last name">
+	<ul class="list-unstyled mb-0">
 		<li class="<?php echo esc_attr( $is_archive ); ?>">
 			<a href="<?php echo esc_url( $view_all ); ?>">
 				<span class="screen-reader-text">

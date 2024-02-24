@@ -1,7 +1,6 @@
 // Inline filter.
 
 .inline-filter {
-	margin-top: $gutter;
 
 	li {
 		display: inline-block;
@@ -11,26 +10,26 @@
 
 		a {
 			padding: $spacing--xxs $spacing--s;
-			border: 1px solid $color--secondary;
-			font-size: $font-size--h4;
+			border: 1px solid $secondary;
+			font-size: $h4-font-size;
 			text-decoration: none;
 
 			@include mq(m) {
-				font-size: $base--font-size;
+				font-size: $font-size-base;
 			}
 
 			@include hover-focus {
-				border-color: $color--black;
-				color: $color--white;
-				background-color: $color--black;
+				border-color: $black;
+				color: $white;
+				background-color: $black;
 			}
 
 		}
 
 		&.current a {
-			border-color: $color--black;
-			color: $color--white;
-			background-color: $color--black;
+			border-color: $black;
+			color: $white;
+			background-color: $black;
 		}
 	}
 }

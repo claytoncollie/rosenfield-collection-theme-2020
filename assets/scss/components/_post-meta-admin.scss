@@ -4,14 +4,14 @@
 	position: relative;
 	z-index: 99999;
 	padding: $spacing--s 0;
-	color: $color--white;
-	background-color: $color--dark;
+	color: $white;
+	background-color: $dark;
 
 	a {
-		color: $color--white;
+		color: $white;
 
 		@include hover-focus() {
-			border-bottom: 1px dotted $color--white;
+			border-bottom: 1px dotted $white;
 			text-decoration: none;
 		}
 	}

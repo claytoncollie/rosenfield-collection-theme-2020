@@ -5,8 +5,6 @@
  * @package RosenfieldCollection\Theme
  */
 
-use function RosenfieldCollection\Theme\Helpers\column_class;
-
 use const RosenfieldCollection\Theme\Artists\QUERY_VAR;
 use const RosenfieldCollection\Theme\Artists\POSTS_PER_PAGE;
 use const RosenfieldCollection\Theme\Artists\MAX_PER_PAGE;
@@ -14,8 +12,6 @@ use const RosenfieldCollection\Theme\Fields\ARTIST_PHOTO;
 use const RosenfieldCollection\Theme\ImageSizes\IMAGE_THUMBNAIL;
 use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 
-// Keep count for columns.
-$index = 0;
 // Get the query var to know if we are filtering or not.
 $filter_value = get_query_var( QUERY_VAR ) ?? [];
 // Set high value to disable pagination when using query var.
@@ -47,25 +43,17 @@ $user_query = new WP_User_Query(
 	)
 );
 
-if ( empty( $user_query->results ) ) {
+$users = $user_query->results ?? [];
+if ( empty( $users ) ) {
 	return;
 }
 
-if ( ! empty( $filter_value ) ) {
-	$total_users = count( $user_query->results );
-} else {
-	$total_users = count( get_users( [ 'has_published_posts' => [ POST_SLUG ] ] ) );
-}
-
-$total_pages = (int) ( $total_users / $posts_per_page ) + 1;
-
-foreach ( $user_query->results as $user ) :
+foreach ( $users as $user ) :
 	$fallback        = '';
 	$user_id         = (int) $user->ID;
 	$first_name      = (string) $user->first_name;
 	$last_name       = (string) $user->last_name;
 	$full_name       = $first_name . ' ' . $last_name;
-	$column_class    = column_class( $index, 6 );
 	$permalink       = get_author_posts_url( $user_id );
 	$number_of_posts = count_user_posts( $user_id );
 	$attachment_id   = get_field( ARTIST_PHOTO, 'user_' . $user_id );
@@ -99,6 +87,7 @@ foreach ( $user_query->results as $user ) :
 					IMAGE_THUMBNAIL,
 					[
 						'alt' => esc_attr( $full_name ),
+						'class' => 'img-fluid border shadow-sm'
 					]
 				);
 			}
@@ -106,10 +95,11 @@ foreach ( $user_query->results as $user ) :
 	}
 	?>
 
-	<article class="entry one-sixth <?php echo esc_attr( $column_class ); ?>" aria-label="Artist: <?php echo esc_attr( $full_name ); ?>">
+	<article class="col col-12 col-md-2" aria-label="Artist: <?php echo esc_attr( $full_name ); ?>">
 		<?php if ( 0 !== $attachment_id ) : ?>
-			<a href="<?php echo esc_url( $permalink ); ?>" class="entry-image-link" rel="bookmark">
-				<img 
+			<a href="<?php echo esc_url( $permalink ); ?>" class="d-block">
+				<img
+					class="img-fluid border shadow-sm"
 					width="<?php echo esc_attr( $avatar_width ); ?>" 
 					height="<?php echo esc_attr( $avatar_height ); ?>" 
 					src="<?php echo esc_url( $avatar_src ); ?>" 
@@ -117,47 +107,23 @@ foreach ( $user_query->results as $user ) :
 				/>
 			</a>
 		<?php else : ?>
-			<a href="<?php echo esc_url( $permalink ); ?>" class="entry-image-link" rel="bookmark">
+			<a href="<?php echo esc_url( $permalink ); ?>" class="d-block">
 				<?php echo wp_kses_post( $fallback ); ?>
 			</a>
 		<?php endif; ?>
-		<div class="entry-wrap">
-			<header class="entry-header">
-				<h2 class="entry-title" itemprop="name">
-					<a href="<?php echo esc_url( $permalink ); ?>" rel="bookmark">
-						<?php echo esc_html( $full_name ); ?>
-					</a>
-				</h2>
-				<a class="more-link" href="<?php echo esc_url( $permalink ); ?>" rel="bookmark" aria-label="View artist: <?php echo esc_attr( $full_name ); ?>">
-					<?php echo esc_html__( 'View Artist', 'rosenfield-collection' ); ?>
+		<div class="d-inline-block p-2 text-center w-100">
+			<h2 class="h4">
+				<a href="<?php echo esc_url( $permalink ); ?>" class="text-decoration-none">
+					<?php echo esc_html( $full_name ); ?>
 				</a>
-				<span class="entry-sep">
-					&middot;
-				</span>
-				<?php echo esc_html( $number_of_posts ); ?>
-			</header>
+			</h2>
+			<a class="font-alt fst-italic text-decoration-none" href="<?php echo esc_url( $permalink ); ?>"  aria-label="View artist: <?php echo esc_attr( $full_name ); ?>">
+				<?php echo esc_html__( 'View Artist', 'rosenfield-collection' ); ?>
+			</a>
+			<span class="entry-sep">
+				&middot;
+			</span>
+			<?php echo esc_html( $number_of_posts ); ?>
 		</div>
 	</article>
-	<?php ++$index; ?>
 <?php endforeach; ?>
-
-<?php if ( $total_users > $posts_per_page ) : ?>
-	<section id="genesis-archive-pagination" class="archive-pagination pagination" role="navigation" aria-label="Pagination">
-		<div class="wrap">
-			<?php 
-			echo wp_kses_post(
-				paginate_links( // @phpstan-ignore-line
-					[
-						'base'      => get_pagenum_link( 1 ) . '%_%',
-						'format'    => 'page/%#%/',
-						'current'   => (int) max( 1, $is_paged ), // @phpstan-ignore-line
-						'total'     => $total_pages,
-						'prev_next' => true,
-						'type'      => 'list',
-					]
-				)
-			); 
-			?>
-		</div>
-	</section>
-<?php endif; ?>

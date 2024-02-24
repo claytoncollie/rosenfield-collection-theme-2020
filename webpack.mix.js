@@ -49,8 +49,3 @@ mix.sass('assets/scss/main.scss', 'dist', {
 		outputStyle: 'compressed',
 	},
 });
-mix.sass('assets/scss/editor.scss', 'dist', {
-	sassOptions: {
-		outputStyle: 'compressed',
-	},
-});

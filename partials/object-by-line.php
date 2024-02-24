@@ -20,14 +20,11 @@ $object_id  = get_object_prefix_and_id();
 
 ?>
 
-<p>
-	<span class="entry-sep">&middot;</span>
-	<a href="<?php echo esc_url( $permalink ); ?>" class="entry-artist">
-		<?php echo esc_html( $full_name ); ?>
-	</a>
-</p>
+<a href="<?php echo esc_url( $permalink ); ?>" class="font-alt fst-italic text-decoration-none">
+	<?php echo esc_html( $full_name ); ?>
+</a>
 
-<?php if ( ! empty( $id ) ) : ?>
+<?php if ( ! empty( $object_id ) ) : ?>
 	<span class="entry-sep">
 		&middot;
 	</span>

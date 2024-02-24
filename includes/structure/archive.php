@@ -11,6 +11,7 @@ use WP_Query;
 
 use function RosenfieldCollection\Theme\Helpers\is_type_archive;
 use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
+use function RosenfieldCollection\Theme\Helpers\is_type_archive_page;
 
 use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
 use const RosenfieldCollection\Theme\QueryVars\VIEW_VAR;
@@ -19,7 +20,7 @@ use const RosenfieldCollection\Theme\QueryVars\VIEW_VAR;
  * Setup
  */
 function setup(): void {
-	add_filter( 'post_class', __NAMESPACE__ . '\archive_post_class' );
+	add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\entry_attributes' );
 	add_filter( 'get_the_content_more_link', __NAMESPACE__ . '\read_more_link' );
 	add_filter( 'the_content_more_link', __NAMESPACE__ . '\read_more_link' );
 	add_action( 'genesis_entry_header', __NAMESPACE__ . '\entry_wrap_open', 4 );
@@ -39,34 +40,17 @@ function setup(): void {
 }
 
 /**
- * Add column class to archive posts.
- *
- * @param array $classes Array of post classes.
+ * Grid layout for archives
+ * 
+ * @param array $attributes Attributes.
  */
-function archive_post_class( array $classes ): array {
-	if ( ! is_type_archive() ) {
-		return $classes;
+function entry_attributes( array $attributes ): array {
+	if ( ! is_type_archive() && ! is_type_archive_page() ) {
+		return $attributes;
 	}
 
-	if ( \did_action( 'genesis_before_sidebar_widget_area' ) !== 0 ) {
-		return $classes;
-	}
-
-	if ( 'full-width-content' === genesis_site_layout() ) {
-		$classes[] = 'one-fourth';
-		$count     = 4;
-	} else {
-		$classes[] = 'one-third';
-		$count     = 3;
-	}
-
-	global $wp_query;
-
-	if ( 0 === $wp_query->current_post || 0 === $wp_query->current_post % $count ) {
-		$classes[] = 'first';
-	}
-
-	return $classes;
+	$attributes['class'] .= ' col col-12 col-md-3';
+	return $attributes;
 }
 
 /**
@@ -97,12 +81,7 @@ function read_more_link(): string {
  */
 function entry_wrap_open(): void {
 	if ( is_type_archive() ) {
-		genesis_markup(
-			[
-				'open'    => '<div %s>',
-				'context' => 'entry-wrap',
-			]
-		);
+		echo wp_kses_post( '<div class="entry-wrap d-inline-block p-2 text-center w-100">' );
 	}
 }
 
@@ -111,12 +90,7 @@ function entry_wrap_open(): void {
  */
 function entry_wrap_close(): void {
 	if ( is_type_archive() ) {
-		genesis_markup(
-			[
-				'close'   => '</div>',
-				'context' => 'entry-wrap',
-			]
-		);
+		echo wp_kses_post( '</div>' );
 	}
 }
 
@@ -153,7 +127,7 @@ function object_by_line(): void {
 	if ( is_author() ) {
 		return;
 	}
-	if ( ! is_page_template( 'templates/pending.php' ) ) {
+	if ( is_page_template( 'templates/pending.php' ) ) {
 		return;
 	}
 

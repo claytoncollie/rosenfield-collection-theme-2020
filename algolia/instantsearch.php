@@ -11,25 +11,25 @@ get_header();
 
 ?>
 
-	<section class="hero-section" role="banner" aria-label="Page Header">
-		<div class="wrap">
-			<div class="hero-inner">
+	<section class="container-fluid text-dark bg-light text-center py-5 border border-1 border-bottom" role="banner" aria-label="Page Header">
+		<div class="row">
+			<div class="col col-4 mx-auto">
 				<?php hero_title(); ?>
 				<div id="search-box"></div>
 			</div>
 		</div>
 	</section>
-	<div class="wrap">
-		<section class="refinements" aria-label="Statistics and Current Refinements" role="contentinfo" id="rosenfield-collection-current-refinements">
+	<div class="row">
+		<section class=" col col-12" aria-label="Statistics and Current Refinements" role="contentinfo" id="rosenfield-collection-current-refinements">
 			<div id="algolia-stats"></div>
 			<span class="entry-sep">&middot;</span>
 			<div id="current-refinements"></div>
 		</section>
-		<main id="genesis-content" class="content">
+		<main id="genesis-content" class="col col-12 col-md-8">
 			<div id="algolia-hits"></div>
 			<div id="algolia-pagination"></div>
 		</main>
-		<aside class="sidebar sidebar-primary" role="search" aria-label="Primary Sidebar" id="genesis-sidebar-primary">
+		<aside class="col col-12 col-md-4" role="search" aria-label="Primary Sidebar" id="genesis-sidebar-primary">
 			<div id="clear-refinements"></div>
 			<div id="facet-users"></div>
 			<div id="facet-form"></div>
@@ -47,13 +47,13 @@ get_header();
 	<script type="text/html" id="tmpl-instantsearch-hit">
 		<article class="entry" itemtype="http://schema.org/Article" aria-label="{{ data.rc_id }}: {{ data.post_title }} made by {{ data.post_author.display_name }}">
 			<# if ( data.images.thumbnail ) { #>
-			<a href="{{ data.permalink }}" class="entry-image-link first one-sixth">
-				<img height="{{ data.images.thumbnail.height }}" width="{{ data.images.thumbnail.width }}" src="{{ data.images.thumbnail.url }}" alt="{{ data.rc_id }}: Main image for {{ data.post_title }} made by {{ data.post_author.display_name }}" itemprop="image" />
+			<a href="{{ data.permalink }}" class="d-block">
+				<img height="{{ data.images.thumbnail.height }}" width="{{ data.images.thumbnail.width }}" src="{{ data.images.thumbnail.url }}" alt="{{ data.rc_id }}: Main image for {{ data.post_title }} made by {{ data.post_author.display_name }}" />
 			</a>
 			<# } #>
-			<div class="entry-wrap five-sixths">
-				<h2 class="entry-title" itemprop="name">
-					<a href="{{ data.permalink }}" class="entry-title-link" rel="bookmark" itemprop="url" aria-label="{{ data.rc_id }}: Read more about {{ data.post_title }} made by {{ data.post_author.display_name }}">{{{ data._highlightResult.post_title.value }}}</a>
+			<div class="entry-wrap">
+				<h2 class="entry-title">
+					<a href="{{ data.permalink }}" aria-label="{{ data.rc_id }}: Read more about {{ data.post_title }} made by {{ data.post_author.display_name }}">{{{ data._highlightResult.post_title.value }}}</a>
 				</h2>
 				<div class="entry-content">
 					<p>

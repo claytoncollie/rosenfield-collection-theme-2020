@@ -1,0 +1,140 @@
+// Algolia
+
+.aa-dropdown-menu {
+	border-bottom-right-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) !important;
+
+	.autocomplete-header {
+		border-top: 1px solid $gray-300;
+		border-bottom: 0 !important;
+	}
+
+	.aa-dataset-1 {
+
+		.autocomplete-header {
+			border-top: 0;
+		}
+	}
+
+	a.suggestion-link {
+		line-height: 32px;
+	}
+}
+
+.refinements {
+	display: flex;
+	width: 100%;
+	margin-top: $spacing--m;
+	padding-bottom: $spacing--s;
+	border-bottom: 1px dotted $secondary;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.ais-CurrentRefinements-list {
+	margin-bottom: 0;
+}
+
+#current-refinements,
+#algolia-stats {
+	display: inline-block;
+}
+
+.ais-Stats {
+	position: relative !important;
+	top: initial !important;
+	font-size: initial !important;
+}
+
+#algolia-hits {
+	display: inline-block;
+	width: 100%;
+
+	@include mq(m) {
+		padding-left: $spacing--xl;
+	}
+}
+
+.ais-CurrentRefinements-category {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+
+.ais-CurrentRefinements-item,
+.ais-Hits-list {
+	margin: 0;
+	list-style-type: none;
+}
+
+.ais-CurrentRefinements-item {
+	display: inline-block;
+	margin-right: $spacing--l;
+}
+
+.ais-CurrentRefinements-delete {
+	margin-left: $spacing--xxs;
+	padding: 2px;
+	font-size: 1rem;
+}
+
+.ais-CurrentRefinements-label {
+
+	@include hide-visually();
+}
+
+.ais-ClearRefinements-button {
+	width: 100%;
+	margin-bottom: $spacing--m;
+}
+
+.ais-SearchBox {
+
+	&-form {
+		position: relative;
+		max-width: 768px;
+		margin: $spacing--l auto 0;
+	}
+
+	&-input {
+		padding: $spacing--m $spacing--xl;
+		border-radius: 25px;
+		background-color: $white;
+	}
+
+	&-submit {
+		position: absolute;
+		z-index: 1;
+		top: 40%;
+		left: 1.5rem;
+		width: 20px;
+		height: 20px;
+		padding: 0;
+		border: 0;
+		color: $dark;
+		background-color: transparent;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $dark;
+			background-color: transparent;
+		}
+	}
+
+	&-submiticon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translateX(-50%) translateY(-50%);
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+}

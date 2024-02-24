@@ -17,9 +17,9 @@
 		padding-bottom: 0;
 		padding-left: 0;
 		border: 0;
-		color: $color--white;
-		background-color: $color--black;
-		font-size: $font-size--h3;
+		color: $white;
+		background-color: $black;
+		font-size: $h3-font-size;
 	}
 
 	input[type="submit"] {
@@ -40,7 +40,8 @@
 
 	.js & {
 		position: absolute;
-		z-index: 1001; /* Show above the menu toggle button */
+		z-index: 1001;
+		/* Show above the menu toggle button */
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -74,7 +75,7 @@
 		right: -20px;
 		width: 30px;
 		padding: 10px 20px;
-		color: $color--white;
+		color: $white;
 		transition: transform 0.2s ease-in-out;
 		transform: translate3d(-35px, 0, 0);
 	}
@@ -88,4 +89,3 @@
 		transform: none;
 	}
 }
-

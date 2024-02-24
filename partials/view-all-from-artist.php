@@ -30,17 +30,17 @@ $avatar     = wp_get_attachment_image(
 	IMAGE_THUMBNAIL,
 	false,
 	[
-		'class' => 'author-avatar',
+		'class' => 'mw-65 border border-3 rounded-circle me-3 ',
 		'alt'   => esc_attr( $full_name ),
 	]
 );
 
 ?>
 
-<p class="author-view-more">
+<div class="d-flex align-items-center flex-row flex-nowrap">
 	<?php echo wp_kses_post( $avatar ); ?>
-	<a class="more-link" rel="author" href="<?php echo esc_url( $permalink ); ?>">
+	<a class="" href="<?php echo esc_url( $permalink ); ?>">
 		<?php echo esc_html__( 'View more objects by', 'rosenfield-collection' ); ?>
 		<?php echo esc_html( $full_name ); ?>
 	</a>
-</p>
+</div>

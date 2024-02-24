@@ -9,11 +9,62 @@
 @import "~bourbon";
 @import "node_modules/slick-carousel/slick/slick";
 @import "node_modules/slick-carousel/slick/slick-theme";
+
+// Bootstrap Functions.
+@import "~bootstrap/scss/functions";
+
+// Project Settings.
 @import "settings/_index";
+
+// Bootstrap Variables.
+@import "~bootstrap/scss/variables";
+
+// Saas map overrides.
+// $grid-breakpoints: map-merge($grid-breakpoints, $custom-breakpoints);
+// $container-max-widths: map-merge($container-max-widths, $custom-max-widths);
+// $theme-colors: map-merge($theme-colors, $custom-colors);
+// $font-sizes: map-merge($font-sizes, $custom-font-sizes);
+
+// Bootstrap utils.
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+
+// Bootstrap Layout & components.
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/helpers";
+
+$utilities: map-merge(
+	$utilities, (
+		"font-size": map-merge(map-get($utilities, "font-size"), (responsive: true), ),
+		"font-family": map-merge(map-get($utilities, "font-family"), (values: (
+			body: $font-family-base,
+			heading: $headings-font-family,
+			alt: $font-family-alt,
+		)), ),
+		"max-width": map-merge(map-get($utilities, "max-width"), (values: (
+			65: 65px,
+			700: 700px
+		)), ),
+	));
+
+// Bootstrap Utilities.
+@import "~bootstrap/scss/utilities/api";
+
 @import "tools/_index";
-@import "generic/_index";
 @import "elements/_index";
 @import "objects/_index";
 @import "components/_index";
-@import "plugins/_index";
 @import "utilities/_index";

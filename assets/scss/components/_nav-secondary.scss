@@ -12,7 +12,7 @@
 		a {
 			margin: 0;
 			padding: 0;
-			color: $color--text;
+			color: $body-color;
 			text-decoration: underline;
 
 			@include mq(m) {
@@ -23,8 +23,8 @@
 
 		a:hover,
 		a:focus,
-		.current-menu-item > a {
-			color: $color--primary;
+		.current-menu-item>a {
+			color: $primary;
 		}
 	}
 }

@@ -3,11 +3,10 @@
 .entry {
 
 	.featuredpost &,
-	.is-archive &,
 	.search & {
 		margin-bottom: $gutter;
-		border-radius: $base--border--radius;
-		background-color: $color--white;
+		border-radius: $border-radius;
+		background-color: $white;
 		text-align: center;
 
 		&:last-of-type {
@@ -18,27 +17,10 @@
 		}
 	}
 
-	&.one-sixth {
-		width: $one-half;
-
-		@include mq(m) {
-			width: $one-sixth;
-		}
-
-		&:nth-of-type(even) {
-			margin-left: $spacing--l;
-
-			@include mq(m) {
-				margin-left: auto;
-			}
-		}
-	}
-
-	// List view for taxonomies.
 	.view-toggle-list & {
 		display: flex;
 		padding-bottom: $spacing--xs;
-		border-bottom: 1px dotted $color--secondary;
+		border-bottom: 1px dotted $secondary;
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: flex-start;
@@ -51,7 +33,7 @@
 	.search & {
 		display: flex;
 		margin-bottom: $spacing--m;
-		border-bottom: 1px dotted $color--secondary;
+		border-bottom: 1px dotted $secondary;
 		flex-wrap: nowrap;
 		align-items: flex-start;
 		text-align: left;
@@ -63,17 +45,8 @@
 		}
 	}
 
-	// Entry header.
-	&-header {
-	}
-
 	// Entry title.
 	&-title {
-
-		.is-archive & {
-			margin-bottom: $spacing--xs;
-			font-size: $font-size--h3;
-		}
 
 		.search & {
 			margin-bottom: 0;
@@ -84,12 +57,10 @@
 		}
 
 		a {
-			color: $color--text;
-			text-decoration: none;
 
 			@include hover-focus {
-				border-bottom: 1px dotted $color--black;
-				color: $color--primary;
+				border-bottom: 1px dotted $black;
+				color: $primary;
 				text-decoration: none;
 			}
 		}
@@ -97,19 +68,19 @@
 
 	// Entry artist.
 	&-artist {
-		color: $color--text;
-		font-family: $font-family--alt;
+		color: $body-color;
+		font-family: $font-family-alt;
 		font-style: italic;
 		text-decoration: none;
 
 		.view-toggle-list & {
-			font-family: $base--font-family;
+			font-family: $font-family-base;
 			font-style: normal;
 		}
 
 		@include hover-focus {
-			border-bottom: 1px dotted $color--black;
-			color: $color--primary;
+			border-bottom: 1px dotted $black;
+			color: $primary;
 			text-decoration: none;
 		}
 	}
@@ -118,47 +89,25 @@
 	&-sep {
 		display: inline-block;
 		margin: 0 $spacing--s;
-		color: $color--gray-800;
+		color: $gray-800;
 
 		.data &,
 		.location &,
 		.admin-only & {
-			color: $color--white;
+			color: $white;
 		}
 
 		p & {
 			display: none;
 		}
 
-		.view-toggle-list p & {
-			display: none;
-
-			@include mq(m) {
-				display: inline-block;
-			}
-		}
-
-		.taxonomies > &:first-of-type {
-			display: none;
-
-			@include mq(m) {
-				display: inline-block;
-			}
-		}
-
 		.search p & {
 			display: inline-block;
 		}
 
-		.site-footer & {
-			display: none;
-
-			@include mq(m) {
-				display: inline-block;
-			}
-		}
-
-		.hero-section-edit & {
+		.view-toggle-list p,
+		.taxonomies>&:first-of-type,
+		.site-footer {
 			display: none;
 
 			@include mq(m) {
@@ -177,32 +126,8 @@
 	// Entry user report heading.
 	&-user-heading {
 		margin-right: $spacing--xs;
-		font-weight: $font-weight--bold;
+		font-weight: $font-weight-bold;
 		text-transform: lowercase;
-	}
-
-	// Entry title link.
-	&-title-link {
-	}
-
-	// Entry time.
-	&-time {
-	}
-
-	// Entry author.
-	&-author {
-	}
-
-	// Entry author link.
-	&-author-link {
-	}
-
-	// Entry author name.
-	&-author-name {
-	}
-
-	// Entry comments link
-	&-comments-link {
 	}
 
 	// Entry meta.
@@ -212,7 +137,6 @@
 
 	// Entry image link.
 	&-image-link {
-		display: block;
 
 		.view-toggle-list & {
 
@@ -223,13 +147,6 @@
 		}
 
 		img {
-			min-width: 100%;
-			border: 1px solid $color--border;
-			box-shadow: $base--box-shadow;
-
-			.search & {
-				min-width: auto;
-			}
 
 			.view-toggle-list & {
 
@@ -244,11 +161,6 @@
 
 	// Entry content.
 	&-content {
-
-		.is-archive & {
-			display: flex;
-			justify-content: center;
-		}
 
 		p {
 
@@ -290,19 +202,8 @@
 		}
 	}
 
-	// Entry categories.
-	&-categories {
-	}
-
-	// Entry tags.
-	&-tags {
-	}
-
 	// Entry wrap.
 	&-wrap {
-		display: inline-block;
-		width: 100%;
-		padding: $spacing--s;
 
 		.search & {
 			padding-top: 0;
@@ -344,12 +245,13 @@
 // More link.
 .more-link {
 	border-bottom: 1px dotted;
-	font-family: $font-family--alt;
+	font-family: $font-family-alt;
 	font-style: italic;
+	position: relative;
 	text-decoration: none;
 
 	@include hover-focus {
-		border-bottom: 1px dotted $color--black;
+		border-bottom: 1px dotted $black;
 		text-decoration: none;
 	}
 

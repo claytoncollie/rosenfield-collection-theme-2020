@@ -8,13 +8,7 @@
 namespace RosenfieldCollection\Theme\Config\PageLayouts;
 
 return [
-	'add'    => [
-		[
-			'id'    => 'narrow-content',
-			'label' => __( 'Narrow Content', 'rosenfield-collection' ),
-			'img'   => ROSENFIELD_COLLECTION_THEME_STYLESHEET_URL . 'assets/img/narrow-content.gif',
-		],
-	],
+	'add'    => [],
 	'remove' => [
 		'content-sidebar',
 		'content-sidebar-sidebar',

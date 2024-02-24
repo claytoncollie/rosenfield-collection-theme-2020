@@ -62,7 +62,7 @@ $prefix    = $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 
 ?>
 
-<section id="rosenfield-collection-object-data" class="post-meta" role="contentinfo" aria-label="Object data">
+<section id="rosenfield-collection-object-data" class="sticky-md-top post-meta" role="contentinfo" aria-label="Object data">
 	<div class="wrap">
 		<div class="data">
 
@@ -77,7 +77,7 @@ $prefix    = $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 				&middot;
 			</span>
 			<span>
-				<a href="<?php echo esc_url( $author_permalink ); ?>" rel="author">
+				<a href="<?php echo esc_url( $author_permalink ); ?>">
 					<?php echo esc_html( $full_name ); ?>
 				</a>
 			</span>

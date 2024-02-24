@@ -44,6 +44,7 @@ function setup(): void {
 	add_filter( 'query_vars', __NAMESPACE__ . '\add_query_var' );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\the_filter', 12 );
 	add_action( 'genesis_loop', __NAMESPACE__ . '\the_loop', 12 );
+	add_action( 'genesis_before_footer', __NAMESPACE__ . '\the_pagination' );
 	add_action( 'acf/save_post', __NAMESPACE__ . '\set_artist_filter_value', 20 );
 	add_action( 'user_register', __NAMESPACE__ . '\set_artist_filter_value', 20 );
 	add_action( 'gform_user_registered', __NAMESPACE__ . '\set_artist_filter_value', 20 );
@@ -79,6 +80,17 @@ function the_loop(): void {
 	}
 
 	get_template_part( 'partials/artist-loop' );
+}
+
+/**
+ * Display the pagination
+ */
+function the_pagination(): void {
+	if ( ! is_page_template( 'templates/artists.php' ) ) {
+		return;
+	}
+
+	get_template_part( 'partials/artist-pagination' );
 }
 
 /**

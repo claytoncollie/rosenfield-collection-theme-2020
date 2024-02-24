@@ -8,21 +8,77 @@
 namespace RosenfieldCollection\Theme\Structure\Single;
 
 use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
+use function RosenfieldCollection\Theme\Helpers\is_type_archive;
+use function RosenfieldCollection\Theme\Helpers\is_type_archive_page;
 
 use const RosenfieldCollection\Theme\Fields\OBJECT_IMAGES;
 use const RosenfieldCollection\Theme\ImageSizes\IMAGE_OBJECT;
+use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
 use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 
 /**
  * Setup
  */
 function setup(): void {
+	add_filter( 'genesis_attr_entry-content', __NAMESPACE__ . '\entry_content_attributes' );
+	add_filter( 'genesis_attr_entry-image', __NAMESPACE__ . '\entry_image_attributes' );
+	add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\entry_title_attributes' );
+	add_filter( 'genesis_attr_entry-title-link', __NAMESPACE__ . '\entry_title_link_attributes' );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\view_all_from_artist', 12 );
 	add_action( 'genesis_before_content_sidebar_wrap', __NAMESPACE__ . '\the_post_meta', 8 );
 	add_filter( 'body_class', __NAMESPACE__ . '\has_gallery' );
 	add_action( 'genesis_entry_content', __NAMESPACE__ . '\the_gallery' );
 	add_action( 'genesis_sidebar', __NAMESPACE__ . '\the_thumbnails' );
 }
+
+/**
+ * Entry content attributes
+ * 
+ * @param array $attributes Attributes.
+ */
+function entry_content_attributes( array $attributes ): array {
+	if ( ! is_singular( PAGE_SLUG ) ) {
+		return $attributes;
+	}
+
+	$attributes['class'] = 'is-layout-constrained has-global-padding';
+	return $attributes;
+}
+
+/**
+ * Entry image attributes
+ * 
+ * @param array $attributes Attributes.
+ */
+function entry_image_attributes( array $attributes ): array {
+	$attributes['class'] .= ' img-fluid border shadow-sm';
+	return $attributes;
+}
+
+/**
+ * Entry title attributes
+ * 
+ * @param array $attributes Attributes.
+ */
+function entry_title_attributes( array $attributes ): array {
+	if ( ! is_type_archive() && ! is_type_archive_page() ) {
+		return $attributes;
+	}
+
+	$attributes['class'] .= ' h3';
+	return $attributes;
+}
+
+/**
+ * Entry title link attributes
+ * 
+ * @param array $attributes Attributes.
+ */
+function entry_title_link_attributes( array $attributes ): array {
+	$attributes['class'] .= ' text-decoration-none';
+	return $attributes;
+}
+
 
 /**
  * View all objects by artist link

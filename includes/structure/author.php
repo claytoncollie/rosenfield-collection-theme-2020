@@ -49,7 +49,7 @@ function do_the_artist_avatar(): void {
 	$full_name  = $first_name . ' ' . $last_name;
 
 	printf(
-		'<img width="%s" height="%s" src="%s" class="author-avatar" alt="%s" />',
+		'<img width="%s" height="%s" src="%s" class="img-fluid mb-3 border border-5 rounded-circle" alt="%s" />',
 		esc_attr( (string) $avatar[1] ),
 		esc_attr( (string) $avatar[2] ),
 		esc_url( $avatar[0] ),
@@ -83,7 +83,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $website ) ) {
 		printf(
-			'<div class="author-website"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="fs-4 mb-4"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $website ),
 			esc_url( $website )
 		);
@@ -91,7 +91,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $twitter ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="d-inline-block me-4"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $twitter ),
 			svg( 'twitter-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
@@ -99,7 +99,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $facebook ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="d-inline-block me-4"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $facebook ),
 			svg( 'facebook-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
@@ -107,7 +107,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $instagram ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="d-inline-block me-4"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $instagram ),
 			svg( 'instagram-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
@@ -115,7 +115,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $pinterest ) ) {
 		printf(
-			'<div class="author-social"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="d-inline-block me-4"><a target="_blank" href="%s">%s</a></div>',
 			esc_url( $pinterest ),
 			svg( 'pinterest-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
@@ -123,7 +123,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $bio ) ) {
 		printf(
-			'<div class="hero-subtitle" itemprop="description">%s</div>',
+			'<div class="mt-4">%s</div>',
 			wp_kses_post( wpautop( $bio ) )
 		);
 	}

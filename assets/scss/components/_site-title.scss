@@ -1,0 +1,13 @@
+// Site title.
+
+.site-title {
+	a {
+		color: $white;
+		text-decoration: none;
+
+		@include hover-focus {
+			color: $white;
+			text-decoration: underline;
+		}
+	}
+}

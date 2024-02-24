@@ -5,7 +5,7 @@
 	*,
 	*::before,
 	*::after {
-		color: $color--dark !important;
+		color: $dark !important;
 		background: transparent !important;
 		box-shadow: none !important;
 		text-shadow: none !important;
@@ -44,7 +44,7 @@
 
 	blockquote,
 	pre {
-		border: $base--border;
+		border: $border;
 		page-break-inside: avoid;
 	}
 
@@ -72,8 +72,6 @@
 	.nav-secondary,
 	.post-edit-link,
 	.sidebar,
-	.hero-section .entry-sep,
-	.hero-section .more-link,
 	.post-meta .location,
 	.slider-gallery .button {
 		display: none !important;
@@ -83,7 +81,7 @@
 		width: 100%;
 	}
 
-	.site-title > a {
+	.site-title>a {
 		margin: 0;
 		text-decoration: none;
 		text-indent: 0;
@@ -95,7 +93,7 @@
 	}
 
 	.post-meta {
-		border-bottom: 1px dotted $color--secondary;
+		border-bottom: 1px dotted $secondary;
 
 		&.sticky {
 			position: relative;
@@ -116,10 +114,6 @@
 		&-cloned {
 			display: none !important;
 		}
-	}
-
-	.author-box {
-		margin-bottom: 0;
 	}
 
 	h1,

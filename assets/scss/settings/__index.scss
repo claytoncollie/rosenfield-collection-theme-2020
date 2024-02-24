@@ -1,12 +1,6 @@
-// Setting imports.
-//
-// Settings handle the configuration and don't output CSS.
-// This is a good place to define things like variables.
-
 @import "breakpoints";
-@import "typography";
 @import "colors";
-@import "global";
+@import "typography";
+@import "border";
 @import "spacing";
-@import "layout";
 @import "grid";
