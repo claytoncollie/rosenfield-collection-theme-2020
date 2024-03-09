@@ -5,57 +5,54 @@ name: Deployment
 on:
   workflow_call:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  # stylelint:
-  #   uses: ./.github/workflows/stylelint.yml
+  stylelint:
+    uses: ./.github/workflows/stylelint.yml
 
-  # eslint:
-  #   uses: ./.github/workflows/eslint.yml
+  eslint:
+    uses: ./.github/workflows/eslint.yml
 
-  # phpcs:
-  #   uses: ./.github/workflows/phpcs.yml
+  phpcs:
+    uses: ./.github/workflows/phpcs.yml
 
-  # phpstan:
-  #   uses: ./.github/workflows/phpstan.yml
+  phpstan:
+    uses: ./.github/workflows/phpstan.yml
+
+  rector:
+    uses: ./.github/workflows/rector.yml
 
   deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    # needs: [stylelint,eslint,phpcs,phpstan]
+    needs: [stylelint,eslint,phpcs,phpstan,rector]
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
 
-    # - name: Setup Node
-    #   uses: actions/setup-node@v3
-    #   with:
-    #     node-version-file: '.nvmrc'
-
-    # - name: Check Node version
-    #   run: node -v
-
-    # - name: Check Node version
-    #   run: npm -v
-
-    # - name: Install Node dependencies
-    #   run: npm install
-
-    # - name: Build assets
-    #   run: npm run build
-
-    - name: Deploy to Closte
-      uses: easingthemes/ssh-deploy@main
+    - name: Setup Node
+      uses: actions/setup-node@v3
       with:
-        SSH_PRIVATE_KEY: ${{ secrets.REMOTE_PASSWORD }}
-        ARGS: "-azvr --inplace --delete"
-        SOURCE: "."
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-        TARGET: /public_html/wp-content/themes/rosenfield-collection-theme-2020
-        EXCLUDE: ".deployignore"
+        node-version-file: '.nvmrc'
+
+    - name: Check Node version
+      run: node -v
+
+    - name: Check Node version
+      run: npm -v
+
+    - name: Install Node dependencies
+      run: npm install
+
+    - name: Build assets
+      run: npm run build
+      
+    - name: Deploy to WP Engine
+      uses: wpengine/github-action-wpe-site-deploy@v3.2.4
+      with: 
+        WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
+        FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=./.deployignore
+        CACHE_CLEAR: TRUE
+        SRC_PATH: "."
+        REMOTE_PATH: "wp-content/themes/rosenfield-collection-theme-2020/"
+        WPE_ENV: ${{ inputs.install }}
