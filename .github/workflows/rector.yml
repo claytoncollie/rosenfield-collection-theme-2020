@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  phpcs:
+  rector:
     runs-on: ubuntu-latest
 
     steps:

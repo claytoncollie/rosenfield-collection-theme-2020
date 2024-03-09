@@ -1,0 +1,16 @@
+name: Deployment - Production
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/deployment.yml
+    with:
+      install: ${{ vars.WPE_INSTALL_OP }}
+    secrets:
+      WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
