@@ -22,20 +22,20 @@ if ( empty( $term_link ) ) {
 	return;
 }
 
+$is_grid = get_query_var( VIEW_VAR ) !== 'list' ? 'active' : '';
+$is_list = get_query_var( VIEW_VAR ) === 'list' ? 'active' : '';
+
 ?>
 
-<div class="d-flex align-items-center justify-content-center pt-3">
-	<a href="<?php echo esc_url( $term_link ); ?>" class="fs-5 lh-1 d-flex align-items-center fst-italic text-decoration-none" id="view-toggle-grid" aria-label="<?php echo esc_attr__( 'View as grid', 'rosenfield-collection' ); ?>">
-		<span class="me-2">
+<div class="pt-3 btn-group">
+	<a href="<?php echo esc_url( $term_link ); ?>" class="d-flex align-items-center  btn btn-outline-primary <?php echo esc_attr( $is_grid ); ?>" id="view-toggle-grid" aria-label="<?php echo esc_attr__( 'View as grid', 'rosenfield-collection' ); ?>">
+		<span class="me-2 lh-1">
 			<?php echo svg( 'border-all-solid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</span>
 		<?php echo esc_html__( 'Grid', 'rosenfield-collection' ); ?>
 	</a>
-	<span class="entry-sep">
-		&middot;
-	</span>
-	<a href="<?php echo esc_url( add_query_arg( VIEW_VAR, 'list', $term_link ) ); ?>" class="fs-5 lh-1 d-flex align-items-center fst-italic text-decoration-none" id="view-toggle-list" aria-label="<?php echo esc_attr__( 'View as list', 'rosenfield-collection' ); ?>">
-		<span class="me-2">
+	<a href="<?php echo esc_url( add_query_arg( VIEW_VAR, 'list', $term_link ) ); ?>" class="d-flex align-items-center  btn btn-outline-primary <?php echo esc_attr( $is_list ); ?>" id="view-toggle-list" aria-label="<?php echo esc_attr__( 'View as list', 'rosenfield-collection' ); ?>">
+		<span class="me-2 lh-1">
 			<?php echo svg( 'list-solid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</span>
 		<?php echo esc_html__( 'List', 'rosenfield-collection' ); ?>

@@ -2,21 +2,6 @@
 
 .entry {
 
-	.featuredpost &,
-	.search & {
-		margin-bottom: $gutter;
-		border-radius: $border-radius;
-		background-color: $white;
-		text-align: center;
-
-		&:last-of-type {
-
-			@include mq($until: xs) {
-				margin-bottom: 0;
-			}
-		}
-	}
-
 	.view-toggle-list & {
 		display: flex;
 		padding-bottom: $spacing--xs;
@@ -27,42 +12,6 @@
 
 		@include mq(m) {
 			flex-wrap: nowrap;
-		}
-	}
-
-	.search & {
-		display: flex;
-		margin-bottom: $spacing--m;
-		border-bottom: 1px dotted $secondary;
-		flex-wrap: nowrap;
-		align-items: flex-start;
-		text-align: left;
-
-		@include mq(m) {
-			margin-bottom: 0;
-			border: 0;
-			align-items: center;
-		}
-	}
-
-	// Entry title.
-	&-title {
-
-		.search & {
-			margin-bottom: 0;
-
-			@include mq(m) {
-				margin-bottom: $spacing--xs;
-			}
-		}
-
-		a {
-
-			@include hover-focus {
-				border-bottom: 1px dotted $black;
-				color: $primary;
-				text-decoration: none;
-			}
 		}
 	}
 
@@ -99,10 +48,6 @@
 
 		p & {
 			display: none;
-		}
-
-		.search p & {
-			display: inline-block;
 		}
 
 		.view-toggle-list p,
@@ -159,17 +104,6 @@
 		}
 	}
 
-	// Entry content.
-	&-content {
-
-		p {
-
-			&:last-of-type {
-				margin-bottom: 0;
-			}
-		}
-	}
-
 	// Entry footer.
 	&-footer {
 		display: none;
@@ -205,14 +139,6 @@
 	// Entry wrap.
 	&-wrap {
 
-		.search & {
-			padding-top: 0;
-
-			@include mq(m) {
-				padding-top: $spacing--s;
-			}
-		}
-
 		.view-toggle-list & {
 			display: inline-block;
 			width: 100%;
@@ -232,30 +158,12 @@
 	// Report archive.
 	.report & {
 		display: flex;
-		margin-bottom: $gutter !important;
+		margin-bottom: $spacing--m !important;
 		border-width: 3px;
 		border-top: 0 !important;
 		border-bottom: 0 !important;
 		border-left: 0 !important;
 		flex-wrap: wrap;
 		align-items: flex-start;
-	}
-}
-
-// More link.
-.more-link {
-	border-bottom: 1px dotted;
-	font-family: $font-family-alt;
-	font-style: italic;
-	position: relative;
-	text-decoration: none;
-
-	@include hover-focus {
-		border-bottom: 1px dotted $black;
-		text-decoration: none;
-	}
-
-	.single-post & {
-		display: inline-block;
 	}
 }

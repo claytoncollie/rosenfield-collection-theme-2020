@@ -5,6 +5,8 @@
  * @package RosenfieldCollection\Theme
  */
 
+use function RosenfieldCollection\Theme\Helpers\get_the_terms_light_links;
+
 use const RosenfieldCollection\Theme\Fields\OBJECT_HEIGHT;
 use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
 use const RosenfieldCollection\Theme\Fields\OBJECT_LENGTH;
@@ -22,20 +24,20 @@ if ( empty( $post_id ) ) {
 	return;
 }
 
-$forms = get_the_term_list( $post_id, FORM, '', ', ', '' );
-$forms = $forms && ! is_wp_error( $forms ) ? (string) $forms : '';
+$forms = get_the_terms_light_links( $post_id, FORM );
+$forms = empty( $forms ) ? '' : $forms;
 
-$firings = get_the_term_list( $post_id, FIRING, '', ', ' );
-$firings = $firings && ! is_wp_error( $firings ) ? (string) $firings : '';
+$firings = get_the_terms_light_links( $post_id, FIRING );
+$firings = empty( $firings ) ? '' : $firings;
 
-$techniques = get_the_term_list( $post_id, TECHNIQUE, '', ', ' );
-$techniques = $techniques && ! is_wp_error( $techniques ) ? (string) $techniques : '';
+$techniques = get_the_terms_light_links( $post_id, TECHNIQUE );
+$techniques = empty( $techniques ) ? '' : $techniques;
 
-$rows = get_the_term_list( $post_id, ROW, '', ', ' );
-$rows = $rows && ! is_wp_error( $rows ) ? (string) $rows : '';
+$rows = get_the_terms_light_links( $post_id, ROW );
+$rows = empty( $rows ) ? '' : $rows;
 
-$columns = get_the_term_list( $post_id, COLUMN, '', ', ' );
-$columns = $columns && ! is_wp_error( $columns ) ? (string) $columns : '';
+$columns = get_the_terms_light_links( $post_id, COLUMN );
+$columns = empty( $columns ) ? '' : $columns;
 
 $length = get_field( OBJECT_LENGTH, $post_id );
 $length = $length ? (string) $length : ''; // @phpstan-ignore-line
@@ -62,10 +64,9 @@ $prefix    = $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 
 ?>
 
-<section id="rosenfield-collection-object-data" class="sticky-md-top post-meta" role="contentinfo" aria-label="Object data">
-	<div class="wrap">
-		<div class="data">
-
+<section id="rosenfield-collection-object-data" class="sticky-md-top container-xxl bg-dark text-light border-1 border-dotted-top py-2" role="contentinfo" aria-label="Object data">
+	<div class="row">
+		<div class="col col-12 col-md-9">
 			<?php if ( ! empty( $prefix ) && ! empty( $object_id ) ) : ?>
 				<span>
 					<?php echo esc_html( $prefix ); ?>
@@ -77,7 +78,7 @@ $prefix    = $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 				&middot;
 			</span>
 			<span>
-				<a href="<?php echo esc_url( $author_permalink ); ?>">
+				<a href="<?php echo esc_url( $author_permalink ); ?>" class="link-light link-dots-light">
 					<?php echo esc_html( $full_name ); ?>
 				</a>
 			</span>
@@ -116,7 +117,7 @@ $prefix    = $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 
 		</div>
 
-		<div class="location">
+		<div class="col col-12 col-md-3 d-flex justify-content-md-end">
 
 			<?php if ( ! empty( $columns ) ) : ?>
 				<?php echo esc_html__( 'Column', 'rosenfield-collection' ); ?>

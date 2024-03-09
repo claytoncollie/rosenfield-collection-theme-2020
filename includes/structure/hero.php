@@ -60,6 +60,7 @@ function hero_setup(): void {
 	add_action( 'genesis_archive_title_descriptions', __NAMESPACE__ . '\do_archive_headings_intro_text', 12, 3 );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_title', 10 );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_view_toggle', 15 );
+	add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_search_form', 15 );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_excerpt', 20 );
 	add_action( 'genesis_before_content', __NAMESPACE__ . '\hero_remove_404_title' );
 	add_action( 'genesis_after_header', __NAMESPACE__ . '\hero_display' );
@@ -80,6 +81,10 @@ function hero_remove_404_title(): void {
  * Display title in hero section.
  */
 function hero_title(): void {
+	if ( is_front_page() ) {
+		return;
+	} 
+
 	$open  = '<h1 %s>';
 	$close = '</h1>';
 
@@ -95,9 +100,9 @@ function hero_title(): void {
 		$title     = get_the_title();
 		$permalink = get_permalink();
 		$permalink = $permalink ? (string) $permalink : '';
-		$open      = '<div><h1 %s>';
+		$open      = '<div class="col col-12 col-md-7 text-start d-flex align-items-center flex-column flex-md-row mb-4 mb-md-0"><h1 %s>';
 		$close     = sprintf(
-			'</h1><span class="entry-sep">&middot;</span><a href="%s" class="more-link">%s</a></div>',
+			'</h1><span class="entry-sep d-none d-md-inline-block">&middot;</span><a href="%s" class="link-fancy">%s</a></div>',
 			esc_url(
 				add_query_arg(
 					[
@@ -129,6 +134,10 @@ function hero_title(): void {
  * Display page excerpt.
  */
 function hero_excerpt(): void {
+	if ( is_front_page() ) {
+		return;
+	} 
+	
 	$excerpt = '';
 	$id      = '';
 
@@ -173,6 +182,17 @@ function hero_view_toggle(): void {
 	}
 
 	get_template_part( 'partials/taxonomy-view' );
+}
+
+/**
+ * Display search form
+ */
+function hero_search_form(): void {
+	if ( ! is_search() ) {
+		return;
+	}
+
+	get_template_part( 'partials/search-form' );
 }
 
 /**

@@ -1,10 +1,19 @@
 // Typography settings.
 
 // Base color
-$body-color: $gray-700;
+$body-color: $gray-800;
+
+// Link color
+$link-color: $gray-800;
+$link-hover-color: $dark;
+
+// navbar color
+$navbar-light-color: $gray-800;
+$navbar-light-hover-color: $dark;
+$navbar-light-active-color: $dark;
 
 // Base font
-$font-size-base: 1rem;
+$font-size-base: 1.125rem;
 
 // Headings
 $h1-font-size: 2.8em;

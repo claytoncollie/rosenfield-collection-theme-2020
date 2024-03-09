@@ -83,7 +83,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $website ) ) {
 		printf(
-			'<div class="fs-4 mb-4"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="fs-4 mb-4"><a target="_blank" href="%s" class="link-dots">%s</a></div>',
 			esc_url( $website ),
 			esc_url( $website )
 		);

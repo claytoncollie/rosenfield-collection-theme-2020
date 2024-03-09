@@ -70,7 +70,7 @@ function read_more_link(): string {
 	}
 
 	return sprintf(
-		'<a class="more-link" href="%s">%s</a>',
+		'<a class="link-fancy" href="%s">%s</a>',
 		esc_url( $permalink ),
 		esc_html( ucwords( get_object_prefix_and_id() ) )
 	);
@@ -81,7 +81,7 @@ function read_more_link(): string {
  */
 function entry_wrap_open(): void {
 	if ( is_type_archive() ) {
-		echo wp_kses_post( '<div class="entry-wrap d-inline-block p-2 text-center w-100">' );
+		echo wp_kses_post( '<div class="d-inline-block p-2 text-center w-100">' );
 	}
 }
 

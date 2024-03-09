@@ -18,3 +18,14 @@
 .fa-w-14 {
 	width: 32px;
 }
+
+.btn {
+
+	@include hover-focus {
+		fill: var(--bs-btn-hover-color);
+	}
+}
+
+.btn.active {
+	fill: var(--bs-btn-hover-color);
+}

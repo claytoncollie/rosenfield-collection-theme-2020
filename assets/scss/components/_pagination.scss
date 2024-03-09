@@ -53,48 +53,4 @@
 		text-decoration-line: none;
 	}
 
-	// Previous item.
-	&-previous {
-		display: block;
-		width: 100%;
-		margin-bottom: $spacing--s;
-
-		@include mq(m) {
-			display: inline-block;
-			width: auto;
-			margin-bottom: 0;
-		}
-
-		a {
-			display: block;
-			width: 100%;
-
-			@include mq(m) {
-				width: auto;
-			}
-		}
-	}
-
-	// Next item.
-	&-next {
-		display: block;
-		width: 100%;
-		margin-top: $spacing--s;
-		text-align: right;
-
-		@include mq(m) {
-			display: inline-block;
-			width: auto;
-			margin-top: 0;
-		}
-
-		a {
-			display: block;
-			width: 100%;
-
-			@include mq(m) {
-				width: auto;
-			}
-		}
-	}
 }

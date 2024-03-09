@@ -20,7 +20,7 @@ $object_id  = get_object_prefix_and_id();
 
 ?>
 
-<a href="<?php echo esc_url( $permalink ); ?>" class="font-alt fst-italic text-decoration-none">
+<a href="<?php echo esc_url( $permalink ); ?>" class="link-fancy">
 	<?php echo esc_html( $full_name ); ?>
 </a>
 

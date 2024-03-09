@@ -56,7 +56,7 @@ function title_area_attributes( array $attributes ): array {
  * @param array $attributes Attributes.
  */
 function site_title_attributes( array $attributes ): array {
-	$attributes['class'] .= ' mb-0 fs-h4 fs-md-h2 fw-normal text-light';
+	$attributes['class'] .= ' mb-0 h2 fs-md-h2 fw-normal text-light';
 	return $attributes;
 }
 

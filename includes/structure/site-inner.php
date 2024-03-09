@@ -33,5 +33,12 @@ function container( array $attributes ): array {
  */
 function wrapper( string $output, string $original_output ): string {
 	$output = 'open' === $original_output ? '<div class="container-xxl gx-md-5 py-3 py-md-5">' : $output;
-	return 'close' === $original_output ? '</div>' : $output;
+	$output = 'close' === $original_output ? '</div>' : $output;
+
+	if ( is_single() ) {
+		$output = 'open' === $original_output ? '<div class="container-xxl py-3 py-md-5"><div class="row">' : $output;
+		$output = 'close' === $original_output ? '</div></div>' : $output;
+	}
+
+	return $output;
 }

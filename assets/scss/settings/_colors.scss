@@ -1,17 +1,5 @@
 // Color settings.
 
-// Palette
-$blue: #007bff;
-$indigo: #6610f2;
-$purple: #6f42c1;
-$pink: #e83e8c;
-$red: #dc3545;
-$orange: #fd7e14;
-$yellow: #ffc107;
-$green: #28a745;
-$teal: #20c997;
-$cyan: #17a2b8;
-
 // Grayscale
 $white: #fff;
 $gray-100: #f8f9fa;
@@ -28,45 +16,6 @@ $black: #000;
 // Theme
 $primary: $black;
 $secondary: $gray-600;
-$success: $green;
-$info: $blue;
-$warning: $yellow;
-$error: $red;
 $light: $gray-100;
 $medium: $gray-500;
 $dark: $black;
-
-$colors: (
-	"primary": $primary,
-	"secondary": $secondary,
-	"success": $success,
-	"info": $info,
-	"warning": $warning,
-	"error": $error,
-	"light": $light,
-	"medium": $medium,
-	"dark": $dark,
-
-	"blue": $blue,
-	"indigo": $indigo,
-	"purple": $purple,
-	"pink": $pink,
-	"red": $red,
-	"orange": $orange,
-	"yellow": $yellow,
-	"green": $green,
-	"teal": $teal,
-	"cyan": $cyan,
-
-	"white": $white,
-	"gray-100": $gray-100,
-	"gray-200": $gray-200,
-	"gray-300": $gray-300,
-	"gray-400": $gray-400,
-	"gray-500": $gray-500,
-	"gray-600": $gray-600,
-	"gray-700": $gray-700,
-	"gray-800": $gray-800,
-	"gray-900": $gray-900,
-	"black": $black,
-);

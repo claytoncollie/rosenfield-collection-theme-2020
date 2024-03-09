@@ -30,16 +30,16 @@ $avatar     = wp_get_attachment_image(
 	IMAGE_THUMBNAIL,
 	false,
 	[
-		'class' => 'mw-65 border border-3 rounded-circle me-3 ',
+		'class' => 'mw-50 mw-md-65 mh-50 mh-md-65 border border-3 rounded-circle me-3 ',
 		'alt'   => esc_attr( $full_name ),
 	]
 );
 
 ?>
 
-<div class="d-flex align-items-center flex-row flex-nowrap">
+<div class="col col-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-end flex-row flex-nowrap">
 	<?php echo wp_kses_post( $avatar ); ?>
-	<a class="" href="<?php echo esc_url( $permalink ); ?>">
+	<a class="link-fancy" href="<?php echo esc_url( $permalink ); ?>">
 		<?php echo esc_html__( 'View more objects by', 'rosenfield-collection' ); ?>
 		<?php echo esc_html( $full_name ); ?>
 	</a>

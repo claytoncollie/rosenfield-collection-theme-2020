@@ -12,6 +12,38 @@ use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
 
 /**
+ * Get the terms from taxonomy and add the light link utility classes
+ *
+ * @param int    $post_id Post ID.
+ * @param string $taxonomy Taxonomy.
+ */
+function get_the_terms_light_links( int $post_id, string $taxonomy ): string {
+	$terms = get_the_terms( $post_id, $taxonomy );
+	if ( is_wp_error( $terms ) ) {
+		return '';
+	}
+	if ( empty( $terms ) ) {
+		return '';
+	}
+
+	$links = [];
+
+	foreach ( $terms as $term ) {
+		$link = get_term_link( $term, $taxonomy );
+		if ( is_wp_error( $link ) ) {
+			continue;
+		}
+		$links[] = sprintf(
+			'<a href="%s" class="link-light link-dots-light">%s</a>',
+			esc_url( $link ),
+			esc_html( $term->name )
+		);
+	}
+
+	return wp_kses_post( implode( ', ', $links ) );
+}
+
+/**
  * Load an inline SVG.
  *
  * @param string $filename The filename of the SVG you want to load.
@@ -24,18 +56,6 @@ function svg( string $filename ): string {
 	return '';
 }
 
-/**
- * Return first if conditions match up for column count.
- *
- * @param int $i Column count as of right now.
- * @param int $columns Number of columns we are starting with.
- */
-function column_class( int $i, int $columns ): string {
-	if ( 0 === $i || 0 === $i % $columns ) {
-		return 'first';
-	}
-	return '';
-}
 /**
  * Get the object prefix and ID.
  */
@@ -80,13 +100,6 @@ function get_taxonomy_term_prefix(): string {
 	$prefix = get_term_meta( $term_id, OBJECT_PREFIX, true );
 
 	return $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
-}
-
-/**
- * Check if were on any type of singular page.
- */
-function is_type_single(): bool {
-	return is_front_page() || is_single() || is_page() || is_404() || is_attachment() || is_singular();
 }
 
 /**

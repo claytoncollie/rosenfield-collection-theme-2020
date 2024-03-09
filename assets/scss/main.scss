@@ -38,6 +38,7 @@
 @import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/button-group";
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/transitions";
 @import "~bootstrap/scss/nav";
@@ -48,16 +49,37 @@
 
 $utilities: map-merge(
 	$utilities, (
-		"font-size": map-merge(map-get($utilities, "font-size"), (responsive: true), ),
 		"font-family": map-merge(map-get($utilities, "font-family"), (values: (
 			body: $font-family-base,
 			heading: $headings-font-family,
 			alt: $font-family-alt,
 		)), ),
-		"max-width": map-merge(map-get($utilities, "max-width"), (values: (
+		"max-height": map-merge(map-get($utilities, "max-height"), (values: (
+			50: 50px,
 			65: 65px,
+			100: 100px,
+			150: 150px,
 			700: 700px
 		)), ),
+		"max-width": map-merge(map-get($utilities, "max-width"), (values: (
+			50: 50px,
+			65: 65px,
+			100: 100px,
+			150: 150px,
+			700: 700px
+		)), ),
+		"height": map-merge(map-get($utilities, "height"), (values: (
+			15: 15px,
+			25: 25%,
+			50: 50%,
+			75: 75%,
+			100: 100%,)), ),
+		"width": map-merge(map-get($utilities, "width"), (values: (
+			15: 15px,
+			25: 25%,
+			50: 50%,
+			75: 75%,
+			100: 100%)), ),
 	));
 
 // Bootstrap Utilities.

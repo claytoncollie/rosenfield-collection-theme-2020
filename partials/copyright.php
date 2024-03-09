@@ -8,27 +8,27 @@
 $menu = genesis_get_nav_menu( 
 	[ 
 		'theme_location' => 'secondary',
-		'menu_class'     => 'menu list-unstyled mb-0',
+		'menu_class'     => 'navbar-nav',
 	] 
 ) ?? '';
 
 ?>
 
 <div class="col col-12 col-md-6" id="rosenfield-collection-footer-credits" aria-label="<?php echo esc_attr__( 'Footer Credits', 'rosenfield-collection' ); ?>">
-	<span class="d-block d-md-inline-block">
+	<span class="d-block d-md-inline-block mb-3 mb-md-0">
 		<?php echo do_shortcode( '[footer_copyright]' ); ?> 
 		<?php echo esc_html__( 'All Rights Reserved', 'rosenfield-collection' ); ?>
 	</span>
 	<span class="d-none d-md-inline-block entry-sep">
 		&middot;
 	</span>
-	<span class="d-block d-md-inline-block">
+	<span class="d-block d-md-inline-block mb-3 mb-md-0">
 		<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
 	</span>
 	<span class="d-none d-md-inline-block entry-sep">
 		&middot;
 	</span>
-	<span class="d-block d-md-inline-block">
+	<span class="d-block d-md-inline-block mb-2 mb-md-0">
 		<?php echo do_shortcode( '[footer_loginout]' ); ?>
 	</span>
 </div>

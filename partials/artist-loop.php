@@ -86,8 +86,8 @@ foreach ( $users as $user ) :
 					(int) $author_post->ID, // @phpstan-ignore-line
 					IMAGE_THUMBNAIL,
 					[
-						'alt' => esc_attr( $full_name ),
-						'class' => 'img-fluid border shadow-sm'
+						'alt'   => esc_attr( $full_name ),
+						'class' => 'img-fluid border shadow-sm',
 					]
 				);
 			}
@@ -112,12 +112,12 @@ foreach ( $users as $user ) :
 			</a>
 		<?php endif; ?>
 		<div class="d-inline-block p-2 text-center w-100">
-			<h2 class="h4">
-				<a href="<?php echo esc_url( $permalink ); ?>" class="text-decoration-none">
+			<h2 class="h5">
+				<a href="<?php echo esc_url( $permalink ); ?>" class="link-dark link-hidden-dots">
 					<?php echo esc_html( $full_name ); ?>
 				</a>
 			</h2>
-			<a class="font-alt fst-italic text-decoration-none" href="<?php echo esc_url( $permalink ); ?>"  aria-label="View artist: <?php echo esc_attr( $full_name ); ?>">
+			<a class="link-fancy" href="<?php echo esc_url( $permalink ); ?>"  aria-label="View artist: <?php echo esc_attr( $full_name ); ?>">
 				<?php echo esc_html__( 'View Artist', 'rosenfield-collection' ); ?>
 			</a>
 			<span class="entry-sep">

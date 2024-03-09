@@ -28,10 +28,25 @@ function setup(): void {
 	add_filter( 'genesis_markup_pagination-next_content', __NAMESPACE__ . '\next_pagination_text' );
 	// Reposition archive pagination.
 	remove_action( 'genesis_after_endwhile', 'genesis_posts_nav' );
-	add_action( 'genesis_before_footer', 'genesis_posts_nav' );
+	add_action( 'genesis_before_footer', __NAMESPACE__ . '\maybe_do_archive_pagination' );
 	// Reposition single navigation.
 	remove_action( 'genesis_after_entry', 'genesis_adjacent_entry_nav' );
 	add_action( 'genesis_before_footer', 'genesis_adjacent_entry_nav' );
+}
+
+/**
+ * Maybe display the search form on archive pages.
+ * 
+ * Do not display on search results
+ *
+ * @return void
+ */
+function maybe_do_archive_pagination(): void {
+	if ( is_search() ) {
+		return;
+	}
+
+	genesis_posts_nav();
 }
 
 /**
@@ -40,7 +55,7 @@ function setup(): void {
  * @param array $attributes Attributes.
  */
 function attributes( array $attributes ): array {
-	$attributes['class'] .= ' container-xxl py-5';
+	$attributes['class'] .= ' container-xxl px-3 py-5';
 	return $attributes;
 }
 

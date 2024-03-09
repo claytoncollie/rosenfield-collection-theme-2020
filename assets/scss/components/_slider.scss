@@ -1,43 +1,4 @@
-// Avatar component.
-
-.slider-gallery {
-
-	li {
-		position: relative;
-		padding-left: 1px;
-		list-style-type: none;
-	}
-
-	img {
-		border: 1px solid $gray-300;
-		box-shadow: none;
-	}
-
-	button,
-	.button {
-		position: absolute;
-		bottom: 0;
-		left: 1px;
-		padding-right: $spacing--s;
-		padding-left: $spacing--s;
-
-		@include mq(m) {
-			padding-right: $gutter;
-			padding-left: $gutter;
-		}
-	}
-
-	.label-download {
-		display: none;
-
-		@include mq(m) {
-			display: inline-block;
-		}
-	}
-
-}
-
-.slider-thumbnails {
+.slider-thumbnails-images {
 
 	.slick-slide {
 		display: inline-block;
@@ -53,38 +14,6 @@
 
 	.slick-track {
 		width: 100% !important;
-	}
-
-	li {
-		display: block;
-		position: relative;
-		width: 100%;
-		margin-right: $spacing--s;
-		margin-bottom: $spacing--s;
-		text-align: left;
-		list-style-type: none;
-
-		@include mq(m) {
-			margin-right: 0;
-		}
-	}
-
-	img {
-		max-width: 100px;
-		border: 1px solid $gray-300;
-		box-shadow: $box-shadow;
-		cursor: pointer;
-
-		@include mq(m) {}
-
-	}
-
-	.label-download {
-		display: none;
-
-		@include mq(m) {
-			display: inline-block;
-		}
 	}
 
 }

@@ -5,8 +5,6 @@
  * @package RosenfieldCollection\Theme
  */
 
-use function RosenfieldCollection\Theme\Helpers\column_class;
-
 use const RosenfieldCollection\Theme\Fields\TERM_THUMBNAIL;
 use const RosenfieldCollection\Theme\ImageSizes\IMAGE_ARCHIVE;
 
@@ -48,7 +46,7 @@ foreach ( $terms as $term ) :
 		false,
 		[
 			'class' => 'img-fluid border shadow-sm',
-			'alt' => sprintf(
+			'alt'   => sprintf(
 				'%s %s',
 				esc_html__( 'Newest object from category:', 'rosenfield-collection' ),
 				esc_html( $term_name )
@@ -64,12 +62,12 @@ foreach ( $terms as $term ) :
 			</a>
 		<?php endif; ?>
 		<div class="d-inline-block p-2 text-center w-100">
-			<h2 class="h3">
-				<a href="<?php echo esc_url( $term_link ); ?>" class="text-decoration-none">
+			<h2 class="h4">
+				<a href="<?php echo esc_url( $term_link ); ?>" class="link-dark link-hidden-dots">
 					<?php echo esc_html( $term_name ); ?>
 				</a>
 			</h2>
-			<a class="font-alt fst-italic text-decoration-none" href="<?php echo esc_url( $term_link ); ?>" aria-label="View Category: <?php echo esc_attr( $term_name ); ?>">
+			<a class="link-fancy" href="<?php echo esc_url( $term_link ); ?>" aria-label="View Category: <?php echo esc_attr( $term_name ); ?>">
 				<?php echo esc_html__( 'View All', 'rosenfield-collection' ); ?>
 			</a>
 			<span class="entry-sep">

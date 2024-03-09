@@ -31,15 +31,15 @@ $date             = $date ? (string) $date : ''; // @phpstan-ignore-line
 $date             = strtotime( $date );
 $date             = $date ? (int) $date : 0;
 $date             = gmdate( 'm/d/Y', $date );
-$permalink        = get_permalink();
+$permalink        = get_permalink( $post_id );
 $vertical_label   = $permalink ? $permalink . 'vertical' : '';
 $horizontal_label = $permalink ? $permalink . 'horizontal' : '';
 
 ?>
 
-<section id="rosenfield-collection-admin-object-data" class="sticky-md-top admin-only" role="contentinfo" aria-label="Admin only object data">
-	<div class="wrap">
-		<div class="admin-only-purchase">
+<section id="rosenfield-collection-admin-object-data" class="container-xxl bg-dark text-light border-1 border-dotted-top py-2" role="contentinfo" aria-label="Admin only object data">
+	<div class="row justify-content-between">
+		<div class="col col-12 col-md-9 admin-only-purchase">
 			<?php if ( ! empty( $tags ) ) : ?>
 				<?php echo wp_kses_post( $tags ); ?>
 				<span class="entry-sep">
@@ -66,14 +66,14 @@ $horizontal_label = $permalink ? $permalink . 'horizontal' : '';
 			<?php endif; ?>
 
 			</div>
-		<div class="admin-only-labels">
-			<a href="<?php echo esc_url( $vertical_label ); ?>" rel="nofollow">
+		<div class="col col-12 col-md-3 d-flex justify-content-md-end">
+			<a href="<?php echo esc_url( $vertical_label ); ?>" class="link-light link-dots-light" rel="nofollow">
 				<?php echo esc_html__( 'Vertical Label', 'rosenfield-collection' ); ?>
 			</a>
 			<span class="entry-sep">
 				&middot;
 			</span>
-			<a href="<?php echo esc_url( $horizontal_label ); ?>" rel="nofollow">
+			<a href="<?php echo esc_url( $horizontal_label ); ?>" class="link-light link-dots-light" rel="nofollow">
 				<?php echo esc_html__( 'Horizontal Label', 'rosenfield-collection' ); ?>
 			</a>
 		</div>

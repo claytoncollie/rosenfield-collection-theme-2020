@@ -9,14 +9,67 @@ namespace RosenfieldCollection\Theme\Structure\Layout;
 
 use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 
-const ROW                     = 'row';
-const SIDEBAR                 = 'sidebar';
-const SIDEBAR_ALT             = 'sidebar_alt';
-const FULL_WIDTH_CONTENT      = 'full-width-content';
-const CONTENT_SIDEBAR         = 'content-sidebar';
-const SIDEBAR_CONTENT         = 'sidebar-content';
+/**
+ * Wrapper class
+ * 
+ * @var string
+ */
+const ROW = 'row';
+
+/**
+ * Sidebar slug
+ * 
+ * @var string
+ */
+const SIDEBAR = 'sidebar';
+
+/**
+ * Secondary sidebar slug
+ * 
+ * @var string
+ */
+const SIDEBAR_ALT = 'sidebar_alt';
+
+/**
+ * Full width slug
+ * 
+ * @var string
+ */
+const FULL_WIDTH_CONTENT = 'full-width-content';
+
+/**
+ * Content sidebar slug
+ * 
+ * @var string
+ */
+const CONTENT_SIDEBAR = 'content-sidebar';
+
+/**
+ * Sidebar content slug
+ * 
+ * @var string
+ */
+const SIDEBAR_CONTENT = 'sidebar-content';
+
+/**
+ * Content sidebar sidebar slug
+ * 
+ * @var string
+ */
 const CONTENT_SIDEBAR_SIDEBAR = 'content-sidebar-sidebar';
+
+/**
+ * Sidebar sidebar content slug
+ * 
+ * @var string
+ */
 const SIDEBAR_SIDEBAR_CONTENT = 'sidebar-sidebar-content';
+
+/**
+ * Sidebar content sidebar slug
+ * 
+ * @var string
+ */
 const SIDEBAR_CONTENT_SIDEBAR = 'sidebar-content-sidebar';
 
 /**
@@ -28,7 +81,6 @@ function setup(): void {
 	add_filter( 'genesis_attr_structural-wrap', __NAMESPACE__ . '\row' );
 	add_filter( 'genesis_attr_content', __NAMESPACE__ . '\content' );
 	add_filter( 'genesis_attr_sidebar-primary', __NAMESPACE__ . '\sidebar_primary' );
-	add_filter( 'genesis_attr_sidebar-secondary', __NAMESPACE__ . '\sidebar_secondary' );
 	// Remove content-sidebar-wrap.
 	add_filter( 'genesis_markup_content-sidebar-wrap', '__return_empty_string' );
 	// Remove sidebars.
@@ -39,7 +91,7 @@ function setup(): void {
 /**
  * Set the layout for each page template.
  */
-function set_layout(): ?string {
+function set_layout(): string {
 	if ( is_singular( POST_SLUG ) ) {
 		return SIDEBAR_CONTENT;
 	}
@@ -82,24 +134,8 @@ function content( array $attributes ): array {
 			$attributes['class'] = 'row gy-5 gx-3';
 			break;
 
-		case SIDEBAR_SIDEBAR_CONTENT:
-			$attributes['class'] .= ' col-12 col-md-6 order-2';
-			break;
-
-		case SIDEBAR_CONTENT_SIDEBAR:
-			$attributes['class'] .= ' col-12 col-md-6 order-1';
-			break;
-
-		case CONTENT_SIDEBAR_SIDEBAR:
-			$attributes['class'] .= ' col-12 col-md-6 order-0';
-			break;
-
-		case CONTENT_SIDEBAR:
-			$attributes['class'] .= ' col-12 col-md-8 order-0';
-			break;
-
 		case SIDEBAR_CONTENT:
-			$attributes['class'] .= ' col-12 col-md-8 order-1';
+			$attributes['class'] .= ' col-12 col-md-10 order-0 order-md-1';
 			break;
 	}
 	return $attributes;
@@ -111,48 +147,8 @@ function content( array $attributes ): array {
  * @param array $attributes Attributes.
  */
 function sidebar_primary( array $attributes ): array {
-	switch ( genesis_site_layout() ) {
-		case SIDEBAR_SIDEBAR_CONTENT:
-			$attributes['class'] .= ' col-12 col-md-3 order-0';
-			break;
-
-		case SIDEBAR_CONTENT_SIDEBAR:
-			$attributes['class'] .= ' col-12 col-md-3 order-0';
-			break;
-
-		case CONTENT_SIDEBAR_SIDEBAR:
-			$attributes['class'] .= ' col-12 col-md-3 order-1';
-			break;
-
-		case CONTENT_SIDEBAR:
-			$attributes['class'] .= ' col-12 col-md-4 order-1';
-			break;
-
-		case SIDEBAR_CONTENT:
-			$attributes['class'] .= ' col-12 col-md-4 order-0';
-			break;
-	}
-	return $attributes;
-}
-
-/**
- * Define layout for secondary sidebar.
- * 
- * @param array $attributes Attributes.
- */
-function sidebar_secondary( array $attributes ): array {
-	switch ( genesis_site_layout() ) {
-		case SIDEBAR_SIDEBAR_CONTENT:
-			$attributes['class'] .= ' col-12 col-md-3 order-1';
-			break;
-
-		case SIDEBAR_CONTENT_SIDEBAR:
-			$attributes['class'] .= ' col-12 col-md-3 order-2';
-			break;
-
-		case CONTENT_SIDEBAR_SIDEBAR:
-			$attributes['class'] .= ' col-12 col-md-3 order-2';
-			break;
+	if ( genesis_site_layout() === SIDEBAR_CONTENT ) {
+		$attributes['class'] .= ' col-12 col-md-2 order-1 order-md-0';
 	}
 	return $attributes;
 }
