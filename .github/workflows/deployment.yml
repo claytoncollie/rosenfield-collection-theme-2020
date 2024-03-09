@@ -4,6 +4,13 @@ name: Deployment
 
 on:
   workflow_call:
+    inputs:
+      install:
+        required: true
+        type: string
+    secrets:
+      WPE_SSHG_KEY_PRIVATE:
+        required: true
 
 jobs:
   stylelint:
