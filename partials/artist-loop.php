@@ -95,7 +95,7 @@ foreach ( $users as $user ) :
 	}
 	?>
 
-	<article class="col col-12 col-md-2" aria-label="Artist: <?php echo esc_attr( $full_name ); ?>">
+	<article class="col col-6 col-md-4 col-lg-3 col-xl-2 text-center" aria-label="Artist: <?php echo esc_attr( $full_name ); ?>">
 		<?php if ( 0 !== $attachment_id ) : ?>
 			<a href="<?php echo esc_url( $permalink ); ?>" class="d-block">
 				<img
@@ -111,7 +111,7 @@ foreach ( $users as $user ) :
 				<?php echo wp_kses_post( $fallback ); ?>
 			</a>
 		<?php endif; ?>
-		<div class="d-inline-block p-2 text-center w-100">
+		<div class="d-inline-block p-2 w-100">
 			<h2 class="h5">
 				<a href="<?php echo esc_url( $permalink ); ?>" class="link-dark link-hidden-dots">
 					<?php echo esc_html( $full_name ); ?>

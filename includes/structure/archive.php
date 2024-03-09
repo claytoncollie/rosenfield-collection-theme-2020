@@ -49,7 +49,7 @@ function entry_attributes( array $attributes ): array {
 		return $attributes;
 	}
 
-	$attributes['class'] .= ' col col-12 col-md-3';
+	$attributes['class'] .= ' col col-12 col-md-6 col-lg-4 col-xl-3 text-center';
 	return $attributes;
 }
 
@@ -81,7 +81,7 @@ function read_more_link(): string {
  */
 function entry_wrap_open(): void {
 	if ( is_type_archive() ) {
-		echo wp_kses_post( '<div class="d-inline-block p-2 text-center w-100">' );
+		echo wp_kses_post( '<div class="d-inline-block p-2 w-100">' );
 	}
 }
 

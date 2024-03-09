@@ -55,13 +55,13 @@ foreach ( $terms as $term ) :
 	);
 	?>
 
-	<article class="col col-12 col-md-3" aria-label="Category: <?php echo esc_attr( $term_name ); ?>">
+	<article class="col col-12 col-md-6 col-lg-4 col-xl-3 text-center" aria-label="Category: <?php echo esc_attr( $term_name ); ?>">
 		<?php if ( ! empty( $image ) && ! empty( $image_id ) ) : ?>	
 			<a href="<?php echo esc_url( $term_link ); ?>" class="d-block">
 				<?php echo wp_kses_post( $image ); ?>
 			</a>
 		<?php endif; ?>
-		<div class="d-inline-block p-2 text-center w-100">
+		<div class="d-inline-block p-2 w-100">
 			<h2 class="h4">
 				<a href="<?php echo esc_url( $term_link ); ?>" class="link-dark link-hidden-dots">
 					<?php echo esc_html( $term_name ); ?>
