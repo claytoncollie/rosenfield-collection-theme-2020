@@ -19,7 +19,7 @@
 	.wrap {
 		justify-content: flex-start;
 
-		@include mq(m) {
+		@include media-breakpoint-up(md) {
 			justify-content: space-between;
 		}
 	}
@@ -28,7 +28,7 @@
 		display: block;
 		margin-right: $spacing--m;
 
-		@include mq(m) {
+		@include media-breakpoint-up(md) {
 			display: inline-block;
 		}
 	}

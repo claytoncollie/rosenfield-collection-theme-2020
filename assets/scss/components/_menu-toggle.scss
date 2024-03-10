@@ -9,9 +9,7 @@
 	background-color: transparent;
 	order: 1;
 
-	@include size($spacing--m * $perfect-fifth);
-
-	@include mq(m) {
+	@include media-breakpoint-up(md) {
 		display: none;
 	}
 
@@ -28,7 +26,7 @@
 	.hamburger::after {
 		display: block;
 		position: absolute;
-		width: $spacing--m * $perfect-fifth;
+		width: $spacing--m;
 		height: 3px;
 		background-color: $white;
 		content: "";

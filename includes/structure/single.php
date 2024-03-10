@@ -22,6 +22,7 @@ use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 function setup(): void {
 	add_filter( 'genesis_attr_entry-content', __NAMESPACE__ . '\entry_content_attributes' );
 	add_filter( 'genesis_attr_entry-image', __NAMESPACE__ . '\entry_image_attributes' );
+	add_filter( 'genesis_attr_entry-image-link', __NAMESPACE__ . '\entry_image_link_attributes' );
 	add_filter( 'genesis_attr_entry-title', __NAMESPACE__ . '\entry_title_attributes' );
 	add_filter( 'genesis_attr_entry-title-link', __NAMESPACE__ . '\entry_title_link_attributes' );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\view_all_from_artist', 12 );
@@ -52,6 +53,16 @@ function entry_content_attributes( array $attributes ): array {
  */
 function entry_image_attributes( array $attributes ): array {
 	$attributes['class'] = 'img-fluid border shadow-sm';
+	return $attributes;
+}
+
+/**
+ * Entry image link attributes
+ * 
+ * @param array $attributes Attributes.
+ */
+function entry_image_link_attributes( array $attributes ): array {
+	$attributes['class'] = 'd-block mb-2';
 	return $attributes;
 }
 

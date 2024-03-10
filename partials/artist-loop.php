@@ -97,7 +97,7 @@ foreach ( $users as $user ) :
 
 	<article class="col col-6 col-md-4 col-lg-3 col-xl-2 text-center" aria-label="Artist: <?php echo esc_attr( $full_name ); ?>">
 		<?php if ( 0 !== $attachment_id ) : ?>
-			<a href="<?php echo esc_url( $permalink ); ?>" class="d-block">
+			<a href="<?php echo esc_url( $permalink ); ?>" class="d-block mb-2">
 				<img
 					class="img-fluid border shadow-sm"
 					width="<?php echo esc_attr( $avatar_width ); ?>" 
@@ -107,23 +107,21 @@ foreach ( $users as $user ) :
 				/>
 			</a>
 		<?php else : ?>
-			<a href="<?php echo esc_url( $permalink ); ?>" class="d-block">
+			<a href="<?php echo esc_url( $permalink ); ?>" class="d-block mb-2">
 				<?php echo wp_kses_post( $fallback ); ?>
 			</a>
 		<?php endif; ?>
-		<div class="d-inline-block p-2 w-100">
-			<h2 class="h5">
-				<a href="<?php echo esc_url( $permalink ); ?>" class="link-dark link-hidden-dots">
-					<?php echo esc_html( $full_name ); ?>
-				</a>
-			</h2>
-			<a class="link-fancy" href="<?php echo esc_url( $permalink ); ?>"  aria-label="View artist: <?php echo esc_attr( $full_name ); ?>">
-				<?php echo esc_html__( 'View Artist', 'rosenfield-collection' ); ?>
+		<h2 class="h5">
+			<a href="<?php echo esc_url( $permalink ); ?>" class="link-dark link-hidden-dots">
+				<?php echo esc_html( $full_name ); ?>
 			</a>
-			<span class="entry-sep">
-				&middot;
-			</span>
-			<?php echo esc_html( $number_of_posts ); ?>
-		</div>
+		</h2>
+		<a class="link-fancy" href="<?php echo esc_url( $permalink ); ?>"  aria-label="View artist: <?php echo esc_attr( $full_name ); ?>">
+			<?php echo esc_html__( 'View Artist', 'rosenfield-collection' ); ?>
+		</a>
+		<span class="entry-sep">
+			&middot;
+		</span>
+		<?php echo esc_html( $number_of_posts ); ?>
 	</article>
 <?php endforeach; ?>

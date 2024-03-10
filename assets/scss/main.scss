@@ -6,7 +6,6 @@
 // which gets more specific as we drill down each layer.  This keeps your
 // style code lean and organized.
 
-@import "~bourbon";
 @import "node_modules/slick-carousel/slick/slick";
 @import "node_modules/slick-carousel/slick/slick-theme";
 
@@ -18,12 +17,6 @@
 
 // Bootstrap Variables.
 @import "~bootstrap/scss/variables";
-
-// Saas map overrides.
-// $grid-breakpoints: map-merge($grid-breakpoints, $custom-breakpoints);
-// $container-max-widths: map-merge($container-max-widths, $custom-max-widths);
-// $theme-colors: map-merge($theme-colors, $custom-colors);
-// $font-sizes: map-merge($font-sizes, $custom-font-sizes);
 
 // Bootstrap utils.
 @import "~bootstrap/scss/maps";
@@ -49,6 +42,7 @@
 
 $utilities: map-merge(
 	$utilities, (
+		"font-size": map-merge(map-get($utilities, "font-size"), (responsive: true), ),
 		"font-family": map-merge(map-get($utilities, "font-family"), (values: (
 			body: $font-family-base,
 			heading: $headings-font-family,

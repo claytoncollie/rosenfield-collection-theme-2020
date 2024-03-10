@@ -36,10 +36,8 @@ function setup(): void {
 
 /**
  * Maybe display the search form on archive pages.
- * 
- * Do not display on search results
  *
- * @return void
+ * Do not display on search results
  */
 function maybe_do_archive_pagination(): void {
 	if ( is_search() ) {

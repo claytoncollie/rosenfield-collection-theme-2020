@@ -22,6 +22,5 @@ function setup(): void {
  * @param string $button Button markup.
  */
 function submit_button( string $button ): string {
-	$button = str_replace( 'class=\'gform_button', 'class=\'gform_button btn btn-primary', $button );
-	return $button;
+	return str_replace( "class='gform_button", "class='gform_button btn btn-primary", $button );
 }

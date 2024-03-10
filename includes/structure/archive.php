@@ -23,8 +23,6 @@ function setup(): void {
 	add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\entry_attributes' );
 	add_filter( 'get_the_content_more_link', __NAMESPACE__ . '\read_more_link' );
 	add_filter( 'the_content_more_link', __NAMESPACE__ . '\read_more_link' );
-	add_action( 'genesis_entry_header', __NAMESPACE__ . '\entry_wrap_open', 4 );
-	add_action( 'genesis_entry_footer', __NAMESPACE__ . '\entry_wrap_close', 15 );
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\sort_by_object_id' );
 	add_action( 'genesis_entry_content', __NAMESPACE__ . '\object_by_line', 8 );
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\nopaging', 99 );
@@ -49,7 +47,7 @@ function entry_attributes( array $attributes ): array {
 		return $attributes;
 	}
 
-	$attributes['class'] .= ' col col-12 col-md-6 col-lg-4 col-xl-3 text-center';
+	$attributes['class'] = 'col col-12 col-md-6 col-lg-4 col-xl-3 text-center';
 	return $attributes;
 }
 
@@ -74,24 +72,6 @@ function read_more_link(): string {
 		esc_url( $permalink ),
 		esc_html( ucwords( get_object_prefix_and_id() ) )
 	);
-}
-
-/**
- * Outputs the opening entry wrap markup.
- */
-function entry_wrap_open(): void {
-	if ( is_type_archive() ) {
-		echo wp_kses_post( '<div class="d-inline-block p-2 w-100">' );
-	}
-}
-
-/**
- * Outputs the closing entry wrap markup.
- */
-function entry_wrap_close(): void {
-	if ( is_type_archive() ) {
-		echo wp_kses_post( '</div>' );
-	}
 }
 
 /**

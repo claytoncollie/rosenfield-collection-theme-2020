@@ -10,7 +10,7 @@
 		align-items: center;
 		justify-content: flex-start;
 
-		@include mq(m) {
+		@include media-breakpoint-up(md) {
 			flex-wrap: nowrap;
 		}
 	}
@@ -55,7 +55,7 @@
 		.site-footer {
 			display: none;
 
-			@include mq(m) {
+			@include media-breakpoint-up(md) {
 				display: inline-block;
 			}
 		}
@@ -85,7 +85,7 @@
 
 		.view-toggle-list & {
 
-			@include mq(m) {
+			@include media-breakpoint-up(md) {
 				display: inline-block;
 				width: 100px;
 			}
@@ -95,7 +95,7 @@
 
 			.view-toggle-list & {
 
-				@include mq(m) {
+				@include media-breakpoint-up(md) {
 					width: 75px;
 					min-width: auto;
 					max-width: 75px;
@@ -115,7 +115,7 @@
 			justify-content: center;
 			flex-grow: 1;
 
-			@include mq(m) {
+			@include media-breakpoint-up(md) {
 				flex-wrap: nowrap;
 				justify-content: space-between;
 			}
@@ -147,7 +147,7 @@
 			align-items: center;
 			justify-content: flex-start;
 
-			@include mq(m) {
+			@include media-breakpoint-up(md) {
 				display: flex;
 				padding: 0;
 				flex-wrap: nowrap;

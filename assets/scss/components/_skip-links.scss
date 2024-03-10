@@ -2,31 +2,29 @@
 
 .genesis-skip-link {
 	margin: 0;
+	padding: 0;
 
 	li {
-		width: 0;
 		height: 0;
 		list-style: none;
+		width: 0;
 	}
 
 	.screen-reader-shortcut,
 	.screen-reader-text,
 	.screen-reader-text span {
 
-		@include hide-visually;
+		@extend .visually-hidden-focusable;
 
 		&:active,
 		&:focus {
-
-			@include hide-visually(unhide);
-
-			position: absolute;
-			z-index: 99999999;
+			background-color: $white;
+			color: $black;
 			margin: $spacing--s;
 			padding: $spacing--s;
-			color: $black;
-			background-color: $white;
+			position: absolute;
 			text-decoration: none;
+			z-index: 99999999;
 		}
 	}
 }

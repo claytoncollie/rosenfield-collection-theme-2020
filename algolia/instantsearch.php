@@ -37,18 +37,21 @@ get_header();
 	</div>
 
 	<script type="text/html" id="tmpl-instantsearch-hit">
-		<article class="row align-items-start align-items-md-center flex-column flex-md-row mb-3 pb-3 border-bottom" aria-label="{{ data.rc_id }}: {{ data.post_title }} made by {{ data.post_author.display_name }}">
-			<# if ( data.images.thumbnail ) { #>
-				<a href="{{ data.permalink }}" class="col col-12 col-md-2 d-block mb-3 mb-md-0">
-					<img 
-						height="{{ data.images.thumbnail.height }}" 
-						width="{{ data.images.thumbnail.width }}" 
-						src="{{ data.images.thumbnail.url }}" 
-						alt="{{ data.rc_id }}: Main image for {{ data.post_title }} made by {{ data.post_author.display_name }}" 
-					/>
-				</a>
-			<# } #>
-			<div class="col col-12 col-md-10">
+		<article class="row align-items-start align-items-md-center mb-3" aria-label="{{ data.rc_id }}: {{ data.post_title }} made by {{ data.post_author.display_name }}">
+			<div class="col col-5 col-lg-3 col-xl-2">
+				<# if ( data.images.thumbnail ) { #>
+					<a href="{{ data.permalink }}" class="d-block mb-3 mb-md-0">
+						<img 
+							class="img-fluid border shadow-sm"
+							height="{{ data.images.thumbnail.height }}" 
+							width="{{ data.images.thumbnail.width }}" 
+							src="{{ data.images.thumbnail.url }}" 
+							alt="{{ data.rc_id }}: Main image for {{ data.post_title }} made by {{ data.post_author.display_name }}" 
+						/>
+					</a>
+				<# } #>
+			</div>
+			<div class="col col-7 col-lg-9 col-xl-10">
 				<h2 class="h4 mb-2">
 					<a href="{{ data.permalink }}" class="link-dark link-hidden-dots" aria-label="{{ data.rc_id }}: Read more about {{ data.post_title }} made by {{ data.post_author.display_name }}">
 						{{{ data._highlightResult.post_title.value }}}
@@ -79,6 +82,7 @@ get_header();
 				</div>
 			</div>
 		</article>
+		<hr aria-hidden="true">
 	</script>
 	<script type="text/javascript">
 		jQuery(function() {

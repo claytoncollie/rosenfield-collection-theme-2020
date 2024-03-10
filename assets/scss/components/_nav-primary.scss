@@ -2,96 +2,25 @@
 
 .nav-primary {
 	display: none;
-	width: 100vw;
-	margin: 0 -5vw;
-	padding: $spacing--m 5vw;
-	background-color: $black;
-	font-size: $h3-font-size;
-	order: 2;
 
-	@include mq(m) {
+	@include media-breakpoint-up(md) {
 		display: flex !important;
-		position: relative;
-		top: auto;
-		width: auto;
-		margin: 0 0 0 auto;
-		padding: 0;
-		background: 0;
-		font-size: $font-size-base;
 	}
 
-	.search-lg {
-		display: none;
-
-		@include mq(m) {
-			display: inline-block;
+	.menu-item {
+		
+		@include media-breakpoint-up(md) {
+			margin-right: $spacing--s;
 		}
 	}
 
-	.search-m {
-		display: block;
-
-		@include mq(m) {
-			display: none;
-		}
+	a {
+		border: 1px solid transparent;
 	}
 
-	.menu {
-		margin: 0;
-		list-style-type: none;
-
-		@include mq(m) {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: flex-end;
-			align-items: center;
-			border: 0;
-		}
-
-		// Menu item.
-		&-item {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: space-between;
-
-			@include margin(null auto);
-
-			@include mq(m) {
-				display: block;
-				margin: 0 $spacing--s 0 0;
-			}
-
-			&.button {
-				padding: 0;
-
-				@include mq(m) {
-					margin-left: $spacing--m;
-				}
-			}
-		}
-
-		// Link
-		a {
-			width: 100%;
-			margin-bottom: $spacing--s;
-			padding: $spacing--xs $spacing--s * $golden;
-			border: 1px solid transparent;
-			color: $white;
-			text-decoration: none;
-
-			@include mq(m) {
-				display: block;
-				width: auto;
-				margin-bottom: 0;
-			}
-		}
-
-		a:hover,
-		a:focus,
-		.current-menu-item>a {
-			border-color: $white;
-			color: $white;
-		}
+	a:hover,
+	a:focus,
+	.active {
+		border-color: $white;
 	}
 }

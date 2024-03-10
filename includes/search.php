@@ -70,18 +70,16 @@ function do_header_search_form(): void {
  * @param object $args The menu options.
  */
 function add_search_menu_item( string $items, object $args ): string {
-	$search_toggle = sprintf( '<li class="menu-item search-lg">%s</li>', get_header_search_toggle() );
-	$search_mobile = sprintf(
-		'<li class="menu-item search-m"><a href="%s">%s</a></li>',
-		esc_url( add_query_arg( 's', '', get_bloginfo( 'url' ) ) ),
-		esc_html__( 'Search', 'rosenfield-collection' )
-	);
-
-	if ( 'primary' === $args->theme_location ) { // @phpstan-ignore-line
-		$items .= $search_toggle . $search_mobile;
+	$theme_location = $args->theme_location ?? '';
+	if ( 'primary' !== $theme_location ) {
+		return $items;
 	}
-
-	return $items;
+	
+	return sprintf( 
+		'%s<li class="menu-item">%s</li>',
+		$items, 
+		get_header_search_toggle() 
+	);
 }
 
 /**

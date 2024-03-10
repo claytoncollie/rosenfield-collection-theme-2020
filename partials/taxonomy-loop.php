@@ -57,23 +57,21 @@ foreach ( $terms as $term ) :
 
 	<article class="col col-12 col-md-6 col-lg-4 col-xl-3 text-center" aria-label="Category: <?php echo esc_attr( $term_name ); ?>">
 		<?php if ( ! empty( $image ) && ! empty( $image_id ) ) : ?>	
-			<a href="<?php echo esc_url( $term_link ); ?>" class="d-block">
+			<a href="<?php echo esc_url( $term_link ); ?>" class="d-block mb-2">
 				<?php echo wp_kses_post( $image ); ?>
 			</a>
 		<?php endif; ?>
-		<div class="d-inline-block p-2 w-100">
-			<h2 class="h4">
-				<a href="<?php echo esc_url( $term_link ); ?>" class="link-dark link-hidden-dots">
-					<?php echo esc_html( $term_name ); ?>
-				</a>
-			</h2>
-			<a class="link-fancy" href="<?php echo esc_url( $term_link ); ?>" aria-label="View Category: <?php echo esc_attr( $term_name ); ?>">
-				<?php echo esc_html__( 'View All', 'rosenfield-collection' ); ?>
+		<h2 class="h4">
+			<a href="<?php echo esc_url( $term_link ); ?>" class="link-dark link-hidden-dots">
+				<?php echo esc_html( $term_name ); ?>
 			</a>
-			<span class="entry-sep">
-				&middot;
-			</span>
-			<?php echo esc_html( (string) $term_count ); ?>
-		</div>
+		</h2>
+		<a class="link-fancy" href="<?php echo esc_url( $term_link ); ?>" aria-label="View Category: <?php echo esc_attr( $term_name ); ?>">
+			<?php echo esc_html__( 'View All', 'rosenfield-collection' ); ?>
+		</a>
+		<span class="entry-sep">
+			&middot;
+		</span>
+		<?php echo esc_html( (string) $term_count ); ?>
 	</article>
 <?php endforeach; ?>
