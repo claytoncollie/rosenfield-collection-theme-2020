@@ -1,5 +1,6 @@
 // Subscribe
 
+/* stylelint-disable-next-line selector-id-pattern */
 #gform_4 {
 	display: flex;
 	align-items: center;
@@ -13,7 +14,7 @@
 		flex: 1;
 		width: 100%;
 	}
-	
+
 	ul li.gfield,
 	.top_label div.ginput_container {
 		margin: 0 !important;
@@ -21,11 +22,10 @@
 
 	.gform_footer {
 		padding: 0 !important;
-		
+
 		@include media-breakpoint-up(md) {
 			margin: 0 !important;
 			width: auto !important;
 		}
 	}
 }
-

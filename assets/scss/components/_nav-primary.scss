@@ -8,7 +8,7 @@
 	}
 
 	.menu-item {
-		
+
 		@include media-breakpoint-up(md) {
 			margin-right: $spacing--s;
 		}
