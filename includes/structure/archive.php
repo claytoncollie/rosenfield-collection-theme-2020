@@ -11,10 +11,10 @@ use WP_Query;
 
 use function RosenfieldCollection\Theme\Helpers\is_type_archive;
 use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
+use function RosenfieldCollection\Theme\Helpers\is_list_view;
 use function RosenfieldCollection\Theme\Helpers\is_type_archive_page;
 
 use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
-use const RosenfieldCollection\Theme\QueryVars\VIEW_VAR;
 
 /**
  * Setup
@@ -26,7 +26,6 @@ function setup(): void {
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\sort_by_object_id' );
 	add_action( 'genesis_entry_content', __NAMESPACE__ . '\object_by_line', 8 );
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\nopaging', 99 );
-	add_filter( 'body_class', __NAMESPACE__ . '\body_class' );
 	add_action( 'genesis_entry_footer', __NAMESPACE__ . '\the_post_meta' );
 	// Reposition entry image.
 	remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
@@ -47,7 +46,7 @@ function entry_attributes( array $attributes ): array {
 		return $attributes;
 	}
 
-	$attributes['class'] = 'col col-12 col-md-6 col-lg-4 col-xl-3 text-center';
+	$attributes['class'] = is_list_view() ? 'd-grid grid-template-columns' : 'col col-12 col-md-6 col-lg-4 col-xl-3 text-center';
 	return $attributes;
 }
 
@@ -128,29 +127,11 @@ function nopaging( WP_Query $query ): void {
 		return;
 	}
 
-	$view = get_query_var( VIEW_VAR );
-	$view = $view ? (string) $view : ''; // @phpstan-ignore-line
-	if ( 'list' !== $view ) {
+	if ( ! is_list_view() ) {
 		return;
 	}
 		
 	$query->set( 'nopaging', true );
-}
-
-/**
- * Add body class for taxonomy archive.
- *
- * @param array $classes Body classes.
- */
-function body_class( array $classes ): array {
-	$view = get_query_var( VIEW_VAR );
-	$view = $view ? (string) $view : ''; // @phpstan-ignore-line
-	if ( 'list' !== $view ) {
-		return $classes;
-	}
-
-	$classes[] = ' view-toggle-list';
-	return $classes;
 }
 
 /**

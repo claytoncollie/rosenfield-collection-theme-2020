@@ -2,63 +2,10 @@
 
 .entry {
 
-	.view-toggle-list & {
-		display: flex;
-		padding-bottom: $spacing--xs;
-		border-bottom: 1px dotted $secondary;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: flex-start;
-
-		@include media-breakpoint-up(md) {
-			flex-wrap: nowrap;
-		}
-	}
-
-	// Entry artist.
-	&-artist {
-		color: $body-color;
-		font-family: $font-family-alt;
-		font-style: italic;
-		text-decoration: none;
-
-		.view-toggle-list & {
-			font-family: $font-family-base;
-			font-style: normal;
-		}
-
-		@include hover-focus {
-			border-bottom: 1px dotted $black;
-			color: $primary;
-			text-decoration: none;
-		}
-	}
-
-	// Entry separator.
 	&-sep {
 		display: inline-block;
 		margin: 0 $spacing--s;
 		color: $gray-800;
-
-		.data &,
-		.location &,
-		.admin-only & {
-			color: $white;
-		}
-
-		p & {
-			display: none;
-		}
-
-		.view-toggle-list p,
-		.taxonomies>&:first-of-type,
-		.site-footer {
-			display: none;
-
-			@include media-breakpoint-up(md) {
-				display: inline-block;
-			}
-		}
 	}
 
 	// Entry user report.
@@ -73,86 +20,6 @@
 		margin-right: $spacing--xs;
 		font-weight: $font-weight-bold;
 		text-transform: lowercase;
-	}
-
-	// Entry meta.
-	&-meta {
-		font-size: smaller;
-	}
-
-	// Entry image link.
-	&-image-link {
-
-		.view-toggle-list & {
-
-			@include media-breakpoint-up(md) {
-				display: inline-block;
-				width: 100px;
-			}
-		}
-
-		img {
-
-			.view-toggle-list & {
-
-				@include media-breakpoint-up(md) {
-					width: 75px;
-					min-width: auto;
-					max-width: 75px;
-				}
-			}
-		}
-	}
-
-	// Entry footer.
-	&-footer {
-		display: none;
-
-		.view-toggle-list & {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: center;
-			flex-grow: 1;
-
-			@include media-breakpoint-up(md) {
-				flex-wrap: nowrap;
-				justify-content: space-between;
-			}
-		}
-
-		p {
-
-			&:last-of-type {
-				margin-bottom: 0;
-			}
-		}
-
-		a {
-
-			.view-toggle-list & {
-				text-decoration: none;
-			}
-		}
-	}
-
-	// Entry wrap.
-	&-wrap {
-
-		.view-toggle-list & {
-			display: inline-block;
-			width: 100%;
-			padding: $spacing--s;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: flex-start;
-
-			@include media-breakpoint-up(md) {
-				display: flex;
-				padding: 0;
-				flex-wrap: nowrap;
-			}
-		}
 	}
 
 	// Report archive.

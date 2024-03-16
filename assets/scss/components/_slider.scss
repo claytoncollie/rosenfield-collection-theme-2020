@@ -6,6 +6,10 @@
 		width: auto !important;
 		opacity: 0.75;
 
+		@include media-breakpoint-up(md) {
+			display: block;
+		}
+
 		&.slick-current,
 		&:hover {
 			opacity: 1;

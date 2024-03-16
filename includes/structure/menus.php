@@ -11,7 +11,6 @@ namespace RosenfieldCollection\Theme\Structure\Menus;
  * Setup
  */
 function setup(): void {
-	add_filter( 'wp_nav_menu_args', __NAMESPACE__ . '\limit_menu_depth' );
 	add_filter( 'wp_nav_menu_args', __NAMESPACE__ . '\navigation' );
 	add_filter( 'genesis_attr_nav-primary', __NAMESPACE__ . '\nav_primary_attributes' );
 	add_filter( 'genesis_attr_nav-secondary', __NAMESPACE__ . '\nav_secondary_attributes' );
@@ -23,23 +22,15 @@ function setup(): void {
 }
 
 /**
- * Reduces secondary navigation menu to one level depth.
- *
- * @param array $args Original menu options.
- */
-function limit_menu_depth( array $args ): array {
-	$args['depth'] = 1;
-	return $args;
-}
-
-/**
  * Primary and secondary navigation
  * 
  * @param array $args Arguments.
  */
 function navigation( array $args ): array {
+	// Defaults.
+	$args['depth'] = 1;
+
 	$theme_location = $args['theme_location'] ?? '';
-	
 	if ( empty( $theme_location ) ) {
 		remove_filter( 'genesis_attr_nav-link', __NAMESPACE__ . '\primary_nav_link', 15, 1 );
 		remove_filter( 'genesis_attr_nav-link', __NAMESPACE__ . '\secondary_nav_link', 15, 1 );
@@ -62,7 +53,7 @@ function navigation( array $args ): array {
  * @param array $attributes Attributes.
  */
 function nav_primary_attributes( array $attributes ): array {
-	$attributes['class'] .= ' py-4 py-md-0 px-3 px-md-0';
+	$attributes['class'] .= ' py-4 py-md-0 px-3 px-md-0 text-center justify-content-center justify-content-md-end w-100';
 	return $attributes;
 }
 

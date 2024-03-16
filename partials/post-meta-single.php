@@ -64,7 +64,7 @@ $prefix    = $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 
 ?>
 
-<section id="rosenfield-collection-object-data" class="sticky-md-top container-xxl bg-dark text-light border-1 border-dotted-top py-2" role="contentinfo" aria-label="Object data">
+<section id="rosenfield-collection-object-data" class="sticky-md-top container-xxl bg-dark text-light border-1 border-dotted-top border-secondary py-2" role="contentinfo" aria-label="Object data">
 	<div class="row">
 		<div class="col col-12 col-md-9">
 			<?php if ( ! empty( $prefix ) && ! empty( $object_id ) ) : ?>
@@ -74,38 +74,38 @@ $prefix    = $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 				</span>
 			<?php endif; ?>
 
-			<span class="entry-sep">
+			<span class="entry-sep text-white">
 				&middot;
 			</span>
 			<span>
-				<a href="<?php echo esc_url( $author_permalink ); ?>" class="link-light link-dots-light">
+				<a href="<?php echo esc_url( $author_permalink ); ?>" class="link-light link-hidden-dots-light">
 					<?php echo esc_html( $full_name ); ?>
 				</a>
 			</span>
 
 			<?php if ( ! empty( $forms ) ) : ?>
-				<span class="entry-sep">
+				<span class="entry-sep text-white">
 					&middot;
 				</span>
 				<?php echo wp_kses_post( $forms ); ?>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $firings ) ) : ?>
-				<span class="entry-sep">
+				<span class="entry-sep text-white">
 					&middot;
 				</span>
 				<?php echo wp_kses_post( $firings ); ?>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $techniques ) ) : ?>
-				<span class="entry-sep">
+				<span class="entry-sep text-white">
 					&middot;
 				</span>
 				<?php echo wp_kses_post( $techniques ); ?>
 			<?php endif; ?>
 
 			<?php if ( $length || $width || $height ) : ?>
-				<span class="entry-sep">
+				<span class="entry-sep text-white">
 					&middot;
 				</span>
 				<?php echo esc_html( $length ); ?> x 
@@ -126,7 +126,7 @@ $prefix    = $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 			<?php endif; ?>
 
 			<?php if ( ! empty( $rows ) ) : ?>
-				<span class="entry-sep">
+				<span class="entry-sep text-white">
 					&middot;
 				</span>
 				<?php echo esc_html__( 'Row', 'rosenfield-collection' ); ?>

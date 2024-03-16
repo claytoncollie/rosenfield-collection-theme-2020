@@ -30,7 +30,7 @@ $full_name  = $first_name . ' ' . $last_name;
 		?>
 		<li class="position-relative">
 			<img 
-				class="img-fluid border border-1"
+				class="img-fluid border shadow-sm"
 				width="<?php echo esc_attr( $width ); ?>" 
 				height="<?php echo esc_attr( $height ); ?>" 
 				src="<?php echo esc_url( $source ); ?>" 
@@ -38,7 +38,7 @@ $full_name  = $first_name . ' ' . $last_name;
 			/>
 			<a href="<?php echo esc_url( $permalink ); ?>" class=" d-md-flex align-items-center d-print-none position-absolute bottom-0 py-1 py-md-2 px-2 px-md-3 bg-dark text-light text-decoration-none" aria-label="Download full size image <?php echo esc_attr( $label ); ?>">
 				<?php echo svg( 'cloud-download-alt-solid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<span class="d-none d-md-inline-block ps-2 link-fancy">
+				<span class="d-none d-md-inline-block ps-2 link-light">
 					<?php echo esc_html__( 'Download ', 'rosenfield-collection' ); ?>
 				</span>
 			</a>

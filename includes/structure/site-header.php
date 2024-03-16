@@ -25,7 +25,7 @@ function setup(): void {
  * @param array $attributes Attributes.
  */
 function container( array $attributes ): array {
-	$attributes['class'] .= ' navbar navbar-expand-lg navbar-dark bg-dark py-3 w-100 z-99';
+	$attributes['class'] .= ' navbar navbar-expand-md navbar-dark bg-dark py-3 w-100 z-99';
 	return $attributes;
 }
 
@@ -46,7 +46,7 @@ function wrapper( string $output, string $original_output ): string {
  * @param array $attributes Attributes.
  */
 function title_area_attributes( array $attributes ): array {
-	$attributes['class'] = 'lh-sm';
+	$attributes['class'] = 'lh-sm w-100';
 	return $attributes;
 }
 
@@ -56,7 +56,7 @@ function title_area_attributes( array $attributes ): array {
  * @param array $attributes Attributes.
  */
 function site_title_attributes( array $attributes ): array {
-	$attributes['class'] .= ' mb-0 fs-2 fw-normal text-light';
+	$attributes['class'] .= ' mb-0 fs-4 fs-md-2 fw-normal text-light';
 	return $attributes;
 }
 
@@ -66,7 +66,7 @@ function site_title_attributes( array $attributes ): array {
  * @param array $attributes Attributes.
  */
 function site_description_attributes( array $attributes ): array {
-	$attributes['class'] = 'mb-0 fst-italic fw-normal text-light font-alt';
+	$attributes['class'] = 'mb-0 fs-8 fs-md-7 fst-italic fw-normal text-light font-alt';
 	return $attributes;
 }
 

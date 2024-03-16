@@ -4,7 +4,9 @@
 	border-bottom: 1px dotted $gray-800;
 	text-decoration: none;
 
-	@include hover-focus {
+	&:hover,
+	&:focus,
+	&:active {
 		border-bottom-color: $dark;
 		text-decoration: none;
 	}
@@ -14,7 +16,9 @@
 	border-bottom: 1px dotted transparent;
 	text-decoration: none;
 
-	@include hover-focus {
+	&:hover,
+	&:focus,
+	&:active {
 		border-bottom-color: $dark;
 		border-bottom-style: dotted;
 		text-decoration: none;
@@ -25,8 +29,23 @@
 	border-bottom: 1px dotted $light;
 	text-decoration: none;
 
-	@include hover-focus {
+	&:hover,
+	&:focus,
+	&:active {
 		border-bottom-style: solid;
+		text-decoration: none;
+	}
+}
+
+.link-hidden-dots-light {
+	border-bottom: 1px dotted transparent;
+	text-decoration: none;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border-bottom-color: $light;
+		border-bottom-style: dotted;
 		text-decoration: none;
 	}
 }
@@ -38,7 +57,9 @@
 	font-style: italic;
 	text-decoration: none;
 
-	@include hover-focus {
+	&:hover,
+	&:focus,
+	&:active {
 		border-bottom-color: $dark;
 		color: $dark;
 		text-decoration: none;

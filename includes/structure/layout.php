@@ -7,6 +7,8 @@
 
 namespace RosenfieldCollection\Theme\Structure\Layout;
 
+use function RosenfieldCollection\Theme\Helpers\is_list_view;
+
 use const RosenfieldCollection\Theme\PostTypes\POST_SLUG;
 
 /**

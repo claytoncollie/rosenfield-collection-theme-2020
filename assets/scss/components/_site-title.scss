@@ -5,7 +5,9 @@
 		color: $white;
 		text-decoration: none;
 
-		@include hover-focus {
+		&:hover,
+		&:focus,
+		&:active {
 			color: $white;
 			text-decoration: underline;
 		}

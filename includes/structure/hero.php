@@ -25,10 +25,6 @@ function hero_setup(): void {
 		return;
 	}
 
-	if ( genesis_entry_header_hidden_on_current_page() ) {
-		return;
-	}
-
 	if ( is_singular() ) {
 		remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 	}

@@ -1,27 +1,5 @@
 // Algolia
 
-.aa-dropdown-menu {
-	border-bottom-right-radius: 0 !important;
-	border-bottom-left-radius: 0 !important;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) !important;
-
-	.autocomplete-header {
-		border-top: 1px solid $gray-300;
-		border-bottom: 0 !important;
-	}
-
-	.aa-dataset-1 {
-
-		.autocomplete-header {
-			border-top: 0;
-		}
-	}
-
-	a.suggestion-link {
-		line-height: 32px;
-	}
-}
-
 .ais-SearchBox {
 
 	&-submit {

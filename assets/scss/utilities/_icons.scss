@@ -21,7 +21,9 @@
 
 .btn {
 
-	@include hover-focus {
+	&:hover,
+	&:focus,
+	&:active {
 		fill: var(--bs-btn-hover-color);
 	}
 }

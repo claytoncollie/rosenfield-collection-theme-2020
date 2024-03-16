@@ -1,35 +1,25 @@
 // Menu toggle component.
 
 .menu-toggle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 0;
-	padding: 0;
 	background-color: transparent;
-	order: 1;
+	border: 0;
+	position: absolute;
+	top: 2.5rem;
+	right: 2.5rem;
 
 	@include media-breakpoint-up(md) {
 		display: none;
 	}
 
-	@include hover-focus {
-		background-color: transparent;
-	}
-
-	&:focus {
-		outline: $border;
-	}
-
 	.hamburger,
 	.hamburger::before,
 	.hamburger::after {
-		display: block;
-		position: absolute;
-		width: $spacing--m;
-		height: 3px;
 		background-color: $white;
 		content: "";
+		display: block;
+		height: 3px;
+		position: absolute;
+		width: $spacing--l;
 	}
 
 	.hamburger {

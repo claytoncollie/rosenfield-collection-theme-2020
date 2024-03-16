@@ -9,6 +9,7 @@ namespace RosenfieldCollection\Theme\Helpers;
 
 use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
 use const RosenfieldCollection\Theme\Fields\OBJECT_PREFIX;
+use const RosenfieldCollection\Theme\QueryVars\VIEW_VAR;
 use const RosenfieldCollection\Theme\Taxonomies\FORM;
 
 /**
@@ -34,7 +35,7 @@ function get_the_terms_light_links( int $post_id, string $taxonomy ): string {
 			continue;
 		}
 		$links[] = sprintf(
-			'<a href="%s" class="link-light link-dots-light">%s</a>',
+			'<a href="%s" class="link-light link-hidden-dots-light">%s</a>',
 			esc_url( $link ),
 			esc_html( $term->name )
 		);
@@ -100,6 +101,14 @@ function get_taxonomy_term_prefix(): string {
 	$prefix = get_term_meta( $term_id, OBJECT_PREFIX, true );
 
 	return $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
+}
+
+/**
+ * Check if we ar eon the lis view
+ */
+function is_list_view(): bool {
+	$view = get_query_var( VIEW_VAR );
+	return 'list' === $view;
 }
 
 /**

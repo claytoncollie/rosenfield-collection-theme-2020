@@ -18,6 +18,11 @@
 // Bootstrap Variables.
 @import "~bootstrap/scss/variables";
 
+$font-sizes: map-merge($font-sizes, ( 
+	7: 1rem,
+	8: 0.75rem,
+));
+
 // Bootstrap utils.
 @import "~bootstrap/scss/maps";
 @import "~bootstrap/scss/mixins";
@@ -42,26 +47,36 @@
 
 $utilities: map-merge(
 	$utilities, (
-		"font-size": map-merge(map-get($utilities, "font-size"), (responsive: true), ),
-		"font-family": map-merge(map-get($utilities, "font-family"), (values: (
-			body: $font-family-base,
-			heading: $headings-font-family,
-			alt: $font-family-alt,
-		)), ),
-		"max-height": map-merge(map-get($utilities, "max-height"), (values: (
-			50: 50px,
-			65: 65px,
-			100: 100px,
-			150: 150px,
-			700: 700px
-		)), ),
-		"max-width": map-merge(map-get($utilities, "max-width"), (values: (
-			50: 50px,
-			65: 65px,
-			100: 100px,
-			150: 150px,
-			700: 700px
-		)), ),
+		"font-size": map-merge(map-get($utilities, "font-size"), (
+			responsive: true
+		), ),
+		"font-family": map-merge(map-get($utilities, "font-family"), (
+			values: (
+				body: $font-family-base,
+				heading: $headings-font-family,
+				alt: $font-family-alt,
+			)
+		), ),
+		"max-height": map-merge(map-get($utilities, "max-height"), (
+			responsive: true,
+			values: (
+				50: 50px,
+				65: 65px,
+				100: 100px,
+				150: 150px,
+				700: 700px
+			)
+		), ),
+		"max-width": map-merge(map-get($utilities, "max-width"), (
+			responsive: true,
+			values: (
+				50: 50px,
+				65: 65px,
+				100: 100px,
+				150: 150px,
+				700: 700px
+			)
+		), ),
 		"height": map-merge(map-get($utilities, "height"), (values: (
 			15: 15px,
 			25: 25%,
@@ -79,8 +94,6 @@ $utilities: map-merge(
 // Bootstrap Utilities.
 @import "~bootstrap/scss/utilities/api";
 
-@import "tools/_index";
-@import "elements/_index";
-@import "objects/_index";
 @import "components/_index";
 @import "utilities/_index";
+@import "print"
