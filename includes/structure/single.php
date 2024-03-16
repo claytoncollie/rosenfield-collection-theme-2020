@@ -98,7 +98,7 @@ function entry_title_link_attributes( array $attributes ): array {
  * @param array $attributes Attributes.
  */
 function entry_content_attributes( array $attributes ): array {
-	$attributes['class'] = is_list_view() ? 'grid-column-2 grid-row-2' : '';
+	$attributes['class'] .= is_list_view() ? ' grid-column-2 grid-row-2' : ' ';
 	return $attributes;
 }
 
@@ -108,7 +108,7 @@ function entry_content_attributes( array $attributes ): array {
  * @param array $attributes Attributes.
  */
 function entry_footer_attributes( array $attributes ): array {
-	$attributes['class'] = is_list_view() ? 'd-block grid-column-2 grid-row-3 d-flex flex-column flex-md-row align-items-center justify-content-md-between' : 'd-none';
+	$attributes['class'] .= is_list_view() ? ' d-block grid-column-2 grid-row-3 d-flex flex-column flex-md-row align-items-center justify-content-md-between' : ' d-none';
 	return $attributes;
 }
 

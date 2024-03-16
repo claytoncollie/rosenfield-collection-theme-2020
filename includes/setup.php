@@ -79,5 +79,4 @@ function config(): void {
 			remove_image_size( $name );
 		}
 	);
-
 }

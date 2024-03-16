@@ -7,11 +7,18 @@
 
 use const RosenfieldCollection\Theme\Fields\OBJECT_DATE;
 use const RosenfieldCollection\Theme\Fields\OBJECT_PRICE;
+use const RosenfieldCollection\Theme\Fields\PENDING_SLUG;
 use const RosenfieldCollection\Theme\Taxonomies\LOCATION;
 
 $post_id = get_the_ID();
 $post_id = $post_id ? (int) $post_id : 0;
 if ( empty( $post_id ) ) {
+	return;
+}
+
+$post_status = get_post_status( $post_id );
+$post_status = $post_status ? (string) $post_status : '';
+if ( PENDING_SLUG !== $post_status ) {
 	return;
 }
 
@@ -28,8 +35,8 @@ $date = $date ? (string) $date : ''; // @phpstan-ignore-line
 
 <?php if ( ! empty( $price ) ) : ?>
 	<hr>
-	<div>
-		<?php echo esc_html__( 'Price', 'rosenfield-collection' ); ?>
+	<div class="text-start">
+		<?php echo esc_html__( 'Price', 'rosenfield-collection' ); ?>:
 		<strong>
 			<?php echo esc_html( $price ); ?>
 		</strong>
@@ -38,8 +45,8 @@ $date = $date ? (string) $date : ''; // @phpstan-ignore-line
 <?php endif; ?>
 
 <?php if ( ! empty( $date ) ) : ?>
-	<div>
-		<?php echo esc_html__( 'Date', 'rosenfield-collection' ); ?>: 
+	<div class="text-start">
+		<?php echo esc_html__( 'Date', 'rosenfield-collection' ); ?>:
 		<strong>
 			<?php echo esc_html( $date ); ?>
 		</strong>
@@ -48,8 +55,8 @@ $date = $date ? (string) $date : ''; // @phpstan-ignore-line
 <?php endif; ?>
 
 <?php if ( ! empty( $location ) ) : ?>
-	<div>
-		<?php echo esc_html__( 'Location', 'rosenfield-collection' ); ?>: 
+	<div class="text-start">
+		<?php echo esc_html__( 'Location', 'rosenfield-collection' ); ?>:
 		<strong>
 			<?php echo wp_kses_post( $location ); ?>
 		</strong>
