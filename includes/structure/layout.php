@@ -137,7 +137,7 @@ function content( array $attributes ): array {
 			break;
 
 		case SIDEBAR_CONTENT:
-			$attributes['class'] .= ' col-12 col-md-10 order-0 order-md-1';
+			$attributes['class'] = 'col-12 col-md-10 order-0 order-md-1';
 			break;
 	}
 	return $attributes;
@@ -150,7 +150,7 @@ function content( array $attributes ): array {
  */
 function sidebar_primary( array $attributes ): array {
 	if ( genesis_site_layout() === SIDEBAR_CONTENT ) {
-		$attributes['class'] .= ' col-12 col-md-2 order-1 order-md-0';
+		$attributes['class'] = 'col-12 col-md-2 order-1 order-md-0';
 	}
 	return $attributes;
 }

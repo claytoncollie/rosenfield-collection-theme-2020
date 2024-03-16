@@ -11,11 +11,6 @@ namespace RosenfieldCollection\Theme\Genesis;
  * Setup
  */
 function setup(): void {
-	// Force full-width-content layout setting.
-	add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
-	// Remove sidebar.
-	remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
-	remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
 	// Remove featured image.
 	remove_action( 'genesis_entry_content', 'genesis_do_singular_image', 8 );
 	// Remove entry info.

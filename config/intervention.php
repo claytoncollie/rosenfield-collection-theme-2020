@@ -5,11 +5,6 @@
  * @package RosenfieldCollection\Theme
  */
 
-// Do not run on local installs.
-if ( 'local' === wp_get_environment_type() ) {
-	return [];
-}
-
 return [
 	'application' => [
 		'theme'      => 'rosenfield-collection-theme-2020',
@@ -32,8 +27,6 @@ return [
 		'general'    => [
 			'site-title'   => 'The Rosenfield Collection',
 			'tagline'      => 'Contemporary, Functional Ceramic Art Collection',
-			'wp-address'   => 'https://www.rosenfieldcollection.com',
-			'site-address' => 'https://www.rosenfieldcollection.com',
 			'admin-email'  => 'clayton.collie@gmail.com',
 			'membership'   => false,
 			'default-role' => 'author',

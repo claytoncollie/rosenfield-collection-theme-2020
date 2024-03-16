@@ -30,7 +30,7 @@ if ( empty( $images ) ) {
 		?>
 		<li class="d-block position-relative w-100 text-left me-2 me-md-0 mb-2">
 			<img 
-				class="img-fluid border shadow-sm mw-65 mw-md-150"
+				class="img-fluid border shadow-sm mw-65 mw-md-100"
 				width="<?php echo esc_attr( $width ); ?>" 
 				height="<?php echo esc_attr( $height ); ?>" 
 				src="<?php echo esc_url( $source ); ?>" 

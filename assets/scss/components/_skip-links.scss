@@ -1,14 +1,10 @@
 // Skip Links
 
 .genesis-skip-link {
-	margin: 0;
-	padding: 0;
 
-	li {
-		height: 0;
-		list-style: none;
-		width: 0;
-	}
+	/* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
+	@extend .list-unstyled;
+	margin: 0;
 
 	.screen-reader-shortcut,
 	.screen-reader-text,

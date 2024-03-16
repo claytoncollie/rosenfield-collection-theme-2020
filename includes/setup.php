@@ -24,7 +24,6 @@ function config(): void {
 	$theme_support     = genesis_get_config( 'theme-support' );
 	$post_type_support = genesis_get_config( 'post-type-support' );
 	$image_sizes       = genesis_get_config( 'image-sizes' );
-	$page_layouts      = genesis_get_config( 'page-layouts' );
 
 	// Add responsive menus.
 	genesis_register_responsive_menus( $responsive_menu );
@@ -81,19 +80,4 @@ function config(): void {
 		}
 	);
 
-	// Add page layouts.
-	array_walk(
-		$page_layouts['add'],
-		function ( array $args ): void {
-			genesis_register_layout( $args['id'], $args );
-		}
-	);
-
-	// Remove page layouts.
-	array_walk(
-		$page_layouts['remove'],
-		function ( $name ): void {
-			genesis_unregister_layout( $name );
-		}
-	);
 }

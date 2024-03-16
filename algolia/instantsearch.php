@@ -1,6 +1,8 @@
 <?php
 /**
  * Instant Search.
+ * 
+ * @version 2.7.1
  *
  * @package RosenfieldCollection\Theme
  */
@@ -85,9 +87,9 @@ get_header();
 		<hr aria-hidden="true">
 	</script>
 	<script type="text/javascript">
-		jQuery(function() {
-			if(jQuery('.search-form').length > 0) {
-				if (algolia.indices.searchable_posts === undefined && jQuery('.admin-bar').length > 0) {
+		window.addEventListener('load', function() {
+			if ( document.getElementById("algolia-search-box") ) {
+				if ( algolia.indices.searchable_posts === undefined && document.getElementsByClassName("admin-bar").length > 0) {
 					alert('It looks like you haven\'t indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.');
 				}
 
@@ -395,7 +397,7 @@ get_header();
 
 				search.start();
 
-				jQuery('.search-form-input').attr('type', 'search').select();
+				document.querySelector("#algolia-search-box input[type='search']").select()
 			}
 		});
 	</script>
