@@ -56,7 +56,7 @@ get_header();
 			<div class="col col-7 col-lg-9 col-xl-10">
 				<h2 class="h4 mb-2">
 					<a href="{{ data.permalink }}" class="link-dark link-hidden-dots" aria-label="{{ data.rc_id }}: Read more about {{ data.post_title }} made by {{ data.post_author.display_name }}">
-						{{{ data._highlightResult.post_title.value }}}
+						{{ data._highlightResult.post_title.value }}
 					</a>
 				</h2>
 				<div class="entry-content">
