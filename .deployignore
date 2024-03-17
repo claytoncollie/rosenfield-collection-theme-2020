@@ -1,7 +1,7 @@
 .git
 .github
 node_modules
-phpstsan
+phpstan
 .deployignore
 .editorconfig
 .eslintrc
