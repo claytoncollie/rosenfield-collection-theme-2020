@@ -155,16 +155,18 @@ function hero_excerpt(): void {
 		$excerpt = has_excerpt( (int) $id ) ? do_shortcode( get_the_excerpt( (int) $id ) ) : ''; // @phpstan-ignore-line
 	}
 
-	if ( $excerpt ) {
-		genesis_markup(
-			[
-				'open'    => 'asdfsadf<p %s>',
-				'close'   => '</p>',
-				'content' => $excerpt,
-				'context' => 'hero-subtitle',
-			]
-		);
+	if ( empty( $excerpt ) ) {
+		return;
 	}
+
+	genesis_markup(
+		[
+			'open'    => '<div class="font-alt fst-italic"><p %s>',
+			'close'   => '</p></div>',
+			'content' => $excerpt,
+			'context' => 'hero-subtitle',
+		]
+	);
 }
 
 /**
@@ -207,8 +209,8 @@ function do_archive_headings_intro_text( string $heading = '', string $intro_tex
 	}
 	genesis_markup(
 		[
-			'open'    => '<div class="font-alt fst-italic"><p %s>',
-			'close'   => '</p></div>',
+			'open'    => '<div class="font-alt fst-italic">',
+			'close'   => '</div>',
 			'content' => $intro_text,
 			'context' => 'hero-subtitle',
 		]
