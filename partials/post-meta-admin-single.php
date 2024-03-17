@@ -39,45 +39,47 @@ $horizontal_label = $permalink ? $permalink . 'horizontal' : '';
 
 ?>
 
-<section id="rosenfield-collection-admin-object-data" class="container-xxl text-light bg-secondary py-2" role="contentinfo" aria-label="Admin only object data">
-	<div class="row justify-content-between">
-		<div class="col col-12 col-md-9 admin-only-purchase">
-			<?php if ( ! empty( $tags ) ) : ?>
-				<?php echo wp_kses_post( $tags ); ?>
+<section id="rosenfield-collection-admin-object-data" class="text-light bg-secondary py-2" role="contentinfo" aria-label="Admin only object data">
+	<div class="container-xxl">
+		<div class="row justify-content-between">
+			<div class="col col-12 col-md-9 admin-only-purchase">
+				<?php if ( ! empty( $tags ) ) : ?>
+					<?php echo wp_kses_post( $tags ); ?>
+					<span class="entry-sep text-white">
+						&middot;
+					</span>
+				<?php endif; ?>
+
+				<?php if ( ! empty( $location ) ) : ?>
+					<?php echo wp_kses_post( $location ); ?>
+					<span class="entry-sep text-white">
+						&middot;
+					</span>
+				<?php endif; ?>
+				
+				<?php if ( ! empty( $price ) ) : ?>
+					$<?php echo esc_html( $price ); ?>
+					<span class="entry-sep text-white">
+						&middot;
+					</span>
+				<?php endif; ?>
+
+				<?php if ( ! empty( $date ) ) : ?>
+					<?php echo esc_html( $date ); ?>
+				<?php endif; ?>
+
+				</div>
+			<div class="col col-12 col-md-3 d-flex justify-content-md-end">
+				<a href="<?php echo esc_url( $vertical_label ); ?>" class="link-light link-hidden-dots-light" rel="nofollow">
+					<?php echo esc_html__( 'Vertical Label', 'rosenfield-collection' ); ?>
+				</a>
 				<span class="entry-sep text-white">
 					&middot;
 				</span>
-			<?php endif; ?>
-
-			<?php if ( ! empty( $location ) ) : ?>
-				<?php echo wp_kses_post( $location ); ?>
-				<span class="entry-sep text-white">
-					&middot;
-				</span>
-			<?php endif; ?>
-			
-			<?php if ( ! empty( $price ) ) : ?>
-				$<?php echo esc_html( $price ); ?>
-				<span class="entry-sep text-white">
-					&middot;
-				</span>
-			<?php endif; ?>
-
-			<?php if ( ! empty( $date ) ) : ?>
-				<?php echo esc_html( $date ); ?>
-			<?php endif; ?>
-
+				<a href="<?php echo esc_url( $horizontal_label ); ?>" class="link-light link-hidden-dots-light" rel="nofollow">
+					<?php echo esc_html__( 'Horizontal Label', 'rosenfield-collection' ); ?>
+				</a>
 			</div>
-		<div class="col col-12 col-md-3 d-flex justify-content-md-end">
-			<a href="<?php echo esc_url( $vertical_label ); ?>" class="link-light link-hidden-dots-light" rel="nofollow">
-				<?php echo esc_html__( 'Vertical Label', 'rosenfield-collection' ); ?>
-			</a>
-			<span class="entry-sep text-white">
-				&middot;
-			</span>
-			<a href="<?php echo esc_url( $horizontal_label ); ?>" class="link-light link-hidden-dots-light" rel="nofollow">
-				<?php echo esc_html__( 'Horizontal Label', 'rosenfield-collection' ); ?>
-			</a>
 		</div>
 	</div>
 </section>

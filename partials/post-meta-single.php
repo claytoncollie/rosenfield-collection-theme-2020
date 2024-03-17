@@ -64,76 +64,78 @@ $prefix    = $prefix ? (string) $prefix : ''; // @phpstan-ignore-line
 
 ?>
 
-<section id="rosenfield-collection-object-data" class="sticky-md-top container-xxl bg-dark text-light border-1 border-dotted-top border-secondary py-2" role="contentinfo" aria-label="Object data">
-	<div class="row">
-		<div class="col col-12 col-md-9">
-			<?php if ( ! empty( $prefix ) && ! empty( $object_id ) ) : ?>
+<section id="rosenfield-collection-object-data" class="sticky-md-top bg-dark text-light border-1 border-dotted-top border-secondary py-2" role="contentinfo" aria-label="Object data">
+	<div class="container-xxl">
+		<div class="row">
+			<div class="col col-12 col-md-9">
+				<?php if ( ! empty( $prefix ) && ! empty( $object_id ) ) : ?>
+					<span>
+						<?php echo esc_html( $prefix ); ?>
+						<?php echo esc_html( $object_id ); ?>
+					</span>
+				<?php endif; ?>
+
+				<span class="entry-sep text-white">
+					&middot;
+				</span>
 				<span>
-					<?php echo esc_html( $prefix ); ?>
-					<?php echo esc_html( $object_id ); ?>
+					<a href="<?php echo esc_url( $author_permalink ); ?>" class="link-light link-hidden-dots-light">
+						<?php echo esc_html( $full_name ); ?>
+					</a>
 				</span>
-			<?php endif; ?>
 
-			<span class="entry-sep text-white">
-				&middot;
-			</span>
-			<span>
-				<a href="<?php echo esc_url( $author_permalink ); ?>" class="link-light link-hidden-dots-light">
-					<?php echo esc_html( $full_name ); ?>
-				</a>
-			</span>
+				<?php if ( ! empty( $forms ) ) : ?>
+					<span class="entry-sep text-white">
+						&middot;
+					</span>
+					<?php echo wp_kses_post( $forms ); ?>
+				<?php endif; ?>
 
-			<?php if ( ! empty( $forms ) ) : ?>
-				<span class="entry-sep text-white">
-					&middot;
-				</span>
-				<?php echo wp_kses_post( $forms ); ?>
-			<?php endif; ?>
+				<?php if ( ! empty( $firings ) ) : ?>
+					<span class="entry-sep text-white">
+						&middot;
+					</span>
+					<?php echo wp_kses_post( $firings ); ?>
+				<?php endif; ?>
 
-			<?php if ( ! empty( $firings ) ) : ?>
-				<span class="entry-sep text-white">
-					&middot;
-				</span>
-				<?php echo wp_kses_post( $firings ); ?>
-			<?php endif; ?>
+				<?php if ( ! empty( $techniques ) ) : ?>
+					<span class="entry-sep text-white">
+						&middot;
+					</span>
+					<?php echo wp_kses_post( $techniques ); ?>
+				<?php endif; ?>
 
-			<?php if ( ! empty( $techniques ) ) : ?>
-				<span class="entry-sep text-white">
-					&middot;
-				</span>
-				<?php echo wp_kses_post( $techniques ); ?>
-			<?php endif; ?>
+				<?php if ( $length || $width || $height ) : ?>
+					<span class="entry-sep text-white">
+						&middot;
+					</span>
+					<?php echo esc_html( $length ); ?> x 
+					<?php echo esc_html( $width ); ?> x 
+					<?php echo esc_html( $height ); ?>
+					&nbsp;
+					<?php echo esc_html__( 'inches', 'rosenfield-collection' ); ?>
+				<?php endif; ?>
 
-			<?php if ( $length || $width || $height ) : ?>
-				<span class="entry-sep text-white">
-					&middot;
-				</span>
-				<?php echo esc_html( $length ); ?> x 
-				<?php echo esc_html( $width ); ?> x 
-				<?php echo esc_html( $height ); ?>
-				&nbsp;
-				<?php echo esc_html__( 'inches', 'rosenfield-collection' ); ?>
-			<?php endif; ?>
+			</div>
 
-		</div>
+			<div class="col col-12 col-md-3 d-flex justify-content-md-end">
 
-		<div class="col col-12 col-md-3 d-flex justify-content-md-end">
+				<?php if ( ! empty( $columns ) ) : ?>
+					<?php echo esc_html__( 'Column', 'rosenfield-collection' ); ?>
+					&nbsp;
+					<?php echo wp_kses_post( $columns ); ?>
+				<?php endif; ?>
 
-			<?php if ( ! empty( $columns ) ) : ?>
-				<?php echo esc_html__( 'Column', 'rosenfield-collection' ); ?>
-				&nbsp;
-				<?php echo wp_kses_post( $columns ); ?>
-			<?php endif; ?>
+				<?php if ( ! empty( $rows ) ) : ?>
+					<span class="entry-sep text-white">
+						&middot;
+					</span>
+					<?php echo esc_html__( 'Row', 'rosenfield-collection' ); ?>
+					&nbsp;
+					<?php echo wp_kses_post( $rows ); ?>
+				<?php endif; ?>
 
-			<?php if ( ! empty( $rows ) ) : ?>
-				<span class="entry-sep text-white">
-					&middot;
-				</span>
-				<?php echo esc_html__( 'Row', 'rosenfield-collection' ); ?>
-				&nbsp;
-				<?php echo wp_kses_post( $rows ); ?>
-			<?php endif; ?>
-
+			</div>
 		</div>
 	</div>
 </section>
