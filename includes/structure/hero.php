@@ -158,7 +158,7 @@ function hero_excerpt(): void {
 	if ( $excerpt ) {
 		genesis_markup(
 			[
-				'open'    => '<p %s>',
+				'open'    => 'asdfsadf<p %s>',
 				'close'   => '</p>',
 				'content' => $excerpt,
 				'context' => 'hero-subtitle',
@@ -207,8 +207,8 @@ function do_archive_headings_intro_text( string $heading = '', string $intro_tex
 	}
 	genesis_markup(
 		[
-			'open'    => '<p %s>',
-			'close'   => '</p>',
+			'open'    => '<div class="font-alt fst-italic"><p %s>',
+			'close'   => '</p></div>',
 			'content' => $intro_text,
 			'context' => 'hero-subtitle',
 		]

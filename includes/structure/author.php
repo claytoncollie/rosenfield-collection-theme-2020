@@ -123,7 +123,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $bio ) ) {
 		printf(
-			'<div class="mt-4">%s</div>',
+			'<div class="font-alt fst-italic mt-4">%s</div>',
 			wp_kses_post( wpautop( $bio ) )
 		);
 	}

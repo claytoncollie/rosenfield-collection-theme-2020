@@ -18,7 +18,7 @@ $total_users = (string) $users['total_users'];
 		<h3>
 			<?php echo esc_html( $published ); ?>
 		</h3>
-		<p>
+		<p class="font-alt fst-italic">
 			<?php echo esc_html__( 'Published Objects', 'rosenfield-collection' ); ?>
 		</p>
 	</div>
@@ -26,7 +26,7 @@ $total_users = (string) $users['total_users'];
 		<h3>
 			<?php echo esc_html( $total_users ); ?>
 		</h3>
-		<p>
+		<p class="font-alt fst-italic">
 			<?php echo esc_html__( 'Artists', 'rosenfield-collection' ); ?>
 		</p>
 	</div>
