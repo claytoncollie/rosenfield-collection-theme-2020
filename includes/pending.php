@@ -94,18 +94,19 @@ function filters(): void {
 	if ( ! is_page_template( 'templates/pending.php' ) ) {
 		return;
 	}
+	?>
 
-	get_template_part( 'partials/pending-filter-by-form' );
-	get_template_part( 'partials/pending-filter-by-artist' );
+	<div class="row">
+		<?php get_template_part( 'partials/pending-filter-by-form' ); ?>
+		<?php get_template_part( 'partials/pending-filter-by-artist' ); ?>
+	</div>
+
+	<?php
 }
 
 /**
  * Purchase meta data
  */
 function purchase_meta(): void {
-	if ( ! is_page_template( 'templates/pending.php' ) ) {
-		return;
-	}
-
 	get_template_part( 'partials/purchase-meta' );
 }

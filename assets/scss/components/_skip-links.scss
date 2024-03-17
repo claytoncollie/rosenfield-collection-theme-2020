@@ -1,0 +1,27 @@
+// Skip Links
+
+.genesis-skip-link {
+
+	/* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
+	@extend .list-unstyled;
+	margin: 0;
+
+	.screen-reader-shortcut,
+	.screen-reader-text,
+	.screen-reader-text span {
+
+		/* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
+		@extend .visually-hidden-focusable;
+
+		&:active,
+		&:focus {
+			background-color: $white;
+			color: $black;
+			margin: $spacing--s;
+			padding: $spacing--s;
+			position: absolute;
+			text-decoration: none;
+			z-index: 99999999;
+		}
+	}
+}

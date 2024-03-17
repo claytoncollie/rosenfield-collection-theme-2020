@@ -44,9 +44,8 @@ $is_user_logged_in = is_user_logged_in();
 
 ?>
 
-<div class="taxonomies">
+<div class="w-100">
 	<?php if ( ! empty( $forms ) ) : ?>
-		<span class="entry-sep">&middot;</span>
 		<?php echo wp_kses_post( $forms ); ?>
 	<?php endif; ?>
 
@@ -62,21 +61,26 @@ $is_user_logged_in = is_user_logged_in();
 </div>
 
 <?php if ( $is_user_logged_in ) : ?>
-	<div class="location">
+	<div class="text-start text-md-end w-100">
 		<?php if ( ! empty( $columns ) ) : ?>
-			<?php echo esc_html__( 'Column', 'rosenfield-collection' ); ?><?php echo wp_kses_post( $columns ); ?>
+			<?php echo esc_html__( 'Column', 'rosenfield-collection' ); ?>
+			<?php echo wp_kses_post( $columns ); ?>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $rows ) ) : ?>
-			<span class="entry-sep">&middot;</span><?php echo esc_html__( 'Row ', 'rosenfield-collection' ); ?><?php echo wp_kses_post( $rows ); ?>
+			<span class="entry-sep">&middot;</span>
+			<?php echo esc_html__( 'Row ', 'rosenfield-collection' ); ?>
+			<?php echo wp_kses_post( $rows ); ?>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $location ) ) : ?>
-			<span class="entry-sep">&middot;</span><?php echo wp_kses_post( $location ); ?>
+			<span class="entry-sep">&middot;</span>
+			<?php echo wp_kses_post( $location ); ?>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $price ) ) : ?>
-			<span class="entry-sep">&middot;</span>$<?php echo wp_kses_post( $price ); ?>
+			<span class="entry-sep">&middot;</span>
+			$<?php echo wp_kses_post( $price ); ?>
 		<?php endif; ?>
 	</div>
 <?php endif; ?>

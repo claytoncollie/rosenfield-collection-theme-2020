@@ -1,45 +1,29 @@
 // Typography settings.
 
-// Font sizes
-$base--font-size: 1.6rem;
+// Base color
+$body-color: $gray-800;
 
-$font-size--s: 1.4rem;
-$font-size--xs: 1.2rem;
+// Link color
+$link-color: $gray-800;
+$link-hover-color: $dark;
 
-$font-size--h1: 2.8em;
-$font-size--h2: 1.8em;
-$font-size--h3: 1.5em;
-$font-size--h4: 1.3em;
-$font-size--h5: 1.2em;
-$font-size--h6: 1.1em;
+// navbar color
+$navbar-light-color: $gray-800;
+$navbar-light-hover-color: $dark;
+$navbar-light-active-color: $dark;
 
-$font-sizes: (
-	h1: $font-size--h1,
-	h2: $font-size--h2,
-	h3: $font-size--h3,
-	h4: $font-size--h4,
-	h5: $font-size--h5,
-	h6: $font-size--h6,
-);
+// Base font
+$font-size-base: 1.125rem;
+
+// Headings
+$h1-font-size: 2.8em;
+$h2-font-size: 1.8em;
+$h3-font-size: 1.5em;
+$h4-font-size: 1.3em;
+$h5-font-size: 1.2em;
+$h6-font-size: 1.1em;
 
 // Font families
-$base--font-family: "Lato", sans-serif;
-$font-family--heading: $base--font-family;
-$font-family--alt: "PT Serif", serif;
-$font-family--code: $font-stack-consolas;
-
-// Font weights
-$font-weight--extralight: 200;
-$font-weight--light: 300;
-$font-weight--regular: 400;
-$font-weight--medium: 500;
-$font-weight--semibold: 600;
-$font-weight--bold: 700;
-
-$base--font-weight: $font-weight--regular;
-$font-weight--heading: $font-weight--regular;
-
-// Line height
-$base--line-height: modular-scale(0, $golden);
-
-$line-height--heading: modular-scale(-1, $golden);
+$font-family-base: "Lato", sans-serif;
+$font-family-alt: "PT Serif", serif;
+$headings-font-family: "Lato", sans-serif;

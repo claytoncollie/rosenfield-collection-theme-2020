@@ -35,8 +35,8 @@ $permalink = '' !== $permalink && '0' !== $permalink ? (string) $permalink : '';
 
 ?>
 
-<section id="rosenfield-collection-pending-filter-by-form" class="inline-filter" role="navigation" aria-label="Filter object by form">
-	<select onchange="document.location.href=this.value">
+<div class="col" aria-label="Filter object by form">
+	<select onchange="document.location.href=this.value" class="form-select">
 		<option value="<?php echo esc_url( $permalink ); ?>">
 			<?php echo esc_html__( 'All Forms', 'rosenfield-collection' ); ?>
 		</option>
@@ -56,4 +56,4 @@ $permalink = '' !== $permalink && '0' !== $permalink ? (string) $permalink : '';
 			</option>
 		<?php endforeach; ?>
 	</select>
-</section>
+</div>

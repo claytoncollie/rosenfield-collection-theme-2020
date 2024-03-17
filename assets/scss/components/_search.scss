@@ -1,0 +1,30 @@
+// Algolia
+
+.ais-SearchBox {
+
+	&-submit {
+		position: absolute;
+		z-index: 1;
+		top: 40%;
+		left: 1.5rem;
+		width: 20px;
+		height: 20px;
+		padding: 0;
+		border: 0;
+		color: $dark;
+		background-color: transparent;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $dark;
+			background-color: transparent;
+		}
+	}
+
+}

@@ -9,7 +9,6 @@ namespace RosenfieldCollection\Theme\Structure\Hero;
 
 use const RosenfieldCollection\Theme\Fields\CONTACT_SLUG;
 use const RosenfieldCollection\Theme\PostTypes\PAGE_SLUG;
-use const RosenfieldCollection\Theme\QueryVars\VIEW_VAR;
 
 /**
  * Setup
@@ -23,20 +22,6 @@ function setup(): void {
  */
 function hero_setup(): void {
 	if ( is_admin() ) {
-		return;
-	}
-
-	if ( ! current_theme_supports( 'hero-section' ) ) {
-		return;
-	}
-
-	$post_type = get_post_type();
-	$post_type = $post_type ? (string) $post_type : '';
-	if ( ! post_type_supports( $post_type, 'hero-section' ) ) {
-		return;
-	}
-
-	if ( genesis_entry_header_hidden_on_current_page() ) {
 		return;
 	}
 
@@ -62,9 +47,6 @@ function hero_setup(): void {
 	remove_filter( 'genesis_cpt_archive_intro_text_output', 'wpautop' );
 
 	add_filter( 'genesis_search_title_output', '__return_false' );
-	add_filter( 'genesis_attr_archive-title', __NAMESPACE__ . '\hero_archive_title_attr' );
-	add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\hero_entry_attr' );
-	add_filter( 'body_class', __NAMESPACE__ . '\hero_body_class' );
 
 	add_action( 'genesis_hero_section', 'genesis_do_posts_page_heading' );
 	add_action( 'genesis_hero_section', 'genesis_do_date_archive_title' );
@@ -74,28 +56,10 @@ function hero_setup(): void {
 	add_action( 'genesis_archive_title_descriptions', __NAMESPACE__ . '\do_archive_headings_intro_text', 12, 3 );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_title', 10 );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_view_toggle', 15 );
+	add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_search_form', 15 );
 	add_action( 'genesis_hero_section', __NAMESPACE__ . '\hero_excerpt', 20 );
 	add_action( 'genesis_before_content', __NAMESPACE__ . '\hero_remove_404_title' );
-	add_action( 'genesis_before_content_sidebar_wrap', __NAMESPACE__ . '\hero_display' );
-	if ( is_customize_preview() ) {
-		return;
-	}
-	if ( ! is_front_page() ) {
-		return;
-	}
-	add_action( 'genesis_before_hero-section_wrap', 'the_custom_header_markup' );
-}
-
-/**
- * Adds hero utility class to body element.
- *
- * @param array $classes List of body classes.
- */
-function hero_body_class( array $classes ): array {
-	$classes   = \array_diff( $classes, [ 'no-hero-section' ] );
-	$classes[] = 'has-hero-section';
-
-	return $classes;
+	add_action( 'genesis_after_header', __NAMESPACE__ . '\hero_display' );
 }
 
 /**
@@ -113,7 +77,11 @@ function hero_remove_404_title(): void {
  * Display title in hero section.
  */
 function hero_title(): void {
-	$open  = '<h1 %s itemprop="headline">';
+	if ( is_front_page() ) {
+		return;
+	} 
+
+	$open  = '<h1 %s>';
 	$close = '</h1>';
 
 	if ( is_home() && 'posts' === get_option( 'show_on_front' ) ) {
@@ -128,9 +96,9 @@ function hero_title(): void {
 		$title     = get_the_title();
 		$permalink = get_permalink();
 		$permalink = $permalink ? (string) $permalink : '';
-		$open      = '<div class="hero-section-edit"><h1 %s itemprop="headline">';
+		$open      = '<div class="col col-12 col-md-7 text-start d-flex align-items-center flex-column flex-md-row mb-4 mb-md-0"><h1 %s>';
 		$close     = sprintf(
-			'</h1><span class="entry-sep">&middot;</span><a href="%s" class="more-link">%s</a></div>',
+			'</h1><span class="entry-sep d-none d-md-inline-block">&middot;</span><a href="%s" class="link-fancy">%s</a></div>',
 			esc_url(
 				add_query_arg(
 					[
@@ -162,6 +130,10 @@ function hero_title(): void {
  * Display page excerpt.
  */
 function hero_excerpt(): void {
+	if ( is_front_page() ) {
+		return;
+	} 
+	
 	$excerpt = '';
 	$id      = '';
 
@@ -186,7 +158,7 @@ function hero_excerpt(): void {
 	if ( $excerpt ) {
 		genesis_markup(
 			[
-				'open'    => '<p %s itemprop="description">',
+				'open'    => '<p %s>',
 				'close'   => '</p>',
 				'content' => $excerpt,
 				'context' => 'hero-subtitle',
@@ -201,26 +173,22 @@ function hero_excerpt(): void {
  * Will toggle view between grid (default) and list.
  */
 function hero_view_toggle(): void {
-	global $wp_query;
-
 	if ( ! is_tax() && ! is_tag() ) {
 		return;
 	}
 
-	$taxonomy  = $wp_query->get_queried_object();
-	$term_link = get_term_link( $taxonomy->term_id, $taxonomy->taxonomy );
-	$term_link = is_wp_error( $term_link ) ? '' : (string) $term_link;
+	get_template_part( 'partials/taxonomy-view' );
+}
 
-	printf(
-		'<section class="view-toggle" role="navigation" aria-label="%s"><a href="%s" id="view-toggle-grid" aria-label="%s">%s</a><span class="entry-sep">&middot;</span><a href="%s" id="view-toggle-list" aria-label="%s">%s</a></section>',
-		esc_html__( 'Toggle to view as list or grid', 'rosenfield-collection' ),
-		esc_url( $term_link ),
-		esc_html__( 'View as grid', 'rosenfield-collection' ),
-		esc_html__( 'Grid', 'rosenfield-collection' ),
-		esc_url( add_query_arg( VIEW_VAR, 'list', $term_link ) ),
-		esc_html__( 'View as list', 'rosenfield-collection' ),
-		esc_html__( 'List', 'rosenfield-collection' )
-	);
+/**
+ * Display search form
+ */
+function hero_search_form(): void {
+	if ( ! is_search() ) {
+		return;
+	}
+
+	get_template_part( 'partials/search-form' );
 }
 
 /**
@@ -239,7 +207,7 @@ function do_archive_headings_intro_text( string $heading = '', string $intro_tex
 	}
 	genesis_markup(
 		[
-			'open'    => '<p %s itemprop="description">',
+			'open'    => '<p %s>',
 			'close'   => '</p>',
 			'content' => $intro_text,
 			'context' => 'hero-subtitle',
@@ -248,71 +216,8 @@ function do_archive_headings_intro_text( string $heading = '', string $intro_tex
 }
 
 /**
- * Adds attributes to hero archive title markup.
- *
- * @param array $atts Hero title attributes.
- */
-function hero_archive_title_attr( array $atts ): array {
-	$atts['class']      = 'hero-title';
-	$atts['itemprop']   = 'headline';
-	$atts['role']       = 'banner';
-	$atts['aria-label'] = esc_html__( 'Page Header', 'rosenfield-collection' );
-
-	return $atts;
-}
-
-/**
- * Adds attributes to hero section markup.
- *
- * @param array $atts Hero entry attributes.
- */
-function hero_entry_attr( array $atts ): array {
-	if ( is_singular() ) {
-		$atts['itemref'] = 'hero-section';
-	}
-
-	return $atts;
-}
-
-/**
  * Display the hero section.
  */
 function hero_display(): void {
-	genesis_markup(
-		[
-			'open'    => '<section %s role="banner" aria-label="Page header">',
-			'context' => 'hero-section',
-		]
-	);
-
-	\do_action( 'genesis_before_hero_section' );
-
-	genesis_structural_wrap( 'hero-section', 'open' );
-
-	genesis_markup(
-		[
-			'open'    => '<div %s>',
-			'context' => 'hero-inner',
-		]
-	);
-
-	\do_action( 'genesis_hero_section' );
-
-	genesis_markup(
-		[
-			'close'   => '</div>',
-			'context' => 'hero-inner',
-		]
-	);
-
-	genesis_structural_wrap( 'hero-section', 'close' );
-
-	\do_action( 'genesis_after_hero_section' );
-
-	genesis_markup(
-		[
-			'close'   => '</section>',
-			'context' => 'hero-section',
-		]
-	);
+	get_template_part( 'partials/hero' );
 }

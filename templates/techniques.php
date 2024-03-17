@@ -5,7 +5,8 @@
  * @package RosenfieldCollection\Theme
  */
 
-// Must remove for proper markup.
+// Reposition the entry content.
 remove_action( 'genesis_loop', 'genesis_do_loop' );
+add_action( 'genesis_hero_section', 'the_content', 12 );
 
 genesis();

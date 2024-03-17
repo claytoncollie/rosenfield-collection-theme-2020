@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.4/theme.json",
+	"version": 2,
+	"settings": {
+		"appearanceTools": false,
+		"useRootPaddingAwareAlignments": true,
+		"layout": {
+			"contentSize": "45rem",
+			"wideSize": "63rem"
+		}
+	}
+	
+}

@@ -8,51 +8,53 @@
 namespace RosenfieldCollection\Theme\Structure\Pagination;
 
 /**
+ * Targets for the pagination context
+ * 
+ * @var array
+ */
+const CONTEXT = [ 
+	'archive-pagination',
+	'adjacent-entry-pagination',
+];
+
+/**
  * Setup
  */
 function setup(): void {
-	add_filter( 'genesis_markup_open', __NAMESPACE__ . '\entry_pagination_wrap_open', 10, 2 );
-	add_filter( 'genesis_markup_close', __NAMESPACE__ . '\entry_pagination_wrap_close', 10, 2 );
+	add_filter( 'genesis_attr_archive-pagination', __NAMESPACE__ . '\attributes', 10, 1 );
 	add_filter( 'genesis_prev_link_text', __NAMESPACE__ . '\previous_page_link' );
 	add_filter( 'genesis_next_link_text', __NAMESPACE__ . '\next_page_link' );
 	add_filter( 'genesis_markup_pagination-previous_content', __NAMESPACE__ . '\previous_pagination_text' );
 	add_filter( 'genesis_markup_pagination-next_content', __NAMESPACE__ . '\next_pagination_text' );
 	// Reposition archive pagination.
 	remove_action( 'genesis_after_endwhile', 'genesis_posts_nav' );
-	add_action( 'genesis_after_content_sidebar_wrap', 'genesis_posts_nav' );
+	add_action( 'genesis_before_footer', __NAMESPACE__ . '\maybe_do_archive_pagination' );
 	// Reposition single navigation.
 	remove_action( 'genesis_after_entry', 'genesis_adjacent_entry_nav' );
-	add_action( 'genesis_after_content_sidebar_wrap', 'genesis_adjacent_entry_nav' );
-	// Removes alignment classes.
-	remove_filter( 'genesis_attr_pagination-previous', 'genesis_adjacent_entry_attr_previous_post' );
-	remove_filter( 'genesis_attr_pagination-next', 'genesis_adjacent_entry_attr_next_post' );
-}
-/**
- * Outputs the opening pagination wrap markup.
- *
- * @param string $open Opening markup.
- * @param array  $args Markup args.
- */
-function entry_pagination_wrap_open( string $open, array $args ): string {
-	if ( 'archive-pagination' === $args['context'] || 'adjacent-entry-pagination' === $args['context'] ) {
-		$open .= '<div class="wrap">';
-	}
-
-	return $open;
+	add_action( 'genesis_before_footer', 'genesis_adjacent_entry_nav' );
 }
 
 /**
- * Outputs the closing pagination wrap markup.
+ * Maybe display the search form on archive pages.
  *
- * @param string $close Closing markup.
- * @param array  $args  Markup args.
+ * Do not display on search results
  */
-function entry_pagination_wrap_close( string $close, array $args ): string {
-	if ( 'archive-pagination' === $args['context'] || 'adjacent-entry-pagination' === $args['context'] ) {
-		$close .= '</div>';
+function maybe_do_archive_pagination(): void {
+	if ( is_search() ) {
+		return;
 	}
 
-	return $close;
+	genesis_posts_nav();
+}
+
+/**
+ * Genesis attributes
+ * 
+ * @param array $attributes Attributes.
+ */
+function attributes( array $attributes ): array {
+	$attributes['class'] .= ' container-xxl px-3 py-5';
+	return $attributes;
 }
 
 /**

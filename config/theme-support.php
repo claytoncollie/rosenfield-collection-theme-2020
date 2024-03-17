@@ -26,18 +26,16 @@ return [
 		],
 		'genesis-structural-wraps' => [
 			'header',
-			'menu-secondary',
-			'hero-section',
+			'inner',
+			'footer',
 		],
 		'gutenberg'                => [
 			'wide-images' => true,
 		],
-		'hero-section',
 		'html5'                    => [
 			'caption',
 			'comment-form',
 			'comment-list',
-			'gallery',
 			'search-form',
 		],
 		'post-thumbnails',
@@ -50,5 +48,6 @@ return [
 		'genesis-customizer-seo-settings',
 		'genesis-auto-updates',
 		'genesis-breadcrumbs',
+		'genesis-inpost-layouts',
 	],
 ];

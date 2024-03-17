@@ -30,8 +30,8 @@ $permalink = '' !== $permalink && '0' !== $permalink ? (string) $permalink : '';
 
 ?>
 
-<section id="rosenfield-collection-pending-filter-by-user" class="inline-filter" role="navigation" aria-label="Filter object by artist">
-	<select onchange="document.location.href=this.value">
+<div class="col" aria-label="Filter object by artist">
+	<select onchange="document.location.href=this.value" class="form-select">
 		<option value="<?php echo esc_url( $permalink ); ?>">
 			<?php echo esc_html__( 'All Artists', 'rosenfield-collection' ); ?>
 		</option>
@@ -43,7 +43,7 @@ $permalink = '' !== $permalink && '0' !== $permalink ? (string) $permalink : '';
 				$user->ID,
 				get_permalink()
 			);
-			$is_selected = get_query_var( ARTIST_VAR ) === $user->ID ? 'selected' : '';
+			$is_selected = get_query_var( ARTIST_VAR ) === (string) $user->ID ? 'selected' : '';
 			$user_name   = ucwords( (string) $user->display_name );
 			?>
 			<option value="<?php echo esc_url( $user_link ); ?>" <?php echo esc_attr( $is_selected ); ?>>
@@ -51,4 +51,4 @@ $permalink = '' !== $permalink && '0' !== $permalink ? (string) $permalink : '';
 			</option>
 		<?php endforeach; ?>
 	</select>
-</section>
+</div>

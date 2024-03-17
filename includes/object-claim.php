@@ -77,7 +77,7 @@ function do_claim_meta(): void {
 	$full_name  = $first_name . ' ' . $last_name;
 
 	printf(
-		'<section class="claim-header"><div class="wrap"><h2>%s</h2><a href="%s" class="button warning">%s</a></div></section>',
+		'<div class="row"><div class="col-12 col-md-10"><h2>%s</h2></div><div class="col-12 col-md-2"><a href="%s" class="btn btn-danger">%s</a></div></div>',
 		esc_html( $full_name ),
 		esc_url( $permalink ),
 		esc_html__( 'Delete', 'rosenfield-collection' )

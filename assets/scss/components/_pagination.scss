@@ -1,27 +1,15 @@
 // Pagination component.
 
 .pagination {
-	width: 100%;
-	padding: $gutter 0;
-
-	@include mq(m) {
-		margin-top: auto;
-	}
-
-	.wrap {
-		justify-content: center;
-	}
 
 	ul {
 		display: flex;
 		flex-wrap: wrap;
-		margin-bottom: 0;
+		justify-content: center;
 		list-style-type: none;
-		justify-content: space-between;
-
-		.search & {
-			justify-content: center;
-		}
+		margin: 0;
+		padding: 0;
+		width: 100%;
 	}
 
 	li {
@@ -33,14 +21,16 @@
 		span {
 			display: inline-block;
 			padding: $spacing--s $spacing--m;
-			border: 1px solid $color--gray-800;
-			color: $color--gray-800;
+			border: 1px solid $gray-800;
+			color: $gray-800;
 			text-decoration: none;
 
-			@include hover-focus {
-				border-color: $color--black;
-				color: $color--white;
-				background-color: $color--black;
+			&:hover,
+			&:focus,
+			&:active {
+				border-color: $black;
+				color: $white;
+				background-color: $black;
 				text-decoration: none;
 			}
 		}
@@ -50,9 +40,9 @@
 	.active {
 
 		a {
-			border-color: $color--black;
-			color: $color--white;
-			background-color: $color--black;
+			border-color: $black;
+			color: $white;
+			background-color: $black;
 			text-decoration-line: none;
 		}
 	}
@@ -60,76 +50,10 @@
 	// Active item for Artists Archive.
 	.current.page-numbers {
 		padding: $spacing--s $spacing--m;
-		border: 1px solid $color--black;
-		color: $color--white;
-		background-color: $color--black;
+		border: 1px solid $black;
+		color: $white;
+		background-color: $black;
 		text-decoration-line: none;
 	}
 
-	// Previous item.
-	&-previous {
-		display: block;
-		width: 100%;
-		margin-bottom: $spacing--s;
-
-		@include mq(m) {
-			display: inline-block;
-			width: auto;
-			margin-bottom: 0;
-		}
-
-		a {
-			display: block;
-			width: 100%;
-
-			@include mq(m) {
-				width: auto;
-			}
-		}
-	}
-
-	// Next item.
-	&-next {
-		display: block;
-		width: 100%;
-		margin-top: $spacing--s;
-		text-align: right;
-
-		@include mq(m) {
-			display: inline-block;
-			width: auto;
-			margin-top: 0;
-		}
-
-		a {
-			display: block;
-			width: 100%;
-
-			@include mq(m) {
-				width: auto;
-			}
-		}
-	}
-}
-
-// Adjacent posts nav.
-.adjacent-entry-pagination {
-
-	.narrow-content & {
-
-		.wrap {
-
-			@include mq(m) {
-				width: $layout--width--content;
-			}
-		}
-	}
-
-	.wrap {
-		justify-content: space-between;
-
-		> div {
-			max-width: $one-half;
-		}
-	}
 }

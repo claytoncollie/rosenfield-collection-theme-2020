@@ -1,0 +1,67 @@
+// Links
+
+.link-dots {
+	border-bottom: 1px dotted $gray-800;
+	text-decoration: none;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border-bottom-color: $dark;
+		text-decoration: none;
+	}
+}
+
+.link-hidden-dots {
+	border-bottom: 1px dotted transparent;
+	text-decoration: none;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border-bottom-color: $dark;
+		border-bottom-style: dotted;
+		text-decoration: none;
+	}
+}
+
+.link-dots-light {
+	border-bottom: 1px dotted $light;
+	text-decoration: none;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border-bottom-style: solid;
+		text-decoration: none;
+	}
+}
+
+.link-hidden-dots-light {
+	border-bottom: 1px dotted transparent;
+	text-decoration: none;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border-bottom-color: $light;
+		border-bottom-style: dotted;
+		text-decoration: none;
+	}
+}
+
+.link-fancy {
+	border-bottom: 1px dotted $gray-800;
+	color: $gray-800;
+	font-family: $font-family-alt;
+	font-style: italic;
+	text-decoration: none;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border-bottom-color: $dark;
+		color: $dark;
+		text-decoration: none;
+	}
+}

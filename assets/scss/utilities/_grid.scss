@@ -1,93 +1,29 @@
-// Grid classes.
+// CSS Grid
 
-.full-width {
-	width: 100%;
+.grid-template-columns {
+	grid-template-columns: 100px 1fr;
 }
 
-@include mq(m) {
+.grid-column-1 {
+	grid-column: 1;
+}
 
-	.one-half,
-	.one-third,
-	.one-fourth,
-	.one-fifth,
-	.one-sixth,
-	.two-thirds,
-	.two-fourths,
-	.two-fifths,
-	.two-sixths,
-	.three-fourths,
-	.three-fifths,
-	.three-sixths,
-	.four-fifths,
-	.four-sixths,
-	.five-sixths {
-		float: left;
-		margin-bottom: $gutter;
-		margin-left: $gutter;
+.grid-column-2 {
+	grid-column: 2;
+}
 
-		.report & {
-			margin-bottom: 0;
-		}
+.grid-row-1 {
+	grid-row: 1;
+}
 
-		.view-toggle-list & {
-			float: none;
-			width: 100%;
-			margin-bottom: 0;
-			margin-left: 0;
-		}
+.grid-row-2 {
+	grid-row: 2;
+}
 
-	}
+.grid-row-3 {
+	grid-row: 3;
+}
 
-	.one-half,
-	.two-fourths,
-	.three-sixths {
-		width: $one-half;
-	}
-
-	.one-third,
-	.two-sixths {
-		width: $one-third;
-	}
-
-	.one-fourth {
-		width: $one-fourth;
-	}
-
-	.one-fifth {
-		width: $one-fifth;
-	}
-
-	.one-sixth {
-		width: $one-sixth;
-	}
-
-	.two-thirds,
-	.four-sixths {
-		width: $two-thirds;
-	}
-
-	.two-fifths {
-		width: $two-fifths;
-	}
-
-	.three-fourths {
-		width: $three-fourths;
-	}
-
-	.three-fifths {
-		width: $three-fifths;
-	}
-
-	.four-fifths {
-		width: $four-fifths;
-	}
-
-	.five-sixths {
-		width: $five-sixths;
-	}
-
-	.first {
-		clear: both;
-		margin-left: 0;
-	}
+.grid-span-row-3 {
+	grid-row: span 3;
 }

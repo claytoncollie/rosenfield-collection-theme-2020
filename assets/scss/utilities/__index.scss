@@ -4,9 +4,7 @@
 // necessary, this is the only place where `!important` rules should go, but
 // only if necessary.
 
-@import "accessibility";
-@import "gutenberg";
-@import "alignment";
+@import "border";
 @import "grid";
-@import "spacing";
-@import "print";
+@import "icons";
+@import "links";

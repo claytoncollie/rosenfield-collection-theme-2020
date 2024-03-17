@@ -2,37 +2,25 @@
 
 .nav-primary {
 	display: none;
-	width: 100vw;
-	margin: 0 -5vw;
-	padding: $spacing--m 5vw;
-	background-color: $color--black;
-	font-size: $font-size--h3;
-	order: 2;
 
-	@include mq(m) {
+	@include media-breakpoint-up(md) {
 		display: flex !important;
-		position: relative;
-		top: auto;
-		width: auto;
-		margin: 0 0 0 auto;
-		padding: 0;
-		background: 0;
-		font-size: $base--font-size;
 	}
 
-	.search-lg {
-		display: none;
+	.menu-item {
 
-		@include mq(m) {
-			display: inline-block;
+		@include media-breakpoint-up(md) {
+			margin-right: $spacing--s;
 		}
 	}
 
-	.search-m {
-		display: block;
+	a {
+		border: 1px solid transparent;
+	}
 
-		@include mq(m) {
-			display: none;
-		}
+	a:hover,
+	a:focus,
+	.active {
+		border-color: $white;
 	}
 }

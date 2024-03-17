@@ -1,35 +1,29 @@
 <?php
 /**
  * Instant Search.
+ * 
+ * @version 2.7.1
  *
  * @package RosenfieldCollection\Theme
  */
-
-use function RosenfieldCollection\Theme\Structure\Hero\hero_title;
 
 get_header();
 
 ?>
 
-	<section class="hero-section" role="banner" aria-label="Page Header">
-		<div class="wrap">
-			<div class="hero-inner">
-				<?php hero_title(); ?>
-				<div id="search-box"></div>
+	<div class="row">
+		<section class="col col-12" aria-label="Statistics and Current Refinements" role="contentinfo" id="rosenfield-collection-current-refinements">
+			<div class="border-bottom pb-3 mb-4">
+				<div id="algolia-stats" class="d-inline-block mb-2 mb-md-0"></div>
+				<span class="entry-sep">&middot;</span>
+				<div id="current-refinements" class="d-inline-block"></div>
 			</div>
-		</div>
-	</section>
-	<div class="wrap">
-		<section class="refinements" aria-label="Statistics and Current Refinements" role="contentinfo" id="rosenfield-collection-current-refinements">
-			<div id="algolia-stats"></div>
-			<span class="entry-sep">&middot;</span>
-			<div id="current-refinements"></div>
 		</section>
-		<main id="genesis-content" class="content">
+		<main id="genesis-content" class="col col-12 col-md-9 order-1">
 			<div id="algolia-hits"></div>
-			<div id="algolia-pagination"></div>
+			<div id="algolia-pagination" class="mt-5"></div>
 		</main>
-		<aside class="sidebar sidebar-primary" role="search" aria-label="Primary Sidebar" id="genesis-sidebar-primary">
+		<aside class="col col-12 col-md-3 order-0" role="search" aria-label="Primary Sidebar" id="genesis-sidebar-primary">
 			<div id="clear-refinements"></div>
 			<div id="facet-users"></div>
 			<div id="facet-form"></div>
@@ -45,44 +39,57 @@ get_header();
 	</div>
 
 	<script type="text/html" id="tmpl-instantsearch-hit">
-		<article class="entry" itemtype="http://schema.org/Article" aria-label="{{ data.rc_id }}: {{ data.post_title }} made by {{ data.post_author.display_name }}">
-			<# if ( data.images.thumbnail ) { #>
-			<a href="{{ data.permalink }}" class="entry-image-link first one-sixth">
-				<img height="{{ data.images.thumbnail.height }}" width="{{ data.images.thumbnail.width }}" src="{{ data.images.thumbnail.url }}" alt="{{ data.rc_id }}: Main image for {{ data.post_title }} made by {{ data.post_author.display_name }}" itemprop="image" />
-			</a>
-			<# } #>
-			<div class="entry-wrap five-sixths">
-				<h2 class="entry-title" itemprop="name">
-					<a href="{{ data.permalink }}" class="entry-title-link" rel="bookmark" itemprop="url" aria-label="{{ data.rc_id }}: Read more about {{ data.post_title }} made by {{ data.post_author.display_name }}">{{{ data._highlightResult.post_title.value }}}</a>
+		<article class="row align-items-start align-items-md-center mb-3" aria-label="{{ data.rc_id }}: {{ data.post_title }} made by {{ data.post_author.display_name }}">
+			<div class="col col-5 col-lg-3 col-xl-2">
+				<# if ( data.images.thumbnail ) { #>
+					<a href="{{ data.permalink }}" class="d-block mb-3 mb-md-0">
+						<img 
+							class="img-fluid border shadow-sm"
+							height="{{ data.images.thumbnail.height }}" 
+							width="{{ data.images.thumbnail.width }}" 
+							src="{{ data.images.thumbnail.url }}" 
+							alt="{{ data.rc_id }}: Main image for {{ data.post_title }} made by {{ data.post_author.display_name }}" 
+						/>
+					</a>
+				<# } #>
+			</div>
+			<div class="col col-7 col-lg-9 col-xl-10">
+				<h2 class="h4 mb-2">
+					<a href="{{ data.permalink }}" class="link-dark link-hidden-dots" aria-label="{{ data.rc_id }}: Read more about {{ data.post_title }} made by {{ data.post_author.display_name }}">
+						{{{ data._highlightResult.post_title.value }}}
+					</a>
 				</h2>
 				<div class="entry-content">
-					<p>
-						{{ data.post_author.display_name }}<span class="entry-sep">&middot;</span>{{ data.rc_id }}
-						<# if ( data.taxonomies.rc_form ) { #>
-							<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_form }}
-						<# } #>
-						<# if ( data.taxonomies.rc_firing ) { #>
-							<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_firing }}
-						<# } #>
-						<# if ( data.taxonomies.rc_technique ) { #>
-							<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_technique }}
-						<# } #>
-						<# if ( data.taxonomies.rc_column ) { #>
-							<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_column }}
-						<# } #>
-						<# if ( data.taxonomies.rc_row ) { #>
-							<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_row }}
-						<# } #>
-					</p>
+					{{ data.post_author.display_name }}
+					<span class="entry-sep">
+						&middot;
+					</span>
+					{{ data.rc_id }}
+
+					<# if ( data.taxonomies.rc_form ) { #>
+						<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_form }}
+					<# } #>
+					<# if ( data.taxonomies.rc_firing ) { #>
+						<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_firing }}
+					<# } #>
+					<# if ( data.taxonomies.rc_technique ) { #>
+						<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_technique }}
+					<# } #>
+					<# if ( data.taxonomies.rc_column ) { #>
+						<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_column }}
+					<# } #>
+					<# if ( data.taxonomies.rc_row ) { #>
+						<span class="entry-sep">&middot;</span>{{ data.taxonomies.rc_row }}
+					<# } #>
 				</div>
 			</div>
 		</article>
+		<hr aria-hidden="true">
 	</script>
 	<script type="text/javascript">
-		jQuery(function() {
-			if(jQuery('.search-form').length > 0) {
-
-				if (algolia.indices.searchable_posts === undefined && jQuery('.admin-bar').length > 0) {
+		window.addEventListener('load', function() {
+			if ( document.getElementById("algolia-search-box") ) {
+				if ( algolia.indices.searchable_posts === undefined && document.getElementsByClassName("admin-bar").length > 0) {
 					alert('It looks like you haven\'t indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.');
 				}
 
@@ -113,11 +120,46 @@ get_header();
 				search.addWidget(
 					instantsearch.widgets.stats({
 						container: '#algolia-stats',
+						cssClasses: {
+							root: [
+								'd-inline-block',
+								'position-relative',
+								'top-0',
+								'fs-6'
+							]
+						},
 					})
 				);
 				search.addWidget(
 					instantsearch.widgets.currentRefinements({
 						container: '#current-refinements',
+						cssClasses: {
+							root: 'd-inline-block',
+							label: 'd-none',
+							delete: [
+								'btn',
+								'btn-outline-primary',
+								'btn-sm'
+							],
+							list: [
+								'list-unstyled',
+								'mb-0'
+							],
+							item: [
+								'd-inline-block',
+								'me-3'
+							],
+							category: [
+								'd-flex',
+								'align-items-center',
+								'flex-nowrap',
+								'mb-2',
+								'mb-md-0'
+							],
+							categoryLabel: [
+								'me-2'
+							]
+						},
 					})
 				);
 				search.addWidget(
@@ -128,13 +170,27 @@ get_header();
 							empty: 'No results were found for "<strong>{{query}}</strong>".',
 							item: wp.template('instantsearch-hit')
 						},
+						cssClasses: {
+							item: [
+								'border-0',
+								'p-0',
+								'm-0'
+							],
+							list: [
+								'list-unstyled',
+								'mb-0'
+							],
+						},
 					})
 				);
 				search.addWidget(
 					instantsearch.widgets.pagination({
 						container: '#algolia-pagination',
 						cssClasses: {
-							root: ['archive-pagination', 'pagination']
+							root: [
+								'archive-pagination', 
+								'pagination'
+							]
 						},
 					})
 				);
@@ -146,6 +202,25 @@ get_header();
 						showReset: false,
 						showSubmit: true,
 						placeholder: 'Search by any keyword, artist, form, firing, or technique',
+						cssClasses: {
+							form: [
+								'position-relative',
+								'mw-700',
+								'mx-auto',
+								'mt-3'
+							],
+							input: [
+								'form-control',
+								'bg-white',
+								'py-3',
+								'px-5',
+								'rounded-5'
+							],
+							submitIcon: [
+								'h-15',
+								'w-15',
+							]
+						},
 					})
 				);
 				search.addWidget(
@@ -154,6 +229,14 @@ get_header();
 						attribute: 'post_author.display_name',
 						sortBy: ['name:asc'],
 						limit: 10000,
+						cssClasses: {
+							root: [
+								'mb-3'
+							],
+							select: [
+								'form-select'
+							],
+						},
 						templates: {
 							defaultOption: 'Artists'
 						}
@@ -165,6 +248,14 @@ get_header();
 						attribute: 'taxonomies.rc_form',
 						sortBy: ['name:asc'],
 						limit: 10000,
+						cssClasses: {
+							root: [
+								'mb-3'
+							],
+							select: [
+								'form-select'
+							],
+						},
 						templates: {
 							defaultOption: 'Forms'
 						}
@@ -176,6 +267,14 @@ get_header();
 						attribute: 'taxonomies.rc_firing',
 						sortBy: ['name:asc'],
 						limit: 10000,
+						cssClasses: {
+							root: [
+								'mb-3'
+							],
+							select: [
+								'form-select'
+							],
+						},
 						templates: {
 							defaultOption: 'Firings'
 						}
@@ -187,6 +286,14 @@ get_header();
 						attribute: 'taxonomies.rc_technique',
 						sortBy: ['name:asc'],
 						limit: 10000,
+						cssClasses: {
+							root: [
+								'mb-3'
+							],
+							select: [
+								'form-select'
+							],
+						},
 						templates: {
 							defaultOption: 'Techniques'
 						}
@@ -198,6 +305,14 @@ get_header();
 						attribute: 'taxonomies.rc_column',
 						sortBy: ['name:asc'],
 						limit: 10000,
+						cssClasses: {
+							root: [
+								'mb-3'
+							],
+							select: [
+								'form-select'
+							],
+						},
 						templates: {
 							defaultOption: 'Columns'
 						}
@@ -209,6 +324,14 @@ get_header();
 						attribute: 'taxonomies.rc_row',
 						sortBy: ['name:asc'],
 						limit: 10000,
+						cssClasses: {
+							root: [
+								'mb-3'
+							],
+							select: [
+								'form-select'
+							],
+						},
 						templates: {
 							defaultOption: 'Rows'
 						}
@@ -222,6 +345,14 @@ get_header();
 							attribute: 'taxonomies.rc_location',
 							sortBy: ['name:asc'],
 							limit: 10000,
+							cssClasses: {
+								root: [
+									'mb-3'
+								],
+								select: [
+									'form-select'
+								],
+							},
 							templates: {
 								defaultOption: 'Locations'
 							}
@@ -236,6 +367,14 @@ get_header();
 							attribute: 'taxonomies.post_tag',
 							sortBy: ['name:asc'],
 							limit: 10000,
+							cssClasses: {
+								root: [
+									'mb-3'
+								],
+								select: [
+									'form-select'
+								],
+							},
 							templates: {
 								defaultOption: 'Tags'
 							}
@@ -245,12 +384,20 @@ get_header();
 				search.addWidget(
 					instantsearch.widgets.clearRefinements({
 						container: '#clear-refinements',
+						cssClasses: {
+							root: 'mb-3',
+							button: [
+								'btn',
+								'btn-primary',
+								'w-100',
+							],
+						},
 					})
 				);
 
 				search.start();
 
-				jQuery('.search-form-input').attr('type', 'search').select();
+				document.querySelector("#algolia-search-box input[type='search']").select()
 			}
 		});
 	</script>

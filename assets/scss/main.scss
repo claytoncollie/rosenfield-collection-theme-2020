@@ -6,14 +6,94 @@
 // which gets more specific as we drill down each layer.  This keeps your
 // style code lean and organized.
 
-@import "~bourbon";
 @import "node_modules/slick-carousel/slick/slick";
 @import "node_modules/slick-carousel/slick/slick-theme";
+
+// Bootstrap Functions.
+@import "~bootstrap/scss/functions";
+
+// Project Settings.
 @import "settings/_index";
-@import "tools/_index";
-@import "generic/_index";
-@import "elements/_index";
-@import "objects/_index";
+
+// Bootstrap Variables.
+@import "~bootstrap/scss/variables";
+
+$font-sizes: map-merge($font-sizes, ( 
+	7: 1rem,
+	8: 0.75rem,
+));
+
+// Bootstrap utils.
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+
+// Bootstrap Layout & components.
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/helpers";
+
+$utilities: map-merge(
+	$utilities, (
+		"font-size": map-merge(map-get($utilities, "font-size"), (
+			responsive: true
+		), ),
+		"font-family": map-merge(map-get($utilities, "font-family"), (
+			values: (
+				body: $font-family-base,
+				heading: $headings-font-family,
+				alt: $font-family-alt,
+			)
+		), ),
+		"max-height": map-merge(map-get($utilities, "max-height"), (
+			responsive: true,
+			values: (
+				50: 50px,
+				65: 65px,
+				100: 100px,
+				150: 150px,
+				700: 700px
+			)
+		), ),
+		"max-width": map-merge(map-get($utilities, "max-width"), (
+			responsive: true,
+			values: (
+				50: 50px,
+				65: 65px,
+				100: 100px,
+				150: 150px,
+				700: 700px
+			)
+		), ),
+		"height": map-merge(map-get($utilities, "height"), (values: (
+			15: 15px,
+			25: 25%,
+			50: 50%,
+			75: 75%,
+			100: 100%,)), ),
+		"width": map-merge(map-get($utilities, "width"), (values: (
+			15: 15px,
+			25: 25%,
+			50: 50%,
+			75: 75%,
+			100: 100%)), ),
+	));
+
+// Bootstrap Utilities.
+@import "~bootstrap/scss/utilities/api";
+
 @import "components/_index";
-@import "plugins/_index";
 @import "utilities/_index";
+@import "print"

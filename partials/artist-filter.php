@@ -16,10 +16,10 @@ $view_all    = (string) get_permalink( $page_object ); // @phpstan-ignore-line
 
 ?>
 
-<section id="rosenfield-collection-artist-filter" class="inline-filter" role="navigation" aria-label="Filter artists by last name">
-	<ul>
-		<li class="<?php echo esc_attr( $is_archive ); ?>">
-			<a href="<?php echo esc_url( $view_all ); ?>">
+<section id="rosenfield-collection-artist-filter" class="inline-filter pt-3" role="navigation" aria-label="Filter artists by last name">
+	<ul class="list-unstyled mb-0 row flex-row align-items-center g-2">
+		<li class="col <?php echo esc_attr( $is_archive ); ?>">
+			<a href="<?php echo esc_url( $view_all ); ?>" class="btn btn-outline-primary text-nowrap">
 				<span class="screen-reader-text">
 					<?php echo esc_html__( 'Go to page ', 'rosenfield-collection' ); ?>
 				</span>
@@ -36,8 +36,8 @@ $view_all    = (string) get_permalink( $page_object ); // @phpstan-ignore-line
 				(string) get_permalink()
 			)
 			?>
-			<li class="<?php echo esc_attr( $is_current ); ?>">
-				<a href="<?php echo esc_url( $permalink ); ?>">
+			<li class="col <?php echo esc_attr( $is_current ); ?>">
+				<a href="<?php echo esc_url( $permalink ); ?>" class="btn btn-outline-primary">
 					<span class="screen-reader-text">
 						<?php echo esc_html__( 'Filter artist by the letter ', 'rosenfield-collection' ); ?>
 					</span> 

@@ -11,23 +11,21 @@ use WP_Query;
 
 use function RosenfieldCollection\Theme\Helpers\is_type_archive;
 use function RosenfieldCollection\Theme\Helpers\get_object_prefix_and_id;
+use function RosenfieldCollection\Theme\Helpers\is_list_view;
+use function RosenfieldCollection\Theme\Helpers\is_type_archive_page;
 
 use const RosenfieldCollection\Theme\Fields\OBJECT_ID;
-use const RosenfieldCollection\Theme\QueryVars\VIEW_VAR;
 
 /**
  * Setup
  */
 function setup(): void {
-	add_filter( 'post_class', __NAMESPACE__ . '\archive_post_class' );
+	add_filter( 'genesis_attr_entry', __NAMESPACE__ . '\entry_attributes' );
 	add_filter( 'get_the_content_more_link', __NAMESPACE__ . '\read_more_link' );
 	add_filter( 'the_content_more_link', __NAMESPACE__ . '\read_more_link' );
-	add_action( 'genesis_entry_header', __NAMESPACE__ . '\entry_wrap_open', 4 );
-	add_action( 'genesis_entry_footer', __NAMESPACE__ . '\entry_wrap_close', 15 );
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\sort_by_object_id' );
 	add_action( 'genesis_entry_content', __NAMESPACE__ . '\object_by_line', 8 );
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\nopaging', 99 );
-	add_filter( 'body_class', __NAMESPACE__ . '\body_class' );
 	add_action( 'genesis_entry_footer', __NAMESPACE__ . '\the_post_meta' );
 	// Reposition entry image.
 	remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
@@ -39,34 +37,17 @@ function setup(): void {
 }
 
 /**
- * Add column class to archive posts.
- *
- * @param array $classes Array of post classes.
+ * Grid layout for archives
+ * 
+ * @param array $attributes Attributes.
  */
-function archive_post_class( array $classes ): array {
-	if ( ! is_type_archive() ) {
-		return $classes;
+function entry_attributes( array $attributes ): array {
+	if ( ! is_type_archive() && ! is_type_archive_page() ) {
+		return $attributes;
 	}
 
-	if ( \did_action( 'genesis_before_sidebar_widget_area' ) !== 0 ) {
-		return $classes;
-	}
-
-	if ( 'full-width-content' === genesis_site_layout() ) {
-		$classes[] = 'one-fourth';
-		$count     = 4;
-	} else {
-		$classes[] = 'one-third';
-		$count     = 3;
-	}
-
-	global $wp_query;
-
-	if ( 0 === $wp_query->current_post || 0 === $wp_query->current_post % $count ) {
-		$classes[] = 'first';
-	}
-
-	return $classes;
+	$attributes['class'] = is_list_view() ? 'd-grid grid-template-columns' : 'col col-12 col-md-6 col-lg-4 col-xl-3 text-center';
+	return $attributes;
 }
 
 /**
@@ -86,38 +67,10 @@ function read_more_link(): string {
 	}
 
 	return sprintf(
-		'<a class="more-link" href="%s">%s</a>',
+		'<a class="link-fancy" href="%s">%s</a>',
 		esc_url( $permalink ),
 		esc_html( ucwords( get_object_prefix_and_id() ) )
 	);
-}
-
-/**
- * Outputs the opening entry wrap markup.
- */
-function entry_wrap_open(): void {
-	if ( is_type_archive() ) {
-		genesis_markup(
-			[
-				'open'    => '<div %s>',
-				'context' => 'entry-wrap',
-			]
-		);
-	}
-}
-
-/**
- * Outputs the closing entry wrap markup.
- */
-function entry_wrap_close(): void {
-	if ( is_type_archive() ) {
-		genesis_markup(
-			[
-				'close'   => '</div>',
-				'context' => 'entry-wrap',
-			]
-		);
-	}
 }
 
 /**
@@ -153,7 +106,7 @@ function object_by_line(): void {
 	if ( is_author() ) {
 		return;
 	}
-	if ( ! is_page_template( 'templates/pending.php' ) ) {
+	if ( is_page_template( 'templates/pending.php' ) ) {
 		return;
 	}
 
@@ -174,29 +127,11 @@ function nopaging( WP_Query $query ): void {
 		return;
 	}
 
-	$view = get_query_var( VIEW_VAR );
-	$view = $view ? (string) $view : ''; // @phpstan-ignore-line
-	if ( 'list' !== $view ) {
+	if ( ! is_list_view() ) {
 		return;
 	}
 		
 	$query->set( 'nopaging', true );
-}
-
-/**
- * Add body class for taxonomy archive.
- *
- * @param array $classes Body classes.
- */
-function body_class( array $classes ): array {
-	$view = get_query_var( VIEW_VAR );
-	$view = $view ? (string) $view : ''; // @phpstan-ignore-line
-	if ( 'list' !== $view ) {
-		return $classes;
-	}
-
-	$classes[] = ' view-toggle-list';
-	return $classes;
 }
 
 /**

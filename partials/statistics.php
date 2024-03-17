@@ -13,8 +13,8 @@ $total_users = (string) $users['total_users'];
 
 ?>
 
-<div class="statistics">
-	<div class="one-half first">
+<div class="row pt-3 pt-md-5">
+	<div class="col col-6">
 		<h3>
 			<?php echo esc_html( $published ); ?>
 		</h3>
@@ -22,7 +22,7 @@ $total_users = (string) $users['total_users'];
 			<?php echo esc_html__( 'Published Objects', 'rosenfield-collection' ); ?>
 		</p>
 	</div>
-	<div class="one-half ">
+	<div class="col col-6">
 		<h3>
 			<?php echo esc_html( $total_users ); ?>
 		</h3>
