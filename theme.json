@@ -3,10 +3,32 @@
 	"version": 2,
 	"settings": {
 		"appearanceTools": false,
+		"color": {
+			"background": false,
+			"text": false
+		},
 		"useRootPaddingAwareAlignments": true,
 		"layout": {
 			"contentSize": "45rem",
 			"wideSize": "63rem"
+		},
+		"typography": {
+			"customFontSize": false,
+			"dropCap": false,
+			"fluid": false,
+			"fontStyle": false,
+			"fontSizes": [],
+			"fontWeight": false,
+			"letterSpacing": false,
+			"textTransform": false,
+			"textDecoration": false,
+			"fontFamilies": [
+				{
+					"fontFamily": "PT Serif, serif",
+					"slug": "pt-serif",
+					"name": "PT Serif"
+				}
+			]
 		}
 	}
 	
