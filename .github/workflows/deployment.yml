@@ -35,10 +35,10 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup Node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version-file: '.nvmrc'
 
@@ -55,7 +55,7 @@ jobs:
       run: npm run build
       
     - name: Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v3.2.4
+      uses: wpengine/github-action-wpe-site-deploy@v4.2.4
       with: 
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
         FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=./.deployignore
