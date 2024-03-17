@@ -88,317 +88,315 @@ get_header();
 	</script>
 	<script type="text/javascript">
 		window.addEventListener('load', function() {
-			if ( document.getElementById("algolia-search-box") ) {
-				if ( algolia.indices.searchable_posts === undefined && document.getElementsByClassName("admin-bar").length > 0) {
-					alert('It looks like you haven\'t indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.');
-				}
+			if ( algolia.indices.searchable_posts === undefined && document.getElementsByClassName("admin-bar").length > 0) {
+				alert('It looks like you haven\'t indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.');
+			}
 
-				// Instantiate instantsearch.js.
-				var search = instantsearch({
-					indexName: algolia.indices.searchable_posts.name,
-					searchClient: algoliasearch( algolia.application_id, algolia.search_api_key ),
-					routing: {
-						router: instantsearch.routers.history({ writeDelay: 1000 }),
-						stateMapping: {
-							stateToRoute( indexUiState ) {
-								return {
-									s: indexUiState[ algolia.indices.searchable_posts.name ].query,
-									page: indexUiState[ algolia.indices.searchable_posts.name ].page
-								}
-							},
-							routeToState( routeState ) {
-								const indexUiState = {};
-								indexUiState[ algolia.indices.searchable_posts.name ] = {
-									query: routeState.s,
-									page: routeState.page
-								};
-								return indexUiState;
+			// Instantiate instantsearch.js.
+			var search = instantsearch({
+				indexName: algolia.indices.searchable_posts.name,
+				searchClient: algoliasearch( algolia.application_id, algolia.search_api_key ),
+				routing: {
+					router: instantsearch.routers.history({ writeDelay: 1000 }),
+					stateMapping: {
+						stateToRoute( indexUiState ) {
+							return {
+								s: indexUiState[ algolia.indices.searchable_posts.name ].query,
+								page: indexUiState[ algolia.indices.searchable_posts.name ].page
 							}
+						},
+						routeToState( routeState ) {
+							const indexUiState = {};
+							indexUiState[ algolia.indices.searchable_posts.name ] = {
+								query: routeState.s,
+								page: routeState.page
+							};
+							return indexUiState;
 						}
 					}
-				});
-				search.addWidget(
-					instantsearch.widgets.stats({
-						container: '#algolia-stats',
-						cssClasses: {
-							root: [
-								'd-inline-block',
-								'position-relative',
-								'top-0',
-								'fs-6'
-							]
-						},
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.currentRefinements({
-						container: '#current-refinements',
-						cssClasses: {
-							root: 'd-inline-block',
-							label: 'd-none',
-							delete: [
-								'btn',
-								'btn-outline-primary',
-								'btn-sm'
-							],
-							list: [
-								'list-unstyled',
-								'mb-0'
-							],
-							item: [
-								'd-inline-block',
-								'me-3'
-							],
-							category: [
-								'd-flex',
-								'align-items-center',
-								'flex-nowrap',
-								'mb-2',
-								'mb-md-0'
-							],
-							categoryLabel: [
-								'me-2'
-							]
-						},
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.hits({
-						container: '#algolia-hits',
-						hitsPerPage: 10,
-						templates: {
-							empty: 'No results were found for "<strong>{{query}}</strong>".',
-							item: wp.template('instantsearch-hit')
-						},
-						cssClasses: {
-							item: [
-								'border-0',
-								'p-0',
-								'm-0'
-							],
-							list: [
-								'list-unstyled',
-								'mb-0'
-							],
-						},
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.pagination({
-						container: '#algolia-pagination',
-						cssClasses: {
-							root: [
-								'archive-pagination', 
-								'pagination'
-							]
-						},
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.searchBox({
-						container: '#search-box',
-						autofocus: true,
-						searchAsYouType: true,
-						showReset: false,
-						showSubmit: true,
-						placeholder: 'Search by any keyword, artist, form, firing, or technique',
-						cssClasses: {
-							form: [
-								'position-relative',
-								'mw-700',
-								'mx-auto',
-								'mt-3'
-							],
-							input: [
-								'form-control',
-								'bg-white',
-								'py-3',
-								'px-5',
-								'rounded-5'
-							],
-							submitIcon: [
-								'h-15',
-								'w-15',
-							]
-						},
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.menuSelect({
-						container: '#facet-users',
-						attribute: 'post_author.display_name',
-						sortBy: ['name:asc'],
-						limit: 10000,
-						cssClasses: {
-							root: [
-								'mb-3'
-							],
-							select: [
-								'form-select'
-							],
-						},
-						templates: {
-							defaultOption: 'Artists'
-						}
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.menuSelect({
-						container: '#facet-form',
-						attribute: 'taxonomies.rc_form',
-						sortBy: ['name:asc'],
-						limit: 10000,
-						cssClasses: {
-							root: [
-								'mb-3'
-							],
-							select: [
-								'form-select'
-							],
-						},
-						templates: {
-							defaultOption: 'Forms'
-						}
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.menuSelect({
-						container: '#facet-firing',
-						attribute: 'taxonomies.rc_firing',
-						sortBy: ['name:asc'],
-						limit: 10000,
-						cssClasses: {
-							root: [
-								'mb-3'
-							],
-							select: [
-								'form-select'
-							],
-						},
-						templates: {
-							defaultOption: 'Firings'
-						}
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.menuSelect({
-						container: '#facet-technique',
-						attribute: 'taxonomies.rc_technique',
-						sortBy: ['name:asc'],
-						limit: 10000,
-						cssClasses: {
-							root: [
-								'mb-3'
-							],
-							select: [
-								'form-select'
-							],
-						},
-						templates: {
-							defaultOption: 'Techniques'
-						}
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.menuSelect({
-						container: '#facet-column',
-						attribute: 'taxonomies.rc_column',
-						sortBy: ['name:asc'],
-						limit: 10000,
-						cssClasses: {
-							root: [
-								'mb-3'
-							],
-							select: [
-								'form-select'
-							],
-						},
-						templates: {
-							defaultOption: 'Columns'
-						}
-					})
-				);
-				search.addWidget(
-					instantsearch.widgets.menuSelect({
-						container: '#facet-row',
-						attribute: 'taxonomies.rc_row',
-						sortBy: ['name:asc'],
-						limit: 10000,
-						cssClasses: {
-							root: [
-								'mb-3'
-							],
-							select: [
-								'form-select'
-							],
-						},
-						templates: {
-							defaultOption: 'Rows'
-						}
-					})
-				);
-
-				if ( jQuery('#facet-location').length > 0 ) {
-					search.addWidget(
-						instantsearch.widgets.menuSelect({
-							container: '#facet-location',
-							attribute: 'taxonomies.rc_location',
-							sortBy: ['name:asc'],
-							limit: 10000,
-							cssClasses: {
-								root: [
-									'mb-3'
-								],
-								select: [
-									'form-select'
-								],
-							},
-							templates: {
-								defaultOption: 'Locations'
-							}
-						})
-					);
 				}
+			});
+			search.addWidget(
+				instantsearch.widgets.stats({
+					container: '#algolia-stats',
+					cssClasses: {
+						root: [
+							'd-inline-block',
+							'position-relative',
+							'top-0',
+							'fs-6'
+						]
+					},
+				})
+			);
+			search.addWidget(
+				instantsearch.widgets.currentRefinements({
+					container: '#current-refinements',
+					cssClasses: {
+						root: 'd-inline-block',
+						label: 'd-none',
+						delete: [
+							'btn',
+							'btn-outline-primary',
+							'btn-sm'
+						],
+						list: [
+							'list-unstyled',
+							'mb-0'
+						],
+						item: [
+							'd-inline-block',
+							'me-3'
+						],
+						category: [
+							'd-flex',
+							'align-items-center',
+							'flex-nowrap',
+							'mb-2',
+							'mb-md-0'
+						],
+						categoryLabel: [
+							'me-2'
+						]
+					},
+				})
+			);
+			search.addWidget(
+				instantsearch.widgets.hits({
+					container: '#algolia-hits',
+					hitsPerPage: 10,
+					templates: {
+						empty: 'No results were found for "<strong>{{query}}</strong>".',
+						item: wp.template('instantsearch-hit')
+					},
+					cssClasses: {
+						item: [
+							'border-0',
+							'p-0',
+							'm-0'
+						],
+						list: [
+							'list-unstyled',
+							'mb-0'
+						],
+					},
+				})
+			);
+			search.addWidget(
+				instantsearch.widgets.pagination({
+					container: '#algolia-pagination',
+					cssClasses: {
+						root: [
+							'archive-pagination', 
+							'pagination'
+						]
+					},
+				})
+			);
+			search.addWidget(
+				instantsearch.widgets.searchBox({
+					container: '#search-box',
+					autofocus: true,
+					searchAsYouType: true,
+					showReset: false,
+					showSubmit: true,
+					placeholder: 'Search by any keyword, artist, form, firing, or technique',
+					cssClasses: {
+						form: [
+							'position-relative',
+							'mw-700',
+							'mx-auto',
+							'mt-3'
+						],
+						input: [
+							'form-control',
+							'bg-white',
+							'py-3',
+							'px-5',
+							'rounded-5'
+						],
+						submitIcon: [
+							'h-15',
+							'w-15',
+						]
+					},
+				})
+			);
+			search.addWidget(
+				instantsearch.widgets.menuSelect({
+					container: '#facet-users',
+					attribute: 'post_author.display_name',
+					sortBy: ['name:asc'],
+					limit: 10000,
+					cssClasses: {
+						root: [
+							'mb-3'
+						],
+						select: [
+							'form-select'
+						],
+					},
+					templates: {
+						defaultOption: 'Artists'
+					}
+				})
+			);
+			search.addWidget(
+				instantsearch.widgets.menuSelect({
+					container: '#facet-form',
+					attribute: 'taxonomies.rc_form',
+					sortBy: ['name:asc'],
+					limit: 10000,
+					cssClasses: {
+						root: [
+							'mb-3'
+						],
+						select: [
+							'form-select'
+						],
+					},
+					templates: {
+						defaultOption: 'Forms'
+					}
+				})
+			);
+			search.addWidget(
+				instantsearch.widgets.menuSelect({
+					container: '#facet-firing',
+					attribute: 'taxonomies.rc_firing',
+					sortBy: ['name:asc'],
+					limit: 10000,
+					cssClasses: {
+						root: [
+							'mb-3'
+						],
+						select: [
+							'form-select'
+						],
+					},
+					templates: {
+						defaultOption: 'Firings'
+					}
+				})
+			);
+			search.addWidget(
+				instantsearch.widgets.menuSelect({
+					container: '#facet-technique',
+					attribute: 'taxonomies.rc_technique',
+					sortBy: ['name:asc'],
+					limit: 10000,
+					cssClasses: {
+						root: [
+							'mb-3'
+						],
+						select: [
+							'form-select'
+						],
+					},
+					templates: {
+						defaultOption: 'Techniques'
+					}
+				})
+			);
+			search.addWidget(
+				instantsearch.widgets.menuSelect({
+					container: '#facet-column',
+					attribute: 'taxonomies.rc_column',
+					sortBy: ['name:asc'],
+					limit: 10000,
+					cssClasses: {
+						root: [
+							'mb-3'
+						],
+						select: [
+							'form-select'
+						],
+					},
+					templates: {
+						defaultOption: 'Columns'
+					}
+				})
+			);
+			search.addWidget(
+				instantsearch.widgets.menuSelect({
+					container: '#facet-row',
+					attribute: 'taxonomies.rc_row',
+					sortBy: ['name:asc'],
+					limit: 10000,
+					cssClasses: {
+						root: [
+							'mb-3'
+						],
+						select: [
+							'form-select'
+						],
+					},
+					templates: {
+						defaultOption: 'Rows'
+					}
+				})
+			);
 
-				if ( jQuery('#facet-tags').length > 0 ) {
-					search.addWidget(
-						instantsearch.widgets.menuSelect({
-							container: '#facet-tags',
-							attribute: 'taxonomies.post_tag',
-							sortBy: ['name:asc'],
-							limit: 10000,
-							cssClasses: {
-								root: [
-									'mb-3'
-								],
-								select: [
-									'form-select'
-								],
-							},
-							templates: {
-								defaultOption: 'Tags'
-							}
-						})
-					);
-				}
+			if ( jQuery('#facet-location').length > 0 ) {
 				search.addWidget(
-					instantsearch.widgets.clearRefinements({
-						container: '#clear-refinements',
+					instantsearch.widgets.menuSelect({
+						container: '#facet-location',
+						attribute: 'taxonomies.rc_location',
+						sortBy: ['name:asc'],
+						limit: 10000,
 						cssClasses: {
-							root: 'mb-3',
-							button: [
-								'btn',
-								'btn-primary',
-								'w-100',
+							root: [
+								'mb-3'
+							],
+							select: [
+								'form-select'
 							],
 						},
+						templates: {
+							defaultOption: 'Locations'
+						}
 					})
 				);
-
-				search.start();
-
-				document.querySelector("#algolia-search-box input[type='search']").select()
 			}
+
+			if ( jQuery('#facet-tags').length > 0 ) {
+				search.addWidget(
+					instantsearch.widgets.menuSelect({
+						container: '#facet-tags',
+						attribute: 'taxonomies.post_tag',
+						sortBy: ['name:asc'],
+						limit: 10000,
+						cssClasses: {
+							root: [
+								'mb-3'
+							],
+							select: [
+								'form-select'
+							],
+						},
+						templates: {
+							defaultOption: 'Tags'
+						}
+					})
+				);
+			}
+			search.addWidget(
+				instantsearch.widgets.clearRefinements({
+					container: '#clear-refinements',
+					cssClasses: {
+						root: 'mb-3',
+						button: [
+							'btn',
+							'btn-primary',
+							'w-100',
+						],
+					},
+				})
+			);
+
+			search.start();
+
+			document.querySelector("#algolia-search-box input[type='search']").select()
 		});
 	</script>
 
