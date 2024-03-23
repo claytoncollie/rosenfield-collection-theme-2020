@@ -83,7 +83,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $website ) ) {
 		printf(
-			'<div class="fs-6 fs-md-4 mb-4"><a target="_blank" href="%s" class="link-dots">%s</a></div>',
+			'<div class="fs-6 fs-md-4 mb-4"><a target="_blank" href="%s" class="link-dots" aria-label="Artist website">%s</a></div>',
 			esc_url( $website ),
 			esc_url( $website )
 		);
@@ -91,7 +91,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $twitter ) ) {
 		printf(
-			'<div class="d-inline-block me-4"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="d-inline-block me-4"><a target="_blank" href="%s" aria-label="Twitter">%s</a></div>',
 			esc_url( $twitter ),
 			svg( 'twitter-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
@@ -99,7 +99,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $facebook ) ) {
 		printf(
-			'<div class="d-inline-block me-4"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="d-inline-block me-4"><a target="_blank" href="%s" aria-label="Facebook">%s</a></div>',
 			esc_url( $facebook ),
 			svg( 'facebook-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
@@ -107,7 +107,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $instagram ) ) {
 		printf(
-			'<div class="d-inline-block me-4"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="d-inline-block me-4"><a target="_blank" href="%s" aria-label="Instagram">%s</a></div>',
 			esc_url( $instagram ),
 			svg( 'instagram-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
@@ -115,7 +115,7 @@ function do_the_artist_info(): void {
 
 	if ( ! empty( $pinterest ) ) {
 		printf(
-			'<div class="d-inline-block me-4"><a target="_blank" href="%s">%s</a></div>',
+			'<div class="d-inline-block me-4"><a target="_blank" href="%s" aria-label="Pinterest">%s</a></div>',
 			esc_url( $pinterest ),
 			svg( 'pinterest-square-brands' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
