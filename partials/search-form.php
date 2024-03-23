@@ -7,4 +7,4 @@
 
 ?>
 
-<div id="search-box"></div>
+<div id="search-box" aria-label="Search by any keyword, artist, form, firing, or technique"></div>

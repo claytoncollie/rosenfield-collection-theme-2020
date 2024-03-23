@@ -24,16 +24,16 @@ get_header();
 			<div id="algolia-pagination" class="mt-5"></div>
 		</main>
 		<aside class="col col-12 col-md-3 order-0" role="search" aria-label="Primary Sidebar" id="genesis-sidebar-primary">
-			<div id="clear-refinements"></div>
-			<div id="facet-users"></div>
-			<div id="facet-form"></div>
-			<div id="facet-firing"></div>
-			<div id="facet-technique"></div>
-			<div id="facet-column"></div>
-			<div id="facet-row"></div>
+			<div id="clear-refinements" aria-label="Clear refinements"></div>
+			<div id="facet-users" aria-label="Filter by artists"></div>
+			<div id="facet-form" aria-label="Filter by forms"></div>
+			<div id="facet-firing" aria-label="Filter by firings"></div>
+			<div id="facet-technique" aria-label="Filter by techniques"></div>
+			<div id="facet-column" aria-label="Filter by column"></div>
+			<div id="facet-row" aria-label="Filter by row"></div>
 			<?php if ( is_user_logged_in() && current_user_can( 'edit_others_pages' ) ) : ?>
-				<div id="facet-location"></div>
-				<div id="facet-tags"></div>
+				<div id="facet-location" aria-label="Filter by location"></div>
+				<div id="facet-tags" aria-label="Filter by tag"></div>
 			<?php endif; ?>
 		</aside>
 	</div>
