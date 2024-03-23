@@ -96,7 +96,7 @@ function hero_title(): void {
 		$title     = get_the_title();
 		$permalink = get_permalink();
 		$permalink = $permalink ? (string) $permalink : '';
-		$open      = '<div class="col col-12 col-md-7 text-start d-flex align-items-center flex-column flex-md-row mb-4 mb-md-0"><h1 %s>';
+		$open      = '<div class="col col-12 col-md-8 text-start d-flex align-items-center flex-column flex-md-row mb-4 mb-md-0"><h1 %s>';
 		$close     = sprintf(
 			'</h1><span class="entry-sep d-none d-md-inline-block">&middot;</span><a href="%s" class="link-fancy">%s</a></div>',
 			esc_url(

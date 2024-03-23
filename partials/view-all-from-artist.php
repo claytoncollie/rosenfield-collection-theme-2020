@@ -37,7 +37,7 @@ $avatar     = wp_get_attachment_image(
 
 ?>
 
-<div class="col col-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-end flex-row flex-nowrap">
+<div class="col col-12 col-md-4 d-flex align-items-center justify-content-center justify-content-md-end flex-row flex-nowrap">
 	<?php echo wp_kses_post( $avatar ); ?>
 	<a class="link-fancy" href="<?php echo esc_url( $permalink ); ?>">
 		<?php echo esc_html__( 'View more objects by', 'rosenfield-collection' ); ?>
